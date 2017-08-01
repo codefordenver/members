@@ -5,6 +5,13 @@ Node.js application that connects volunteers with volunteers/projects based on t
 
 ---
 
+
+## Requirements
+
+- [Node.js](https://nodejs.org)
+- graph.cool CLI: `npm install -g graphcool` 
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
