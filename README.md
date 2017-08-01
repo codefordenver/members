@@ -1,3 +1,10 @@
+
+# members.codefordenver.com
+
+Node.js application that connects volunteers with volunteers/projects based on their skill sets.
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
