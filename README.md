@@ -5,7 +5,6 @@ Node.js application that connects volunteers with volunteers/projects based on t
 
 ---
 
-
 ## Requirements
 
 - [Node.js](https://nodejs.org)
