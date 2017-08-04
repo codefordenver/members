@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/codefordenver/members.png?label=ready&title=Ready)](https://waffle.io/codefordenver/members?utm_source=badge)
 
 # members.codefordenver.com
 
