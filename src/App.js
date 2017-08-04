@@ -11,17 +11,17 @@ const client = new ApolloClient({
   })
 });
 
-const Member = ({ data }) => {
-  console.log(data.allMembers);
+const Member = ({ members }) => {
+  console.log(members);
   return (
     <div>
-      {JSON.stringify(data.allMembers)}
+      {members.map(member => <div key={member.email}>{member.email}</div>)}
     </div>
   );
 };
 
 Member.defaultProps = {
-  members: []
+  members: [],
 };
 
 const MembersWithData = graphql(
@@ -32,7 +32,7 @@ const MembersWithData = graphql(
       }
     }
   `,
-  { options: () => ({}) }
+  { options: () => ({}), props: ({ data }) => { return { members: data.allMembers }} }
 )(Member);
 
 class App extends Component {
