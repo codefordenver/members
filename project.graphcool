@@ -25,6 +25,10 @@ type File {
   url: String! @isUnique
 }
 
+###########################################################################
+# Our definitions
+###########################################################################
+
 type Member implements Node {
   createdAt: DateTime!
   id: ID! @isUnique
@@ -32,13 +36,3 @@ type Member implements Node {
   email: String!
   name: String
 }
-
-###########################################################################
-# You can easily add custom definitions, `Tweet` below is an example.
-# If you want to add `Tweet` to your schema,
-# remove the below comments and run `graphcool push`.
-###########################################################################
-
-# type Tweet {
-#   text: String!
-# }

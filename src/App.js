@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ApolloClient, { createNetworkInterface } from 'apollo-client';
+import gql from 'graphql-tag';
+
+const client = new ApolloClient({
+  networkInterface: createNetworkInterface({
+    uri: 'https://api.graph.cool/simple/v1/cj5iz3htl74ms012245dwlq4t',
+  }),
+});
 
 class App extends Component {
   render() {
