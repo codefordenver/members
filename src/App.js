@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
 import ApolloClient, { createNetworkInterface } from "apollo-client";
 import gql from "graphql-tag";
 import { ApolloProvider, graphql } from "react-apollo";
+import MemberResources from "./MemberResources";
+import "./App.css";
 
 const client = new ApolloClient({
   networkInterface: createNetworkInterface({
@@ -45,13 +45,10 @@ class App extends Component {
       <ApolloProvider client={this.createClient()}>
         <div className="App">
           <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h2>Welcome to React</h2>
+            <h2>Code for Denver Members</h2>
           </div>
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
           <MembersWithData />
+          <MemberResources />
         </div>
       </ApolloProvider>
     );
