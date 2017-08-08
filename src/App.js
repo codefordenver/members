@@ -9,19 +9,35 @@ const client = new ApolloClient({
   networkInterface: createNetworkInterface({
     uri: "https://api.graph.cool/simple/v1/cj5iz3htl74ms012245dwlq4t"
   })
+
+  networkInterface.use([{
+    applyMiddleware (req, next) {
+      if (!req.options.headers) {
+        req.options.headers = {}
+      }
+
+      if (localStorage.getItem('auth0IdToken')) {
+        req.options.headers.authorization = `Bearer ${localStorage.getItem('auth0IdToken')}`
+      }
+      next()
+    },
+  }])
 });
 
 const Member = ({ members }) => {
-  console.log(members);
   return (
     <div>
-      {members.map(member => <div key={member.email}>{member.email}</div>)}
+      {members.map(member =>
+        <div key={member.email}>
+          {member.email}
+        </div>
+      )}
     </div>
   );
 };
 
 Member.defaultProps = {
-  members: [],
+  members: []
 };
 
 const MembersWithData = graphql(
@@ -32,7 +48,12 @@ const MembersWithData = graphql(
       }
     }
   `,
-  { options: () => ({}), props: ({ data }) => { return { members: data.allMembers }} }
+  {
+    options: () => ({}),
+    props: ({ data }) => {
+      return { members: data.allMembers };
+    }
+  }
 )(Member);
 
 class App extends Component {
