@@ -5,6 +5,13 @@ export default class LoginAuth0 extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    this._lock.on('authenticated', (authResult) => {
+      window.localStorage.setItem('auth0IdToken', authResult.idToken)
+      this.props.router.replace(`/login`)
+    })
+  }
+
   this._lock = new Auth0Lock(props.clientId, props.domain)
 
   _showLogin = () => {
