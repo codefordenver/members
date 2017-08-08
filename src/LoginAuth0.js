@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
+import Auth0Lock from 'auth0-lock';
 
 export default class LoginAuth0 extends Component {
   constructor(props) {
     super(props);
+
+    this._lock = new Auth0Lock(props.clientId, props.domain)
   }
 
   componentDidMount() {
@@ -11,8 +14,6 @@ export default class LoginAuth0 extends Component {
       this.props.router.replace(`/login`)
     })
   }
-
-  this._lock = new Auth0Lock(props.clientId, props.domain)
 
   _showLogin = () => {
     this._lock.show()
