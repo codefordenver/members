@@ -1,27 +1,26 @@
-import React, { Component } from "react";
-import Auth0Lock from "auth0-lock";
+import React, {Component} from 'react';
 
 export default class LoginAuth0 extends Component {
   constructor(props) {
     super(props);
-
-    this._lock = new Auth0Lock(props.clientId, props.domain);
   }
 
-  componentDidMount() {
-    this._lock.on("authenticated", authResult => {
-      window.localStorage.setItem("cfd-members-auth0IdToken", authResult.idToken);
-      // We may want to route to /login here
-    });
-  }
+  this._lock = new Auth0Lock(props.clientId, props.domain)
 
   _showLogin = () => {
-    this._lock.show();
-  };
+    this._lock.show()
+  }
 
   render() {
     return (
-      <span onClick={this._showLogin}>Log in with Auth0</span>
-    );
+      <div>
+        <span
+          onClick={this._showLogin}
+          className='dib pa3 white bg-blue dim pointer'
+        >
+          Log in with Auth0
+        </span>
+      </div>
+    )
   }
 }
