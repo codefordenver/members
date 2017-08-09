@@ -35,16 +35,27 @@ class App extends Component {
     return client;
   }
 
+  _isLoggedIn = () => {
+    return this.props.data.user;
+  };
+
+  _logout = () => {
+    window.localStorage.removeItem("auth0IdToken");
+    window.location.reload();
+  };
+
   render() {
     return (
       <ApolloProvider client={this.createClient()}>
         <div className="App">
           <div className="App-header">
             <h2>Code for Denver Members</h2>
-            <LoginAuth0
-              clientId="Qgo5BOv5XsU60A6mFSjmZpzfTrYy8I5I"
-              domain="codefordenver.auth0.com"
-            />
+            {this._isLoggedIn
+              ? <LoginAuth0
+                  clientId="Qgo5BOv5XsU60A6mFSjmZpzfTrYy8I5I"
+                  domain="codefordenver.auth0.com"
+                />
+              : <span onClick={this._logout}>Log out</span>}
           </div>
           <MembersWithData />
           <MemberResources />
