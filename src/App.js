@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import { ApolloProvider, graphql } from "react-apollo";
 import MemberResources from "./MemberResources";
 import LoginAuth0 from "./LoginAuth0";
+import MembersWithData from "./Members";
 import "./App.css";
 
 const networkInterface = createNetworkInterface({
@@ -28,38 +29,6 @@ networkInterface.use([
 ]);
 
 const client = new ApolloClient({ networkInterface });
-
-const Member = ({ members }) => {
-  return (
-    <div>
-      {members.map(member =>
-        <div key={member.email}>
-          {member.email}
-        </div>
-      )}
-    </div>
-  );
-};
-
-Member.defaultProps = {
-  members: []
-};
-
-const MembersWithData = graphql(
-  gql`
-    query members {
-      allMembers {
-        email
-      }
-    }
-  `,
-  {
-    options: () => ({}),
-    props: ({ data }) => {
-      return { members: data.allMembers };
-    }
-  }
-)(Member);
 
 class App extends Component {
   createClient() {
