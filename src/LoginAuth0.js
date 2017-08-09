@@ -11,7 +11,7 @@ export default class LoginAuth0 extends Component {
   componentDidMount() {
     this._lock.on('authenticated', (authResult) => {
       window.localStorage.setItem('auth0IdToken', authResult.idToken)
-      this.props.router.replace(`/login`)
+      // this.props.router.replace(`/login`)
     })
   }
 
@@ -24,7 +24,6 @@ export default class LoginAuth0 extends Component {
       <div>
         <span
           onClick={this._showLogin}
-          className='dib pa3 white bg-blue dim pointer'
         >
           Log in with Auth0
         </span>

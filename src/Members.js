@@ -1,6 +1,6 @@
 import React from "react";
 import gql from "graphql-tag";
-import { ApolloProvider, graphql } from "react-apollo";
+import { graphql } from "react-apollo";
 
 const Member = ({ members }) => {
   return (
