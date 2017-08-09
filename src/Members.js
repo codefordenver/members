@@ -1,8 +1,8 @@
 import React from "react";
 import gql from "graphql-tag";
-import { graphql } from "react-apollo";
+import { ApolloProvider, graphql } from "react-apollo";
 
-const Members = ({ members }) => {
+const Member = ({ members }) => {
   return (
     <div>
       {members.map(member =>
@@ -14,21 +14,24 @@ const Members = ({ members }) => {
   );
 };
 
-Members.defaultProps = {
+Member.defaultProps = {
   members: []
 };
 
-const membersQuery = gql`
-  query members {
-    allMembers {
-      email
+const MembersWithData = graphql(
+  gql`
+    query members {
+      allMembers {
+        email
+      }
+    }
+  `,
+  {
+    options: () => ({}),
+    props: ({ data }) => {
+      return { members: data.allMembers };
     }
   }
-`;
-
-const MembersWithData = graphql(membersQuery, {
-  options: () => ({}),
-  props: ({ data: { allMembers} }) => ({ members: allMembers })
-})(Members);
+)(Member);
 
 export default MembersWithData;
