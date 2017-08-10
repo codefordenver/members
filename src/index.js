@@ -17,9 +17,9 @@ networkInterface.use([
         req.options.headers = {};
       }
 
-      if (localStorage.getItem("cfd-members-auth0IdToken")) {
+      if (localStorage.getItem("auth0IdToken")) {
         req.options.headers.authorization = `Bearer ${localStorage.getItem(
-          "cfd-members-auth0IdToken"
+          "auth0IdToken"
         )}`;
       }
       next();
