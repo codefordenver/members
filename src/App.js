@@ -7,7 +7,6 @@ import MembersWithData from "./Members";
 import "./App.css";
 
 class App extends Component {
-
   _isLoggedIn = () => {
     return this.props.data.user;
   };
@@ -22,7 +21,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <h2>Code for Denver Members</h2>
-          {this._isLoggedIn
+          {!this._isLoggedIn()
             ? <LoginAuth0
                 clientId="Qgo5BOv5XsU60A6mFSjmZpzfTrYy8I5I"
                 domain="codefordenver.auth0.com"
@@ -42,6 +41,8 @@ const userQuery = gql`
       id
     }
   }
-`
+`;
 
-export default graphql(userQuery, { options: { fetchPolicy: 'network-only' } })(App)
+export default graphql(userQuery, { options: { fetchPolicy: "network-only" } })(
+  App
+);
