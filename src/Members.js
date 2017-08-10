@@ -2,7 +2,7 @@ import React from "react";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 
-const Member = ({ members }) => {
+const Members = ({ members }) => {
   return (
     <div>
       {members.map(member =>
@@ -14,24 +14,23 @@ const Member = ({ members }) => {
   );
 };
 
-Member.defaultProps = {
+Members.defaultProps = {
   members: []
 };
 
-const MembersWithData = graphql(
-  gql`
-    query members {
-      allMembers {
-        email
-      }
-    }
-  `,
-  {
-    options: () => ({}),
-    props: ({ data }) => {
-      return { members: data.allMembers };
+const membersQuery = gql`
+  query members {
+    allMembers {
+      email
     }
   }
-)(Member);
+`;
+
+const MembersWithData = graphql(membersQuery, {
+  options: () => ({}),
+  props: ({ data }) => {
+    return { members: data.allMembers };
+  }
+})(Members);
 
 export default MembersWithData;
