@@ -28,7 +28,13 @@ const membersQuery = gql`
 
 const MembersWithData = graphql(membersQuery, {
   options: () => ({}),
+<<<<<<< HEAD
   props: ({ data: { allMembers} }) => ({ members: allMembers })
+=======
+  props: ({ data }) => {
+    return { members: data.allMembers };
+  }
+>>>>>>> pull members query out into variable
 })(Members);
 
 export default MembersWithData;
