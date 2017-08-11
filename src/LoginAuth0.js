@@ -10,7 +10,7 @@ export default class LoginAuth0 extends Component {
 
   componentDidMount() {
     this._lock.on("authenticated", authResult => {
-      window.localStorage.setItem("auth0IdToken", authResult.idToken);
+      window.localStorage.setItem("cfd-members-auth0IdToken", authResult.idToken);
       // We may want to route to /login here
     });
   }
