@@ -21,9 +21,7 @@ export default class LoginAuth0 extends Component {
 
   render() {
     return (
-      <div>
-        <span onClick={this._showLogin}>Log in with Auth0</span>
-      </div>
+      <span onClick={this._showLogin}>Log in with Auth0</span>
     );
   }
 }
