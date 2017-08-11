@@ -6,6 +6,52 @@ import LoginAuth0 from "./LoginAuth0";
 import MembersWithData from "./Members";
 import "./App.css";
 
+const foo = (name, email) => {
+  return createMember({
+    variables : {
+      name,
+      email
+    }
+  });
+}
+
+const requestMembersData = () => {
+  const id_token = window.localStorage.getItem("cfd-members-auth0IdToken");
+  fetch("https://codefordenver.auth0.com/tokeninfo", {
+    method: "POST",
+    mode: "cors",
+    redirect: "follow",
+    headers: new Headers({
+      "Content-Type": "application/json"
+    }),
+    body: JSON.stringify({
+      id_token
+    })
+  })
+    .then(data => data.json())
+    .then(json => {
+      try {
+        const f = foo(json.name, json.email);
+        console.log(f);
+      } catch (e) {
+        console.log(e);
+      }
+
+    });
+};
+
+const createMemberQuery = gql`
+  mutation($name: String!, $email: String!) {
+    createMember(
+      name: $name,
+      email: $email
+    ) {
+      id
+    }
+  }
+`
+ const createMember = graphql(createMemberQuery, { name: 'createMember' })
+
 class App extends Component {
   _isLoggedIn = () => {
     return this.props.data.user;
@@ -17,6 +63,9 @@ class App extends Component {
   };
 
   render() {
+    if (!this.props.data.user) {
+      requestMembersData();
+    }
     return (
       <div className="App">
         <div className="App-header">
@@ -33,7 +82,7 @@ class App extends Component {
       </div>
     );
   }
-}
+};
 
 const userQuery = gql`
   query {
@@ -46,3 +95,5 @@ const userQuery = gql`
 export default graphql(userQuery, { options: { fetchPolicy: "network-only" } })(
   App
 );
+let app = App;
+window.app = app;
