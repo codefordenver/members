@@ -1,58 +1,48 @@
 import React, { Component } from "react";
-import ApolloClient, { createNetworkInterface } from "apollo-client";
 import gql from "graphql-tag";
-import { ApolloProvider, graphql } from "react-apollo";
+import { graphql } from "react-apollo";
 import MemberResources from "./MemberResources";
+import LoginAuth0 from "./LoginAuth0";
+import MembersWithData from "./Members";
 import "./App.css";
 
-const client = new ApolloClient({
-  networkInterface: createNetworkInterface({
-    uri: "https://api.graph.cool/simple/v1/cj5iz3htl74ms012245dwlq4t"
-  })
-});
-
-const Member = ({ members }) => {
-  console.log(members);
-  return (
-    <div>
-      {members.map(member => <div key={member.email}>{member.email}</div>)}
-    </div>
-  );
-};
-
-Member.defaultProps = {
-  members: [],
-};
-
-const MembersWithData = graphql(
-  gql`
-    query members {
-      allMembers {
-        email
-      }
-    }
-  `,
-  { options: () => ({}), props: ({ data }) => { return { members: data.allMembers }} }
-)(Member);
-
 class App extends Component {
-  createClient() {
-    return client;
-  }
+  _isLoggedIn = () => {
+    return this.props.data.user;
+  };
+
+  _logout = () => {
+    window.localStorage.removeItem("cfd-members-auth0IdToken");
+    window.location.reload();
+  };
 
   render() {
     return (
-      <ApolloProvider client={this.createClient()}>
-        <div className="App">
-          <div className="App-header">
-            <h2>Code for Denver Members</h2>
-          </div>
-          <MembersWithData />
-          <MemberResources />
+      <div className="App">
+        <div className="App-header">
+          <h2>Code for Denver Members</h2>
+          {!this._isLoggedIn()
+            ? <LoginAuth0
+                clientId="Qgo5BOv5XsU60A6mFSjmZpzfTrYy8I5I"
+                domain="codefordenver.auth0.com"
+              />
+            : <span onClick={this._logout}>Log out</span>}
         </div>
-      </ApolloProvider>
+        <MembersWithData />
+        <MemberResources />
+      </div>
     );
   }
 }
 
-export default App;
+const userQuery = gql`
+  query {
+    user {
+      id
+    }
+  }
+`;
+
+export default graphql(userQuery, { options: { fetchPolicy: "network-only" } })(
+  App
+);
