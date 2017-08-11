@@ -12,7 +12,7 @@ class App extends Component {
   };
 
   _logout = () => {
-    window.localStorage.removeItem("auth0IdToken");
+    window.localStorage.removeItem("cfd-members-auth0IdToken");
     window.location.reload();
   };
 
