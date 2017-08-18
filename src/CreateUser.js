@@ -3,6 +3,9 @@ import { Redirect } from "react-router-dom";
 import gql from "graphql-tag";
 import { graphql, compose } from "react-apollo";
 
+
+// TODO: rm this module all together
+
 class CreateUser extends Component {
 
   create = (idToken, name, email) => {
@@ -15,31 +18,7 @@ class CreateUser extends Component {
     });
   };
 
-  // requestUserData = () => {
-  //   const id_token = window.localStorage.getItem("cfd-members-auth0IdToken");
-  //   fetch("https://codefordenver.auth0.com/tokeninfo", {
-  //     method: "POST",
-  //     mode: "cors",
-  //     redirect: "follow",
-  //     headers: new Headers({
-  //       "Content-Type": "application/json"
-  //     }),
-  //     body: JSON.stringify({
-  //       id_token
-  //     })
-  //   })
-  //     .then(data => data.json())
-  //     .then(json => {
-  //       try {
-  //         this.create(id_token, json.name, json.email);
-  //       } catch (e) {
-  //         console.log(e);
-  //       }
-  //     });
-  // };
-
   render() {
-    console.log(this)
     return(
       <div>
         Loading...
