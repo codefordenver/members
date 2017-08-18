@@ -34,12 +34,10 @@ networkInterface.use([
         req.options.headers.authorization = `Bearer ${localStorage.getItem(
           "cfd-members-auth0IdToken"
         )}`;
-        // req.options.headers.nonce = randomString(16);
       }
       if (localStorage.getItem("nonce")) {
         req.options.headers.nonce = `Bearer ${localStorage.getItem("nonce")}`;
       }
-      console.log(req)
       next();
     }
   }
