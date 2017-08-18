@@ -12,6 +12,17 @@ const networkInterface = createNetworkInterface({
   uri: "https://api.graph.cool/simple/v1/cj5iz3htl74ms012245dwlq4t"
 });
 
+function randomString(length) {
+  var bytes = new Uint8Array(length);
+  var random = window.crypto.getRandomValues(bytes);
+  var result = [];
+  var charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._~'
+  random.forEach(function (c) {
+    result.push(charset[c % charset.length]);
+  });
+  return result.join('');
+}
+
 networkInterface.use([
   {
     applyMiddleware(req, next) {
@@ -23,11 +34,10 @@ networkInterface.use([
         req.options.headers.authorization = `Bearer ${localStorage.getItem(
           "cfd-members-auth0IdToken"
         )}`;
+        // req.options.headers.nonce = randomString(16);
       }
       if (localStorage.getItem("nonce")) {
-        req.options.headers.authorization = `Bearer ${localStorage.getItem(
-          "nonce"
-        )}`;
+        req.options.headers.nonce = `Bearer ${localStorage.getItem("nonce")}`;
       }
       console.log(req)
       next();
