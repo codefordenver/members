@@ -25,7 +25,6 @@ const userQuery = gql`
   }
 `;
 
-
 class LoginAuth0 extends Component {
   constructor(props) {
     super(props);
@@ -34,29 +33,33 @@ class LoginAuth0 extends Component {
   }
 
   componentDidMount() {
-
-    //localStorage is being set after the request is sent to check if a user is in DB.
-    this._lock.on("authenticated", (authResult) => {
-
-      window.localStorage.setItem("cfd-members-auth0IdToken", authResult.idToken);
-
-      this._lock.getUserInfo(authResult.accessToken,  ( error, profile) => {
-
-        const { name, email } = profile;
-        const idToken = authResult.accessToken;
-        console.log(idToken);
-        this.createUser({
-          variables: {
-            idToken, name, email
-          }
+    const props = this.props;
+    this._lock.on("authenticated", authResult => {
+      window.localStorage.setItem(
+        "cfd-members-auth0IdToken",
+        authResult.idToken
+      );
+      props.data.refetch();
+      if (!props.data.user) {
+        this._lock.getUserInfo(authResult.accessToken, (error, profile) => {
+          const { name, email } = profile;
+          const idToken = window.localStorage.getItem(
+            "cfd-members-auth0IdToken"
+          );
+          this.createUser({
+            variables: {
+              idToken,
+              name,
+              email
+            }
+          }).then(user => {
+            // window.localStorage.setItem(
+            //   "cfd-members-userToken",
+            //   authResult.idToken
+            // );
+          });
         });
-
-        this.props.history.push({
-          pathname: '/signup',
-          state: { user: profile}
-        })
-
-      })
+      }
     });
   }
 
@@ -70,6 +73,11 @@ class LoginAuth0 extends Component {
 }
 
 export default compose(
-  graphql(createUserQuery, { name: 'createUser' }),
-  graphql(userQuery),
+  graphql(createUserQuery, {
+    name: "createUser",
+    options: {
+      refetchQueries: [{ query: userQuery }]
+    }
+  }),
+  graphql(userQuery)
 )(withRouter(LoginAuth0));
