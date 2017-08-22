@@ -5,7 +5,7 @@ import { graphql } from "react-apollo";
 import MemberResources from "./MemberResources";
 import LoginAuth0 from "./LoginAuth0";
 import MembersWithData from "./Members";
-import CreateUser from "./CreateUser";
+
 import "./App.css";
 
 class App extends Component {
@@ -39,7 +39,6 @@ class App extends Component {
         </div>
         <MembersWithData />
         <MemberResources />
-        {/* <Route pathname="/signup" component={ CreateUser } /> */}
       </div>
     );
   }
