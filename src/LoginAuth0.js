@@ -4,7 +4,6 @@ import gql from "graphql-tag";
 import { graphql, compose } from "react-apollo";
 import Auth0Lock from "auth0-lock";
 
-//
 const createUserQuery = gql`
   mutation($idToken: String!, $name: String!, $email: String!) {
     createUser(
@@ -39,30 +38,27 @@ class LoginAuth0 extends Component {
         "cfd-members-auth0IdToken",
         authResult.idToken
       );
-      props.data.refetch();
-      if (!props.data.user) {
-        this._lock.getUserInfo(authResult.accessToken, (error, profile) => {
-          const { name, email } = profile;
-          const idToken = window.localStorage.getItem(
-            "cfd-members-auth0IdToken"
-          );
-          this.createUser({
-            variables: {
-              idToken,
-              name,
-              email
-            }
-          }).then(user => {
-            // window.localStorage.setItem(
-            //   "cfd-members-userToken",
-            //   authResult.idToken
-            // );
+      props.data.refetch().then(({ data: { user } }) => {
+        if (!user) {
+          this._lock.getUserInfo(authResult.accessToken, (error, profile) => {
+            const { name, email } = profile;
+            const idToken = window.localStorage.getItem(
+              "cfd-members-auth0IdToken"
+            );
+            this.createUser({
+              variables: {
+                idToken,
+                name,
+                email
+              }
+            });
           });
-        });
-      }
+        } else {
+          props.history.push("/");
+        }
+      });
     });
   }
-
   _showLogin = () => {
     this._lock.show();
   };
@@ -79,5 +75,9 @@ export default compose(
       refetchQueries: [{ query: userQuery }]
     }
   }),
-  graphql(userQuery)
+  graphql(userQuery, {
+    options: {
+      fetchPolicy: "network-only"
+    }
+  })
 )(withRouter(LoginAuth0));
