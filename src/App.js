@@ -8,11 +8,11 @@ import MembersWithData from "./Members";
 import "./App.css";
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      token: ""
-    };
+
+  componentWillUpdate() {
+    if(!this.props.data.user){
+      this.props.data.refetch()
+    }
   }
 
   render() {
