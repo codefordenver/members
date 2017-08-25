@@ -54,6 +54,7 @@ const MemberResources = () => (
     <h2>Google Drive</h2>
     <div className="text-center">
       <iframe
+        title="google-drive"
         src="https://drive.google.com/embeddedfolderview?id=0B15HLk4_JV3nWjkyOGtFUmhKZDQ#list"
         width="100%"
         height="600"
