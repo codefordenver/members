@@ -10,6 +10,7 @@
     "react": "^15.6.1",
     "react-apollo": "^1.4.10",
     "react-dom": "^15.6.1",
+    "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.10"
   },
   "scripts": {
