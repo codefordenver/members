@@ -8,10 +8,12 @@ Node.js application that connects volunteers with volunteers/projects based on t
 
 ## Requirements
 
-- [Node.js](https://nodejs.org)
-- graph.cool CLI: `npm install -g graphcool` 
+- [Node.js](https://nodejs.org) - version 8.4 or higher (if you have nvm type `nvm use` in the repo to use the correct version)
+- graph.cool CLI: `npm install -g graphcool`
 
 
+Below is info from Create React App
+---
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
@@ -1774,7 +1776,7 @@ If you’re using [Apache HTTP Server](https://httpd.apache.org/), you need to c
     RewriteRule ^ index.html [QSA,L]
 ```
 
-It will get copied to the `build` folder when you run `npm run build`. 
+It will get copied to the `build` folder when you run `npm run build`.
 
 If you’re using [Apache Tomcat](http://tomcat.apache.org/), you need to follow [this Stack Overflow answer](https://stackoverflow.com/a/41249464/4878474).
 
