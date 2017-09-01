@@ -5,11 +5,12 @@ import { graphql, compose } from "react-apollo";
 import Auth0Lock from "auth0-lock";
 
 const createUserQuery = gql`
-  mutation($idToken: String!, $name: String!, $email: String!) {
+  mutation($idToken: String!, $name: String!, $email: String!, $picture: String!) {
     createUser(
       authProvider: { auth0: { idToken: $idToken } }
       name: $name
       email: $email
+      picture: $picture
     ) {
       id
     }
@@ -41,7 +42,8 @@ class LoginAuth0 extends Component {
       props.data.refetch().then(({ data: { user } }) => {
         if (!user) {
           this._lock.getUserInfo(authResult.accessToken, (error, profile) => {
-            const { name, email } = profile;
+            console.log(profile)
+            const { name, email, picture } = profile;
             const idToken = window.localStorage.getItem(
               "cfd-members-auth0IdToken"
             );
@@ -49,7 +51,8 @@ class LoginAuth0 extends Component {
               variables: {
                 idToken,
                 name,
-                email
+                email,
+                picture
               }
             });
           });

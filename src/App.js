@@ -16,6 +16,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props.data.user)
     return (
       <div className="App">
         <div className="App-header">
@@ -33,7 +34,8 @@ const userQuery = gql`
   query {
     user {
       id,
-      name
+      name,
+      picture
     }
   }
 `;
