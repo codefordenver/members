@@ -1,33 +1,26 @@
-# project: cj5sz9wowu65h01605021knzh
-# version: 1
+# project: cj5iz3htl74ms012245dwlq4t
+# version: 9
 
-
-###########################################################################
-# `User` and `File` are generated and have special characteristics.
-# You can read about them in the documentation:
-# https://www.graph.cool/docs/reference/schema/system-artifacts-uhieg2shio/
-###########################################################################
-
-type User {
-  id: ID! @isUnique
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
-type File {
-  id: ID! @isUnique
-  createdAt: DateTime!
-  updatedAt: DateTime!
+type File implements Node {
   contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
   name: String!
   secret: String! @isUnique
   size: Int!
+  updatedAt: DateTime!
   url: String! @isUnique
 }
 
-###########################################################################
-# Our definitions
-###########################################################################
+type User implements Node {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+  name: String!
+  email: String!
+  picture: String
+  auth0UserId: String @isUnique
+}
 
 type Member implements Node {
   createdAt: DateTime!

@@ -33,7 +33,8 @@ const userQuery = gql`
   query {
     user {
       id,
-      name
+      name,
+      picture
     }
   }
 `;

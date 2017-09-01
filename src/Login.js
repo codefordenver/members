@@ -28,6 +28,7 @@ export default class Login extends Component {
           <p>
             Hello, { this.props.user.name }
           </p>
+          <img src={this.props.user.picture} alt="avatar" style={{height: "20px"}} />
         </div>
       );
     }
