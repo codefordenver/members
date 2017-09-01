@@ -25,10 +25,10 @@ export default class Login extends Component {
       return (
         <div>
           <span onClick={this._logout}>Log out</span>
-          <img src={this.props.user.picture} alt="avatar"/>
           <p>
             Hello, { this.props.user.name }
           </p>
+          <img src={this.props.user.picture} alt="avatar" style={{height: "20px"}} />
         </div>
       );
     }
