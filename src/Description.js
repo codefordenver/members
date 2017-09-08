@@ -1,11 +1,19 @@
 import React, { Component } from "react";
 import gql from "graphql-tag";
-import { graphql } from "react-apollo";
+import { graphql, compose } from "react-apollo";
 
 const updateUserQuery = gql`
-  mutation($description: String!) {
-    updateUser(description: $description) {
-      user
+  mutation($id: ID!, $description: String!) {
+    updateUser(id: $id, description: $description) {
+      id
+    }
+  }
+`;
+
+const userQuery = gql`
+  query {
+    user {
+      id
     }
   }
 `;
@@ -20,7 +28,9 @@ class Description extends Component {
   }
 
   updateDB() {
-    this.props.updateUser(this.state.description);
+    const { description } = this.state;
+    const { id } = this.props.data.user
+    this.props.updateUser({ variables: { id, description } });
   }
 
   render() {
@@ -34,16 +44,21 @@ class Description extends Component {
             this.setState({ description: e.target.value });
           }}
         />
-        <button onClick={() => this.updateDB()}>
-          submit
-        </button>
+        <button onClick={() => this.updateDB()}>submit</button>
       </div>
     );
   }
 }
 
-const DescriptionWithData = graphql(updateUserQuery, {
-  name: "updateUser"
-})(Description);
+const DescriptionWithData = compose(
+  graphql(updateUserQuery, {
+    name: "updateUser"
+  }),
+  graphql(userQuery, {
+    options: {
+      fetchPolicy: "network-only"
+    }
+  })
+)(Description);
 
 export default DescriptionWithData;
