@@ -1,16 +1,32 @@
 import React, { Component } from "react";
+import gql from "graphql-tag";
+import { graphql } from "react-apollo";
 
-export default class Description extends Component {
-  constructor() {
-    super();
-    this.state = {
-      description: "",
+const updateUserQuery = gql`
+  mutation($description: String!) {
+    updateUser(description: $description) {
+      user
     }
   }
+`;
+
+class Description extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      description: ""
+    };
+    this.updateUser = props.updateUser;
+  }
+
+  updateDB(description) {
+    this.props.updateUser(description);
+  }
+
   render() {
     return (
       <div>
-        <input
+        <textarea
           placeholder="Description"
           type="text"
           maxLength="140"
@@ -18,8 +34,16 @@ export default class Description extends Component {
             this.setState({ description: e.target.value });
           }}
         />
-        <button>submit</button>
+        <button onClick={() => this.updateDB(this.state.description)}>
+          submit
+        </button>
       </div>
     );
   }
 }
+
+const DescriptionWithData = graphql(updateUserQuery, {
+  name: "updateUser"
+})(Description);
+
+export default DescriptionWithData;

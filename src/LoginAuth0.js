@@ -5,7 +5,12 @@ import { graphql, compose } from "react-apollo";
 import Auth0Lock from "auth0-lock";
 
 const createUserQuery = gql`
-  mutation($idToken: String!, $name: String!, $email: String!, $picture: String!) {
+  mutation(
+    $idToken: String!
+    $name: String!
+    $email: String!
+    $picture: String!
+  ) {
     createUser(
       authProvider: { auth0: { idToken: $idToken } }
       name: $name
@@ -70,7 +75,7 @@ class LoginAuth0 extends Component {
   }
 }
 
-export default compose(
+const LoginAuth0WithData = compose(
   graphql(createUserQuery, {
     name: "createUser",
     options: {
@@ -83,3 +88,5 @@ export default compose(
     }
   })
 )(withRouter(LoginAuth0));
+
+export default LoginAuth0WithData;
