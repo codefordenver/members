@@ -13,7 +13,7 @@ const createUserQuery = gql`
     $githubName: String
   ) {
     createUser(
-      auth0UserId: $idToken
+      authProvider: { auth0: { idToken: $idToken } }
       name: $name
       email: $email
       picture: $picture

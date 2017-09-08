@@ -23,7 +23,7 @@ export REACT_APP_GRAPHCOOL_API=https://api.graph.cool/simple/v1/<whatever your g
 
 You will now have a `dev.graphcool` project that you can modify and sync to graph.cool with the `graphcool` cli.
 
-Next you will need to connect the Auth0 integration to your new graphcool server. Run `graphcool console` to open the browser graphcool console. Make sure you are selected on the `CfDMembersDev` project, and click on integrations. [Enable the Auth0 integration](https://github.com/graphcool-examples/react-graphql/tree/master/authentication-with-auth0-and-apollo#3-auth0-configuration).
+Next you will need to connect the Auth0 integration to your new graphcool server. Run `graphcool console` to open the browser graphcool console. Make sure you are selected on the `CfDMembersDev` project, and click on integrations. [Enable the Auth0 integration](https://github.com/graphcool-examples/react-graphql/tree/master/authentication-with-auth0-and-apollo#3-auth0-configuration). Then export the Auth0 clientId and domain environment variables as `REACT_APP_AUTH0_CLIENT_ID` and `REACT_APP_AUTH0_DOMAIN` respectively.
 
 After this, the app can be started with `npm start`
 
