@@ -15,7 +15,6 @@ Node.js application that connects volunteers with volunteers/projects based on t
 
 ```
 npm start
-npm run watch-css
 ```
 
 Below is info from Create React App
