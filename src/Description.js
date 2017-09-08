@@ -19,8 +19,8 @@ class Description extends Component {
     this.updateUser = props.updateUser;
   }
 
-  updateDB(description) {
-    this.props.updateUser(description);
+  updateDB() {
+    this.props.updateUser(this.state.description);
   }
 
   render() {
@@ -34,7 +34,7 @@ class Description extends Component {
             this.setState({ description: e.target.value });
           }}
         />
-        <button onClick={() => this.updateDB(this.state.description)}>
+        <button onClick={() => this.updateDB()}>
           submit
         </button>
       </div>
