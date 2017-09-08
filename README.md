@@ -8,14 +8,24 @@ Node.js application that connects volunteers with volunteers/projects based on t
 
 ## Requirements
 
-- [Node.js](https://nodejs.org) - version 8.4 or higher (if you have nvm type `nvm use` in the repo to use the correct version)
+- [Node.js](https://nodejs.org) - version 8.4 or higher (if you have nvm, type `nvm use` in the repo directory to use the correct version)
 - graph.cool CLI: `npm install -g graphcool`
+- node modules: `npm install`
 
-## Quick Start
+## Setup
 
+After cloning this project you will need to create a new graph.cool backend for development. You only need to do this once. To set this up, run `./bin/setup.sh`
+
+From the returned output of this script export the simple api url as `REACT_APP_GRAPHCOOL_API`. On mac/linux this can be done with something like:
+```sh
+export REACT_APP_GRAPHCOOL_API=https://api.graph.cool/simple/v1/<whatever your generated key is>
 ```
-npm start
-```
+
+You will now have a `dev.graphcool` project that you can modify and sync to graph.cool with the `graphcool` cli.
+
+Next you will need to connect the Auth0 integration to your new graphcool server. Run `graphcool console` to open the browser graphcool console. Make sure you are selected on the `CfDMembersDev` project, and click on integrations. [Enable the Auth0 integration](https://github.com/graphcool-examples/react-graphql/tree/master/authentication-with-auth0-and-apollo#3-auth0-configuration).
+
+After this, the app can be started with `npm start`
 
 Below is info from Create React App
 ---

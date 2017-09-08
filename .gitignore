@@ -12,6 +12,9 @@
 # ignore generated css
 src/**/*.css
 
+# development
+dev.graphcool
+
 # misc
 .DS_Store
 .env.local
