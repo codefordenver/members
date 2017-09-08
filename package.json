@@ -11,6 +11,8 @@
     "auth0-js": "^8.8.0",
     "auth0-lock": "^10.19.0",
     "graphql-tag": "^2.4.2",
+    "node-sass-chokidar": "0.0.3",
+    "npm-run-all": "^4.1.1",
     "react": "^15.6.1",
     "react-apollo": "^1.4.10",
     "react-dom": "^15.6.1",
@@ -18,12 +20,15 @@
     "react-scripts": "1.0.10"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build": "npm run build-css && react-scripts build"
   },
   "homepage": "https://codefordenver.githib.io/members",
   "devDependencies": {
