@@ -11,6 +11,12 @@ Node.js application that connects volunteers with volunteers/projects based on t
 - [Node.js](https://nodejs.org) - version 8.4 or higher (if you have nvm type `nvm use` in the repo to use the correct version)
 - graph.cool CLI: `npm install -g graphcool`
 
+## Quick Start
+
+```
+npm start
+npm run watch-css
+```
 
 Below is info from Create React App
 ---
