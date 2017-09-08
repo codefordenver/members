@@ -4,6 +4,7 @@ import { graphql } from "react-apollo";
 import MemberResources from "./MemberResources";
 import Login from "./Login";
 import MembersWithData from "./Members";
+import Description from "./Description";
 
 import "./App.css";
 
@@ -22,6 +23,7 @@ class App extends Component {
           <h2>Code for Denver Members</h2>
           <Login user={this.props.data.user} />
         </div>
+        <Description />
         <MembersWithData />
         <MemberResources />
       </div>
