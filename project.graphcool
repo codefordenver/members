@@ -1,5 +1,5 @@
 # project: cj5iz3htl74ms012245dwlq4t
-# version: 10
+# version: 12
 
 type File implements Node {
   contentType: String!
@@ -19,7 +19,9 @@ type User implements Node {
   name: String!
   email: String!
   picture: String
-  description: String!
+  githubName: String
+  flowdockName: String
+  description: String
   auth0UserId: String @isUnique
 }
 

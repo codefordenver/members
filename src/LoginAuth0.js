@@ -10,12 +10,14 @@ const createUserQuery = gql`
     $name: String!
     $email: String!
     $picture: String!
+    $githubName: String
   ) {
     createUser(
       authProvider: { auth0: { idToken: $idToken } }
       name: $name
       email: $email
       picture: $picture
+      githubName: $githubName
     ) {
       id
     }
@@ -51,12 +53,18 @@ class LoginAuth0 extends Component {
             const idToken = window.localStorage.getItem(
               "cfd-members-auth0IdToken"
             );
+            let nickname = "";
+            let { identities: [ { provider } ] } = profile;
+            if(provider === "github") {
+              nickname = profile.nickname;
+            }
             this.createUser({
               variables: {
                 idToken,
                 name,
                 email,
-                picture
+                picture,
+                githubName: nickname
               }
             });
           });
