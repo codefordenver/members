@@ -49,7 +49,6 @@ class LoginAuth0 extends Component {
       props.data.refetch().then(({ data: { user } }) => {
         if (!user) {
           this._lock.getUserInfo(authResult.accessToken, (error, profile) => {
-            console.log(profile)
             const { name, email, picture } = profile;
             let nickname = "";
             if(profile.identities[0].provider === "github") {
