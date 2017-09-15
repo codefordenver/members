@@ -42,12 +42,12 @@ class UserInfo extends Component {
   }
 
   componentWillReceiveProps(props) {
-    if(props.data.user) {
+    if (props.data.user) {
       let { githubName, flowdockName } = props.data.user;
-      if(githubName) {
+      if (githubName) {
         this.setState({ githubName });
       }
-      if(flowdockName) {
+      if (flowdockName) {
         this.setState({ flowdockName });
       }
     }
