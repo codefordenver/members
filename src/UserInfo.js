@@ -55,7 +55,7 @@ class UserInfo extends Component {
 
   updateDB() {
     const { githubName, flowdockName, description } = this.state;
-    const { id } = this.props.data.user;
+    const { data: { user: { id } } } = this.props;
     this.props.updateUser({
       variables: { id, githubName, flowdockName, description }
     });
