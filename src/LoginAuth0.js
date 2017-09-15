@@ -68,7 +68,8 @@ class LoginAuth0 extends Component {
               }
             });
           });
-        } else {
+        }
+        else {
           props.history.push("/");
         }
       });
