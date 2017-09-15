@@ -24,6 +24,8 @@ const userQuery = gql`
   query {
     user {
       id
+      githubName
+      flowdockName
     }
   }
 `;
@@ -39,6 +41,14 @@ class UserInfo extends Component {
     this.updateUser = props.updateUser;
   }
 
+  componentWillReceiveProps(props) {
+    console.log(props);
+    if(props.data.user) {
+      let { githubName, flowdockName } = props.data.user;
+      this.setState({ githubName, flowdockName });
+    }
+  }
+
   updateDB() {
     const { githubName, flowdockName, description } = this.state;
     const { id } = this.props.data.user;
@@ -50,12 +60,25 @@ class UserInfo extends Component {
   render() {
     return (
       <div>
-        <input onChange={e => this.setState({ githubName: e.target.value })} />
+        <label htmlFor="github">GitHub Username:</label>
         <input
+          id="github"
+          placeholder="username"
+          value={this.state.githubName}
+          onChange={e => this.setState({ githubName: e.target.value })}
+        />
+        <label htmlFor="flow">Flowdock Username:</label>
+        <input
+          id="flow"
+          placeholder="username"
+          value={this.state.flowdockName}
           onChange={e => this.setState({ flowdockName: e.target.value })}
         />
+        <label htmlFor="desc">Description:</label>
         <textarea
-          placeholder="Description"
+          id="desc"
+          placeholder="description"
+          value={this.state.description}
           type="text"
           maxLength="140"
           onChange={e => this.setState({ description: e.target.value })}
