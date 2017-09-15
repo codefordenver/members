@@ -54,7 +54,7 @@ class LoginAuth0 extends Component {
               "cfd-members-auth0IdToken"
             );
             let nickname = "";
-            let { identities: [ { provider} ] } = profile;
+            let { identities: [ { provider } ] } = profile;
             if(provider === "github") {
               nickname = profile.nickname;
             }
