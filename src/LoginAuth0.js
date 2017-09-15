@@ -10,12 +10,14 @@ const createUserQuery = gql`
     $name: String!
     $email: String!
     $picture: String!
+    $githubName: String
   ) {
     createUser(
       authProvider: { auth0: { idToken: $idToken } }
       name: $name
       email: $email
       picture: $picture
+      githubName: $githubName
     ) {
       id
     }
@@ -47,7 +49,12 @@ class LoginAuth0 extends Component {
       props.data.refetch().then(({ data: { user } }) => {
         if (!user) {
           this._lock.getUserInfo(authResult.accessToken, (error, profile) => {
+            console.log(profile)
             const { name, email, picture } = profile;
+            let nickname = "";
+            if(profile.identities[0].provider === "github") {
+              nickname = profile.nickname;
+            }
             const idToken = window.localStorage.getItem(
               "cfd-members-auth0IdToken"
             );
@@ -56,7 +63,8 @@ class LoginAuth0 extends Component {
                 idToken,
                 name,
                 email,
-                picture
+                picture,
+                githubName: nickname
               }
             });
           });

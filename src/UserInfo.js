@@ -5,9 +5,9 @@ import { graphql, compose } from "react-apollo";
 const updateUserQuery = gql`
   mutation(
     $id: ID!
-    $githubName: String!
-    $flowdockName: String!
-    $description: String!
+    $githubName: String
+    $flowdockName: String
+    $description: String
   ) {
     updateUser(
       id: $id
@@ -42,10 +42,14 @@ class UserInfo extends Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log(props);
     if(props.data.user) {
       let { githubName, flowdockName } = props.data.user;
-      this.setState({ githubName, flowdockName });
+      if(githubName) {
+        this.setState({ githubName });
+      }
+      if(flowdockName) {
+        this.setState({ flowdockName });
+      }
     }
   }
 
