@@ -42,7 +42,6 @@ class UserInfo extends Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log(props);
     if(props.data.user) {
       let { githubName, flowdockName } = props.data.user;
       this.setState({ githubName, flowdockName });
