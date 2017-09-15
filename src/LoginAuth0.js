@@ -50,13 +50,14 @@ class LoginAuth0 extends Component {
         if (!user) {
           this._lock.getUserInfo(authResult.accessToken, (error, profile) => {
             const { name, email, picture } = profile;
-            let nickname = "";
-            if(profile.identities[0].provider === "github") {
-              nickname = profile.nickname;
-            }
             const idToken = window.localStorage.getItem(
               "cfd-members-auth0IdToken"
             );
+            let nickname = "";
+            let { identities: [ { provider} ] } = profile;
+            if(provider === "github") {
+              nickname = profile.nickname;
+            }
             this.createUser({
               variables: {
                 idToken,
