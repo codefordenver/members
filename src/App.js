@@ -4,7 +4,7 @@ import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import MemberResources from "./MemberResources";
 import Login from "./Login";
-import MembersWithData from "./Members";
+import MemberProfile from "./MemberProfile";
 import UserInfo from "./UserInfo";
 
 import "./App.css";
@@ -24,7 +24,14 @@ class App extends Component {
           <Login user={this.props.data.user} />
         </div>
         <Route exact path="/" component={MemberResources} />
-        <Route path="/user" component={UserInfo} />
+        <Route
+          exact path="/user"
+          render={() =>
+            <MemberProfile
+              user={this.props.data.user}
+            />}
+        />
+        <Route path="/user/edit" component={UserInfo} />
       </div>
     );
   }
@@ -33,9 +40,13 @@ class App extends Component {
 const userQuery = gql`
   query {
     user {
-      id
-      name
-      picture
+      id,
+      name,
+      picture,
+      email,
+      flowdockName,
+      githubName,
+      description,
     }
   }
 `;
