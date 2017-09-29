@@ -1,18 +1,18 @@
 import React, { Component } from "react";
+import { Route } from "react-router-dom";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import MemberResources from "./MemberResources";
 import Login from "./Login";
-import MembersWithData from "./Members";
+import MemberProfile from "./MemberProfile";
 import UserInfo from "./UserInfo";
 
 import "./App.css";
 
 class App extends Component {
-
   componentWillUpdate() {
-    if(!this.props.data.user){
-      this.props.data.refetch()
+    if (!this.props.data.user) {
+      this.props.data.refetch();
     }
   }
 
@@ -23,9 +23,15 @@ class App extends Component {
           <h2>Code for Denver Members</h2>
           <Login user={this.props.data.user} />
         </div>
-        <UserInfo />
-        <MembersWithData />
-        <MemberResources />
+        <Route exact path="/" component={MemberResources} />
+        <Route
+          exact path="/user"
+          render={() =>
+            <MemberProfile
+              user={this.props.data.user}
+            />}
+        />
+        <Route path="/user/edit" component={UserInfo} />
       </div>
     );
   }
@@ -36,7 +42,11 @@ const userQuery = gql`
     user {
       id,
       name,
-      picture
+      picture,
+      email,
+      flowdockName,
+      githubName,
+      description,
     }
   }
 `;
