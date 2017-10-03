@@ -5,6 +5,7 @@ import { ApolloProvider } from "react-apollo";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
+import MemberStore from "./MemberStore";
 import registerServiceWorker from "./registerServiceWorker";
 
 const networkInterface = createNetworkInterface({
@@ -35,7 +36,7 @@ const client = new ApolloClient({ networkInterface });
 ReactDOM.render(
   <ApolloProvider client={client}>
     <BrowserRouter>
-      <App />
+      <App memberStore={new MemberStore()}/>
     </BrowserRouter>
   </ApolloProvider>,
   document.getElementById("root")

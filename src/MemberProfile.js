@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { observer } from "mobx-react";
 
-const MemberProfile = ({user}) => {
+const MemberProfile = ({user, memberStore}) => {
   return (
     <div>
       <img src={user.picture} alt="avatar" />
@@ -24,4 +25,4 @@ const MemberProfile = ({user}) => {
   );
 };
 
-export default MemberProfile;
+export default observer(MemberProfile);
