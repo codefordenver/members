@@ -19,6 +19,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        
         <div className="App-header">
           <h2>Code for Denver Members</h2>
           <Login user={this.props.data.user} />
