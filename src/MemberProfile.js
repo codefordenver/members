@@ -10,7 +10,7 @@ const MemberProfile = ({ user }) => {
       <p>{user.email}</p>
       <p>GitHub: {user.githubName}</p>
       <p>Flowdock: {user.flowdockName}</p>
-      <Link to="/user/edit">edit</Link>
+      <Link to="/me/edit">edit</Link>
     </div>
   );
 };
