@@ -31,7 +31,7 @@ class App extends Component {
               user={this.props.data.user}
             />}
         />
-        <Route path="/user/edit" component={MemberProfileEdit} />
+        <Route path="/me/edit" component={MemberProfileEdit} />
       </div>
     );
   }
