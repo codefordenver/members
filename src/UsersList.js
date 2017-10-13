@@ -6,7 +6,7 @@ const UsersList = ({ users }) => {
   return (
     <div>
       {users.map(user =>
-        <div key={user.email}>
+        <div key={user.id}>
           {user.email}
         </div>
       )}
@@ -21,6 +21,7 @@ UsersList.defaultProps = {
 const allUsersQuery = gql`
   query users {
     allUsers {
+      id,
       email
     }
   }
@@ -29,6 +30,6 @@ const allUsersQuery = gql`
 const UsersListWithData = graphql(allUsersQuery, {
   options: () => ({}),
   props: ({ data: { allUsers } }) => ({ users: allUsers })
-})(Members);
+})(UsersList);
 
 export default UsersListWithData;

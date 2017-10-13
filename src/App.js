@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import MemberResources from "./MemberResources";
 import Login from "./Login";
 import MemberProfile from "./MemberProfile";
 import UserInfo from "./UserInfo";
+import UsersList from "./UsersList";
 
 import "./App.css";
 
@@ -17,21 +18,22 @@ class App extends Component {
   }
 
   render() {
+    const { data: { user } } = this.props
     return (
       <div className="App">
         <div className="App-header">
           <h2>Code for Denver Members</h2>
-          <Login user={this.props.data.user} />
+          <Login user={user} />
+          <Link to="/user-list">All Users</Link>
         </div>
         <Route exact path="/" component={MemberResources} />
         <Route
-          exact path="/user"
-          render={() =>
-            <MemberProfile
-              user={this.props.data.user}
-            />}
+          exact
+          path="/user"
+          render={() => <MemberProfile user={user} />}
         />
         <Route path="/user/edit" component={UserInfo} />
+        <Route path="/user-list" component={UsersList} />
       </div>
     );
   }
@@ -40,13 +42,13 @@ class App extends Component {
 const userQuery = gql`
   query {
     user {
-      id,
-      name,
-      picture,
-      email,
-      flowdockName,
-      githubName,
-      description,
+      id
+      name
+      picture
+      email
+      flowdockName
+      githubName
+      description
     }
   }
 `;
