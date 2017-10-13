@@ -25,7 +25,7 @@ class App extends Component {
         </div>
         <Route exact path="/" component={MemberResources} />
         <Route
-          exact path="/user"
+          exact path="/me"
           render={() =>
             <MemberProfile
               user={this.props.data.user}
