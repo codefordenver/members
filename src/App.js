@@ -5,7 +5,7 @@ import { graphql } from "react-apollo";
 import MemberResources from "./MemberResources";
 import Login from "./Login";
 import MemberProfile from "./MemberProfile";
-import UserInfo from "./UserInfo";
+import MemberProfileEdit from "./MemberProfileEdit";
 
 import "./App.css";
 
@@ -25,13 +25,13 @@ class App extends Component {
         </div>
         <Route exact path="/" component={MemberResources} />
         <Route
-          exact path="/user"
+          exact path="/me"
           render={() =>
             <MemberProfile
               user={this.props.data.user}
             />}
         />
-        <Route path="/user/edit" component={UserInfo} />
+        <Route path="/me/edit" component={MemberProfileEdit} />
       </div>
     );
   }

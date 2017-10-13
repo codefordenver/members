@@ -32,7 +32,7 @@ class Login extends Component {
           <p>
             Hello, {this.props.user.name}
           </p>
-          <Link to="/user">
+          <Link to="/me">
             <img
               src={this.props.user.picture}
               alt="avatar"
