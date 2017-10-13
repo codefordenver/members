@@ -14,7 +14,11 @@ Node.js application that connects volunteers with volunteers/projects based on t
 
 ## Setup
 
-After cloning this project you will need to create a new graph.cool backend for development. You only need to do this once. To set this up, run `./bin/setup.sh`
+After cloning this project you will need to create a new graph.cool backend for development. You only need to do this once. To set this up, run:
+```sh
+npm run setup
+graphcool init --schema schema.graphql --name CfDMembersDev --output dev.graphcool
+```
 
 From the returned output of this script export the simple api url as `REACT_APP_GRAPHCOOL_API`. On mac/linux this can be done with something like:
 ```sh
