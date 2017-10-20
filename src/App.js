@@ -23,7 +23,7 @@ class App extends Component {
         <div className="App-header">
           <h2>Code for Denver Members</h2>
           <Login user={user} />
-          <Link to="/user-list">All Users</Link>
+          <Link to="/admin/onboarding">All Users</Link>
         </div>
         <Route exact path="/" component={MemberResources} />
         <Route
@@ -31,7 +31,8 @@ class App extends Component {
           render={() => <MemberProfile user={user} />}
         />
         <Route path="/me/edit" component={MemberProfileEdit} />
-        <Route path="/user-list" component={UsersList} />      </div>
+        <Route path="/admin/onboarding" component={UsersList} />
+      </div>
     );
   }
 }
