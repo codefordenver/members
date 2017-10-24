@@ -20,10 +20,11 @@ UsersList.defaultProps = {
 
 const allUsersQuery = gql`
   query users {
-    allUsers {
+    allUsers(orderBy: email_ASC) {
       id,
       email
     }
+    
   }
 `;
 
