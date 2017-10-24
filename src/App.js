@@ -18,6 +18,18 @@ class App extends Component {
           <Login user={User} />
           <Link to="/admin/onboarding">All Users</Link>
         </div>
+          <div className="app-icon">
+            <h5>Icon</h5>
+          </div>
+          <div className="app-search">
+            <h5>Search</h5>
+          </div>
+          <div className="app-signin">
+            <h5>Sign In</h5>
+          </div>
+          <div className="app-login">
+            <h5>Log In</h5>
+          </div>
         <Route exact path="/" component={MemberResources} />
         <Route
           exact path="/me"
