@@ -1,3 +1,10 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 .App-header {
   background-color: #e24e54;
   padding: 20px;
@@ -6,4 +13,16 @@
 
 .App-intro {
   font-size: large;
+}
+
+.container {
+	background:#eee;
+}
+
+.card {
+	background: white;
+	padding: 20px;
+	margin:0 auto;
+	margin-bottom: 10px;
+	width: 90%;
 }
