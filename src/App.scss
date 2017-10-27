@@ -24,5 +24,19 @@ html {
 	padding: 20px;
 	margin:0 auto;
 	margin-bottom: 10px;
+	padding-top:40px;
 	width: 90%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	align:left;
+}
+
+img {
+	border-radius:100%;
+}
+
+.user-experience	{
+	padding-top:10px;
+	border: 1px solid black;
+	height:45px;
+	width: 100%;
 }
