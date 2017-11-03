@@ -2,9 +2,15 @@
 # based on which the GraphQL API is generated
 
 type User @model {
-  id: ID! @isUnique
-  name: String
-  dateOfBirth: DateTime
+  # Required system field:
+  id: ID! @isUnique # read-only (managed by Graphcool)
+
+  # Optional system fields (remove if not needed):
+  createdAt: DateTime! # read-only (managed by Graphcool)
+  updatedAt: DateTime! # read-only (managed by Graphcool)
+
+  email: String
+  auth0UserId: String @isUnique
 
   # Uncomment below - you can declare relations between models like this
 
@@ -17,7 +23,7 @@ type User @model {
 # type Post @model {
 #   id: ID! @isUnique
 #   title: String!
-# 
+#
 #   # Every relation also required a back-relation (to determine 1:1, 1:n or n:m)
 #   author: User! @relation(name: "UserPosts")
 # }
