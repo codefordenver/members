@@ -1,20 +1,27 @@
 html {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
-*, *:before, *:after {
-  box-sizing: inherit; }
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 
 .App-header {
   background-color: #e24e54;
   padding: 20px;
-  color: white; 
-  z-index:10;}
+  color: white;
+  z-index: 10;
+}
 
 .App-intro {
-  font-size: large; }
+  font-size: large;
+}
 
 .container {
-  background: #eee; }
+  background: #eee;
+}
 
 .card {
   background: white;
@@ -28,35 +35,33 @@ html {
 }
 
 img {
-  border-radius: 100%; 
-  }
+  border-radius: 100%;
+}
 
 .user-bio {
   flex-basis: 80%;
+  border-right: 1px solid gray;
+  padding: 10px;
 }
 
 .user-experience {
-  border: 1px solid gray;
   height: 100%;
   width: 90%;
   flex-basis: 30%;
   vertical-align: center;
-  }
+  padding:10px;
+}
 
-  table {
-    text-align:center;
-    font-style:italic;
-    color:gray;
-    padding: 5px;
-    white-space: -moz-pre-wrap !important;
-    white-space: -webkit-pre-wrap;
-    white-space: break-word;
-    white-space: break-all;
-    white-space: normal;
-  }
+.user-experience table {
+  text-align: center;
+  font-style: italic;
+  color: gray;
+  padding: 5px;
+}
 
-.divider {
-
+.user-experience td {
+  border: 1px solid gray;
+  padding: 3px;
 }
 
 .skillsleft {
@@ -65,7 +70,7 @@ img {
   height: 80px;
 }
 
-.skillsright  {
+.skillsright {
   flex-basis: 80%;
   display: block;
   height: 80px;
@@ -78,6 +83,6 @@ li {
 }
 
 span {
-  font-weight:bold;
+  font-weight: bold;
   font-size: 20px;
 }
