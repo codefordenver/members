@@ -28,7 +28,8 @@ html {
 }
 
 img {
-  border-radius: 100%; }
+  border-radius: 100%; 
+  }
 
 .user-bio {
   flex-basis: 80%;
@@ -39,6 +40,7 @@ img {
   height: 100%;
   width: 90%;
   flex-basis: 30%;
+  vertical-align: center;
   }
 
   table {
@@ -67,6 +69,12 @@ img {
   flex-basis: 80%;
   display: block;
   height: 80px;
+}
+
+li {
+  border: 1px solid black;
+  padding: 3px;
+  display: inline-block;
 }
 
 span {
