@@ -14,31 +14,47 @@ const MemberProfile = ({ user }) => {
           esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
           culpa qui officia deserunt mollit anim id est laborum."</p>
           <a href="mailto:email@gmail.com">email@gmail.com</a>
-          <div><span>GitHub: </span><a href="github.com">github.com</a></div>
-          <div><span>Flowdock: </span><a href= "flowdock.com">flowdock.com</a></div>
+          <div>
+            <span>GitHub: </span><a href="github.com">github.com</a>
+          </div>
+          <div>
+            <span>Flowdock: </span><a href= "flowdock.com">flowdock.com</a>
+          </div>
         </div>
         <div className="user-experience">
-
+          <table>
+            <tr>
+              <td><span>150</span> hours contributed</td>
+              <td><span>5</span> hours contributed</td>
+              <td><span>35</span> meetups attended</td>
+            </tr>
+          </table>
         </div>
       </div>
 
       <div className="card">
-        <div className="Skills">
-        <h2>Skills</h2>
+        <div className="skillsleft">
+          <h2>Skills</h2>
         </div>
-
-        <div>
-          <p>Test1</p><p>Test2</p><p>Test3</p>
+        <div className="skillsright"> 
+          <ul>
+            <li>Python</li>
+            <li>SQL</li>
+            <li>Enterprise Geodatabases</li> 
+          </ul>
         </div>
-      </div>
+      </div> 
 
       <div className="card">
-        <div>
-        <h2>Projects</h2>
+        <div className="skillsleft">
+          <h2>Projects</h2>
         </div>
-
-        <div>
-          <p>Test1</p><p>Test2</p><p>Test3</p>
+        <div className="skillsright"> 
+          <ul>
+            <li>Python</li>
+            <li>SQL</li>
+            <li>Enterprise Geodatabases</li> 
+          </ul>
         </div>
       </div>
     </div>
