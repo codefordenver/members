@@ -8,8 +8,22 @@ Node.js application that connects volunteers with volunteers/projects based on t
 
 ## Requirements
 
-- [Node.js](https://nodejs.org) - version 8.4 or higher (if you have nvm type `nvm use` in the repo to use the correct version)
-- graph.cool CLI: `npm install -g graphcool`
+
+- [Node.js](https://nodejs.org) - version 8.4 (if you have nvm type `nvm use` in the repo to use the correct version)
+
+Setup:
+1. clone repo
+2. cd into repo directory
+3. `npm install`
+4. Follow [these instructions to set up Auth0](https://github.com/graphcool/templates/tree/master/auth/auth0#3-setup-auth0) for the project.
+5. export environment variables:
+- `REACT_APP_AUTH0_CLIENT_ID` as your Auth0 client id
+- `REACT_APP_AUTH0_DOMAIN` and `AUTH0_DOMAIN` as your Auth0 domain
+- `AUTH0_API_IDENTIFIER` as your Auth0 api identifier
+7. install graph.cool CLI: `npm install -g graphcool`
+8. cd into `server` and run `graphcool deploy`
+9. from the output from the previous command export the `Simple API` as environment variable `REACT_APP_GRAPHCOOL_API`
+10. cd back to the root of the repo and run `npm start`
 
 ## Quick Start
 

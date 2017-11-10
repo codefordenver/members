@@ -7,8 +7,13 @@ import "./index.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 
+const graphcoolApi = process.env.REACT_APP_GRAPHCOOL_API;
+if (!graphcoolApi) {
+  throw new Error('You need to export a REACT_APP_GRAPHCOOL_API');
+}
+console.log('Trying to connect to: ', graphcoolApi);
 const networkInterface = createNetworkInterface({
-  uri: "https://api.graph.cool/simple/v1/cj5iz3htl74ms012245dwlq4t"
+  uri: graphcoolApi
 });
 
 networkInterface.use([

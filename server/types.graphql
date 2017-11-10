@@ -10,7 +10,12 @@ type User @model {
   updatedAt: DateTime! # read-only (managed by Graphcool)
 
   email: String
-  auth0UserId: String @isUnique
+  name: String
+  auth0UserId: String! @isUnique
+  picture: String
+  githubName: String
+  flowdockName: String
+  description: String
 
   # Uncomment below - you can declare relations between models like this
 

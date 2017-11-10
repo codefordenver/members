@@ -75,7 +75,11 @@ class LoginAuth0 extends Component {
     });
   }
   _showLogin = () => {
-    this._lock.show();
+    this._lock.show({
+      authParams: {
+        scope: 'openid email user_metadata app_metadata picture'
+      }
+    });
   };
 
   render() {
