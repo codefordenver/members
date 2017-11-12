@@ -1,8 +1,6 @@
 # Welcome to Graphcool!
 #
 # This file is the main config file for your Graphcool Service.
-# It's very minimal at this point and uses default values.
-# We've included a hello world function here.
 # Just run `graphcool deploy` to have the first running Graphcool Service.
 #
 # Check out some examples:
@@ -28,12 +26,6 @@ functions:
           AUTH0_API_IDENTIFIER: ${env:AUTH0_API_IDENTIFIER}
     type: resolver
     schema: ./src/auth0/auth0Authentication.graphql
-
-  hello:
-    handler:
-      code: src/hello.js
-    type: resolver
-    schema: src/hello.graphql
 
 
 # Model/Relation permissions are used to limit the API access
