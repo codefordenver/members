@@ -20,36 +20,54 @@ html {
 }
 
 .container {
+  display:flex;
+  flex-direction:column;
   background: #eee;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-nested {
+  align-items:center;
 }
 
 .card {
+  display:flex;
   background: white;
   margin: 0 auto;
   margin-bottom: 10px;
   width: 90%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  display: flex;
   height: 100%;
   padding: 20px;
 }
 
+.pic {
+  justify-content:center;
+  height: 400px;
+  flex-basis: 30%;
+  border-right: 1px solid gray;
+  }
+
 img {
-  border-radius: 100%;
+  border-radius:100%;
 }
 
 .user-bio {
-  flex-basis: 80%;
-  border-right: 1px solid gray;
-  padding: 10px;
+  flex-direction:column;
+  height: 400px;
+  width: 90%;
+  padding:10px;
+  flex-basis:35%;
+  border-right:1px solid gray;
 }
 
 .user-experience {
-  height: 100%;
+  flex-direction:row;
+  height: 400px;
   width: 90%;
-  flex-basis: 30%;
-  vertical-align: center;
   padding:10px;
+  flex-basis:35%;
 }
 
 .user-experience table {
@@ -65,20 +83,27 @@ img {
 }
 
 .skillsleft {
-  flex-basis: 20%;
-  border-right: 1px solid gray;
+  flex-basis: 15%;
   height: 80px;
-}
+  justify-content:center;
+  flex-direction:row;
+  border-right:1px solid black;
+  }
 
 .skillsright {
-  flex-basis: 80%;
+  flex-direction:row;
+  flex-basis: 85%;
   display: block;
   height: 80px;
+  align-items:center;
 }
 
-li {
+.skillsright li {
   border: 1px solid black;
+  border-radius: 20%;
+  color: black;
   padding: 3px;
+  margin: 5px;
   display: inline-block;
 }
 
