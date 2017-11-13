@@ -2,6 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const MemberProfile = ({ user }) => {
+  if (!user) {
+    return (
+      <div>
+        Loading...
+      </div>
+    )
+  }
   return (
     <div>
       <img src={user.picture} alt="avatar" />
