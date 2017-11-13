@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import gql from "graphql-tag";
 import { graphql, compose } from "react-apollo";
 import auth0 from "auth0-js";
+import { setAuthSession } from './Auth';
 
 const authenticateQuery = gql`
   mutation authenticate($accessToken: String!) {
@@ -34,6 +35,7 @@ class LoginAuth0 extends Component {
         if (!authResult || !authResult.accessToken) {
           return;
         }
+        window.location.hash = '';
 
         // The contents of authResult depend on which authentication parameters were used.
         // It can include the following:
@@ -45,23 +47,26 @@ class LoginAuth0 extends Component {
           variables: {
             accessToken: authResult.accessToken
           }
-        }).then(({ data }) => console.log('userInfo', data.authenticateUser));
-
-        window.localStorage.setItem("cfd-members-auth0-AccessToken", authResult.accessToken);
+        }).then(({ data }) => {
+          const userInfo = data.authenticateUser;
+          setAuthSession(authResult, userInfo.id);
+          window.location.reload();
+        });
       }
     );
   }
+
   _showLogin = () => {
     this.webAuth.authorize({
       audience: "http://localhost:3000", // TODO: Verify this is correct
       redirectUri: "http://localhost:3000", // TODO: Verify this is correct
       responseType: "token",
-      scope: "openid email"
+      scope: "openid email profile"
     });
   };
 
   render() {
-    return <span onClick={this._showLogin}>Log in with Auth0</span>;
+    return <button onClick={this._showLogin}>Log in with Auth0</button>;
   }
 }
 

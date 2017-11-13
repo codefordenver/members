@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import LoginAuth0 from "./LoginAuth0";
+import { logout } from './Auth';
 
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;
@@ -16,18 +17,15 @@ class Login extends Component {
     super();
     this._logout = this._logout.bind(this);
   }
-  _isLoggedIn() {
-    return this.props.user;
-  }
 
   _logout() {
+    logout();
     this.props.history.push("/");
-    window.localStorage.removeItem("cfd-members-auth0IdToken");
     window.location.reload();
   }
 
   render() {
-    if (!this._isLoggedIn()) {
+    if (!this.props.user) {
       return (
         <LoginAuth0
           clientId={clientId}
@@ -37,7 +35,7 @@ class Login extends Component {
     } else {
       return (
         <div>
-          <span onClick={this._logout}>Log out</span>
+          <button onClick={this._logout}>Log out</button>
           <p>
             Hello, {this.props.user.name}
           </p>
