@@ -1,13 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import FlatButton from 'material-ui/FlatButton';
+import Chip from 'material-ui/Chip';
+import FontIcon from 'material-ui/FontIcon';
+import SvgIconFace from 'material-ui/svg-icons/action/face';
 
 const MemberProfile = ({ user }) => {
   return (
+  <MuiThemeProvider>
     <div className="container">
       <div className="card">
         <div className="pic">
           <div className="container-nested">
-          <img src="http://placehold.it/150x150"/>
+          <img src="http://placehold.it/200x200"/>
           </div>
         </div>
         <div className="user-bio">
@@ -45,11 +51,18 @@ const MemberProfile = ({ user }) => {
           <h2>Skills</h2>
         </div>
         <div className="skillsright"> 
-          <ul>
-            <li>Python</li>
-            <li>SQL</li>
-            <li>Enterprise Geodatabases</li> 
-          </ul>
+          <Chip className="skills-button" 
+          onRequestDelete= {()=> {return false}}>
+            Python
+          </Chip>
+          <Chip className="skills-button" 
+          onRequestDelete= {()=> {return false}}>
+            SQL
+          </Chip>
+          <Chip className="skills-button" 
+          onRequestDelete= {()=> {return false}}>
+            Enterprise Geodatabases
+          </Chip>
         </div>
       </div> 
 
@@ -58,14 +71,22 @@ const MemberProfile = ({ user }) => {
           <h2>Projects</h2>
         </div>
         <div className="skillsright"> 
-          <ul>
-            <li>Python</li>
-            <li>SQL</li>
-            <li>Enterprise Geodatabases</li> 
-          </ul>
+          <Chip className="skills-button" 
+          onRequestDelete= {()=> {return false}}>
+            Python
+          </Chip>
+          <Chip className="skills-button" 
+          onRequestDelete= {()=> {return false}}>
+            SQL
+          </Chip>
+          <Chip className="skills-button" 
+          onRequestDelete= {()=> {return false}}>
+            Enterprise Geodatabases
+          </Chip>
         </div>
       </div>
     </div>
+  </MuiThemeProvider>
   );
 };
 

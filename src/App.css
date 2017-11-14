@@ -24,11 +24,13 @@ html {
   flex-direction:column;
   background: #eee;
   justify-content: center;
-  align-items: center;
+  align-items:center;
 }
 
 .container-nested {
+  overflow:auto;
   align-items:center;
+  text-align:justify;
 }
 
 .card {
@@ -40,13 +42,15 @@ html {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   height: 100%;
   padding: 20px;
+  align-items:center;
+  justify-content:space-around;
 }
 
 .pic {
   justify-content:center;
+  display:flex;
   height: 400px;
-  flex-basis: 30%;
-  border-right: 1px solid gray;
+  flex-basis: 20%;
   }
 
 img {
@@ -54,12 +58,15 @@ img {
 }
 
 .user-bio {
+  display:flex;
   flex-direction:column;
   height: 400px;
   width: 90%;
   padding:10px;
   flex-basis:35%;
   border-right:1px solid gray;
+  overflow:scroll;
+  align-self:flex-end;
 }
 
 .user-experience {
@@ -67,14 +74,18 @@ img {
   height: 400px;
   width: 90%;
   padding:10px;
+  display:flex;
   flex-basis:35%;
+  justify-content:center;
+  align-content:center;
+  align-items:center;
 }
 
 .user-experience table {
   text-align: center;
   font-style: italic;
   color: gray;
-  padding: 5px;
+  padding: 15px;
 }
 
 .user-experience td {
@@ -96,7 +107,8 @@ img {
   display: block;
   height: 80px;
   align-items:center;
-}
+  flex-wrap:wrap;
+  }
 
 .skillsright li {
   border: 1px solid black;
@@ -104,7 +116,18 @@ img {
   color: black;
   padding: 3px;
   margin: 5px;
-  display: inline-block;
+}
+
+.skills-button {
+  color:#E24E54 !important;
+  border: 2px solid #E24E54 !important;
+  border-radius:15px !important;
+  //line-height:32px !important;
+  background-color:transparent !important;
+  display:inline-block !important;
+}
+.skills-button svg {
+  float: right !important;
 }
 
 span {
