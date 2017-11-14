@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
-import gql from "graphql-tag";
-import { graphql } from "react-apollo";
 import MemberResources from "./MemberResources";
 import Login from "./Login";
 import MemberProfile from "./MemberProfile";
 import MemberProfileEdit from "./MemberProfileEdit";
 import UsersList from "./UsersList";
 import "./App.css";
-import { isAuthenticated, getAuthSession } from './Auth';
+import { componentWithLoggedInUser } from './utils';
 
 class App extends Component {
   render() {
@@ -32,26 +30,4 @@ class App extends Component {
   }
 }
 
-const userQuery = gql`
-  query getLoggedInUser($id: ID) {
-    User(id: $id) {
-      id
-      name
-      picture
-      email
-      flowdockName
-      githubName
-      description
-    }
-  }
-`;
-
-export default graphql(userQuery, {
-  // skip: ownProps => { debugger; return !isAuthenticated() },
-  options: {
-    // fetchPolicy: "network-only",
-    variables: {
-      id: getAuthSession().userId || ''
-    }
-  }
-})(App);
+export default componentWithLoggedInUser(App);

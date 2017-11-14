@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import gql from "graphql-tag";
 import { graphql, compose } from "react-apollo";
-import { getAuthSession } from './Auth';
+import { componentWithLoggedInUser } from './utils';
 
 const updateUserQuery = gql`
   mutation updateUser(
@@ -17,20 +17,6 @@ const updateUserQuery = gql`
       flowdockName: $flowdockName
       description: $description
     ) {
-      id
-      name
-      picture
-      email
-      flowdockName
-      githubName
-      description
-    }
-  }
-`;
-
-const userQuery = gql`
-  query getLoggedInUser($id: ID!) {
-    User(id: $id) {
       id
       name
       picture
@@ -107,18 +93,9 @@ class MemberProfileEdit extends Component {
 
 const MemberProfileEditWithData = compose(
   graphql(updateUserQuery, {
-    name: "updateUser",
-    options: {
-      refetchQueries: [{ query: userQuery }]
-    }
+    name: "updateUser"
   }),
-  graphql(userQuery, {
-    options: {
-      variables: {
-        id: getAuthSession().userId || ''
-      }
-    }
-  })
+  componentWithLoggedInUser
 )(MemberProfileEdit);
 
 export default withRouter(MemberProfileEditWithData);

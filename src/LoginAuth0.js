@@ -3,7 +3,8 @@ import { withRouter } from "react-router-dom";
 import gql from "graphql-tag";
 import { graphql, compose } from "react-apollo";
 import auth0 from "auth0-js";
-import { setAuthSession } from './Auth';
+import { setAuthSession, getAuthSession } from "./Auth";
+import { getLoggedInUser } from "./utils";
 
 const authenticateQuery = gql`
   mutation authenticate($accessToken: String!) {
@@ -35,7 +36,7 @@ class LoginAuth0 extends Component {
         if (!authResult || !authResult.accessToken) {
           return;
         }
-        window.location.hash = '';
+        window.location.hash = "";
 
         // The contents of authResult depend on which authentication parameters were used.
         // It can include the following:
@@ -43,15 +44,17 @@ class LoginAuth0 extends Component {
         // authResult.expiresIn - string with the access token's expiration time in seconds
         // authResult.idToken - ID token JWT containing user profile information
 
-        props.authenticate({
-          variables: {
-            accessToken: authResult.accessToken
-          }
-        }).then(({ data }) => {
-          const userInfo = data.authenticateUser;
-          setAuthSession(authResult, userInfo.id);
-          window.location.reload();
-        });
+        props
+          .authenticate({
+            variables: {
+              accessToken: authResult.accessToken
+            }
+          })
+          .then(({ data }) => {
+            const userInfo = data.authenticateUser;
+            setAuthSession(authResult, userInfo.id);
+            window.location.reload();
+          });
       }
     );
   }
