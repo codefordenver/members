@@ -19,31 +19,72 @@ html {
   font-size: large;
 }
 
+h2 {
+  font-size:40px;
+  line-height:47px;
+}
+
+p {
+  font-size: 14px;
+  line-height:16px;
+  margin-bottom: 40px;
+}
+
+a {
+  color: #E24E54;
+}
+
 .container {
   display:flex;
   flex-direction:column;
   background: #eee;
-  justify-content: center;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.contributions {
+  display:flex;
+  border: 1px solid black;
   align-items:center;
+  justify-content:center;
+  align-content:center;
+  word-spacing:1px;
+  text-align:center;
+  }
+
+.number {
+  font-style:bold;
+}
+
+.details {
+  color:#828282;
+}
+
+.contributions-nested{
+  display:flex;
+  overflow:auto;
+  align-content:center;
 }
 
 .container-nested {
   overflow:auto;
-  align-items:center;
+  align-content:center;
   text-align:justify;
 }
+
+.contact {
+  line-height:40px;
+  }
 
 .card {
   display:flex;
   background: white;
   margin: 0 auto;
-  margin-bottom: 10px;
+  margin-bottom: 25px;
   width: 90%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   height: 100%;
   padding: 20px;
   align-items:center;
-  justify-content:space-around;
 }
 
 .pic {
@@ -51,6 +92,7 @@ html {
   display:flex;
   height: 400px;
   flex-basis: 20%;
+  margin: 20px;
   }
 
 img {
@@ -59,54 +101,31 @@ img {
 
 .user-bio {
   display:flex;
-  flex-direction:column;
   height: 400px;
   width: 90%;
   padding:10px;
-  flex-basis:35%;
   border-right:1px solid gray;
-  overflow:scroll;
-  align-self:flex-end;
+  margin:20px;
 }
 
 .user-experience {
-  flex-direction:row;
-  height: 400px;
-  width: 90%;
   padding:10px;
-  display:flex;
-  flex-basis:35%;
-  justify-content:center;
-  align-content:center;
-  align-items:center;
-}
-
-.user-experience table {
-  text-align: center;
-  font-style: italic;
-  color: gray;
-  padding: 15px;
-}
-
-.user-experience td {
-  border: 1px solid gray;
-  padding: 3px;
+  flex-basis:40%;
 }
 
 .skillsleft {
-  flex-basis: 15%;
+  flex-basis: 20%;
   height: 80px;
-  justify-content:center;
-  flex-direction:row;
+  display:flex;
   border-right:1px solid black;
+  justify-content:center;
+  align-items:center;
   }
 
 .skillsright {
-  flex-direction:row;
-  flex-basis: 85%;
-  display: block;
-  height: 80px;
-  align-items:center;
+  flex-basis: 80%;
+  display: flex;
+  margin-left:20px;
   flex-wrap:wrap;
   }
 
@@ -118,19 +137,28 @@ img {
   margin: 5px;
 }
 
+/* Be advised! The !important tag is to be used to override the default styling from 
+Material UI, without these !important tags, we won't be able to override Material UI's
+stupid inline style*/
+
 .skills-button {
+  font-family: 'Roboto Condensed', sans-serif !important;
   color:#E24E54 !important;
   border: 2px solid #E24E54 !important;
   border-radius:15px !important;
-  //line-height:32px !important;
+  line-height:32px !important;
   background-color:transparent !important;
-  display:inline-block !important;
+  display:flex !important;
+  margin: 3px !important;
 }
 .skills-button svg {
   float: right !important;
+  display:flex !important;
+  color: gray !important; 
 }
 
 span {
   font-weight: bold;
   font-size: 20px;
+  color:black;
 }
