@@ -36,11 +36,11 @@ const MemberProfile = ({ user }) => {
           </div>
     <div className="user-experience">
       <div className="contributions-nested">
-        <div className= "contributions">
+        <div className= "contributed">
           <p>
             <span>
-              <div className="number">
-                150
+              <div className="hours-contributed">
+                1
               </div>
             </span> 
               <div className="details">
@@ -48,10 +48,10 @@ const MemberProfile = ({ user }) => {
               </div>
           </p>
         </div>
-        <div className= "contributions">
+        <div className= "contributed">
           <p>
             <span>
-              <div className="number">
+              <div className="projects-completed">
                 5
               </div>
             </span> 
@@ -60,10 +60,10 @@ const MemberProfile = ({ user }) => {
               </div>
           </p>
         </div>
-        <div className= "contributions">
+        <div className= "contributed">
           <p>
             <span>
-              <div className="number">
+              <div className="meetups">
                 35
               </div>
             </span> 

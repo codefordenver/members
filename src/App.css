@@ -35,21 +35,43 @@ a {
 }
 
 .container {
-  display:flex;
   flex-direction:column;
   background: #eee;
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-.contributions {
-  display:flex;
-  border: 1px solid black;
-  align-items:center;
-  justify-content:center;
-  align-content:center;
-  word-spacing:1px;
+.contributed {
+  padding: 5px;
+}
+
+.hours-contributed {
+  word-spacing: 1px;
   text-align:center;
-  }
+  vertical-align:middle;
+  font-size: 46px;
+  height:46px;
+  color:#E24E54;
+  position:relative;
+  border:1px solid black;
+}
+
+.projects-completed {
+  word-spacing: 1px;
+  text-align:center;
+  font-size: 46px;
+  height:46px;
+  color:#4ECAE2;
+  display:flex;
+}
+
+.meetups {
+  word-spacing: 1px;
+  text-align:center;
+  font-size: 46px;
+  height:46px;
+  color:#E24E54;
+  display:flex;
+}
 
 .number {
   font-style:bold;
@@ -57,18 +79,18 @@ a {
 
 .details {
   color:#828282;
+  font-style:italic;
+  text-align:center;
+  position:relative;
 }
 
 .contributions-nested{
   display:flex;
-  overflow:auto;
-  align-content:center;
 }
 
 .container-nested {
   overflow:auto;
   align-content:center;
-  text-align:justify;
 }
 
 .contact {
