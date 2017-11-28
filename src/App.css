@@ -12,7 +12,28 @@ html {
   background-color: #e24e54;
   padding: 20px;
   color: white;
-  z-index: 10;
+  display: flex;
+  height: 100px;
+  flex-direction: row;
+  align-content: center;
+}
+
+.app-icon {
+  align-items: center;
+  flex-basis: 10%;
+  border: 1px solid black;
+}
+
+.app-search {
+  display: flex;
+  align-items: center;
+  flex-basis: 50%;
+}
+
+.app-signin {
+}
+
+.app-login {
 }
 
 .App-intro {
@@ -20,85 +41,87 @@ html {
 }
 
 h2 {
-  font-size:40px;
-  line-height:47px;
+  font-size: 40px;
+  line-height: 47px;
 }
 
 p {
   font-size: 14px;
-  line-height:16px;
+  line-height: 16px;
   margin-bottom: 40px;
 }
 
 a {
-  color: #E24E54;
+  color: #e24e54;
 }
 
 .container {
-  flex-direction:column;
+  flex-direction: column;
   background: #eee;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 .contributed {
+  padding: 5px;
+  border-right: 1px solid gray;
+}
+
+.contributed1 {
+  padding: 5px;
+  border-right: 1px solid gray;
+}
+
+.contributed2 {
   padding: 5px;
 }
 
 .hours-contributed {
   word-spacing: 1px;
-  text-align:center;
-  vertical-align:middle;
+  text-align: center;
   font-size: 46px;
-  height:46px;
-  color:#E24E54;
-  position:relative;
-  border:1px solid black;
+  height: 46px;
+  color: #e24e54;
 }
 
 .projects-completed {
   word-spacing: 1px;
-  text-align:center;
   font-size: 46px;
-  height:46px;
-  color:#4ECAE2;
-  display:flex;
+  height: 46px;
+  color: #4ecae2;
 }
 
 .meetups {
   word-spacing: 1px;
-  text-align:center;
+  text-align: center;
   font-size: 46px;
-  height:46px;
-  color:#E24E54;
-  display:flex;
+  height: 46px;
+  color: #e24e54;
 }
 
 .number {
-  font-style:bold;
+  font-style: bold;
 }
 
 .details {
-  color:#828282;
-  font-style:italic;
-  text-align:center;
-  position:relative;
+  color: #828282;
+  font-style: italic;
 }
 
-.contributions-nested{
-  display:flex;
+.contributions-nested {
+  display: flex;
 }
 
 .container-nested {
-  overflow:auto;
-  align-content:center;
+  overflow: auto;
+  align-content: center;
 }
 
 .contact {
-  line-height:40px;
-  }
+  line-height: 40px;
+}
 
 .card {
-  display:flex;
+  display: flex;
   background: white;
   margin: 0 auto;
   margin-bottom: 25px;
@@ -106,50 +129,50 @@ a {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   height: 100%;
   padding: 20px;
-  align-items:center;
+  align-items: center;
 }
 
 .pic {
-  justify-content:center;
-  display:flex;
+  justify-content: center;
+  display: flex;
   height: 400px;
   flex-basis: 20%;
   margin: 20px;
-  }
+}
 
 img {
-  border-radius:100%;
+  border-radius: 100%;
 }
 
 .user-bio {
-  display:flex;
+  display: flex;
   height: 400px;
   width: 90%;
-  padding:10px;
-  border-right:1px solid gray;
-  margin:20px;
+  padding: 10px;
+  border-right: 1px solid gray;
+  margin: 20px;
 }
 
 .user-experience {
-  padding:10px;
-  flex-basis:40%;
+  padding: 10px;
+  text-align: center;
 }
 
 .skillsleft {
   flex-basis: 20%;
   height: 80px;
-  display:flex;
-  border-right:1px solid black;
-  justify-content:center;
-  align-items:center;
-  }
+  display: flex;
+  border-right: 1px solid black;
+  justify-content: center;
+  align-items: center;
+}
 
 .skillsright {
   flex-basis: 80%;
   display: flex;
-  margin-left:20px;
-  flex-wrap:wrap;
-  }
+  margin-left: 20px;
+  flex-wrap: wrap;
+}
 
 .skillsright li {
   border: 1px solid black;
@@ -164,23 +187,23 @@ Material UI, without these !important tags, we won't be able to override Materia
 stupid inline style*/
 
 .skills-button {
-  font-family: 'Roboto Condensed', sans-serif !important;
-  color:#E24E54 !important;
-  border: 2px solid #E24E54 !important;
-  border-radius:15px !important;
-  line-height:32px !important;
-  background-color:transparent !important;
-  display:flex !important;
+  font-family: "Roboto Condensed", sans-serif !important;
+  color: #e24e54 !important;
+  border: 2px solid #e24e54 !important;
+  border-radius: 15px !important;
+  line-height: 32px !important;
+  background-color: transparent !important;
+  display: flex !important;
   margin: 3px !important;
 }
 .skills-button svg {
   float: right !important;
-  display:flex !important;
-  color: gray !important; 
+  display: flex !important;
+  color: gray !important;
 }
 
 span {
   font-weight: bold;
   font-size: 20px;
-  color:black;
+  color: black;
 }

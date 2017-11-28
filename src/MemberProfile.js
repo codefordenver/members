@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import FlatButton from 'material-ui/FlatButton';
 import Chip from 'material-ui/Chip';
 import FontIcon from 'material-ui/FontIcon';
 import AppBar from 'material-ui/AppBar';
@@ -37,40 +36,34 @@ const MemberProfile = ({ user }) => {
     <div className="user-experience">
       <div className="contributions-nested">
         <div className= "contributed">
-          <p>
-            <span>
-              <div className="hours-contributed">
-                1
-              </div>
+          <div>
+            <span className="hours-contributed">
+              1
             </span> 
               <div className="details">
               hours contributed
               </div>
-          </p>
+          </div>
         </div>
-        <div className= "contributed">
-          <p>
-            <span>
-              <div className="projects-completed">
+        <div className= "contributed1">
+          <div>
+            <span className="projects-completed">
                 5
-              </div>
             </span> 
               <div className="details">
               projects completed
               </div>
-          </p>
+          </div>
         </div>
-        <div className= "contributed">
-          <p>
-            <span>
-              <div className="meetups">
+        <div className= "contributed2">
+          <div>
+            <span className="hours-contributed">
                 35
-              </div>
             </span> 
               <div className="details">
               meetups attended
               </div>
-          </p>
+          </div>
         </div>
       </div>
     </div>

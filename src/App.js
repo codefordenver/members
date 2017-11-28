@@ -21,10 +21,20 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Code for Denver Members</h2>
-          <Login user={user} />
-          <Link to="/admin/onboarding">All Users</Link>
+          <h5>Code for Denver Members</h5>
         </div>
+          <div className="app-icon">
+            <h5>Icon</h5>
+          </div>
+          <div className="app-search">
+            <h5>Search</h5>
+          </div>
+          <div className="app-signin">
+            <h5>Sign In</h5>
+          </div>
+          <div className="app-login">
+            <h5>Log In</h5>
+          </div>
         <Route exact path="/" component={MemberResources} />
         <Route
           exact path="/me"
