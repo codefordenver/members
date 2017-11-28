@@ -23,7 +23,8 @@
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postinstall": "npm install --prefix server"
+    "postinstall": "npm install --prefix server",
+    "setup": "node bin/setup.js"
   },
   "homepage": "https://codefordenver.githib.io/members",
   "devDependencies": {
