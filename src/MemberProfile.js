@@ -6,30 +6,27 @@ import FontIcon from 'material-ui/FontIcon';
 import AppBar from 'material-ui/AppBar';
 import SvgIconFace from 'material-ui/svg-icons/action/face';
 
-const MemberProfile = ({ user }) => {
+const MemberProfile = ({ user, picture, name, description, githubName, flowdockName }) => {
   return (
   <MuiThemeProvider>
     <div className="container">
       <div className="card">
         <div className="pic">
           <div className="container-nested">
-            <img src="http://placehold.it/225x225"/>
+            <img src={picture} alt="avatar" />
+
           </div>
         </div>
         <div className="user-bio">
           <div className="container-nested">
-            <h2>FirstName LastName</h2>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit 
-            esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
-            culpa qui officia deserunt mollit anim id est laborum."</p>
+            <h2> {name} </h2>
+            <p>{description}</p>
             <a href="mailto:email@gmail.com">email@gmail.com</a>
               <div className= "contact">
-                <span>GitHub: </span><a href="github.com">github.com</a>
+                <span>GitHub: </span><a href={`github.com/${githubName}`}>{githubName}</a>
               </div>
               <div className= "contact">
-                <span>Flowdock: </span><a href= "flowdock.com">flowdock.com</a>
+                <span>Flowdock: </span><a href={`flowdock.com/${flowdockName}`}>{flowdockName}</a>
               </div>
             </div>
           </div>
