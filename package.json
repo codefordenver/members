@@ -11,6 +11,7 @@
     "auth0-js": "^8.8.0",
     "auth0-lock": "^10.19.0",
     "graphql-tag": "^2.4.2",
+    "material-ui": "^0.19.4",
     "react": "^15.6.1",
     "react-apollo": "^1.4.10",
     "react-dom": "^15.6.1",
