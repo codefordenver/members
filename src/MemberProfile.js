@@ -32,7 +32,7 @@ const MemberProfile = ({ user, picture, name, description, githubName, flowdockN
           </div>
     <div className="user-experience">
       <div className="contributions-nested">
-        <div className= "contributed">
+        <div className= "first-child">
           <div>
             <span className="hours-contributed">
               1
@@ -42,7 +42,7 @@ const MemberProfile = ({ user, picture, name, description, githubName, flowdockN
               </div>
           </div>
         </div>
-        <div className= "contributed1">
+        <div className= "second-child">
           <div>
             <span className="projects-completed">
                 5
@@ -52,7 +52,7 @@ const MemberProfile = ({ user, picture, name, description, githubName, flowdockN
               </div>
           </div>
         </div>
-        <div className= "contributed2">
+        <div className= "last-child">
           <div>
             <span className="hours-contributed">
                 35

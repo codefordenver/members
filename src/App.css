@@ -61,17 +61,17 @@ a {
   font-family: "Roboto Condensed", sans-serif;
 }
 
-.contributed {
+.first-child {
   padding: 5px;
   border-right: 1px solid gray;
 }
 
-.contributed1 {
+.second-child {
   padding: 5px;
   border-right: 1px solid gray;
 }
 
-.contributed2 {
+.last-child {
   padding: 5px;
 }
 
