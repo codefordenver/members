@@ -22,7 +22,7 @@ Setup:
 - `REACT_APP_AUTH0_CLIENT_ID` as your Auth0 client id
 - `REACT_APP_AUTH0_DOMAIN` and `AUTH0_DOMAIN` as your Auth0 domain
 - `AUTH0_API_IDENTIFIER` as your Auth0 api identifier
-7. cd into `server` and run `npm run gc -- deploy`
+7. run `npm run gc -- deploy`
 8. from the output from the previous command copy the `Simple API` url and add it to the `.env.local` file for variable `REACT_APP_GRAPHCOOL_API`
 9. cd back to the root of the repo and run `npm start`
 
