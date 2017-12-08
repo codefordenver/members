@@ -22,7 +22,7 @@ Setup:
 - `REACT_APP_AUTH0_CLIENT_ID` as your Auth0 client id
 - `REACT_APP_AUTH0_DOMAIN` and `AUTH0_DOMAIN` as your Auth0 domain
 - `AUTH0_API_IDENTIFIER` as your Auth0 api identifier
-7. cd into `server` and run `npx graphcool deploy`
+7. cd into `server` and run `npm run gc -- deploy`
 8. from the output from the previous command copy the `Simple API` url and add it to the `.env.local` file for variable `REACT_APP_GRAPHCOOL_API`
 9. cd back to the root of the repo and run `npm start`
 
@@ -34,7 +34,7 @@ npm start
 ```
 
 ## Graphcool
-The [Graphcool framework](https://github.com/graphcool/framework) is used to spin up and manage the backend for this project. To use the locally installed version of the framework, use `npx graphcool`, or `npx gc` for short. Run `npx gc --help` to view a list of available commands.
+The [Graphcool framework](https://github.com/graphcool/framework) is used to spin up and manage the backend for this project. To use the locally installed version of the framework with your environment variables from `.env.local`, use `npm run gc -- <command>`. Run `npm run gc -- --help` to view a list of available commands.
 
 ### Create React App
 The front end for this project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). Here are some [generated docs](./docs/CreateReactApp.md) from this project for helpful tips on how to do common things.
