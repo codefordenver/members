@@ -1,34 +1,41 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import LoginAuth0 from "./LoginAuth0";
+import { logout } from './Auth';
+
+const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
+const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+if (!clientId) {
+  throw new Error('You need to export a REACT_APP_AUTH0_CLIENT_ID');
+}
+if (!domain) {
+  throw new Error('You need to export a REACT_APP_AUTH0_DOMAIN');
+}
 
 class Login extends Component {
   constructor() {
     super();
     this._logout = this._logout.bind(this);
   }
-  _isLoggedIn() {
-    return this.props.user;
-  }
 
   _logout() {
+    logout();
     this.props.history.push("/");
-    window.localStorage.removeItem("cfd-members-auth0IdToken");
     window.location.reload();
   }
 
   render() {
-    if (!this._isLoggedIn()) {
+    if (!this.props.user) {
       return (
         <LoginAuth0
-          clientId="Qgo5BOv5XsU60A6mFSjmZpzfTrYy8I5I"
-          domain="codefordenver.auth0.com"
+          clientId={clientId}
+          domain={domain}
         />
       );
     } else {
       return (
         <div>
-          <span onClick={this._logout}>Log out</span>
+          <button onClick={this._logout}>Log out</button>
           <p>
             Hello, {this.props.user.name}
           </p>

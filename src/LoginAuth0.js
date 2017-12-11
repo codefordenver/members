@@ -2,32 +2,15 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import gql from "graphql-tag";
 import { graphql, compose } from "react-apollo";
-import Auth0Lock from "auth0-lock";
+import auth0 from "auth0-js";
+import { setAuthSession, getAuthSession } from "./Auth";
+import { getLoggedInUser } from "./utils";
 
-const createUserQuery = gql`
-  mutation(
-    $idToken: String!
-    $name: String!
-    $email: String!
-    $picture: String!
-    $githubName: String
-  ) {
-    createUser(
-      authProvider: { auth0: { idToken: $idToken } }
-      name: $name
-      email: $email
-      picture: $picture
-      githubName: $githubName
-    ) {
+const authenticateQuery = gql`
+  mutation authenticate($accessToken: String!) {
+    authenticateUser(accessToken: $accessToken) {
       id
-    }
-  }
-`;
-
-const userQuery = gql`
-  query {
-    user {
-      id
+      token
     }
   }
 `;
@@ -35,65 +18,64 @@ const userQuery = gql`
 class LoginAuth0 extends Component {
   constructor(props) {
     super(props);
-    this.createUser = props.createUser;
-    this._lock = new Auth0Lock(props.clientId, props.domain);
+    this.webAuth = new auth0.WebAuth({
+      domain: props.domain,
+      clientID: props.clientId
+    });
   }
 
   componentDidMount() {
     const props = this.props;
-    this._lock.on("authenticated", authResult => {
-      window.localStorage.setItem(
-        "cfd-members-auth0IdToken",
-        authResult.idToken
-      );
-      props.data.refetch().then(({ data: { user } }) => {
-        if (!user) {
-          this._lock.getUserInfo(authResult.accessToken, (error, profile) => {
-            const { name, email, picture } = profile;
-            const idToken = window.localStorage.getItem(
-              "cfd-members-auth0IdToken"
-            );
-            let nickname = "";
-            let { identities: [ { provider } ] } = profile;
-            if(provider === "github") {
-              nickname = profile.nickname;
-            }
-            this.createUser({
-              variables: {
-                idToken,
-                name,
-                email,
-                picture,
-                githubName: nickname
-              }
-            });
-          });
-        } else {
-          props.history.push("/");
+    this.webAuth.parseHash(
+      { hash: window.location.hash },
+      (err, authResult) => {
+        if (err) {
+          // TODO: Handle errors
+          return console.error(err);
         }
-      });
-    });
+        if (!authResult || !authResult.accessToken) {
+          return;
+        }
+        window.location.hash = "";
+
+        // The contents of authResult depend on which authentication parameters were used.
+        // It can include the following:
+        // authResult.accessToken - access token for the API specified by `audience`
+        // authResult.expiresIn - string with the access token's expiration time in seconds
+        // authResult.idToken - ID token JWT containing user profile information
+
+        props
+          .authenticate({
+            variables: {
+              accessToken: authResult.accessToken
+            }
+          })
+          .then(({ data }) => {
+            const userInfo = data.authenticateUser;
+            setAuthSession(authResult, userInfo.id);
+            window.location.reload();
+          });
+      }
+    );
   }
+
   _showLogin = () => {
-    this._lock.show();
+    this.webAuth.authorize({
+      audience: "http://localhost:3000", // TODO: Verify this is correct
+      redirectUri: "http://localhost:3000", // TODO: Verify this is correct
+      responseType: "token",
+      scope: "openid email profile"
+    });
   };
 
   render() {
-    return <span onClick={this._showLogin}>Log in with Auth0</span>;
+    return <button onClick={this._showLogin}>Log in with Auth0</button>;
   }
 }
 
 const LoginAuth0WithData = compose(
-  graphql(createUserQuery, {
-    name: "createUser",
-    options: {
-      refetchQueries: [{ query: userQuery }]
-    }
-  }),
-  graphql(userQuery, {
-    options: {
-      fetchPolicy: "network-only"
-    }
+  graphql(authenticateQuery, {
+    name: "authenticate"
   })
 )(withRouter(LoginAuth0));
 
