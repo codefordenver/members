@@ -26,9 +26,9 @@ Setup:
   5. Select `Client` from the side menu
   6. Select the client that was just created
   7. Make sure to fill in the following fields:
-    - Client Type - Regular Web Application
-    - Token Endpoint Authentication Method - Post
-    - Allowed Callback URLs - http://localhost:3000/
+    - `Client Type` - Regular Web Application
+    - `Token Endpoint` Authentication Method - Post
+    - `Allowed Callback URLs` - http://localhost:3000/
   8. In Advanced Settings Section - OAuth tab set JWT Signature Algorithm to value RS256 and turn on the OIDC Conformant swith.
   ![alt text](public/Screen Shot 2017-12-11 at 8.39.03 PM.png)
   9. In Advanced Settings Section - Grant Types tab only leave the Implicit grant type enabled.
