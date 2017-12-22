@@ -7,6 +7,13 @@ import AppBar from 'material-ui/AppBar';
 import SvgIconFace from 'material-ui/svg-icons/action/face';
 
 const MemberProfile = ({ user, picture, name, description, githubName, flowdockName }) => {
+  if (!user) {
+    return (
+      <div>
+        Loading...
+      </div>
+    )
+  }
   return (
   <MuiThemeProvider>
     <div className="container">
@@ -36,7 +43,7 @@ const MemberProfile = ({ user, picture, name, description, githubName, flowdockN
           <div>
             <span className="hours-contributed">
               1
-            </span> 
+            </span>
               <div className="details">
               hours contributed
               </div>
@@ -46,7 +53,7 @@ const MemberProfile = ({ user, picture, name, description, githubName, flowdockN
           <div>
             <span className="projects-completed">
                 5
-            </span> 
+            </span>
               <div className="details">
               projects completed
               </div>
@@ -56,7 +63,7 @@ const MemberProfile = ({ user, picture, name, description, githubName, flowdockN
           <div>
             <span className="hours-contributed">
                 35
-            </span> 
+            </span>
               <div className="details">
               meetups attended
               </div>
@@ -70,36 +77,36 @@ const MemberProfile = ({ user, picture, name, description, githubName, flowdockN
         <div className="skillsleft">
           <h2>Skills</h2>
         </div>
-        <div className="skillsright"> 
-          <Chip className="skills-button" 
+        <div className="skillsright">
+          <Chip className="skills-button"
           onRequestDelete= {()=> {return false}}>
             Python
           </Chip>
-          <Chip className="skills-button" 
+          <Chip className="skills-button"
           onRequestDelete= {()=> {return false}}>
             SQL
           </Chip>
-          <Chip className="skills-button" 
+          <Chip className="skills-button"
           onRequestDelete= {()=> {return false}}>
             Enterprise Geodatabases
           </Chip>
         </div>
-      </div> 
+      </div>
 
       <div className="card">
         <div className="skillsleft">
           <h2>Projects</h2>
         </div>
-        <div className="skillsright"> 
-          <Chip className="skills-button" 
+        <div className="skillsright">
+          <Chip className="skills-button"
           onRequestDelete= {()=> {return false}}>
             Python
           </Chip>
-          <Chip className="skills-button" 
+          <Chip className="skills-button"
           onRequestDelete= {()=> {return false}}>
             SQL
           </Chip>
-          <Chip className="skills-button" 
+          <Chip className="skills-button"
           onRequestDelete= {()=> {return false}}>
             Enterprise Geodatabases
           </Chip>

@@ -1,27 +1,22 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
-import gql from "graphql-tag";
-import { graphql } from "react-apollo";
 import MemberResources from "./MemberResources";
 import Login from "./Login";
 import MemberProfile from "./MemberProfile";
 import MemberProfileEdit from "./MemberProfileEdit";
 import UsersList from "./UsersList";
 import "./App.css";
+import { componentWithLoggedInUser } from './utils';
 
 class App extends Component {
-  componentWillUpdate() {
-    if (!this.props.data.user) {
-      this.props.data.refetch();
-    }
-  }
-
   render() {
-    const { data: { user } } = this.props
+    const { User } = this.props.data || {};
     return (
       <div className="App">
         <div className="App-header">
-          <h5>Code for Denver Members</h5>
+          <h2>Code for Denver Members</h2>
+          <Login user={User} />
+          <Link to="/admin/onboarding">All Users</Link>
         </div>
           <div className="app-icon">
             <h5>Icon</h5>
@@ -38,7 +33,7 @@ class App extends Component {
         <Route exact path="/" component={MemberResources} />
         <Route
           exact path="/me"
-          render={() => <MemberProfile user={user} />}
+          render={() => <MemberProfile user={User} />}
         />
         <Route path="/me/edit" component={MemberProfileEdit} />
         <Route path="/admin/onboarding" component={UsersList} />
@@ -47,22 +42,4 @@ class App extends Component {
   }
 }
 
-const userQuery = gql`
-  query {
-    user {
-      id
-      name
-      picture
-      email
-      flowdockName
-      githubName
-      description
-    }
-  }
-`;
-
-export default graphql(userQuery, {
-  options: {
-    fetchPolicy: "network-only"
-  }
-})(App);
+export default componentWithLoggedInUser(App);
