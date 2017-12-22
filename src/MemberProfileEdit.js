@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import gql from "graphql-tag";
 import { graphql, compose } from "react-apollo";
+import { componentWithLoggedInUser } from './utils';
 
 const updateUserQuery = gql`
-  mutation(
+  mutation updateUser(
     $id: ID!
     $githubName: String
     $flowdockName: String
@@ -17,16 +18,11 @@ const updateUserQuery = gql`
       description: $description
     ) {
       id
-    }
-  }
-`;
-
-const userQuery = gql`
-  query {
-    user {
-      id
-      githubName
+      name
+      picture
+      email
       flowdockName
+      githubName
       description
     }
   }
@@ -40,31 +36,26 @@ class MemberProfileEdit extends Component {
       flowdockName: "",
       description: ""
     };
-    this.updateUser = props.updateUser;
   }
 
   componentWillReceiveProps(props) {
-    if (props.data.user) {
-      let { githubName, flowdockName, description } = props.data.user;
-      if (githubName) {
-        this.setState({ githubName });
-      }
-      if (flowdockName) {
-        this.setState({ flowdockName });
-      }
-      if (description) {
-        this.setState({ description });
-      }
+    if (props.data.User) {
+      const { githubName, flowdockName, description } = props.data.User;
+      this.setState(state => ({
+        githubName: githubName || state.githubName,
+        flowdockName: flowdockName || state.flowdockName,
+        description: description || state.description
+      }));
     }
   }
 
   updateDB() {
     const { githubName, flowdockName, description } = this.state;
-    const { data: { user: { id } }, history } = this.props;
+    const { data: { User: { id } }, history } = this.props;
     this.props.updateUser({
       variables: { id, githubName, flowdockName, description }
     });
-    history.push("/");
+    history.push("/me");
   }
 
   render() {
@@ -102,12 +93,9 @@ class MemberProfileEdit extends Component {
 
 const MemberProfileEditWithData = compose(
   graphql(updateUserQuery, {
-    name: "updateUser",
-    options: {
-      refetchQueries: [{ query: userQuery }]
-    }
+    name: "updateUser"
   }),
-  graphql(userQuery)
+  componentWithLoggedInUser
 )(MemberProfileEdit);
 
 export default withRouter(MemberProfileEditWithData);

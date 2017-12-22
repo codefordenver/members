@@ -8,8 +8,7 @@
   },
   "dependencies": {
     "apollo-client": "^1.9.0",
-    "auth0-js": "^8.8.0",
-    "auth0-lock": "^10.19.0",
+    "auth0-js": "^8.11.2",
     "graphql-tag": "^2.4.2",
     "material-ui": "^0.19.4",
     "react": "^15.6.1",
@@ -24,10 +23,15 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "postinstall": "npm install --prefix server",
+    "setup": "node bin/setup.js",
+    "gc": "cd ./server && dotenv -e ../.env.local graphcool"
   },
   "homepage": "https://codefordenver.githib.io/members",
   "devDependencies": {
-    "gh-pages": "^1.0.0"
+    "dotenv-cli": "^1.4.0",
+    "gh-pages": "^1.0.0",
+    "graphcool": "^0.9.2"
   }
 }
