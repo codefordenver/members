@@ -74,20 +74,13 @@ echo ""
 yellow "Deploying the graphcool backend"
 # The following doesn't seem like it should be necessary
 # - see this issue for progress: https://github.com/graphcool/framework/issues/1225
-# yellow "Creating a .graphcool file"
-# touch ~/.graphcool
 cat <<EOF > ~/.graphcoolrc
 platformToken: >-
   $GRAPHCOOL_TOKEN
 EOF
-# if [ -f ~/.graphcoolrc ]; then
-#   green "~/.graphcoolrc file exists"
-# else
-#   red "no ~/.graphcoolrc"
-# fi
+
 npm run deployProdBackend
-# (cd ./server && npx graphcool deploy) || exit $? # Run deploy graphcool in a subshell and exit script if it fails
 
 echo ""
 yellow "Deploying the client"
-npm run build #&& npx gh-pages -d build
+npm run build && npx gh-pages -d build
