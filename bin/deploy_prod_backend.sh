@@ -60,7 +60,7 @@ verify_env_var_present REACT_APP_AUTH0_CLIENT_ID "Auth0 Client ID
 - Can be found by navigating to the prod auth0 client on https://manage.auth0.com/#/clients"
 verify_env_var_present REACT_APP_AUTH0_DOMAIN "Auth0 Domain
 - Can be found by navigating to the prod auth0 client on https://manage.auth0.com/#/clients"
-verify_env_var_present AUTH0_API_IDENTIFIER "Auth0 API Identifier
+verify_env_var_present REACT_APP_AUTH0_API_IDENTIFIER "Auth0 API Identifier
 - This should be the deployed site url. Should be set up on https://manage.auth0.com/#/apis"
 verify_env_var_present REACT_APP_GRAPHCOOL_API "Graphcool simple api
 - This is the *simple api* for the production deployment of graphcool"

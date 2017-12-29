@@ -6,11 +6,9 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
+import { getEnvironmentVariables } from './utils';
 
-const graphcoolApi = process.env.REACT_APP_GRAPHCOOL_API;
-if (!graphcoolApi) {
-  throw new Error('You need to export a REACT_APP_GRAPHCOOL_API');
-}
+const graphcoolApi = getEnvironmentVariables().graphcoolApi;
 console.log('Trying to connect to: ', graphcoolApi);
 const networkInterface = createNetworkInterface({
   uri: graphcoolApi
@@ -37,11 +35,9 @@ networkInterface.use([
 
 const client = new ApolloClient({ networkInterface });
 
-const routingBase = process.env.REACT_APP_CLIENT_BASE_ROUTE;
-
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <BrowserRouter basename={routingBase}>
+    <BrowserRouter basename={getEnvironmentVariables().routingBase}>
       <App />
     </BrowserRouter>
   </ApolloProvider>,

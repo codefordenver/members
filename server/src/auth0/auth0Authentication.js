@@ -30,7 +30,7 @@ const verifyToken = token =>
         signingKey,
         {
           algorithms: ['RS256'],
-          audience: process.env.AUTH0_API_IDENTIFIER,
+          audience: process.env.REACT_APP_AUTH0_API_IDENTIFIER,
           ignoreExpiration: false,
           issuer: `https://${process.env.REACT_APP_AUTH0_DOMAIN}/`
         },
@@ -91,9 +91,9 @@ const fetchAuth0UserData = accessToken =>
 
 module.exports = async event => {
   try {
-    if (!process.env.REACT_APP_AUTH0_DOMAIN || !process.env.AUTH0_API_IDENTIFIER) {
+    if (!process.env.REACT_APP_AUTH0_DOMAIN || !process.env.REACT_APP_AUTH0_API_IDENTIFIER) {
       throw new Error(
-        'Missing REACT_APP_AUTH0_DOMAIN or AUTH0_API_IDENTIFIER environment variable'
+        'Missing REACT_APP_AUTH0_DOMAIN or REACT_APP_AUTH0_API_IDENTIFIER environment variable'
       );
     }
     const { accessToken } = event.data;

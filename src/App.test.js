@@ -12,7 +12,8 @@ const localStorageMock = {
 global.localStorage = localStorageMock;
 getEnvironmentVariableModule.default = jest.fn().mockReturnValue({
   auth0ClientId: '',
-  auth0Domain: ''
+  auth0Domain: '',
+  graphcoolApi: ''
 });
 
 const App = require('./App').default;

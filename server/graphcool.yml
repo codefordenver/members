@@ -23,7 +23,7 @@ functions:
         src: ./src/auth0/auth0Authentication.js
         environment:
           REACT_APP_AUTH0_DOMAIN: ${env:REACT_APP_AUTH0_DOMAIN}
-          AUTH0_API_IDENTIFIER: ${env:AUTH0_API_IDENTIFIER}
+          REACT_APP_AUTH0_API_IDENTIFIER: ${env:REACT_APP_AUTH0_API_IDENTIFIER}
     type: resolver
     schema: ./src/auth0/auth0Authentication.graphql
 
