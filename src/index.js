@@ -37,9 +37,11 @@ networkInterface.use([
 
 const client = new ApolloClient({ networkInterface });
 
+const routingBase = process.env.REACT_APP_CLIENT_BASE_ROUTE;
+
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <BrowserRouter>
+    <BrowserRouter basename={routingBase}>
       <App />
     </BrowserRouter>
   </ApolloProvider>,
