@@ -73,10 +73,18 @@ echo ""
 echo "Deploying the graphcool backend"
 # The following doesn't seem like it should be necessary
 # - see this issue for progress: https://github.com/graphcool/framework/issues/1225
-cat <<EOT >> ~/.graphcoolrc
+yellow "Creating a .graphcoolrc file"
+cat <<EOF >> ~/.graphcoolrc
 platformToken: >-
   $GRAPHCOOL_TOKEN
-EOT
+EOF
+if [ -f ~/.graphcoolrc ]; then
+  green "~/.graphcoolrc file exists"
+else
+  red "no ~/.graphcoolrc"
+fi
+
+export DEBUG="*"
 (cd ./server && npx graphcool deploy)
 
 echo ""
