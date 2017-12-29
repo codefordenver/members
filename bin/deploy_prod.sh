@@ -51,6 +51,9 @@ echo ""
 echo "Verifying environment variables are present"
 verify_env_var_present GRAPHCOOL_TOKEN "Graphcool login token - found at https://console.graph.cool/<app name>/settings/authentication
 This needs to point to the prod graphcool deployment"
+verify_env_var_present GRAPHCOOL_TARGET "Graphcool target for the deployment: Composed of the AWS deployment region and the project id as <deployment region>/<project id>
+- The project id can be found on https://console.graph.cool/<app name>/settings/general for the prod app
+- see https://github.com/graphcool/framework/issues/626#issuecomment-337231782 for an example"
 verify_env_var_present REACT_APP_AUTH0_CLIENT_ID "Can be found by navigating to the prod auth0 client on https://manage.auth0.com/#/clients"
 verify_env_var_present REACT_APP_AUTH0_DOMAIN "Can be found by navigating to the prod auth0 client on https://manage.auth0.com/#/clients"
 verify_env_var_present AUTH0_API_IDENTIFIER "This should be the deployed site url. Should be set up on https://manage.auth0.com/#/apis"
@@ -62,7 +65,6 @@ echo "Proceeding with the deployment..."
 
 echo ""
 echo "Deploying the graphcool backend"
-# npx graphcool login --token "$GRAPHCOOL_TOKEN"
 (cd ./server && npx graphcool deploy)
 
 echo ""
