@@ -62,7 +62,7 @@ echo "Proceeding with the deployment..."
 
 echo ""
 echo "Deploying the graphcool backend"
-npx graphcool login --token "$GRAPHCOOL_TOKEN"
+# npx graphcool login --token "$GRAPHCOOL_TOKEN"
 (cd ./server && npx graphcool deploy)
 
 echo ""
