@@ -9,4 +9,4 @@ deploy:
   script: bin/deploy_prod.sh
   on:
     # branch: master
-    branch: 70_ci_deployment
+    branch: prod_deploy_test
