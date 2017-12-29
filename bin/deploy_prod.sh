@@ -67,10 +67,11 @@ verify_env_var_present REACT_APP_GRAPHCOOL_API "Graphcool simple api
 
 echo ""
 green "Environment seems okay"
-echo "Proceeding with the deployment..."
+echo ""
+yellow "Proceeding with the deployment..."
 
 echo ""
-echo "Deploying the graphcool backend"
+yellow "Deploying the graphcool backend"
 # The following doesn't seem like it should be necessary
 # - see this issue for progress: https://github.com/graphcool/framework/issues/1225
 yellow "Creating a .graphcool file"
@@ -89,5 +90,5 @@ export DEBUG="*"
 (cd ./server && npx graphcool deploy) || exit $? # Run deploy graphcool in a subshell and exit script if it fails
 
 echo ""
-echo "Deploying the client"
+yellow "Deploying the client"
 npm run build #&& npx gh-pages -d build
