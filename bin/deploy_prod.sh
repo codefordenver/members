@@ -53,7 +53,6 @@ verify_env_var_present GRAPHCOOL_TOKEN "Graphcool login token - found at https:/
 This needs to point to the prod graphcool deployment"
 verify_env_var_present REACT_APP_AUTH0_CLIENT_ID "Can be found by navigating to the prod auth0 client on https://manage.auth0.com/#/clients"
 verify_env_var_present REACT_APP_AUTH0_DOMAIN "Can be found by navigating to the prod auth0 client on https://manage.auth0.com/#/clients"
-verify_env_var_present AUTH0_DOMAIN "Can be found by navigating to the prod auth0 client on https://manage.auth0.com/#/clients"
 verify_env_var_present AUTH0_API_IDENTIFIER "This should be the deployed site url. Should be set up on https://manage.auth0.com/#/apis"
 verify_env_var_present REACT_APP_GRAPHCOOL_API "This is the *simple api* for the production deployment of graphcool"
 
