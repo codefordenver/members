@@ -2,12 +2,24 @@ language: node_js
 node_js:
   - 8.4.0
 
-script: "npm run lint && npm test"
+script:
+  - "npm run lint"
+  - "npm test"
+
+before_deploy:
+  - "npm run build"
 
 deploy:
-  skip_cleanup: true
-  provider: script
-  script: bin/deploy_prod.sh
-  on:
-    # branch: master
-    branch: prod_deploy_test
+  - provider: script
+    skip_cleanup: true
+    script: bin/deploy_prod_backend.sh
+    on:
+      # branch: master
+      branch: prod_deploy_test
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    local_dir: build
+    on:
+      # branch: master
+      branch: prod_deploy_test

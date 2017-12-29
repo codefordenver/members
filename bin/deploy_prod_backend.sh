@@ -80,7 +80,3 @@ platformToken: >-
 EOF
 
 npm run deployProdBackend
-
-echo ""
-yellow "Deploying the client"
-npm run build && npx gh-pages -d build
