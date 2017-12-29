@@ -3,8 +3,7 @@ import { withRouter } from "react-router-dom";
 import gql from "graphql-tag";
 import { graphql, compose } from "react-apollo";
 import auth0 from "auth0-js";
-import { setAuthSession, getAuthSession } from "./Auth";
-import { getLoggedInUser } from "./utils";
+import { setAuthSession } from "./Auth";
 
 const authenticateQuery = gql`
   mutation authenticate($accessToken: String!) {
