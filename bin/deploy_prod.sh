@@ -76,15 +76,15 @@ yellow "Deploying the graphcool backend"
 # - see this issue for progress: https://github.com/graphcool/framework/issues/1225
 yellow "Creating a .graphcool file"
 touch ~/.graphcool
-# cat <<EOF > ~/.graphcoolrc
-# platformToken: >-
-#   $GRAPHCOOL_TOKEN
-# EOF
-# if [ -f ~/.graphcoolrc ]; then
-#   green "~/.graphcoolrc file exists"
-# else
-#   red "no ~/.graphcoolrc"
-# fi
+cat <<EOF > ~/.graphcoolrc
+platformToken: >-
+  $GRAPHCOOL_TOKEN
+EOF
+if [ -f ~/.graphcoolrc ]; then
+  green "~/.graphcoolrc file exists"
+else
+  red "no ~/.graphcoolrc"
+fi
 
 export DEBUG="*"
 (cd ./server && npx graphcool deploy) || exit $? # Run deploy graphcool in a subshell and exit script if it fails
