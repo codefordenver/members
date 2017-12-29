@@ -85,9 +85,8 @@ if [ -f ~/.graphcoolrc ]; then
 else
   red "no ~/.graphcoolrc"
 fi
-
-export DEBUG="*"
-(cd ./server && npx graphcool deploy) || exit $? # Run deploy graphcool in a subshell and exit script if it fails
+npm run deployProdBackend
+# (cd ./server && npx graphcool deploy) || exit $? # Run deploy graphcool in a subshell and exit script if it fails
 
 echo ""
 yellow "Deploying the client"

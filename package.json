@@ -24,7 +24,8 @@
     "lint": "eslint .",
     "postinstall": "npm install --prefix server",
     "setup": "node bin/setup.js",
-    "gc": "cd ./server && dotenv -e ../.env.local graphcool"
+    "gc": "cd ./server && dotenv -e ../.env.local graphcool",
+    "deployProdBackend": "cd ./server && graphcool deploy"
   },
   "homepage": "https://codefordenver.githib.io/members",
   "devDependencies": {
