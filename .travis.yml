@@ -1,4 +1,12 @@
 language: node_js
 node_js:
   - 8.4.0
+
 script: "npm run lint && npm test"
+
+deploy:
+  provider: script
+  script: bin/deploy_prod.sh
+  on:
+    # branch: master
+    branch: 70_ci_deployment
