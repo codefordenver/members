@@ -14,12 +14,10 @@ deploy:
     skip_cleanup: true
     script: bin/deploy_prod_backend.sh
     on:
-      # branch: master
-      branch: prod_deploy_test
+      branch: master
   - provider: pages
     skip_cleanup: true
     github_token: $GITHUB_TOKEN
     local_dir: build
     on:
-      # branch: master
-      branch: prod_deploy_test
+      branch: master
