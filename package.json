@@ -19,20 +19,18 @@
   "scripts": {
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "lint": "eslint .",
     "postinstall": "npm install --prefix server",
     "setup": "node bin/setup.js",
-    "gc": "cd ./server && dotenv -e ../.env.local graphcool"
+    "gc": "cd ./server && dotenv -e ../.env.local graphcool",
+    "deployProdBackend": "cd ./server && graphcool deploy"
   },
   "homepage": "https://codefordenver.githib.io/members",
   "devDependencies": {
     "dotenv-cli": "^1.4.0",
     "eslint": "^4.13.1",
-    "gh-pages": "^1.0.0",
     "graphcool": "^0.9.2"
   }
 }
