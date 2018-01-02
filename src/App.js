@@ -1,42 +1,30 @@
-import React, {Component} from "react";
-import {Route, Link} from "react-router-dom";
+import React, { Component } from "react";
+import { Route, Link } from "react-router-dom";
 import MemberResources from "./MemberResources";
 import Login from "./Login";
 import MemberProfile from "./MemberProfile";
 import MemberProfileEdit from "./MemberProfileEdit";
 import UsersList from "./UsersList";
 import "./App.css";
-import {componentWithLoggedInUser} from './utils';
+import { componentWithLoggedInUser } from './utils';
 
 class App extends Component {
   render() {
-    const {User} = this.props.data || {};
+    const { User } = this.props.data || {};
     return (
       <div className="App">
         <div className="App-header">
           <h2>Code for Denver Members</h2>
-          <Login user={User}/>
+          <Login user={User} />
           <Link to="/admin/onboarding">All Users</Link>
         </div>
-        <div className="app-icon">
-          <h5>Icon</h5>
-        </div>
-        <div className="app-search">
-          <h5>Search</h5>
-        </div>
-        <div className="app-signin">
-          <h5>Sign In</h5>
-        </div>
-        <div className="app-login">
-          <h5>Log In</h5>
-        </div>
-        <Route exact path="/" component={MemberResources}/>
+        <Route exact path="/" component={MemberResources} />
         <Route
           exact path="/me"
-          render={() => <MemberProfile user={User}/>}
+          render={() => <MemberProfile user={User} />}
         />
-        <Route path="/me/edit" component={MemberProfileEdit}/>
-        <Route path="/admin/onboarding" component={UsersList}/>
+        <Route path="/me/edit" component={MemberProfileEdit} />
+        <Route path="/admin/onboarding" component={UsersList} />
       </div>
     );
   }
