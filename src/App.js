@@ -14,7 +14,9 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Code for Denver Members</h2>
+          <a href="/">
+            <img className="cfd-logo" src="images/cfd-circle-white.png" />
+          </a>
           <Login user={User} />
           <Link to="/admin/onboarding">All Users</Link>
         </div>
