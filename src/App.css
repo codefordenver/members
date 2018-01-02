@@ -140,7 +140,7 @@ a {
   margin: 20px;
 }
 
-img {
+.rounded {
   border-radius: 100%;
 }
 
@@ -182,7 +182,7 @@ img {
   margin: 5px;
 }
 
-/* Be advised! The !important tag is to be used to override the default styling from 
+/* Be advised! The !important tag is to be used to override the default styling from
 Material UI, without these !important tags, we won't be able to override Material UI's
 stupid inline style*/
 
@@ -196,14 +196,20 @@ stupid inline style*/
   display: flex !important;
   margin: 3px !important;
 }
+
 .skills-button svg {
   float: right !important;
   display: flex !important;
   color: gray !important;
 }
 
-span {
+.social-links {
   font-weight: bold;
   font-size: 20px;
   color: black;
+}
+
+.stats-label {
+  font-weight: bold;
+  font-size: 20px;
 }

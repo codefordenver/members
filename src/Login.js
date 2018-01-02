@@ -35,6 +35,7 @@ class Login extends Component {
           </p>
           <Link to="/me">
             <img
+              className="rounded"
               src={this.props.user.picture}
               alt="avatar"
               style={{ height: "40px", borderRadius: "20px" }}

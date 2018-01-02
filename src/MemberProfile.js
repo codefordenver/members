@@ -17,7 +17,7 @@ const MemberProfile = ({user}) => {
         <div className="card">
           <div className="pic">
             <div className="container-nested">
-              <img src={picture} alt="avatar"/>
+              <img className="rounded" src={picture} alt="avatar"/>
             </div>
           </div>
           <div className="user-bio">
@@ -26,10 +26,12 @@ const MemberProfile = ({user}) => {
               <p>{description}</p>
               <a href={`mailto:${email}`}>email</a>
               <div className="contact">
-                <span>GitHub: </span><a href={`github.com/${githubName}`}>{githubName}</a>
+                <span className="social-links">GitHub: </span>
+                <a href={`github.com/${githubName}`}>{githubName}</a>
               </div>
               <div className="contact">
-                <span>Flowdock: </span><a href={`flowdock.com/${flowdockName}`}>{flowdockName}</a>
+                <span className="social-links">Flowdock: </span>
+                <a href={`flowdock.com/${flowdockName}`}>{flowdockName}</a>
               </div>
             </div>
           </div>
@@ -37,9 +39,9 @@ const MemberProfile = ({user}) => {
             <div className="contributions-nested">
               <div className="first-child">
                 <div>
-            <span className="hours-contributed">
-              1
-            </span>
+                  <span className="hours-contributed">
+                    1
+                  </span>
                   <div className="details">
                     hours contributed
                   </div>
@@ -47,9 +49,9 @@ const MemberProfile = ({user}) => {
               </div>
               <div className="second-child">
                 <div>
-            <span className="projects-completed">
-                5
-            </span>
+                  <span className="projects-completed">
+                      5
+                  </span>
                   <div className="details">
                     projects completed
                   </div>
@@ -57,9 +59,9 @@ const MemberProfile = ({user}) => {
               </div>
               <div className="last-child">
                 <div>
-            <span className="hours-contributed">
-                35
-            </span>
+                  <span className="hours-contributed">
+                      35
+                  </span>
                   <div className="details">
                     meetups attended
                   </div>
