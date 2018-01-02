@@ -17,7 +17,7 @@ Setup:
 4. Run `npm run setup` (this should create a new `.env.local` file in the root of the project)
 5. Follow the following instructions to set up Auth0:
     1. Visit https://auth0.com/ and create a new Auth0 account or log-in to your existing one
-        - it will ask you for a tenant domain. Here you can just enter in your username as this will be used for the API endpoints of your clients.
+        > it will ask you for a tenant domain. Here you can just enter in your username as this will be used for the API endpoints of your clients.
     2. Select `API` from the side menu
     3. Select `Create API`
     4. Enter in the following information into the form:
@@ -33,7 +33,7 @@ Setup:
     ![Auth0 client Grant Type settings](docs/img/setup3_auth0_grant_type_settings.png)
 
 6. In the newly created `.env.local` file fill in what the following values from Auth0:
-    - You can find this information by selecting `Client` from the side menu then select the client that was just created.
+    > You can find this information by selecting `Client` from the side menu then select the client that was just created.
     - `REACT_APP_AUTH0_CLIENT_ID` as your Auth0 client id
     - `REACT_APP_AUTH0_DOMAIN` as your Auth0 domain
     - `REACT_APP_AUTH0_API_IDENTIFIER` as http://localhost:3000

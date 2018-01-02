@@ -3,8 +3,8 @@ import { withRouter } from "react-router-dom";
 import gql from "graphql-tag";
 import { graphql, compose } from "react-apollo";
 import auth0 from "auth0-js";
-import { setAuthSession, getAuthSession } from "./Auth";
-import { getLoggedInUser } from "./utils";
+import { setAuthSession } from "./Auth";
+import { getEnvironmentVariables } from './utils';
 
 const authenticateQuery = gql`
   mutation authenticate($accessToken: String!) {
@@ -61,8 +61,8 @@ class LoginAuth0 extends Component {
 
   _showLogin = () => {
     this.webAuth.authorize({
-      audience: "http://localhost:3000", // TODO: Verify this is correct
-      redirectUri: "http://localhost:3000", // TODO: Verify this is correct
+      audience: getEnvironmentVariables().auth0ApiIdentifier,
+      redirectUri: getEnvironmentVariables().siteUrl,
       responseType: "token",
       scope: "openid email profile"
     });

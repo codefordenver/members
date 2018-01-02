@@ -2,15 +2,9 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import LoginAuth0 from "./LoginAuth0";
 import { logout } from './Auth';
+import { getEnvironmentVariables } from "./utils";
 
-const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-const domain = process.env.REACT_APP_AUTH0_DOMAIN;
-if (!clientId) {
-  throw new Error('You need to export a REACT_APP_AUTH0_CLIENT_ID');
-}
-if (!domain) {
-  throw new Error('You need to export a REACT_APP_AUTH0_DOMAIN');
-}
+const env = getEnvironmentVariables();
 
 class Login extends Component {
   constructor() {
@@ -28,8 +22,8 @@ class Login extends Component {
     if (!this.props.user) {
       return (
         <LoginAuth0
-          clientId={clientId}
-          domain={domain}
+          clientId={env.auth0ClientId}
+          domain={env.auth0Domain}
         />
       );
     } else {
