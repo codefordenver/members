@@ -1,4 +1,5 @@
 [![Stories in Ready](https://badge.waffle.io/codefordenver/members.png?label=ready&title=Ready)](https://waffle.io/codefordenver/members?utm_source=badge)
+[![Build Status](https://travis-ci.org/codefordenver/members.svg?branch=master)](https://travis-ci.org/codefordenver/members)
 
 # members.codefordenver.com
 
