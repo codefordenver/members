@@ -27,7 +27,7 @@
     "gc": "cd ./server && dotenv -e ../.env.local graphcool",
     "deployProdBackend": "cd ./server && graphcool deploy"
   },
-  "homepage": "https://codefordenver.githib.io/members",
+  "homepage": "https://members.codefordenver.org",
   "devDependencies": {
     "dotenv-cli": "^1.4.0",
     "eslint": "^4.13.1",
