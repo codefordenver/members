@@ -79,4 +79,8 @@ platformToken: >-
   $GRAPHCOOL_TOKEN
 EOF
 
-npm run deployProdBackend
+if [ "$GRAPHCOOL_FORCE_DEPLOY" == true ]; then
+  npm run deployProdBackend -- --force
+else
+  npm run deployProdBackend
+fi
