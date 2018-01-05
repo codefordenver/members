@@ -17,7 +17,7 @@ class App extends Component {
         <div className="App">
           <div className="App-header">
             <a href="/">
-              <img className="cfd-logo" src="images/cfd-circle-white.png" />
+              <img className="cfd-logo" src="images/cfd-circle-white.png" alt="code for denver logo"/>
             </a>
             <Login user={User} />
             <Link to="/admin/onboarding">All Users</Link>
