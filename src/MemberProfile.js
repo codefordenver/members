@@ -15,7 +15,7 @@ const MemberProfile = ({user}) => {
       <div className="card">
         <div className="pic">
           <div className="container-nested">
-            <img className="rounded" src={picture} alt="avatar"/>
+            <img className="rounded profile-photo" src={picture} alt="avatar"/>
           </div>
         </div>
         <div className="user-bio">

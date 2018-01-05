@@ -144,6 +144,10 @@ a {
   border-radius: 100%;
 }
 
+.profile-photo {
+  height:300px;
+}
+
 .user-bio {
   display: flex;
   height: 400px;

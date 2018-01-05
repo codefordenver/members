@@ -30,9 +30,9 @@ class Login extends Component {
       return (
         <div>
           <button onClick={this._logout}>Log out</button>
-          <p>
+          <span>
             Hello, {this.props.user.name}
-          </p>
+          </span>
           <Link to="/me">
             <img
               className="rounded"
