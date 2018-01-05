@@ -2,34 +2,35 @@ import React from "react";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 
-const UsersList = ({ users }) => {
+const EmailList = ({ users }) => {
   return (
     <div>
       {users.map(user =>
         <div key={user.id}>
-          {user.name}
+          {user.email}
         </div>
       )}
     </div>
   );
 };
 
-UsersList.defaultProps = {
+EmailList.defaultProps = {
   users: []
 };
 
 const allUsersQuery = gql`
   query users {
-    allUsers(orderBy: name_ASC) {
-      name
-      picture
+    allUsers(orderBy: email_ASC) {
+      id,
+      email
     }
+    
   }
 `;
 
-const UsersListWithData = graphql(allUsersQuery, {
+const EmailListWithData = graphql(allUsersQuery, {
   options: () => ({}),
   props: ({ data: { allUsers } }) => ({ users: allUsers })
-})(UsersList);
+})(EmailList);
 
-export default UsersListWithData;
+export default EmailListWithData;

@@ -5,9 +5,11 @@ import Login from "./Login";
 import MemberProfile from "./MemberProfile";
 import MemberProfileEdit from "./MemberProfileEdit";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import UsersList from "./UsersList";
+import EmailList from "./EmailList";
 import "./App.css";
 import { componentWithLoggedInUser } from './utils';
+import UsersList from "./UsersList";
+
 
 class App extends Component {
   render() {
@@ -27,8 +29,9 @@ class App extends Component {
             exact path="/me"
             render={() => <MemberProfile user={User} />}
           />
-          <Route path="/me/edit" component={MemberProfileEdit} />
-          <Route path="/admin/onboarding" component={UsersList} />
+          <Route exact path="/me/edit" component={MemberProfileEdit} />
+          <Route exact path="/admin/onboarding" component={EmailList} />
+          <Route exact path="/volunteers" component={UsersList} />
         </div>
       </MuiThemeProvider>
     );
