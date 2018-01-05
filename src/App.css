@@ -1,9 +1,223 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
 .App-header {
   background-color: #e24e54;
   padding: 20px;
   color: white;
+  display: flex;
+  height: 100px;
+  flex-direction: row;
+  align-content: center;
+}
+
+.app-icon {
+  align-items: center;
+  flex-basis: 10%;
+  border: 1px solid black;
+}
+
+.app-search {
+  display: flex;
+  align-items: center;
+  flex-basis: 50%;
+}
+
+.app-signin {
+}
+
+.app-login {
 }
 
 .App-intro {
   font-size: large;
+}
+
+h2 {
+  font-size: 40px;
+  line-height: 47px;
+}
+
+p {
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 40px;
+}
+
+a {
+  color: #e24e54;
+}
+
+.container {
+  flex-direction: column;
+  background: #eee;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.first-child {
+  padding: 5px;
+  border-right: 1px solid gray;
+}
+
+.second-child {
+  padding: 5px;
+  border-right: 1px solid gray;
+}
+
+.last-child {
+  padding: 5px;
+}
+
+.hours-contributed {
+  word-spacing: 1px;
+  text-align: center;
+  font-size: 46px;
+  height: 46px;
+  color: #e24e54;
+}
+
+.projects-completed {
+  word-spacing: 1px;
+  font-size: 46px;
+  height: 46px;
+  color: #4ecae2;
+}
+
+.meetups {
+  word-spacing: 1px;
+  text-align: center;
+  font-size: 46px;
+  height: 46px;
+  color: #e24e54;
+}
+
+.number {
+  font-style: bold;
+}
+
+.details {
+  color: #828282;
+  font-style: italic;
+}
+
+.contributions-nested {
+  display: flex;
+}
+
+.container-nested {
+  overflow: auto;
+  align-content: center;
+}
+
+.contact {
+  line-height: 40px;
+}
+
+.card {
+  display: flex;
+  background: white;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  width: 90%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 100%;
+  padding: 20px;
+  align-items: center;
+}
+
+.pic {
+  justify-content: center;
+  display: flex;
+  height: 400px;
+  flex-basis: 20%;
+  margin: 20px;
+}
+
+.rounded {
+  border-radius: 100%;
+}
+
+.profile-photo {
+  height:300px;
+}
+
+.user-bio {
+  display: flex;
+  height: 400px;
+  width: 90%;
+  padding: 10px;
+  border-right: 1px solid gray;
+  margin: 20px;
+}
+
+.user-experience {
+  padding: 10px;
+  text-align: center;
+}
+
+.skillsleft {
+  flex-basis: 20%;
+  height: 80px;
+  display: flex;
+  border-right: 1px solid black;
+  justify-content: center;
+  align-items: center;
+}
+
+.skillsright {
+  flex-basis: 80%;
+  display: flex;
+  margin-left: 20px;
+  flex-wrap: wrap;
+}
+
+.skillsright li {
+  border: 1px solid black;
+  border-radius: 20%;
+  color: black;
+  padding: 3px;
+  margin: 5px;
+}
+
+/* Be advised! The !important tag is to be used to override the default styling from
+Material UI, without these !important tags, we won't be able to override Material UI's
+stupid inline style*/
+
+.skills-button {
+  font-family: "Roboto Condensed", sans-serif !important;
+  color: #e24e54 !important;
+  border: 2px solid #e24e54 !important;
+  border-radius: 15px !important;
+  line-height: 32px !important;
+  background-color: transparent !important;
+  display: flex !important;
+  margin: 3px !important;
+}
+
+.skills-button svg {
+  float: right !important;
+  display: flex !important;
+  color: gray !important;
+}
+
+.social-links {
+  font-weight: bold;
+  font-size: 20px;
+  color: black;
+}
+
+.stats-label {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.cfd-logo {
+  height: 100%;
 }
