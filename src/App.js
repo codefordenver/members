@@ -22,7 +22,7 @@ class App extends Component {
               <img className="cfd-logo" src="images/cfd-circle-white.png" alt="code for denver logo"/>
             </a>
             <Login user={User} />
-            <Link to="/admin/onboarding">All Users</Link>
+            <Link className="nav-link" to="/volunteers">All Users</Link>
           </div>
           <Route exact path="/" component={MemberResources} />
           <Route
