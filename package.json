@@ -9,13 +9,16 @@
   "dependencies": {
     "apollo-client": "^1.9.0",
     "auth0-js": "^8.11.2",
+    "dotenv": "^4.0.0",
     "graphql-tag": "^2.4.2",
     "material-ui": "^0.19.4",
+    "prompt": "^1.0.0",
     "react": "^15.6.1",
     "react-apollo": "^1.4.10",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.2",
-    "react-scripts": "1.0.10"
+    "react-scripts": "1.0.10",
+    "request": "^2.83.0"
   },
   "scripts": {
     "test": "react-scripts test --env=jsdom",
