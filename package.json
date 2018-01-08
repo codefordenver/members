@@ -24,7 +24,7 @@
     "build": "react-scripts build",
     "lint": "eslint .",
     "postinstall": "npm install --prefix server",
-    "setup": "node bin/setup.js",
+    "setup": "node ./bin/auth0setup/promptUser.js && node ./bin/auth0setup/create.js"
     "gc": "cd ./server && dotenv -e ../.env.local graphcool",
     "deployProdBackend": "cd ./server && graphcool deploy"
   },
