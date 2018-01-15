@@ -2,6 +2,7 @@ var fs = require('fs')
 var dotenv = require('dotenv')
 var prompt = require('prompt')
 // dotenv.config({path: '.sample-env'})
+var create = require('./create.js')
 
 prompt.start()
 
@@ -24,7 +25,9 @@ prompt.get(['DOMAIN', 'EXPLORER_CLIENT_ID', 'EXPLORER_CLIENT_SECRET'], function 
     envString = envString + k + '=' + envJson[k] + '\n'
   }
   fs.writeFileSync('.env.local', envString)
-
+	
+	create()
+	
 });
 
 function onErr(err) {
