@@ -1,17 +1,17 @@
 var fs = require('fs')
 var dotenv = require('dotenv')
-dotenv.config()
-var prompt = require('prompt');
+var prompt = require('prompt')
+// dotenv.config({path: '.sample-env'})
 
-fs.writeFileSync('.env.local', '')
+prompt.start()
 
-prompt.start();
 
 prompt.get(['DOMAIN', 'EXPLORER_CLIENT_ID', 'EXPLORER_CLIENT_SECRET'], function (err, result) {
   if (err) { return onErr(err); }
 
   // overwrite .env file with access token
-  var envFile = fs.readFileSync('.env.local', 'utf8')
+  // var envFile = fs.readFileSync('.env.local', 'utf8')
+	var envFile = fs.readFileSync('.sample-env', 'utf8')
   var envJson = dotenv.parse(envFile)
 	
   envJson.DOMAIN = result.DOMAIN
@@ -23,8 +23,7 @@ prompt.get(['DOMAIN', 'EXPLORER_CLIENT_ID', 'EXPLORER_CLIENT_SECRET'], function 
   for(var k in envJson) {
     envString = envString + k + '=' + envJson[k] + '\n'
   }
-  fs.writeFileSync('.env.local', envString)	
-
+  fs.writeFileSync('.env.local', envString)
 
 });
 

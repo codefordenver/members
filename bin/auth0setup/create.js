@@ -28,7 +28,6 @@ request(options, function (error, response, body) {
   
   if(error) throw error; // TODO: add human readable error message for bad url/dns error.
 	
-	
   // overwrite .env file with access token
   var envFile = fs.readFileSync(envLocation, 'utf8')
   var envJson = dotenv.parse(envFile)
