@@ -1,17 +1,9 @@
-var envLocation = '.env.local'
-var dotenv = require('dotenv')
-
 var fs = require('fs')
 var request = require('request');
-
-
-// add an assert statement. double check that the env file exists. throw and error if it doesn't exist.
-
 
 var create = function() {
 	
 	var makeClient = require('./makeClient.js')
-	dotenv.config({path: envLocation})
 
 	// get a token
 	var options = { method: 'POST',
@@ -27,22 +19,11 @@ var create = function() {
 	}
 
 	request(options, function (error, response, body) {
-		
 		if(error) throw error; // TODO: add human readable error message for bad url/dns error.
-		
-		// overwrite .env file with access token
-		var envFile = fs.readFileSync(envLocation, 'utf8')
-		var envJson = dotenv.parse(envFile)
-		envJson.ACCESS_TOKEN = body.access_token
-		var envString = ''
-		
-		for(var k in envJson) {
-			envString = envString + k + '=' + envJson[k] + '\n'
-		}
-		fs.writeFileSync(envLocation, envString)
-
+	
+		process.env.ACCESS_TOKEN = body.access_token		
 		// use the management api to create a new client
-		makeClient(body.access_token)
+		makeClient()
 
 	});
 	
