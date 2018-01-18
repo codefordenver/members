@@ -1,7 +1,5 @@
 var rp = require('request-promise-native')
 var client = require('./client.js')
-var makeAPI = require('./makeAPI.js')
-var fs = require('fs')
 
 
 // use the token to access the management API.
@@ -19,11 +17,11 @@ var makeClient = function() {
     json: true
   };
 
-	var result = rp(options)
-	return result.then(function(body){
-		process.env.REACT_APP_AUTH0_CLIENT_ID = body.client_id
-		process.env.REACT_APP_AUTH0_DOMAIN = process.env.DOMAIN		
-	})
+  var result = rp(options)
+  return result.then(function(body){
+    process.env.REACT_APP_AUTH0_CLIENT_ID = body.client_id
+    process.env.REACT_APP_AUTH0_DOMAIN = process.env.DOMAIN		
+  })
 	
 }
 

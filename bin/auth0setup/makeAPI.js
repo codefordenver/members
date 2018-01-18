@@ -1,5 +1,4 @@
 var rp = require('request-promise-native')
-var fs = require('fs')
 
 // create an API for the cfd project
 var makeAPI = function() {
@@ -19,10 +18,10 @@ var makeAPI = function() {
     json: true,
   }
 	
-	var result = rp(options)
-	return result.then(function(body){
-		process.env.REACT_APP_AUTH0_API_IDENTIFIER = body.identifier
-	})	
+  var result = rp(options)
+  return result.then(function(body){
+    process.env.REACT_APP_AUTH0_API_IDENTIFIER = body.identifier
+  })	
 	
 }
 
