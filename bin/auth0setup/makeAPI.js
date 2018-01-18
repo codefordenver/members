@@ -1,6 +1,5 @@
-var request = require('request');
+var rp = require('request-promise-native')
 var fs = require('fs')
-var envLocation = '.env.local'  
 
 // create an API for the cfd project
 var makeAPI = function() {
@@ -20,24 +19,10 @@ var makeAPI = function() {
     json: true,
   }
 	
-  request(options, function (error, response, body) {
-    // if(error) console.log(error)
-    if (error) throw new Error(error)
-		
+	var result = rp(options)
+	return result.then(function(body){
 		process.env.REACT_APP_AUTH0_API_IDENTIFIER = body.identifier
-		var envJson = {
-			REACT_APP_AUTH0_CLIENT_ID: process.env.REACT_APP_AUTH0_CLIENT_ID,
-			REACT_APP_AUTH0_DOMAIN: process.env.REACT_APP_AUTH0_DOMAIN,
-			REACT_APP_AUTH0_API_IDENTIFIER: process.env.REACT_APP_AUTH0_API_IDENTIFIER,
-			REACT_APP_GRAPHCOOL_API: ''
-		}
-    var envString = ''
-    for(var k in envJson) {
-      envString = envString + k + '=' + envJson[k] + '\n'
-    }
-
-    fs.writeFileSync(envLocation, envString)
-  });	
+	})	
 	
 }
 

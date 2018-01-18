@@ -1,9 +1,5 @@
-var envLocation = '.env.local'
-var dotenv = require('dotenv')
-dotenv.config({path: envLocation})
-
-var request = require('request');
-var client = require('./client.js');
+var rp = require('request-promise-native')
+var client = require('./client.js')
 var makeAPI = require('./makeAPI.js')
 var fs = require('fs')
 
@@ -23,16 +19,11 @@ var makeClient = function() {
     json: true
   };
 
-  request(options, function (error, response, body) {
-    if (error) throw new Error(error);
-    // if(error) console.log(error)
-
+	var result = rp(options)
+	return result.then(function(body){
 		process.env.REACT_APP_AUTH0_CLIENT_ID = body.client_id
-		process.env.REACT_APP_AUTH0_DOMAIN = process.env.DOMAIN
-		
-    makeAPI()
-		
-  });	
+		process.env.REACT_APP_AUTH0_DOMAIN = process.env.DOMAIN		
+	})
 	
 }
 
