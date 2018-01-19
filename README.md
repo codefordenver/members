@@ -15,38 +15,27 @@ Setup:
 1. clone repo
 2. cd into repo directory
 3. Run `npm install`
-4. Run `npm run setup` (this should create a new `.env.local` file in the root of the project)
-5. Follow the following instructions to set up Auth0:
+4. Follow the following instructions to set up Auth0 and the API Explorer:
     1. Visit https://auth0.com/ and create a new Auth0 account or log-in to your existing one
         > it will ask you for a tenant domain. Here you can just enter in your username as this will be used for the API endpoints of your clients.
-    2. Select `API` from the side menu
-    3. Select `Create API`
-    4. Enter in the following information into the form:
-    ![Auth0 api info](docs/img/setup1_auth0_api.png)
-    5. Select `Client` from the side menu
-    6. Create a new client
-    7. Make sure to fill in the following fields:
-        - `Client Type` - Single Page Application
-        - `Allowed Callback URLs` - http://localhost:3000/
-    8. In Advanced Settings Section - OAuth tab set JWT Signature Algorithm to value RS256 and turn on the OIDC Conformant switch.
-    ![Auth0 client Oauth settings](docs/img/setup2_auth0_Oauth_settings.png)
-    9. In Advanced Settings Section - Grant Types tab only leave the Implicit grant type enabled.
-    ![Auth0 client Grant Type settings](docs/img/setup3_auth0_grant_type_settings.png)
+		2. Select `API` from the side menu
+		3. Select `Auth0 Management API`
+		4. Select the `API Explorer` tab
+		5. Select `CREATE & AUTHORIZE A TEST CLIENT`. This creates a client that can use the Management API.
+		6. Select `Clients` from the side menu
+		7. Select `API Explorer Client`
+5. Go the the command line and run `npm run setup` (You will be asked for the `Domain`, `Client ID`, and `Client Secret` from the
+		`API Explorer Client`. Paste them into the command line). This will create the `.env.local` file in the root of the project.
 
-6. In the newly created `.env.local` file fill in what the following values from Auth0:
-    > You can find this information by selecting `Client` from the side menu then select the client that was just created.
-    - `REACT_APP_AUTH0_CLIENT_ID` as your Auth0 client id
-    - `REACT_APP_AUTH0_DOMAIN` as your Auth0 domain
-    - `REACT_APP_AUTH0_API_IDENTIFIER` as http://localhost:3000
-7. run `npm run gc -- deploy`
-8. Enter in the following information in your terminal:
+6. run `npm run gc -- deploy`
+7. Enter in the following information in your terminal:
     ![graphcool deploy info](docs/img/setup4_graphcool_deployment_info.png)
     ![graphcool deply target name](docs/img/setup5_graphcool_target_name.png)
     ![graphcool deploy service name](docs/img/setup6_graphcool_service_name.png)
-9. Enter in the `Auth URL` into your browser
-10. Sign up for Graphcool
-11. from the output from the previous command copy the `Simple API` url and add it to the `.env.local` file for variable `REACT_APP_GRAPHCOOL_API`
-12. run `npm start`
+8. Enter in the `Auth URL` into your browser
+9. Sign up for Graphcool
+10. from the output from the previous command copy the `Simple API` url and add it to the `.env.local` file for variable `REACT_APP_GRAPHCOOL_API`
+11. run `npm start`
 
 ## Quick Start
 After you've followed the set up steps listed above, you can subsequently start the app with:
