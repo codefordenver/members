@@ -2,18 +2,20 @@ import React from "react";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import Avatar from 'material-ui/Avatar';
-
+import { Link } from 'react-router-dom';
 
 const UsersList = ({ users }) => {
   return (
-    <div>
+    <ul>
       {users.map(user =>
-        <div key={user.id}>
-          <Avatar src={user.picture}/>
-          {user.name}
-        </div>
+        <li key={user.id}>
+          <Link to={`/volunteers/${user.id}`}>
+            <Avatar src={user.picture}/>
+            {user.name}
+          </Link>
+        </li>
       )}
-    </div>
+    </ul>
   );
 };
 
@@ -24,6 +26,7 @@ UsersList.defaultProps = {
 const allUsersQuery = gql`
   query users {
     allUsers(orderBy: name_ASC) {
+      id
       name
       picture
     }
