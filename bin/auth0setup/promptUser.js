@@ -16,42 +16,28 @@ var getUserInfo = function() {
     process.env.DOMAIN = result.DOMAIN
     process.env.EXPLORER_CLIENT_ID = result.EXPLORER_CLIENT_ID
     process.env.EXPLORER_CLIENT_SECRET = result.EXPLORER_CLIENT_SECRET
-
+		
+		
     create()
       .then(makeClient)
       .then(makeAPI)
       .then(function(){
+				
         var envJson = {
           REACT_APP_AUTH0_CLIENT_ID: process.env.REACT_APP_AUTH0_CLIENT_ID,
           REACT_APP_AUTH0_DOMAIN: process.env.REACT_APP_AUTH0_DOMAIN,
           REACT_APP_AUTH0_API_IDENTIFIER: process.env.REACT_APP_AUTH0_API_IDENTIFIER,
           REACT_APP_GRAPHCOOL_API: ''
         }
+				if(process.env.REACT_APP_GRAPHCOOL_API) {
+					envJson.REACT_APP_GRAPHCOOL_API = process.env.REACT_APP_GRAPHCOOL_API
+				}				
         var envString = ''
         for(var k in envJson) {
           envString = envString + k + '=' + envJson[k] + '\n'
         }
         fs.writeFileSync(envLocation, envString)			
       })
-		
-    // var createResult = create()
-    // var makeClientResult = createResult.then(makeClient)
-    // var makeAPIResult = makeClientResult.then(makeAPI)
-    // makeAPIResult.then(function(){
-    // // Take created environment variables and save to .env.local
-    // var envJson = {
-    // REACT_APP_AUTH0_CLIENT_ID: process.env.REACT_APP_AUTH0_CLIENT_ID,
-    // REACT_APP_AUTH0_DOMAIN: process.env.REACT_APP_AUTH0_DOMAIN,
-    // REACT_APP_AUTH0_API_IDENTIFIER: process.env.REACT_APP_AUTH0_API_IDENTIFIER,
-    // REACT_APP_GRAPHCOOL_API: ''
-    // }
-    // var envString = ''
-    // for(var k in envJson) {
-    // envString = envString + k + '=' + envJson[k] + '\n'
-    // }
-
-    // fs.writeFileSync(envLocation, envString)			
-    // })
 		
   });	
 }
@@ -66,7 +52,7 @@ if(fs.existsSync(process.cwd() + '/.env.local')) {
 		
     if(result.overwrite == 'y') {
       // TODO? - Read from .env.local and save the REACT_APP_GRAPHCOOL_API variable to the current environment.
-			
+			dotenv.config({path: envLocation})
       getUserInfo()
     }
 		
