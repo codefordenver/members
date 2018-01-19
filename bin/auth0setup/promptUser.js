@@ -29,9 +29,9 @@ var getUserInfo = function() {
           REACT_APP_AUTH0_API_IDENTIFIER: process.env.REACT_APP_AUTH0_API_IDENTIFIER,
           REACT_APP_GRAPHCOOL_API: ''
         }
-				if(process.env.REACT_APP_GRAPHCOOL_API) {
-					envJson.REACT_APP_GRAPHCOOL_API = process.env.REACT_APP_GRAPHCOOL_API
-				}				
+        if(process.env.REACT_APP_GRAPHCOOL_API) {
+          envJson.REACT_APP_GRAPHCOOL_API = process.env.REACT_APP_GRAPHCOOL_API
+        }				
         var envString = ''
         for(var k in envJson) {
           envString = envString + k + '=' + envJson[k] + '\n'
@@ -52,7 +52,7 @@ if(fs.existsSync(process.cwd() + '/.env.local')) {
 		
     if(result.overwrite == 'y') {
       // TODO? - Read from .env.local and save the REACT_APP_GRAPHCOOL_API variable to the current environment.
-			dotenv.config({path: envLocation})
+      dotenv.config({path: envLocation})
       getUserInfo()
     }
 		
