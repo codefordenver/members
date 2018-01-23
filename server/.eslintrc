@@ -6,6 +6,7 @@
     "Promise": true
   },
   "rules": {
-    "no-console": "off"
+    "no-console": "off",
+    "prettier/prettier": "off"
   }
 }
