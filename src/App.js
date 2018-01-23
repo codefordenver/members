@@ -9,7 +9,7 @@ import EmailList from "./EmailList";
 import "./App.css";
 import { componentWithLoggedInUser } from './utils';
 import UsersList from "./UsersList";
-import MemberProfileWIthData from './MemberProfileWithData';
+import MemberProfilePage from './MemberProfilePage';
 
 
 class App extends Component {
@@ -33,7 +33,7 @@ class App extends Component {
           <Route exact path="/me/edit" component={MemberProfileEdit} />
           <Route exact path="/admin/onboarding" component={EmailList} />
           <Route exact path="/volunteers" component={UsersList} />
-          <Route exact path="/volunteers/:id" component={MemberProfileWIthData} />
+          <Route exact path="/volunteers/:id" component={MemberProfilePage} />
         </div>
       </MuiThemeProvider>
     );
