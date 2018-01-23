@@ -1,6 +1,6 @@
-import gql from "graphql-tag";
-import { graphql } from "react-apollo";
-import { getAuthSession } from "../Auth";
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+import { getAuthSession } from '../Auth';
 
 const getLoggedInUser = gql`
   query getLoggedInUser($id: ID) {
@@ -21,7 +21,7 @@ const componentWithLoggedInUser = graphql(getLoggedInUser, {
   options: {
     // fetchPolicy: "network-only",
     variables: {
-      id: getAuthSession().userId || ""
+      id: getAuthSession().userId || ''
     }
   }
 });
