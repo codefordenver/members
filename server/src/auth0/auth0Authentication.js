@@ -91,7 +91,10 @@ const fetchAuth0UserData = accessToken =>
 
 module.exports = async event => {
   try {
-    if (!process.env.REACT_APP_AUTH0_DOMAIN || !process.env.REACT_APP_AUTH0_API_IDENTIFIER) {
+    if (
+      !process.env.REACT_APP_AUTH0_DOMAIN ||
+      !process.env.REACT_APP_AUTH0_API_IDENTIFIER
+    ) {
       throw new Error(
         'Missing REACT_APP_AUTH0_DOMAIN or REACT_APP_AUTH0_API_IDENTIFIER environment variable'
       );
