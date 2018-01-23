@@ -1,11 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import ApolloClient, { createNetworkInterface } from "apollo-client";
-import { ApolloProvider } from "react-apollo";
-import { BrowserRouter } from "react-router-dom";
-import "./index.css";
-import App from "./App";
-import registerServiceWorker from "./registerServiceWorker";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ApolloClient, { createNetworkInterface } from 'apollo-client';
+import { ApolloProvider } from 'react-apollo';
+import { BrowserRouter } from 'react-router-dom';
+import './index.css';
+import App from './App';
+import registerServiceWorker from './registerServiceWorker';
 import { getEnvironmentVariables } from './utils';
 
 const graphcoolApi = getEnvironmentVariables().graphcoolApi;
@@ -20,13 +20,11 @@ networkInterface.use([
       if (!req.options.headers) {
         req.options.headers = {};
       }
-      if (localStorage.getItem("cfd-members-auth0IdToken")) {
-        req.options.headers.authorization = `Bearer ${localStorage.getItem(
-          "cfd-members-auth0IdToken"
-        )}`;
+      if (localStorage.getItem('cfd-members-auth0IdToken')) {
+        req.options.headers.authorization = `Bearer ${localStorage.getItem('cfd-members-auth0IdToken')}`;
       }
-      if (localStorage.getItem("nonce")) {
-        req.options.headers.nonce = `Bearer ${localStorage.getItem("nonce")}`;
+      if (localStorage.getItem('nonce')) {
+        req.options.headers.nonce = `Bearer ${localStorage.getItem('nonce')}`;
       }
       next();
     }
@@ -41,6 +39,6 @@ ReactDOM.render(
       <App />
     </BrowserRouter>
   </ApolloProvider>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 registerServiceWorker();
