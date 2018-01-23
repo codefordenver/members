@@ -1,9 +1,11 @@
 {
+  "plugins": ["prettier"],
   "extends": "eslint:recommended",
   "parserOptions": {
     "ecmaVersion": 2017
   },
   "rules": {
+    "prettier/prettier": "error",
     "no-unused-vars": [
       "error",
       {
