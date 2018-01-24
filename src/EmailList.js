@@ -30,7 +30,7 @@ const allUsersQuery = gql`
 const EmailListWithData = graphql(allUsersQuery, {
   options: {
     variables: {
-      date: new Date(format(subDays(new Date(), 7), 'YYYY-MM-DDTHH:mm:ss.SSSZ'))
+      date: format(subDays(new Date(), 7), 'YYYY-MM-DDTHH:mm:ss.SSSZ')
     }
   },
   props: ({ data: { allUsers } }) => ({ users: allUsers })
