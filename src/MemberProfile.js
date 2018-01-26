@@ -56,11 +56,11 @@ const MemberProfile = ({ user }) => {
         </HelpUsImplementThis>
       </div>
 
-      <HelpUsImplementThis>
-        <div className="card">
-          <div className="skillsleft">
-            <h2>Skills</h2>
-          </div>
+      <div className="card">
+        <div className="skillsleft">
+          <h2>Skills</h2>
+        </div>
+        <HelpUsImplementThis>
           <div className="skillsright">
             {['Python', 'SQL', 'Enterprise Geodatabases'].map(skill => (
               <Chip
@@ -71,14 +71,14 @@ const MemberProfile = ({ user }) => {
               />
             ))}
           </div>
-        </div>
-      </HelpUsImplementThis>
+        </HelpUsImplementThis>
+      </div>
 
-      <HelpUsImplementThis>
-        <div className="card">
-          <div className="skillsleft">
-            <h2>Projects</h2>
-          </div>
+      <div className="card">
+        <div className="skillsleft">
+          <h2>Projects</h2>
+        </div>
+        <HelpUsImplementThis>
           <div className="skillsright">
             {['Members Project', 'Owlet'].map(project => (
               <Chip
@@ -89,8 +89,8 @@ const MemberProfile = ({ user }) => {
               />
             ))}
           </div>
-        </div>
-      </HelpUsImplementThis>
+        </HelpUsImplementThis>
+      </div>
     </div>
   );
 };
