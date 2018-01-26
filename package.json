@@ -16,7 +16,8 @@
     "react-apollo": "^1.4.10",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.2",
-    "react-scripts": "1.0.10"
+    "react-scripts": "1.0.10",
+    "react-tooltip": "^3.4.0"
   },
   "lint-staged": {
     "{src,bin,server/src}/**/*.{js,json,css,graphql}": [
