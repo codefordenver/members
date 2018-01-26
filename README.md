@@ -15,6 +15,7 @@ Setup:
 1. clone repo
 2. cd into repo directory
 3. Run `npm install`
+    > You may also want to install a [prettier](https://prettier.io/docs/en/index.html) plugin for your editor. [Check here for setup instructions](https://prettier.io/docs/en/editors.html)
 4. Follow the following instructions to set up Auth0 and the API Explorer:
     1. Visit https://auth0.com/ and create a new Auth0 account or log-in to your existing one
         > it will ask you for a tenant domain. Here you can just enter in your username as this will be used for the API endpoints of your clients.

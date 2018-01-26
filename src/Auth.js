@@ -4,7 +4,7 @@ const USER_ID = 'user_id';
 
 export function setAuthSession(authResult, userId) {
   const localStorage = global.localStorage;
-  const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + Date.now());
+  const expiresAt = JSON.stringify(authResult.expiresIn * 1000 + Date.now());
   localStorage.setItem(ACCESS_TOKEN_KEY, authResult.accessToken);
   localStorage.setItem(USER_ID, userId);
   localStorage.setItem(EXPIRES_AT_KEY, expiresAt);
@@ -29,7 +29,8 @@ export function logout() {
 export function isAuthenticated() {
   const localStorage = global.localStorage;
   const expiresAt = JSON.parse(localStorage.getItem(EXPIRES_AT_KEY));
-  const authenticated = Boolean(localStorage.getItem(USER_ID)) && Date.now() < expiresAt;
+  const authenticated =
+    Boolean(localStorage.getItem(USER_ID)) && Date.now() < expiresAt;
   if (!authenticated) {
     logout();
   }

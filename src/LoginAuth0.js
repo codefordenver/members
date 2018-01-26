@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import gql from "graphql-tag";
-import { graphql, compose } from "react-apollo";
-import auth0 from "auth0-js";
-import { setAuthSession } from "./Auth";
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import gql from 'graphql-tag';
+import { graphql, compose } from 'react-apollo';
+import auth0 from 'auth0-js';
+import { setAuthSession } from './Auth';
 import { getEnvironmentVariables } from './utils';
 
 const authenticateQuery = gql`
@@ -36,7 +36,7 @@ class LoginAuth0 extends Component {
         if (!authResult || !authResult.accessToken) {
           return;
         }
-        window.location.hash = "";
+        window.location.hash = '';
 
         // The contents of authResult depend on which authentication parameters were used.
         // It can include the following:
@@ -63,8 +63,8 @@ class LoginAuth0 extends Component {
     this.webAuth.authorize({
       audience: getEnvironmentVariables().auth0ApiIdentifier,
       redirectUri: getEnvironmentVariables().siteUrl,
-      responseType: "token",
-      scope: "openid email profile"
+      responseType: 'token',
+      scope: 'openid email profile'
     });
   };
 
@@ -75,7 +75,7 @@ class LoginAuth0 extends Component {
 
 const LoginAuth0WithData = compose(
   graphql(authenticateQuery, {
-    name: "authenticate"
+    name: 'authenticate'
   })
 )(withRouter(LoginAuth0));
 

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import gql from "graphql-tag";
-import { graphql, compose } from "react-apollo";
+import React, { Component } from 'react';
+import gql from 'graphql-tag';
+import { graphql, compose } from 'react-apollo';
 
 const updateUserQuery = gql`
   mutation(
@@ -34,9 +34,9 @@ class UserInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      githubName: "",
-      flowdockName: "",
-      description: ""
+      githubName: '',
+      flowdockName: '',
+      description: ''
     };
     this.updateUser = props.updateUser;
   }
@@ -95,11 +95,11 @@ class UserInfo extends Component {
 
 const UserInfoWithData = compose(
   graphql(updateUserQuery, {
-    name: "updateUser"
+    name: 'updateUser'
   }),
   graphql(userQuery, {
     options: {
-      fetchPolicy: "network-only"
+      fetchPolicy: 'network-only'
     }
   })
 )(UserInfo);

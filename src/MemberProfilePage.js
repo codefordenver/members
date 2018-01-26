@@ -1,5 +1,5 @@
-import gql from "graphql-tag";
-import { graphql } from "react-apollo";
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
 import MemberProfile from './MemberProfile';
 
 const userQuery = gql`
@@ -16,7 +16,7 @@ const userQuery = gql`
 `;
 
 const MemberProfileWithData = graphql(userQuery, {
-  options: (props) => ({ variables: { id: props.match.params.id } }),
+  options: props => ({ variables: { id: props.match.params.id } }),
   props: ({ data: { User } }) => ({ user: User })
 })(MemberProfile);
 

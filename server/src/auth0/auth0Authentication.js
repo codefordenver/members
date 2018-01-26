@@ -18,7 +18,9 @@ const verifyToken = token =>
     }
     const jkwsClient = jwkRsa({
       cache: true,
-      jwksUri: `https://${process.env.REACT_APP_AUTH0_DOMAIN}/.well-known/jwks.json`
+      jwksUri: `https://${
+        process.env.REACT_APP_AUTH0_DOMAIN
+      }/.well-known/jwks.json`
     });
     //Retrieve the JKWS's signing key using the decode token's key identifier (kid)
     jkwsClient.getSigningKey(decoded.header.kid, (err, key) => {
@@ -86,12 +88,17 @@ const createGraphCoolUser = (userData, api) =>
 
 const fetchAuth0UserData = accessToken =>
   fetch(
-    `https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo?access_token=${accessToken}`
+    `https://${
+      process.env.REACT_APP_AUTH0_DOMAIN
+    }/userinfo?access_token=${accessToken}`
   ).then(response => response.json());
 
 module.exports = async event => {
   try {
-    if (!process.env.REACT_APP_AUTH0_DOMAIN || !process.env.REACT_APP_AUTH0_API_IDENTIFIER) {
+    if (
+      !process.env.REACT_APP_AUTH0_DOMAIN ||
+      !process.env.REACT_APP_AUTH0_API_IDENTIFIER
+    ) {
       throw new Error(
         'Missing REACT_APP_AUTH0_DOMAIN or REACT_APP_AUTH0_API_IDENTIFIER environment variable'
       );

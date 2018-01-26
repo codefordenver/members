@@ -58,7 +58,7 @@ a {
 .container {
   flex-direction: column;
   background: #eee;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .first-child {
@@ -145,7 +145,7 @@ a {
 }
 
 .profile-photo {
-  height:300px;
+  height: 300px;
 }
 
 .user-bio {
@@ -191,7 +191,7 @@ Material UI, without these !important tags, we won't be able to override Materia
 stupid inline style*/
 
 .skills-button {
-  font-family: "Roboto Condensed", sans-serif !important;
+  font-family: 'Roboto Condensed', sans-serif !important;
   color: #e24e54 !important;
   border: 2px solid #e24e54 !important;
   border-radius: 15px !important;
@@ -223,5 +223,5 @@ stupid inline style*/
 }
 
 .nav-link {
-  color:white;
+  color: white;
 }
