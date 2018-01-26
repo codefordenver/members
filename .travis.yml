@@ -9,18 +9,10 @@ cache:
 script:
   - npm run lint
   - npm test
-  - npm run build
 
 deploy:
   - provider: script
     skip_cleanup: true
     script: bin/deploy_prod_backend.sh
-    on:
-      branch: master
-  - provider: pages
-    skip_cleanup: true
-    github_token: $GITHUB_TOKEN
-    local_dir: build
-    fqdn: https://members.codefordenver.org
     on:
       branch: master
