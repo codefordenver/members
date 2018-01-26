@@ -20,22 +20,27 @@ var getUserInfo = function() {
       process.env.EXPLORER_CLIENT_ID = result.EXPLORER_CLIENT_ID;
       process.env.EXPLORER_CLIENT_SECRET = result.EXPLORER_CLIENT_SECRET;
 
-      create().then(makeClient).then(makeAPI).then(function() {
-        var envJson = {
-          REACT_APP_AUTH0_CLIENT_ID: process.env.REACT_APP_AUTH0_CLIENT_ID,
-          REACT_APP_AUTH0_DOMAIN: process.env.REACT_APP_AUTH0_DOMAIN,
-          REACT_APP_AUTH0_API_IDENTIFIER: process.env.REACT_APP_AUTH0_API_IDENTIFIER,
-          REACT_APP_GRAPHCOOL_API: ''
-        };
-        if (process.env.REACT_APP_GRAPHCOOL_API) {
-          envJson.REACT_APP_GRAPHCOOL_API = process.env.REACT_APP_GRAPHCOOL_API;
-        }
-        var envString = '';
-        for (var k in envJson) {
-          envString = envString + k + '=' + envJson[k] + '\n';
-        }
-        fs.writeFileSync(envLocation, envString);
-      });
+      create()
+        .then(makeClient)
+        .then(makeAPI)
+        .then(function() {
+          var envJson = {
+            REACT_APP_AUTH0_CLIENT_ID: process.env.REACT_APP_AUTH0_CLIENT_ID,
+            REACT_APP_AUTH0_DOMAIN: process.env.REACT_APP_AUTH0_DOMAIN,
+            REACT_APP_AUTH0_API_IDENTIFIER:
+              process.env.REACT_APP_AUTH0_API_IDENTIFIER,
+            REACT_APP_GRAPHCOOL_API: ''
+          };
+          if (process.env.REACT_APP_GRAPHCOOL_API) {
+            envJson.REACT_APP_GRAPHCOOL_API =
+              process.env.REACT_APP_GRAPHCOOL_API;
+          }
+          var envString = '';
+          for (var k in envJson) {
+            envString = envString + k + '=' + envJson[k] + '\n';
+          }
+          fs.writeFileSync(envLocation, envString);
+        });
     }
   );
 };
@@ -44,7 +49,8 @@ var getUserInfo = function() {
 if (fs.existsSync(process.cwd() + '/.env.local')) {
   var promptarray = [
     {
-      description: 'A .env.local file was found. Do you want to overwrite it? [y/n]',
+      description:
+        'A .env.local file was found. Do you want to overwrite it? [y/n]',
       name: 'overwrite'
     }
   ];

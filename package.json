@@ -19,17 +19,15 @@
     "react-scripts": "1.0.10"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,json,css}": [
-      "prettier --single-quote --write",
-      "git add"
-    ]
+    "{src,bin,server/src}/**/*.{js,json,css,graphql}": ["prettier --single-quote --write", "git add"]
   },
   "scripts": {
     "precommit": "lint-staged",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "start": "react-scripts start",
-    "build": "react-scripts build && cpy build/index.html build --rename 404.html",
+    "build":
+      "react-scripts build && cpy build/index.html build --rename 404.html",
     "lint": "eslint .",
     "postinstall": "npm install --prefix server",
     "setup": "node ./bin/auth0setup/promptUser.js",

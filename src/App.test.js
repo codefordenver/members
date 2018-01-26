@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MockedProvider } from 'react-apollo/test-utils';
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter } from 'react-router-dom';
 import * as getEnvironmentVariableModule from './utils/getEnvironmentVariables';
 
 const localStorageMock = {

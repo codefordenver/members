@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import gql from "graphql-tag";
-import { graphql, compose } from "react-apollo";
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import gql from 'graphql-tag';
+import { graphql, compose } from 'react-apollo';
 import { componentWithLoggedInUser } from './utils';
 
 const updateUserQuery = gql`
@@ -32,9 +32,9 @@ class MemberProfileEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      githubName: "",
-      flowdockName: "",
-      description: ""
+      githubName: '',
+      flowdockName: '',
+      description: ''
     };
   }
 
@@ -55,7 +55,7 @@ class MemberProfileEdit extends Component {
     this.props.updateUser({
       variables: { id, githubName, flowdockName, description }
     });
-    history.push("/me");
+    history.push('/me');
   }
 
   render() {
@@ -93,7 +93,7 @@ class MemberProfileEdit extends Component {
 
 const MemberProfileEditWithData = compose(
   graphql(updateUserQuery, {
-    name: "updateUser"
+    name: 'updateUser'
   }),
   componentWithLoggedInUser
 )(MemberProfileEdit);
