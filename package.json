@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "apollo-client": "^1.9.0",
-    "date-fns": "^1.29.0",
     "graphql-tag": "^2.4.2",
     "material-ui": "^0.19.4",
     "prompt": "^1.0.0",
