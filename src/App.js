@@ -4,18 +4,20 @@ import MemberResources from './MemberResources';
 import Login from './Login';
 import MemberProfile from './MemberProfile';
 import MemberProfileEdit from './MemberProfileEdit';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import EmailList from './EmailList';
 import './App.css';
 import { componentWithLoggedInUser } from './utils';
 import UsersList from './UsersList';
 import MemberProfilePage from './MemberProfilePage';
 
+const theme = createMuiTheme();
+
 class App extends Component {
   render() {
     const { User } = this.props.data || {};
     return (
-      <MuiThemeProvider>
+      <MuiThemeProvider theme={theme}>
         <div className="App">
           <div className="App-header">
             <a href="/">
