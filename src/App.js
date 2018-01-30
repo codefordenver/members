@@ -21,7 +21,7 @@ class App extends Component {
             <a href="/">
               <img
                 className="cfd-logo"
-                src="images/cfd-circle-white.png"
+                src="../images/cfd-circle-white.png"
                 alt="code for denver logo"
               />
             </a>
