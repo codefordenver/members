@@ -48,17 +48,17 @@ npm start
 ## Graphcool
 The [Graphcool framework](https://github.com/graphcool/framework) is used to spin up and manage the backend for this project.
 
-* Use locally installed version of framework with environment variable from `.env.local`
-`npm run gc -- <command>`
+1. Use locally installed version of framework with environment variable from `.env.local`
+  * `npm run gc -- <command>`
 
-* View list of available commands
-`npm run gc -- help`
+2. View list of available commands
+  * `npm run gc -- help`
 
-* Deploying the backend changes
-`npm run gc -- deploy`
+3. Deploying the backend changes
+ * `npm run gc -- deploy`
 
-* Interactive console to test out GraphQL
-`npm run gc -- playground`
+4. Interactive console to test out GraphQL
+ * `npm run gc -- playground`
 
 ### Create React App
 The front end for this project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). Here are some [generated docs](./docs/CreateReactApp.md) from this project for helpful tips on how to do common things.
