@@ -113,6 +113,7 @@ a {
 
 .container-nested {
   overflow: auto;
+  width: 100%;
   align-content: center;
 }
 
@@ -130,14 +131,17 @@ a {
   height: 100%;
   padding: 20px;
   align-items: center;
+  min-width: 1024px;
 }
 
 .pic {
   justify-content: center;
   display: flex;
-  height: 400px;
-  flex-basis: 20%;
+  height: auto;
+  flex-basis: 30%;
   margin: 20px;
+  min-height: 0;
+  min-width: 256px;
 }
 
 .rounded {
@@ -145,7 +149,9 @@ a {
 }
 
 .profile-photo {
-  height: 300px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 256px;
 }
 
 .user-bio {
