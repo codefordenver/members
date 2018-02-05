@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import marked from 'marked';
+import LoadingIndicator from '../presentational/LoadingIndicator';
 import './MarkdownRenderer.css';
 
 marked.setOptions({
@@ -53,7 +54,7 @@ class MarkdownRenderer extends React.Component {
             />
           ]
         ) : (
-          <div>Loading...</div>
+          <LoadingIndicator />
         )}
       </div>
     );

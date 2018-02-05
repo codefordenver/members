@@ -1,10 +1,11 @@
 import React from 'react';
 import Chip from 'material-ui/Chip';
 import HelpUsImplementThis from './presentational/HelpUsImplementThis';
+import LoadingIndicator from './presentational/LoadingIndicator';
 
 const MemberProfile = ({ user }) => {
   if (!user) {
-    return <div>Loading...</div>;
+    return <LoadingIndicator />;
   }
   const { picture, name, description, githubName, flowdockName, email } = user;
   return (
