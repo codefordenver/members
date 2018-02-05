@@ -11,9 +11,9 @@
     "graphql-tag": "^2.4.2",
     "material-ui": "^1.0.0-beta.30",
     "prompt": "^1.0.0",
-    "react": "^15.6.1",
+    "react": "^16.2.0",
     "react-apollo": "^1.4.10",
-    "react-dom": "^15.6.1",
+    "react-dom": "^16.2.0",
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.10"
   },

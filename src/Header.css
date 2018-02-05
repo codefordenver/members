@@ -1,0 +1,13 @@
+.Header {
+  background-color: #e24e54;
+  padding: 20px;
+  color: white;
+  display: flex;
+  height: 100px;
+  flex-direction: row;
+  align-content: center;
+}
+
+.Header-link {
+  color: white;
+}
