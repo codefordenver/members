@@ -14,6 +14,8 @@ import MemberProfilePage from './MemberProfilePage';
 class App extends Component {
   render() {
     const { User } = this.props.data || {};
+    const CfD_logo_location =
+      process.env.PUBLIC_URL + '/images/cfd-circle-white.png';
     return (
       <MuiThemeProvider>
         <div className="App">
@@ -21,7 +23,7 @@ class App extends Component {
             <a href="/">
               <img
                 className="cfd-logo"
-                src="../images/cfd-circle-white.png"
+                src={CfD_logo_location}
                 alt="code for denver logo"
               />
             </a>
