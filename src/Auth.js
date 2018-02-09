@@ -1,13 +1,15 @@
 const ACCESS_TOKEN_KEY = 'access_token';
 const EXPIRES_AT_KEY = 'expires_at';
 const USER_ID = 'user_id';
+const BEARER_TOKEN = 'cfd-members-auth0IdToken';
 
-export function setAuthSession(authResult, userId) {
+export function setAuthSession(authResult, userId, bearerToken) {
   const localStorage = global.localStorage;
   const expiresAt = JSON.stringify(authResult.expiresIn * 1000 + Date.now());
   localStorage.setItem(ACCESS_TOKEN_KEY, authResult.accessToken);
   localStorage.setItem(USER_ID, userId);
   localStorage.setItem(EXPIRES_AT_KEY, expiresAt);
+  localStorage.setItem(BEARER_TOKEN, bearerToken);
 }
 
 export function getAuthSession() {
