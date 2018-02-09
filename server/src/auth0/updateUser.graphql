@@ -1,0 +1,3 @@
+query canUserUpdate($user_id: ID!, $input_id: ID!) {
+  SomeUserExists(filter: { AND: [{ id: $user_id }, { id: $input_id }] })
+}
