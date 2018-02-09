@@ -25,7 +25,7 @@ These are the main tools we use. You'll want to get familiar with them.
   - Task management built on top of github issues
 - [Flowdock](https://www.flowdock.com/app/cfa-brigades/code-for-denver)
   - Chat tool
-  - Requires an invite from and admin to our organization
+  - Requires an invite to join our flowdock organization
 
 ### Other Links
 
