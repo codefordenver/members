@@ -2,10 +2,20 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { format, subDays } from 'date-fns';
+import LoadingIndicator from './presentational/LoadingIndicator';
 
-const EmailList = ({ users }) => {
-  return <div>{users.map(user => <div key={user.id}>{user.email}</div>)}</div>;
-};
+const EmailList = ({ users, loading }) => (
+  <div>
+    <h1>Users that signed up in the last week</h1>
+    {loading ? (
+      <LoadingIndicator />
+    ) : users.length > 0 ? (
+      users.map(user => <div key={user.id}>{user.email}</div>)
+    ) : (
+      <p>No new users signed up in the last week</p>
+    )}
+  </div>
+);
 
 EmailList.defaultProps = {
   users: []
@@ -26,7 +36,7 @@ const EmailListWithData = graphql(allUsersQuery, {
       date: format(subDays(new Date(), 7), 'YYYY-MM-DDTHH:mm:ss.SSSZ')
     }
   },
-  props: ({ data: { allUsers } }) => ({ users: allUsers })
+  props: ({ data: { allUsers }, loading }) => ({ users: allUsers, loading })
 })(EmailList);
 
 export default EmailListWithData;
