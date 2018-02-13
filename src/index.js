@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom';
 import ApolloClient, { createNetworkInterface } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter } from 'react-router-dom';
-import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { getEnvironmentVariables } from './utils';
+import './index.css';
 
 const graphcoolApi = getEnvironmentVariables().graphcoolApi;
 console.log('Trying to connect to: ', graphcoolApi);
+
 const networkInterface = createNetworkInterface({
   uri: graphcoolApi
 });

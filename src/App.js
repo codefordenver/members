@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import { componentWithLoggedInUser } from './utils';
+import { componentWithLoggedInUser, GoogleAnalyticsPageTracker } from './utils';
 import { isAuthenticated } from './Auth';
 import Header from './Header';
 import ErrorBoundary from './utils/ErrorBoundary';
@@ -19,6 +19,7 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
+          <GoogleAnalyticsPageTracker />
           <ErrorBoundary>
             <Header user={User} isAuthenticated={isLoggedIn} />
           </ErrorBoundary>
