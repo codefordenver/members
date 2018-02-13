@@ -26,6 +26,7 @@ export function logout() {
   localStorage.removeItem(ACCESS_TOKEN_KEY);
   localStorage.removeItem(USER_ID);
   localStorage.removeItem(EXPIRES_AT_KEY);
+  localStorage.removeItem(BEARER_TOKEN);
 }
 
 export function isAuthenticated() {
