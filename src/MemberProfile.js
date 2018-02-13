@@ -1,9 +1,11 @@
 import React from 'react';
 import Chip from 'material-ui/Chip';
+import HelpUsImplementThis from './presentational/HelpUsImplementThis';
+import LoadingIndicator from './presentational/LoadingIndicator';
 
 const MemberProfile = ({ user }) => {
   if (!user) {
-    return <div>Loading...</div>;
+    return <LoadingIndicator />;
   }
   const { picture, name, description, githubName, flowdockName, email } = user;
   return (
@@ -29,92 +31,66 @@ const MemberProfile = ({ user }) => {
             </div>
           </div>
         </div>
-        <div className="user-experience">
-          <div className="contributions-nested">
-            <div className="first-child">
-              <div>
-                <span className="hours-contributed">1</span>
-                <div className="details">hours contributed</div>
+        <HelpUsImplementThis>
+          <div className="user-experience">
+            <div className="contributions-nested">
+              <div className="first-child">
+                <div>
+                  <span className="hours-contributed">1</span>
+                  <div className="details">hours contributed</div>
+                </div>
               </div>
-            </div>
-            <div className="second-child">
-              <div>
-                <span className="projects-completed">5</span>
-                <div className="details">projects completed</div>
+              <div className="second-child">
+                <div>
+                  <span className="projects-completed">5</span>
+                  <div className="details">projects completed</div>
+                </div>
               </div>
-            </div>
-            <div className="last-child">
-              <div>
-                <span className="hours-contributed">35</span>
-                <div className="details">meetups attended</div>
+              <div className="last-child">
+                <div>
+                  <span className="hours-contributed">35</span>
+                  <div className="details">meetups attended</div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </HelpUsImplementThis>
       </div>
 
       <div className="card">
         <div className="skillsleft">
           <h2>Skills</h2>
         </div>
-        <div className="skillsright">
-          <Chip
-            className="skills-button"
-            onRequestDelete={() => {
-              return false;
-            }}
-          >
-            Python
-          </Chip>
-          <Chip
-            className="skills-button"
-            onRequestDelete={() => {
-              return false;
-            }}
-          >
-            SQL
-          </Chip>
-          <Chip
-            className="skills-button"
-            onRequestDelete={() => {
-              return false;
-            }}
-          >
-            Enterprise Geodatabases
-          </Chip>
-        </div>
+        <HelpUsImplementThis>
+          <div className="skillsright">
+            {['Python', 'SQL', 'Enterprise Geodatabases'].map(skill => (
+              <Chip
+                key={skill}
+                className="skills-button"
+                onDelete={() => false}
+                label={skill}
+              />
+            ))}
+          </div>
+        </HelpUsImplementThis>
       </div>
 
       <div className="card">
         <div className="skillsleft">
           <h2>Projects</h2>
         </div>
-        <div className="skillsright">
-          <Chip
-            className="skills-button"
-            onRequestDelete={() => {
-              return false;
-            }}
-          >
-            Python
-          </Chip>
-          <Chip
-            className="skills-button"
-            onRequestDelete={() => {
-              return false;
-            }}
-          >
-            SQL
-          </Chip>
-          <Chip
-            className="skills-button"
-            onRequestDelete={() => {
-              return false;
-            }}
-          >
-            Enterprise Geodatabases
-          </Chip>
-        </div>
+        <HelpUsImplementThis>
+          <div className="skillsright">
+            {['Members Project', 'Owlet'].map(project => (
+              <Chip
+                key={project}
+                className="skills-button"
+                onDelete={() => false}
+                label={project}
+              />
+            ))}
+          </div>
+        </HelpUsImplementThis>
       </div>
     </div>
   );

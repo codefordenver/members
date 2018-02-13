@@ -3,18 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "8.4.0",
-    "npm": "5.3.0"
+    "node": ">=8.9.0"
   },
   "dependencies": {
     "apollo-client": "^1.9.0",
     "date-fns": "^1.29.0",
     "graphql-tag": "^2.4.2",
-    "material-ui": "^0.19.4",
+    "marked": "^0.3.12",
+    "material-ui": "^1.0.0-beta.30",
     "prompt": "^1.0.0",
-    "react": "^15.6.1",
+    "react": "^16.2.0",
     "react-apollo": "^1.4.10",
-    "react-dom": "^15.6.1",
+    "react-dom": "^16.2.0",
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.10"
   },
@@ -28,13 +28,15 @@
     "precommit": "lint-staged",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "start": "react-scripts start",
+    "start": "npm run check-version && react-scripts start",
     "build": "react-scripts build && cpy build/index.html build --rename 404.html",
     "lint": "eslint .",
+    "preinstall": "npm run check-version",
     "postinstall": "npm install --prefix server",
     "setup": "node ./bin/auth0setup/promptUser.js",
     "gc": "cd ./server && dotenv -e ../.env.local graphcool",
-    "deployProdBackend": "cd ./server && graphcool deploy"
+    "deployProdBackend": "cd ./server && graphcool deploy",
+    "check-version": "node ./bin/checkVersion.js"
   },
   "homepage": "https://members.codefordenver.org",
   "devDependencies": {

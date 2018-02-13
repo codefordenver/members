@@ -5,8 +5,9 @@ import { MemoryRouter } from 'react-router-dom';
 import * as getEnvironmentVariableModule from './utils/getEnvironmentVariables';
 
 const localStorageMock = {
-  getItem: jest.fn(),
+  getItem: jest.fn().mockReturnValue(null),
   setItem: jest.fn(),
+  removeItem: jest.fn(),
   clear: jest.fn()
 };
 global.localStorage = localStorageMock;

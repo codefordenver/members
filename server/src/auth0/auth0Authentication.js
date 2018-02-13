@@ -66,7 +66,7 @@ const createGraphCoolUser = (userData, api) =>
       `
         mutation createUser(
           $auth0UserId: String!
-          $email: String
+          $email: String!
           $name: String
           $picture: String
           $githubName: String
