@@ -52,7 +52,7 @@ class LoginAuth0 extends Component {
           })
           .then(({ data }) => {
             const userInfo = data.authenticateUser;
-            setAuthSession(authResult, userInfo.id);
+            setAuthSession(authResult, userInfo.id, userInfo.token);
             window.location.reload();
           });
       }
