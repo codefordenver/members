@@ -43,8 +43,4 @@ type Project @model {
 
   name: String!
   description: String
-  repo: String #url
-  flow: String #url
-  waffleBoard: String #url
-  driveDirectory: String #url
 }
