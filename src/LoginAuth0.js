@@ -5,6 +5,7 @@ import { graphql, compose } from 'react-apollo';
 import auth0 from 'auth0-js';
 import { setAuthSession } from './Auth';
 import { getEnvironmentVariables } from './utils';
+import Button from 'material-ui/Button';
 
 const authenticateQuery = gql`
   mutation authenticate($accessToken: String!) {
@@ -69,7 +70,7 @@ class LoginAuth0 extends Component {
   };
 
   render() {
-    return <button onClick={this._showLogin}>Log in with Auth0</button>;
+    return <Button onClick={this._showLogin}>Log In</Button>;
   }
 }
 

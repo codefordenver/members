@@ -4,6 +4,9 @@ import LoginAuth0 from './LoginAuth0';
 import { logout } from './Auth';
 import { getEnvironmentVariables } from './utils';
 import LoadingIndicator from './presentational/LoadingIndicator';
+import Button from 'material-ui/Button';
+import Avatar from 'material-ui/Avatar';
+import Grid from 'material-ui/Grid';
 
 const env = getEnvironmentVariables();
 
@@ -30,18 +33,19 @@ class Login extends Component {
     }
 
     return (
-      <div>
-        <button onClick={this._logout}>Log out</button>
-        <span>Hello, {this.props.user.name}</span>
-        <Link to="/me">
-          <img
-            className="rounded"
-            src={this.props.user.picture}
-            alt="avatar"
-            style={{ height: '40px', borderRadius: '20px' }}
-          />
-        </Link>
-      </div>
+      <Grid container alignItems="center">
+        <Grid item>
+          <Link to="/me">
+            <Avatar src={this.props.user.picture} alt={this.props.user.name} />
+          </Link>
+        </Grid>
+        <Grid item>
+          <span>Hello, {this.props.user.name}</span>
+        </Grid>
+        <Grid item>
+          <Button onClick={this._logout}>Log out</Button>
+        </Grid>
+      </Grid>
     );
   }
 }
