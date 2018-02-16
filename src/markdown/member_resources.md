@@ -15,7 +15,7 @@ Here is some information we hope you'll find useful.
 
 ## Tools
 
-These are the main tools we use. You'll want to get familiar with them.
+These are the main tools we use (with links for our specific organization). You'll want to get familiar with them.
 
 - [Google Drive](https://drive.google.com/drive/folders/0B15HLk4_JV3nWjkyOGtFUmhKZDQ?usp=sharing)
   - Collaborative document sharing
@@ -26,6 +26,11 @@ These are the main tools we use. You'll want to get familiar with them.
 - [Flowdock](https://www.flowdock.com/app/cfa-brigades/code-for-denver)
   - Chat tool
   - Requires an invite to join our flowdock organization
+  - Some flows of note:
+    - [Jobs flow](https://www.flowdock.com/app/cfa-brigades/jobs) - Job opportunities
+    - [Cool $&!†](https://www.flowdock.com/app/cfa-brigades/cool) - Miscellaneous links and interesting things
+    - [Diversity](https://www.flowdock.com/app/cfa-brigades/diversity) - Discussions around increasing diversity at Code for Denver and in technology in general
+    - [Design](https://www.flowdock.com/app/cfa-brigades/design) - General design discussions
 
 ### Other Links
 
