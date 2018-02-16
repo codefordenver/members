@@ -208,6 +208,6 @@ stupid inline style*/
   font-size: 20px;
 }
 
-.cfd-logo {
-  height: 100%;
+.App-body {
+  padding-top: 80px;
 }

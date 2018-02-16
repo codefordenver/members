@@ -10,7 +10,22 @@ import LoggedInRoutes from './LoggedInRoutes';
 import LoggedOutRoutes from './LoggedOutRoutes';
 import './App.css';
 
-const theme = createMuiTheme();
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#ea8589',
+      main: '#E24E54',
+      dark: '#c5262c',
+      contrastText: '#fff'
+    },
+    secondary: {
+      light: '#eee',
+      main: '#ddd',
+      dark: '#ccc',
+      contrastText: '#000'
+    }
+  }
+});
 
 class App extends Component {
   render() {
@@ -24,14 +39,16 @@ class App extends Component {
             <Header user={User} isAuthenticated={isLoggedIn} />
           </ErrorBoundary>
           <ErrorBoundary>
-            <Switch>
-              {isLoggedIn ? (
-                <LoggedInRoutes user={User} />
-              ) : (
-                <LoggedOutRoutes />
-              )}
-              <Route component={NoMatch} />
-            </Switch>
+            <div className="App-body">
+              <Switch>
+                {isLoggedIn ? (
+                  <LoggedInRoutes user={User} />
+                ) : (
+                  <LoggedOutRoutes />
+                )}
+                <Route component={NoMatch} />
+              </Switch>
+            </div>
           </ErrorBoundary>
         </div>
       </MuiThemeProvider>
