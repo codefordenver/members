@@ -2,24 +2,37 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Login from './Login';
 import './Header.css';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Grid from 'material-ui/Grid';
 
 const Header = ({ user, isAuthenticated }) => (
-  <div className="Header">
-    <a href="/">
-      <img
-        className="cfd-logo"
-        src="images/cfd-circle-white.png"
-        alt="code for denver logo"
-      />
-    </a>
-    <Login user={user} isAuthenticated={isAuthenticated} />
+  <AppBar position="fixed">
+    <Toolbar>
+      <Grid container justify="space-between" alignItems="center">
+        <Grid item>
+          <a href="/">
+            <img
+              className="Header-logo"
+              src="images/cfd-circle-white.png"
+              alt="code for denver logo"
+            />
+          </a>
+        </Grid>
 
-    {isAuthenticated && (
-      <Link className="Header-link" to="/volunteers">
-        All Users
-      </Link>
-    )}
-  </div>
+        {isAuthenticated && (
+          <Grid item>
+            <Link className="Header-link" to="/volunteers">
+              All Users
+            </Link>
+          </Grid>
+        )}
+        <Grid item>
+          <Login isAuthenticated={isAuthenticated} user={user} />
+        </Grid>
+      </Grid>
+    </Toolbar>
+  </AppBar>
 );
 
 export default Header;
