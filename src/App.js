@@ -20,9 +20,9 @@ const theme = createMuiTheme({
     },
     secondary: {
       light: '#eee',
-      main: '#ddd',
+      main: '#fff',
       dark: '#ccc',
-      contrastText: '#000'
+      contrastText: '#fff'
     }
   }
 });

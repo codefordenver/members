@@ -43,7 +43,7 @@ class Login extends Component {
           <span>Hello, {this.props.user.name}</span>
         </Grid>
         <Grid item>
-          <Button color="secondary" onClick={this._logout}>
+          <Button variant="raised" color="secondary" onClick={this._logout}>
             Log out
           </Button>
         </Grid>
