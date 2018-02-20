@@ -70,7 +70,11 @@ class LoginAuth0 extends Component {
   };
 
   render() {
-    return <Button onClick={this._showLogin}>Log In</Button>;
+    return (
+      <Button color="secondary" onClick={this._showLogin}>
+        Log In
+      </Button>
+    );
   }
 }
 
