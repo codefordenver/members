@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import MemberProfile from './MemberProfile';
+import MemberProfile from '../presentational/MemberProfile';
 
 const userQuery = gql`
   query getUser($id: ID) {
