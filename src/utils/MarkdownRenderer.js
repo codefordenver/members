@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import marked from 'marked';
-import LoadingIndicator from '../presentational/LoadingIndicator';
+import LoadingIndicator from '../sections/LoadingIndicator';
 import './MarkdownRenderer.css';
 
 marked.setOptions({

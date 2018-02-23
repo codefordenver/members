@@ -9,21 +9,21 @@ import Grid from 'material-ui/Grid';
 const Header = ({ user, isAuthenticated }) => (
   <AppBar position="fixed">
     <Toolbar>
+      <a href="/">
+        <img
+          className="Header-logo"
+          src="images/cfd-circle-white.png"
+          alt="code for denver logo"
+        />
+      </a>
       <Grid container justify="space-between" alignItems="center">
-        <Grid item>
-          <a href="/">
-            <img
-              className="Header-logo"
-              src="images/cfd-circle-white.png"
-              alt="code for denver logo"
-            />
-          </a>
-        </Grid>
-
         {isAuthenticated && (
           <Grid item>
             <Link className="Header-link" to="/volunteers">
               All Users
+            </Link>
+            <Link className="Header-link" to="/projects">
+              All Projects
             </Link>
           </Grid>
         )}

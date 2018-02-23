@@ -2,7 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { format, subDays } from 'date-fns';
-import LoadingIndicator from './presentational/LoadingIndicator';
+import LoadingIndicator from '../sections/LoadingIndicator';
 
 const EmailList = ({ users, loading }) => (
   <div>
@@ -30,7 +30,7 @@ const allUsersQuery = gql`
   }
 `;
 
-const EmailListWithData = graphql(allUsersQuery, {
+const EmailListPage = graphql(allUsersQuery, {
   options: {
     variables: {
       date: format(subDays(new Date(), 7), 'YYYY-MM-DDTHH:mm:ss.SSSZ')
@@ -39,4 +39,4 @@ const EmailListWithData = graphql(allUsersQuery, {
   props: ({ data: { allUsers }, loading }) => ({ users: allUsers, loading })
 })(EmailList);
 
-export default EmailListWithData;
+export default EmailListPage;

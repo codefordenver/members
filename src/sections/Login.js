@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import LoginAuth0 from './LoginAuth0';
-import { logout } from './Auth';
-import { getEnvironmentVariables } from './utils';
-import LoadingIndicator from './presentational/LoadingIndicator';
+import { logout } from '../utils/Auth';
+import { getEnvironmentVariables } from '../utils';
+import LoadingIndicator from './LoadingIndicator';
 import Button from 'material-ui/Button';
 import Avatar from 'material-ui/Avatar';
 import Grid from 'material-ui/Grid';

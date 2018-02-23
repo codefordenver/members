@@ -1,7 +1,7 @@
 import React from 'react';
 import Chip from 'material-ui/Chip';
-import HelpUsImplementThis from './presentational/HelpUsImplementThis';
-import LoadingIndicator from './presentational/LoadingIndicator';
+import HelpUsImplementThis from './HelpUsImplementThis';
+import LoadingIndicator from './LoadingIndicator';
 
 const MemberProfile = ({ user }) => {
   if (!user) {

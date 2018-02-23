@@ -39,6 +39,11 @@ permissions:
   - operation: User.update
     authenticated: true
     query: ./src/auth0/updateUser.graphql
+  - operation: Project.read
+  - operation: Project.update
+    authenticated: true
+  - operation: Project.create
+    authentication: true
 
 # Your root tokens used for functions to get full access to the API
 # Read more here:

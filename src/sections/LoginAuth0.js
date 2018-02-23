@@ -3,8 +3,8 @@ import { withRouter } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
 import auth0 from 'auth0-js';
-import { setAuthSession } from './Auth';
-import { getEnvironmentVariables } from './utils';
+import { setAuthSession } from '../utils/Auth';
+import { getEnvironmentVariables } from '../utils';
 import Button from 'material-ui/Button';
 
 const authenticateQuery = gql`

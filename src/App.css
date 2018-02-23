@@ -8,38 +8,6 @@ html {
   box-sizing: inherit;
 }
 
-.App-header {
-  background-color: #e24e54;
-  padding: 20px;
-  color: white;
-  display: flex;
-  height: 100px;
-  flex-direction: row;
-  align-content: center;
-}
-
-.app-icon {
-  align-items: center;
-  flex-basis: 10%;
-  border: 1px solid black;
-}
-
-.app-search {
-  display: flex;
-  align-items: center;
-  flex-basis: 50%;
-}
-
-.app-signin {
-}
-
-.app-login {
-}
-
-.App-intro {
-  font-size: large;
-}
-
 h2 {
   font-size: 40px;
 }
@@ -220,14 +188,6 @@ stupid inline style*/
 .stats-label {
   font-weight: bold;
   font-size: 20px;
-}
-
-.App-body {
-  padding-top: 80px;
-}
-
-.nav-link {
-  color: white;
 }
 
 @media screen and (max-width: 67em) {
