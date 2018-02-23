@@ -33,9 +33,9 @@ const allUsersQuery = gql`
   }
 `;
 
-const UsersListWithData = graphql(allUsersQuery, {
+const UsersListPage = graphql(allUsersQuery, {
   options: () => ({}),
   props: ({ data: { allUsers } }) => ({ users: allUsers })
 })(UsersList);
 
-export default UsersListWithData;
+export default UsersListPage;

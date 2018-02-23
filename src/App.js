@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import { componentWithLoggedInUser, GoogleAnalyticsPageTracker } from './utils';
-import { isAuthenticated } from './Auth';
-import Header from './Header';
+import { isAuthenticated } from './utils/Auth';
+import Header from './sections/Header';
 import ErrorBoundary from './utils/ErrorBoundary';
-import NoMatch from './pages/NoMatch';
-import LoggedInRoutes from './LoggedInRoutes';
-import LoggedOutRoutes from './LoggedOutRoutes';
+import AppBody from './AppBody';
 import './App.css';
 
 const theme = createMuiTheme({
@@ -39,16 +36,7 @@ class App extends Component {
             <Header user={User} isAuthenticated={isLoggedIn} />
           </ErrorBoundary>
           <ErrorBoundary>
-            <div className="App-body">
-              <Switch>
-                {isLoggedIn ? (
-                  <LoggedInRoutes user={User} />
-                ) : (
-                  <LoggedOutRoutes />
-                )}
-                <Route component={NoMatch} />
-              </Switch>
-            </div>
+            <AppBody isLoggedIn={isLoggedIn} user={User} />
           </ErrorBoundary>
         </div>
       </MuiThemeProvider>
