@@ -2,8 +2,16 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom';
+import LoadingIndicator from '../sections/LoadingIndicator';
 
-const ProjectsList = ({ projects }) => {
+const ProjectsList = ({ projects, loading }) => {
+  if (loading) {
+    return <LoadingIndicator />;
+  }
+  if (!projects.length) {
+    return <p>No projects yet</p>;
+  }
+
   return (
     <ul>
       {projects.map(project => (
@@ -30,7 +38,10 @@ const allProjectsQuery = gql`
 
 const ProjectsListPage = graphql(allProjectsQuery, {
   options: () => ({}),
-  props: ({ data: { allProjects } }) => ({ projects: allProjects })
+  props: ({ data: { allProjects, loading } }) => ({
+    projects: allProjects,
+    loading
+  })
 })(ProjectsList);
 
 export default ProjectsListPage;
