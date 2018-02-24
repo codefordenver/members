@@ -29,7 +29,7 @@ class Login extends Component {
       );
     }
     if (!this.props.user) {
-      return <LoadingIndicator />;
+      return <LoadingIndicator color="secondary" />;
     }
 
     return (
@@ -43,7 +43,9 @@ class Login extends Component {
           <span>Hello, {this.props.user.name}</span>
         </Grid>
         <Grid item>
-          <Button color="secondary" onClick={this._logout}>Log out</Button>
+          <Button color="secondary" onClick={this._logout}>
+            Log out
+          </Button>
         </Grid>
       </Grid>
     );
