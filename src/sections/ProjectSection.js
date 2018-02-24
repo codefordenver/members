@@ -1,14 +1,14 @@
 import React from 'react';
 import Button from 'material-ui/Button';
+import { Link, withRouter } from 'react-router-dom';
 import LoadingIndicator from './LoadingIndicator';
 import Title from '../forms/Title';
 import Description from '../forms/Description';
-// import createForm from '../utils/createForm';
 
 class ProjectSection extends React.PureComponent {
   state = {
     formData: this.props.project || {},
-    editing: false
+    submitting: false
   };
 
   componentWillReceiveProps(nextProps) {
@@ -21,8 +21,8 @@ class ProjectSection extends React.PureComponent {
     if (!this.props.project) {
       return <LoadingIndicator />;
     }
-    const { name, description } = this.state.formData;
-    const { editing } = this.state;
+    const { id, name, description } = this.state.formData;
+    const { editing } = this.props;
     const commonProps = {
       onChange: this._updateFormData,
       editing
@@ -41,31 +41,34 @@ class ProjectSection extends React.PureComponent {
 
         {editing ? (
           <React.Fragment>
-            <Button onClick={this._cancelEditing}>Cancel</Button>
-            <Button onClick={this._submitForm}>Submit</Button>
+            <Button component={Link} to={`/projects/${id}`}>
+              Cancel
+            </Button>
+            <Button onClick={this._submitForm} disabled={this.state.submitting}>
+              Submit
+            </Button>
           </React.Fragment>
         ) : (
-          <Button onClick={this._startEditing}>Edit</Button>
+          <Button component={Link} to={`/projects/${id}/edit`}>
+            Edit
+          </Button>
         )}
       </form>
     );
   }
 
-  _startEditing = () => {
-    this.setState({ editing: true });
-  };
-
-  _cancelEditing = () => {
-    this.setState({ editing: false, formData: this.props.project });
-  };
-
-  _submitForm = event => {
-    console.log('this', this);
+  _submitForm = async event => {
     if (event) {
       event.preventDefault();
     }
-    this.setState({ editing: false });
-    this.props.onEdit(this.state.formData);
+    try {
+      this.setState({ submitting: true });
+      await this.props.onEdit(this.state.formData);
+      this.props.history.push(`/projects/${this.props.project.id}`);
+    } catch (err) {
+      this.setState({ submitting: false });
+      alert(err);
+    }
   };
 
   _updateFormData = event => {
@@ -79,4 +82,4 @@ class ProjectSection extends React.PureComponent {
   };
 }
 
-export default ProjectSection;
+export default withRouter(ProjectSection);
