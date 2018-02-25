@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
-import ProjectSection from '../sections/ProjectSection';
+import ProjectEdit from '../sections/ProjectEdit';
 
 const projectQuery = gql`
   query getProject($id: ID!) {
@@ -25,13 +25,13 @@ const updateProjectQuery = gql`
 const ProjectEditPage = compose(
   graphql(projectQuery, {
     options: props => ({ variables: { id: props.match.params.id } }),
-    props: ({ data: { Project } }) => ({ project: Project, editing: true })
+    props: ({ data: { Project } }) => ({ project: Project })
   }),
   graphql(updateProjectQuery, {
     props: ({ mutate }) => ({
       onEdit: updatedProject => mutate({ variables: updatedProject })
     })
   })
-)(ProjectSection);
+)(ProjectEdit);
 
 export default ProjectEditPage;

@@ -10,7 +10,7 @@ const Title = ({ value, label, name, editing, onChange }) => {
       <TextField
         name={name}
         label={label}
-        value={value}
+        value={value || ''}
         onChange={onChange}
         margin="normal"
       />
