@@ -16,6 +16,7 @@ export function getAuthSession() {
   const localStorage = global.localStorage;
   return {
     accessToken: localStorage.getItem(ACCESS_TOKEN_KEY),
+    bearerToken: localStorage.getItem(BEARER_TOKEN),
     userId: localStorage.getItem(USER_ID),
     expiresAt: localStorage.getItem(EXPIRES_AT_KEY)
   };
