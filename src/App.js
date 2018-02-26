@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import { componentWithLoggedInUser, GoogleAnalyticsPageTracker } from './utils';
+import { withLoggedInUser, GoogleAnalyticsPageTracker } from './utils';
 import { isAuthenticated } from './utils/Auth';
 import Header from './sections/Header';
 import ErrorBoundary from './utils/ErrorBoundary';
@@ -44,4 +44,4 @@ class App extends Component {
   }
 }
 
-export default componentWithLoggedInUser(App);
+export default withLoggedInUser(App);
