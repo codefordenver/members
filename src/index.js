@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ApolloClient, { createNetworkInterface } from 'apollo-client';
+import { ApolloClient } from 'apollo-client';
+import { createHttpLink } from 'apollo-link-http';
+import { setContext } from 'apollo-link-context';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
@@ -9,32 +12,32 @@ import { getEnvironmentVariables } from './utils';
 import './index.css';
 
 const graphcoolApi = getEnvironmentVariables().graphcoolApi;
-console.log('Trying to connect to: ', graphcoolApi);
+if (process.env.NODE_ENV === 'development') {
+  console.log('Trying to connect to: ', graphcoolApi);
+}
 
-const networkInterface = createNetworkInterface({
-  uri: graphcoolApi
+const httpLink = createHttpLink({ uri: graphcoolApi });
+const middlewareLink = setContext(() => {
+  let authHeader, nonceHeader;
+  if (localStorage.getItem('cfd-members-auth0IdToken')) {
+    authHeader = `Bearer ${localStorage.getItem('cfd-members-auth0IdToken')}`;
+  }
+  if (localStorage.getItem('nonce')) {
+    nonceHeader = `Bearer ${localStorage.getItem('nonce')}`;
+  }
+
+  return {
+    headers: {
+      authorization: authHeader || null,
+      nonce: nonceHeader || null
+    }
+  };
 });
 
-networkInterface.use([
-  {
-    applyMiddleware(req, next) {
-      if (!req.options.headers) {
-        req.options.headers = {};
-      }
-      if (localStorage.getItem('cfd-members-auth0IdToken')) {
-        req.options.headers.authorization = `Bearer ${localStorage.getItem(
-          'cfd-members-auth0IdToken'
-        )}`;
-      }
-      if (localStorage.getItem('nonce')) {
-        req.options.headers.nonce = `Bearer ${localStorage.getItem('nonce')}`;
-      }
-      next();
-    }
-  }
-]);
-
-const client = new ApolloClient({ networkInterface });
+const client = new ApolloClient({
+  link: middlewareLink.concat(httpLink),
+  cache: new InMemoryCache()
+});
 
 ReactDOM.render(
   <ApolloProvider client={client}>
