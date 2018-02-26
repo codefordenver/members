@@ -1,6 +1,6 @@
 import React from 'react';
-import Title from '../forms/Title';
-import Description from '../forms/Description';
+import EditableText from '../forms/EditableText';
+import EditableMarkdown from '../forms/EditableMarkdown';
 
 const ProjectSection = ({ formData, editing, onFormDataChange }) => {
   const { name, description } = formData;
@@ -11,9 +11,9 @@ const ProjectSection = ({ formData, editing, onFormDataChange }) => {
   return (
     <React.Fragment>
       <h1>
-        <Title value={name} label="Title" name="name" {...commonProps} />
+        <EditableText value={name} label="Title" name="name" {...commonProps} />
       </h1>
-      <Description
+      <EditableMarkdown
         value={description}
         label="Description"
         name="description"

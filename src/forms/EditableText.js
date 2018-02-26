@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from 'material-ui/TextField';
 
-const Title = ({ value, label, name, editing, onChange }) => {
+const EditableText = ({ value, label, name, editing, onChange }) => {
   if (!editing) {
     return <p>{value}</p>;
   }
@@ -17,4 +17,4 @@ const Title = ({ value, label, name, editing, onChange }) => {
     );
   }
 };
-export default Title;
+export default EditableText;

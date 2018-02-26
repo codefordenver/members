@@ -1,8 +1,8 @@
 import React from 'react';
-import { MarkdownRenderer } from '../utils';
+import { MarkdownFileRenderer } from '../utils';
 
 const MemberResourcesPage = () => (
-  <MarkdownRenderer fileName="member_resources" />
+  <MarkdownFileRenderer fileName="member_resources" />
 );
 
 export default MemberResourcesPage;
