@@ -38,6 +38,7 @@ permissions:
   - operation: User.read
   - operation: User.update
     authenticated: true
+    fields: [email, name, picture, githubName, flowdockName, description]		
     query: ./src/auth0/updateUser.graphql
 # ADMIN PERMISSIONS
   - operation: User.delete
