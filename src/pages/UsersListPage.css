@@ -1,0 +1,7 @@
+.userid {
+  color: black;
+  display: flex;
+  justify-content: center;
+  font-family: 'Roboto Condensed', sans-serif;
+  border: 10px transparent solid;
+}
