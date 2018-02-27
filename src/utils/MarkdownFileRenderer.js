@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import marked from 'marked';
 import LoadingIndicator from '../sections/LoadingIndicator';
-import './MarkdownRenderer.css';
+import './MarkdownFileRenderer.css';
 
 marked.setOptions({
   gfm: true,
@@ -16,7 +16,7 @@ async function getMarkdownHTML(fileName) {
   return marked(markdown);
 }
 
-class MarkdownRenderer extends React.Component {
+class MarkdownFileRenderer extends React.Component {
   static propTypes = {
     fileName: PropTypes.string.isRequired
   };
@@ -28,19 +28,21 @@ class MarkdownRenderer extends React.Component {
   componentWillMount() {
     const { fileName } = this.props;
     if (!fileName) {
-      throw new TypeError('fileName must be specified for MarkdownRenderer');
+      throw new TypeError(
+        'fileName must be specified for MarkdownFileRenderer'
+      );
     }
     getMarkdownHTML(fileName).then(html => this.setState({ html }));
   }
 
   render() {
     return (
-      <div className="MarkdownRenderer">
+      <div className="MarkdownFileRenderer">
         {this.state.html ? (
           [
             <a
               key="markdown-edit-link"
-              className="MarkdownRenderer-edit"
+              className="MarkdownFileRenderer-edit"
               href={`https://github.com/codefordenver/members/edit/master/src/markdown/${
                 this.props.fileName
               }.md`}
@@ -61,4 +63,4 @@ class MarkdownRenderer extends React.Component {
   }
 }
 
-export default MarkdownRenderer;
+export default MarkdownFileRenderer;

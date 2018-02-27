@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
-import { componentWithLoggedInUser } from '../utils';
+import { withLoggedInUser } from '../utils';
 
 const updateUserQuery = gql`
   mutation updateUser(
@@ -95,7 +95,7 @@ const MemberProfileEditPage = compose(
   graphql(updateUserQuery, {
     name: 'updateUser'
   }),
-  componentWithLoggedInUser
+  withLoggedInUser
 )(MemberProfileEdit);
 
 export default withRouter(MemberProfileEditPage);

@@ -1,18 +1,26 @@
 import React from 'react';
-import LoadingIndicator from './LoadingIndicator';
+import EditableText from '../forms/EditableText';
+import EditableMarkdown from '../forms/EditableMarkdown';
 
-const ProjectPage = ({ project }) => {
-  if (!project) {
-    return <LoadingIndicator />;
-  }
-  const { name, description } = project;
-
+const ProjectSection = ({ formData, editing, onFormDataChange }) => {
+  const { name, description } = formData;
+  const commonProps = {
+    onChange: onFormDataChange,
+    editing
+  };
   return (
-    <div>
-      <h1>{name}</h1>
-      <p>{description}</p>
-    </div>
+    <React.Fragment>
+      <h1>
+        <EditableText value={name} label="Title" name="name" {...commonProps} />
+      </h1>
+      <EditableMarkdown
+        value={description}
+        label="Description"
+        name="description"
+        {...commonProps}
+      />
+    </React.Fragment>
   );
 };
 
-export default ProjectPage;
+export default ProjectSection;

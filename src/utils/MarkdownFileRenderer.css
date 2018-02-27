@@ -1,8 +1,8 @@
-.MarkdownRenderer {
+.MarkdownFileRenderer {
   position: relative;
 }
 
-.MarkdownRenderer-edit {
+.MarkdownFileRenderer-edit {
   display: none;
   position: absolute;
   top: -20px;
@@ -13,6 +13,6 @@
   border-radius: 3px;
 }
 
-.MarkdownRenderer:hover > .MarkdownRenderer-edit {
+.MarkdownFileRenderer:hover > .MarkdownFileRenderer-edit {
   display: block;
 }

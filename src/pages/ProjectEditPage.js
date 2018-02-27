@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
-import withViewPage from '../utils/withViewPage';
 import ProjectSection from '../sections/ProjectSection';
+import withEditPage from '../utils/withEditPage';
 
 const projectQuery = gql`
   query getProject($id: ID!) {
@@ -23,7 +23,7 @@ const updateProjectQuery = gql`
   }
 `;
 
-const ProjectPage = compose(
+const ProjectEditPage = compose(
   graphql(projectQuery, {
     options: props => ({ variables: { id: props.match.params.id } }),
     props: ({ data: { Project } }) => ({ formData: Project })
@@ -33,7 +33,7 @@ const ProjectPage = compose(
       onEdit: updatedProject => mutate({ variables: updatedProject })
     })
   }),
-  withViewPage()
+  withEditPage()
 )(ProjectSection);
 
-export default ProjectPage;
+export default ProjectEditPage;

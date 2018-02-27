@@ -16,7 +16,7 @@ const getLoggedInUser = gql`
   }
 `;
 
-const componentWithLoggedInUser = graphql(getLoggedInUser, {
+const withLoggedInUser = graphql(getLoggedInUser, {
   // skip: ownProps => { debugger; return !isAuthenticated() },
   options: {
     // fetchPolicy: "network-only",
@@ -26,4 +26,4 @@ const componentWithLoggedInUser = graphql(getLoggedInUser, {
   }
 });
 
-export default componentWithLoggedInUser;
+export default withLoggedInUser;
