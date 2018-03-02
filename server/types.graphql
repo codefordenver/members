@@ -16,12 +16,16 @@ type User @model {
   githubName: String
   flowdockName: String
   description: String
-
+  role: UserRole @defaultValue(value: REGULAR)
   # Uncomment below - you can declare relations between models like this
 
   # posts: [Post!]! @relation(name: "UserPosts")
 }
 
+enum UserRole {
+   REGULAR,
+   ADMIN
+}
 
 # Uncomment the model below as well
 

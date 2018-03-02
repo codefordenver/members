@@ -34,16 +34,31 @@ functions:
 # Read more here:
 # https://docs-next.graph.cool/reference/auth/authorization/overview-iegoo0heez
 permissions:
-# - operation: "*"
+# REGULAR PERMISSIONS
   - operation: User.read
   - operation: User.update
     authenticated: true
-    query: ./src/auth0/updateUser.graphql
+    fields: [email, name, picture, githubName, flowdockName, description]
+    query: ./src/permissions/isSelf.graphql
+  - operation: User.delete
+    authenticated: true
+    query: ./src/permissions/isSelf.graphql
   - operation: Project.read
   - operation: Project.update
     authenticated: true
   - operation: Project.create
     authentication: true
+# ADMIN PERMISSIONS
+  - operation: User.delete
+    authenticated: true
+    query: ./src/permissions/isAdminNotEditingOtherAdmin.graphql
+  - operation: User.update
+    authenticated: true
+    fields: [name, picture, githubName, flowdockName, description, role]
+    query: ./src/permissions/isAdminNotEditingOtherAdmin.graphql
+  - operation: Project.delete
+    authenticated: true
+    query: ./src/permissions/isAdmin.graphql
 
 # Your root tokens used for functions to get full access to the API
 # Read more here:
