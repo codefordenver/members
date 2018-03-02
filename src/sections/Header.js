@@ -1,21 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Login from './Login';
-import './Header.css';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Grid from 'material-ui/Grid';
+import logo from '../images/cfd-circle-icon-white.png';
+import './Header.css';
 
 const Header = ({ user, isAuthenticated }) => (
   <AppBar position="fixed">
     <Toolbar>
-      <a href="/">
-        <img
-          className="Header-logo"
-          src="images/cfd-circle-white.png"
-          alt="code for denver logo"
-        />
-      </a>
+      <Link to="/">
+        <img className="Header-logo" src={logo} alt="code for denver logo" />
+      </Link>
       <Grid container justify="space-between" alignItems="center">
         {isAuthenticated && (
           <Grid item>
