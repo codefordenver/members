@@ -1,12 +1,12 @@
 # multiple conditions for one permission
 # https://www.graph.cool/forum/t/multiple-permission-queries/825/3
-query AdminCheck($user_id: ID!, $input_id: ID!) {
+query AdminCheck($user_id: ID!, $node_id: ID!) {
   # The User making the request must be an administrator
   conditionOne: SomeUserExists(
     filter: { AND: [{ id: $user_id }, { role: ADMIN }] }
   )
   # The User being updated/deleted isn't an administrator
   conditionTwo: SomeUserExists(
-    filter: { AND: [{ id: $input_id }, { role_not: REGULAR }] }
+    filter: { AND: [{ id: $node_id }, { role_not: ADMIN }] }
   )
 }

@@ -40,6 +40,9 @@ permissions:
     authenticated: true
     fields: [email, name, picture, githubName, flowdockName, description]
     query: ./src/permissions/isSelf.graphql
+  - operation: User.delete
+    authenticated: true
+    query: ./src/permissions/isSelf.graphql
   - operation: Project.read
   - operation: Project.update
     authenticated: true
