@@ -3,9 +3,9 @@ import LoggedInRoutes from './LoggedInRoutes';
 import LoggedOutRoutes from './LoggedOutRoutes';
 import './AppBody.css';
 
-const AppBody = ({ isLoggedIn, user }) => (
+const AppBody = ({ isLoggedIn }) => (
   <div className="AppBody">
-    {isLoggedIn ? <LoggedInRoutes user={user} /> : <LoggedOutRoutes />}
+    {isLoggedIn ? <LoggedInRoutes /> : <LoggedOutRoutes />}
   </div>
 );
 

@@ -11,21 +11,30 @@ import LoadingIndicator from '../sections/LoadingIndicator';
  * @param {*} options
  * @returns (Component) => WrappedComponent
  */
-export default function withViewPage(options) {
+export default function withViewPage({ renameProps }) {
+  const defaultPropNames = {
+    formData: 'formData',
+    editing: 'editing',
+    onFormDataChange: 'onFormDataChange'
+  };
+  const actualPropNameMapping = {
+    ...defaultPropNames,
+    ...renameProps
+  };
   return WrappedComponent => {
     class ViewPageWrapper extends React.PureComponent {
       static displayName = `WithViewPage(${getDisplayName(WrappedComponent)})`;
 
       render() {
-        const { formData } = this.props;
+        const formData = this.props[actualPropNameMapping.formData];
         if (!formData) {
           return <LoadingIndicator />;
         }
 
         const cmpProps = {
-          formData,
-          editing: false,
-          onFormDataChange: () => {}
+          [actualPropNameMapping.formData]: formData,
+          [actualPropNameMapping.editing]: false,
+          [actualPropNameMapping.onFormDataChange]: () => {}
         };
         return (
           <div>

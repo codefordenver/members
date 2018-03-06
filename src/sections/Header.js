@@ -5,10 +5,11 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Grid from 'material-ui/Grid';
 import logo from '../images/cfd-circle-icon-white.png';
-import './Header.css';
 import userIsAdmin from '../utils/userIsAdmin';
+import withLoggedInUser from '../utils/withLoggedInUser';
+import './Header.css';
 
-const Header = ({ user, isAuthenticated }) => (
+const Header = ({ isAuthenticated, user }) => (
   <AppBar position="fixed">
     <Toolbar>
       <Link to="/">
@@ -31,11 +32,11 @@ const Header = ({ user, isAuthenticated }) => (
           </Grid>
         )}
         <Grid item>
-          <Login isAuthenticated={isAuthenticated} user={user} />
+          <Login isAuthenticated={isAuthenticated} />
         </Grid>
       </Grid>
     </Toolbar>
   </AppBar>
 );
 
-export default Header;
+export default withLoggedInUser(Header);

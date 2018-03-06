@@ -15,6 +15,7 @@ function getBaseUrl(props) {
  * @returns (Component) => WrappedComponent
  */
 export default function withCreatePage(options) {
+  // TODO: Support renameProps
   return WrappedComponent => {
     class CreatePageWrapper extends React.PureComponent {
       static displayName = `WithCreatePage(${getDisplayName(

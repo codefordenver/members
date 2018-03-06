@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import LoginAuth0 from './LoginAuth0';
-import { logout } from '../utils/Auth';
-import { getEnvironmentVariables } from '../utils';
-import LoadingIndicator from './LoadingIndicator';
+import { compose } from 'react-apollo';
 import Button from 'material-ui/Button';
 import Avatar from 'material-ui/Avatar';
 import Grid from 'material-ui/Grid';
+import LoadingIndicator from './LoadingIndicator';
+import LoginAuth0 from './LoginAuth0';
+import { logout } from '../utils/Auth';
+import { getEnvironmentVariables, withLoggedInUser } from '../utils';
 
 const env = getEnvironmentVariables();
 
@@ -52,4 +53,4 @@ class Login extends Component {
   }
 }
 
-export default withRouter(Login);
+export default compose(withRouter, withLoggedInUser)(Login);

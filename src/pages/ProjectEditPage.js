@@ -26,14 +26,18 @@ const updateProjectQuery = gql`
 const ProjectEditPage = compose(
   graphql(projectQuery, {
     options: props => ({ variables: { id: props.match.params.id } }),
-    props: ({ data: { Project } }) => ({ formData: Project })
+    props: ({ data: { Project } }) => ({ project: Project })
   }),
   graphql(updateProjectQuery, {
     props: ({ mutate }) => ({
       onEdit: updatedProject => mutate({ variables: updatedProject })
     })
   }),
-  withEditPage()
+  withEditPage({
+    renameProps: {
+      formData: 'project'
+    }
+  })
 )(ProjectSection);
 
 export default ProjectEditPage;

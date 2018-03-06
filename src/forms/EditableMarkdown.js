@@ -35,9 +35,9 @@ class EditableMarkdown extends React.PureComponent {
             label={label}
             value={value || ''}
             onChange={onChange}
-            margin="normal"
             multiline
             rowsMax={100}
+            fullWidth
           />
         )}
       </div>

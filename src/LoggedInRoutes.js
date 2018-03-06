@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import getAdminRoutes from './getAdminRoutes';
-import MemberProfile from './sections/MemberProfile';
+import MyProfilePage from './pages/MyProfilePage';
 import MemberResourcesPage from './pages/MemberResourcesPage';
 import MemberProfileEditPage from './pages/MemberProfileEditPage';
 import UsersListPage from './pages/UsersListPage';
@@ -11,11 +11,12 @@ import ProjectEditPage from './pages/ProjectEditPage';
 import ProjectsListPage from './pages/ProjectsListPage';
 import ProjectCreatePage from './pages/ProjectCreatePage';
 import NoMatchPage from './pages/NoMatchPage';
+import withLoggedInUser from './utils/withLoggedInUser';
 
 const LoggedInRoutes = ({ user }) => (
   <Switch>
     <Route exact path="/" component={MemberResourcesPage} />
-    <Route exact path="/me" render={() => <MemberProfile user={user} />} />
+    <Route exact path="/me" component={MyProfilePage} />
     <Route exact path="/me/edit" component={MemberProfileEditPage} />
     <Route exact path="/volunteers" component={UsersListPage} />
     <Route exact path="/volunteers/:id" component={MemberProfilePage} />
@@ -28,4 +29,4 @@ const LoggedInRoutes = ({ user }) => (
   </Switch>
 );
 
-export default LoggedInRoutes;
+export default withLoggedInUser(LoggedInRoutes);

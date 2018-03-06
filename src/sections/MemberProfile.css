@@ -1,0 +1,17 @@
+.card {
+  display: flex;
+  background: white;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  width: 90%;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  /* height: 100%; */
+  /* padding: 20px; */
+  align-items: center;
+}
+
+@media screen and (max-width: 40em) {
+  .card {
+    flex-direction: column;
+  }
+}
