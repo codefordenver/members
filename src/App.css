@@ -8,41 +8,8 @@ html {
   box-sizing: inherit;
 }
 
-.App-header {
-  background-color: #e24e54;
-  padding: 20px;
-  color: white;
-  display: flex;
-  height: 100px;
-  flex-direction: row;
-  align-content: center;
-}
-
-.app-icon {
-  align-items: center;
-  flex-basis: 10%;
-  border: 1px solid black;
-}
-
-.app-search {
-  display: flex;
-  align-items: center;
-  flex-basis: 50%;
-}
-
-.app-signin {
-}
-
-.app-login {
-}
-
-.App-intro {
-  font-size: large;
-}
-
 h2 {
   font-size: 40px;
-  line-height: 47px;
 }
 
 p {
@@ -112,7 +79,8 @@ a {
 }
 
 .container-nested {
-  overflow: auto;
+  overflow: hidden;
+  width: 100%;
   align-content: center;
 }
 
@@ -135,9 +103,11 @@ a {
 .pic {
   justify-content: center;
   display: flex;
-  height: 400px;
-  flex-basis: 20%;
+  height: auto;
+  flex-basis: 50%;
   margin: 20px;
+  min-height: 0;
+  min-width: 128px;
 }
 
 .rounded {
@@ -145,12 +115,14 @@ a {
 }
 
 .profile-photo {
-  height: 300px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 256px;
 }
 
 .user-bio {
   display: flex;
-  height: 400px;
+  height: 100%;
   width: 90%;
   padding: 10px;
   border-right: 1px solid gray;
@@ -218,10 +190,95 @@ stupid inline style*/
   font-size: 20px;
 }
 
-.cfd-logo {
-  height: 100%;
+@media screen and (max-width: 67em) {
+  h2 {
+    font-size: 35px;
+  }
+  .hours-contributed {
+    font-size: 40px;
+  }
+  .projects-completed {
+    font-size: 40px;
+  }
+  .details {
+    font-size: 15px;
+  }
 }
 
-.nav-link {
-  color: white;
+@media screen and (max-width: 60em) {
+  h2 {
+    font-size: 33px;
+  }
+  .hours-contributed {
+    font-size: 37px;
+  }
+  .projects-completed {
+    font-size: 37px;
+  }
+  .details {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 53em) {
+  h2 {
+    font-size: 27px;
+  }
+  .hours-contributed {
+    font-size: 30px;
+  }
+  .projects-completed {
+    font-size: 30px;
+  }
+  .details {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 45em) {
+  h2 {
+    font-size: 20px;
+  }
+  .hours-contributed {
+    font-size: 20px;
+  }
+  .projects-completed {
+    font-size: 20px;
+  }
+  .details {
+    font-size: 10px;
+  }
+  .social-links {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 40em) {
+  h2 {
+    font-size: 20px;
+  }
+  .hours-contributed {
+    font-size: 20px;
+  }
+  .projects-completed {
+    font-size: 20px;
+  }
+  .details {
+    font-size: 10px;
+  }
+  .social-links {
+    font-size: 12px;
+  }
+  .card {
+    flex-direction: column;
+  }
+  .pic {
+    width: 128px;
+  }
+  .user-bio {
+    border-right: none;
+  }
+  .skillsleft {
+    border-right: none;
+  }
 }

@@ -1,0 +1,6 @@
+query AdminCheck($user_id: ID!) {
+  # The User making the request must be an administrator
+  conditionOne: SomeUserExists(
+    filter: { AND: [{ id: $user_id }, { role: ADMIN }] }
+  )
+}

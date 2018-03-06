@@ -1,49 +1,47 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
-import MemberResources from './MemberResources';
-import Login from './Login';
-import MemberProfile from './MemberProfile';
-import MemberProfileEdit from './MemberProfileEdit';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import EmailList from './EmailList';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import { withLoggedInUser, GoogleAnalyticsPageTracker } from './utils';
+import { isAuthenticated } from './utils/Auth';
+import Header from './sections/Header';
+import ErrorBoundary from './utils/ErrorBoundary';
+import AppBody from './AppBody';
 import './App.css';
-import { componentWithLoggedInUser } from './utils';
-import UsersList from './UsersList';
-import MemberProfilePage from './MemberProfilePage';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#ea8589',
+      main: '#E24E54',
+      dark: '#c5262c',
+      contrastText: '#fff'
+    },
+    secondary: {
+      light: '#eee',
+      main: '#fff',
+      dark: '#ccc',
+      contrastText: '#fff'
+    }
+  }
+});
 
 class App extends Component {
   render() {
     const { User } = this.props.data || {};
+    const isLoggedIn = isAuthenticated();
     return (
-      <MuiThemeProvider>
+      <MuiThemeProvider theme={theme}>
         <div className="App">
-          <div className="App-header">
-            <a href="/">
-              <img
-                className="cfd-logo"
-                src="images/cfd-circle-white.png"
-                alt="code for denver logo"
-              />
-            </a>
-            <Login user={User} />
-            <Link className="nav-link" to="/volunteers">
-              All Users
-            </Link>
-          </div>
-          <Route exact path="/" component={MemberResources} />
-          <Route
-            exact
-            path="/me"
-            render={() => <MemberProfile user={User} />}
-          />
-          <Route exact path="/me/edit" component={MemberProfileEdit} />
-          <Route exact path="/admin/onboarding" component={EmailList} />
-          <Route exact path="/volunteers" component={UsersList} />
-          <Route exact path="/volunteers/:id" component={MemberProfilePage} />
+          <GoogleAnalyticsPageTracker />
+          <ErrorBoundary>
+            <Header user={User} isAuthenticated={isLoggedIn} />
+          </ErrorBoundary>
+          <ErrorBoundary>
+            <AppBody isLoggedIn={isLoggedIn} user={User} />
+          </ErrorBoundary>
         </div>
       </MuiThemeProvider>
     );
   }
 }
 
-export default componentWithLoggedInUser(App);
+export default withLoggedInUser(App);

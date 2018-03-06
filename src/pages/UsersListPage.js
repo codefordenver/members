@@ -3,8 +3,16 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import Avatar from 'material-ui/Avatar';
 import { Link } from 'react-router-dom';
+import LoadingIndicator from '../sections/LoadingIndicator';
 
-const UsersList = ({ users }) => {
+const UsersList = ({ users, loading }) => {
+  if (loading) {
+    return <LoadingIndicator />;
+  }
+  if (!users.length) {
+    return <p>No users yet</p>;
+  }
+
   return (
     <ul>
       {users.map(user => (
@@ -33,9 +41,9 @@ const allUsersQuery = gql`
   }
 `;
 
-const UsersListWithData = graphql(allUsersQuery, {
+const UsersListPage = graphql(allUsersQuery, {
   options: () => ({}),
-  props: ({ data: { allUsers } }) => ({ users: allUsers })
+  props: ({ data: { allUsers, loading } }) => ({ users: allUsers, loading })
 })(UsersList);
 
-export default UsersListWithData;
+export default UsersListPage;

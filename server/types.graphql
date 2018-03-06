@@ -9,19 +9,23 @@ type User @model {
   createdAt: DateTime! # read-only (managed by Graphcool)
   updatedAt: DateTime! # read-only (managed by Graphcool)
 
-  email: String
+  email: String! @isUnique
   name: String
   auth0UserId: String! @isUnique
   picture: String
   githubName: String
   flowdockName: String
   description: String
-
+  role: UserRole @defaultValue(value: REGULAR)
   # Uncomment below - you can declare relations between models like this
 
   # posts: [Post!]! @relation(name: "UserPosts")
 }
 
+enum UserRole {
+   REGULAR,
+   ADMIN
+}
 
 # Uncomment the model below as well
 
@@ -32,3 +36,15 @@ type User @model {
 #   # Every relation also required a back-relation (to determine 1:1, 1:n or n:m)
 #   author: User! @relation(name: "UserPosts")
 # }
+
+type Project @model {
+  # Required system field:
+  id: ID! @isUnique # read-only (managed by Graphcool)
+
+  # Optional system fields (remove if not needed):
+  createdAt: DateTime! # read-only (managed by Graphcool)
+  updatedAt: DateTime! # read-only (managed by Graphcool)
+
+  name: String! @isUnique
+  description: String
+}
