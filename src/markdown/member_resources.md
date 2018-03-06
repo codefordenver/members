@@ -6,7 +6,7 @@ Here is some information we hope you'll find useful.
 
 - [Who we are](https://www.codefordenver.org/)
 - [What we do](https://www.codefordenver.org/work-with-us/)
-- [How to get involved in a project or pitch a new one](https://www.codefordenver.org/what-we-do/)
+- [How to get involved in a project or pitch a new one](https://www.codefordenver.org/work-with-us/)
 - [Current Projects](https://www.codefordenver.org/current-projects/)
   - NOTE: We also track our projects in a waffle board [here](https://waffle.io/codefordenver/projects)
 - [2015 Report](http://archive.codefordenver.org/2015/)
