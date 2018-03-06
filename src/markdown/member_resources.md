@@ -10,7 +10,7 @@ Here is some information we hope you'll find useful.
 - [Current Projects](https://www.codefordenver.org/current-projects/)
   - NOTE: We also track our projects in a waffle board [here](https://waffle.io/codefordenver/projects)
 - [2015 Report](http://archive.codefordenver.org/2015/)
-- [2016 Report](http://archive.codefordenver.org/2016)
+- [2016 Report](http://www.codefordenver.org/2016-end-year-report/)
 - 2017 Report - coming soon
 
 ## Tools
