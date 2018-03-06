@@ -21,7 +21,7 @@
     "react-dom": "^16.2.0",
     "react-ga": "^2.4.1",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "^1.1.1"
+    "react-scripts": "1.0.10"
   },
   "lint-staged": {
     "{src,bin,server/src}/**/*.{js,json,css,graphql}": [
