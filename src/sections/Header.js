@@ -6,6 +6,7 @@ import Toolbar from 'material-ui/Toolbar';
 import Grid from 'material-ui/Grid';
 import logo from '../images/cfd-circle-icon-white.png';
 import './Header.css';
+import userIsAdmin from '../utils/userIsAdmin';
 
 const Header = ({ user, isAuthenticated }) => (
   <AppBar position="fixed">
@@ -22,6 +23,11 @@ const Header = ({ user, isAuthenticated }) => (
             <Link className="Header-link" to="/projects">
               All Projects
             </Link>
+            {userIsAdmin(user) && (
+              <Link className="Header-link" to="/admin">
+                Admin Resources
+              </Link>
+            )}
           </Grid>
         )}
         <Grid item>
