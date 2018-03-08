@@ -12,6 +12,7 @@ const getLoggedInUser = gql`
       flowdockName
       githubName
       description
+      role
     }
   }
 `;
