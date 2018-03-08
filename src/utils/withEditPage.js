@@ -17,13 +17,10 @@ function getBaseUrl(props) {
  * @returns (Component) => WrappedComponent
  */
 export default function withEditPage({ renameProps }) {
-  const defaultPropNames = {
+  const propNameMapping = {
     formData: 'formData',
     editing: 'editing',
-    onFormDataChange: 'onFormDataChange'
-  };
-  const actualPropNameMapping = {
-    ...defaultPropNames,
+    onFormDataChange: 'onFormDataChange',
     ...renameProps
   };
 
@@ -32,30 +29,30 @@ export default function withEditPage({ renameProps }) {
       static displayName = `WithEditPage(${getDisplayName(WrappedComponent)})`;
 
       state = {
-        formData: this.props[actualPropNameMapping.formData] || {},
+        formData: this.props[propNameMapping.formData] || {},
         submitting: false,
         formIsDirty: false
       };
 
       componentWillReceiveProps(nextProps) {
         if (
-          nextProps[actualPropNameMapping.formData] !==
-          this.props[actualPropNameMapping.formData]
+          nextProps[propNameMapping.formData] !==
+          this.props[propNameMapping.formData]
         ) {
           this.setState({
-            formData: nextProps[actualPropNameMapping.formData]
+            formData: nextProps[propNameMapping.formData]
           });
         }
       }
 
       render() {
-        if (!this.props[actualPropNameMapping.formData]) {
+        if (!this.props[propNameMapping.formData]) {
           return <LoadingIndicator />;
         }
         const cmpProps = {
-          [actualPropNameMapping.formData]: this.state.formData,
-          [actualPropNameMapping.editing]: true,
-          [actualPropNameMapping.onFormDataChange]: this._updateFormData
+          [propNameMapping.formData]: this.state.formData,
+          [propNameMapping.editing]: true,
+          [propNameMapping.onFormDataChange]: this._updateFormData
         };
         return (
           <form onSubmit={this._submitForm}>

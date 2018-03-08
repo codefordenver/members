@@ -57,18 +57,12 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
             </div>
             <div className="contact">
               <span className="social-links">Flowdock: </span>
-              {editing ? (
-                <EditableText
-                  value={flowdockName}
-                  label="Flowdock username"
-                  name="flowdockName"
-                  {...commonProps}
-                />
-              ) : (
-                <a href={`https://flowdock.com/${flowdockName}`}>
-                  {flowdockName}
-                </a>
-              )}
+              <EditableText
+                value={flowdockName}
+                label="Flowdock username"
+                name="flowdockName"
+                {...commonProps}
+              />
             </div>
           </div>
         </div>

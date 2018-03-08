@@ -8,7 +8,7 @@ const MemberSkills = () => (
     <div className="skillsleft">
       <h2>Skills</h2>
     </div>
-    <HelpUsImplementThis>
+    <HelpUsImplementThis featureDescriptionUrl="https://github.com/codefordenver/members/issues/149">
       <div className="skillsright">
         {['Python', 'SQL', 'Enterprise Geodatabases'].map(skill => (
           <Chip
