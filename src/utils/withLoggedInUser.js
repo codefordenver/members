@@ -4,7 +4,7 @@ import { getAuthSession } from './Auth';
 
 const getLoggedInUser = gql`
   query getLoggedInUser($id: ID) {
-    User(id: $id) {
+    user: User(id: $id) {
       id
       name
       picture
@@ -24,7 +24,8 @@ const withLoggedInUser = graphql(getLoggedInUser, {
     variables: {
       id: getAuthSession().userId || ''
     }
-  }
+  },
+  props: ({ data: { user } }) => ({ user })
 });
 
 export default withLoggedInUser;

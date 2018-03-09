@@ -22,7 +22,11 @@ const ProjectCreatePage = compose(
       refetchQueries: ['allProjects']
     }
   }),
-  withCreatePage()
+  withCreatePage({
+    renameProps: {
+      formData: 'project'
+    }
+  })
 )(ProjectSection);
 
 export default ProjectCreatePage;

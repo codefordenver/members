@@ -3,7 +3,7 @@ import TextField from 'material-ui/TextField';
 
 const EditableText = ({ value, label, name, editing, onChange }) => {
   if (!editing) {
-    return <p>{value}</p>;
+    return value;
   }
   if (editing) {
     return (
@@ -12,7 +12,7 @@ const EditableText = ({ value, label, name, editing, onChange }) => {
         label={label}
         value={value || ''}
         onChange={onChange}
-        margin="normal"
+        fullWidth
       />
     );
   }
