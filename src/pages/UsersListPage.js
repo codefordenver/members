@@ -9,12 +9,18 @@ const UsersList = ({ users }) => {
   return (
     <ul>
       {users.map(user => (
-        <li className="userid" key={user.id}>
-          <Link to={`/volunteers/${user.id}`}>
-            <Avatar src={user.picture} />
-            {user.name}
-          </Link>
-        </li>
+        <div className="userTile">
+          <li className="userid" key={user.id}>
+            <div className="userPic">
+              <Link to={`/volunteers/${user.id}`}>
+                <Avatar src={user.picture} />
+              </Link>
+            </div>
+            <div className="userName">
+              <Link to={`/volunteers/${user.id}`}>{user.name}</Link>
+            </div>
+          </li>
+        </div>
       ))}
     </ul>
   );

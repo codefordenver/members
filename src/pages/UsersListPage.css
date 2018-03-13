@@ -1,7 +1,21 @@
 .userid {
   color: black;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   font-family: 'Roboto Condensed', sans-serif;
-  border: 10px transparent solid;
+  padding: 10px;
+  flex-direction: row;
+}
+
+.userName {
+  display: inline-flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.userPic {
+  display: inline-flex;
+}
+
+.userTile {
 }
