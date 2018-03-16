@@ -2,6 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import Avatar from 'material-ui/Avatar';
+import './UsersListPage.css';
 import { Link } from 'react-router-dom';
 import LoadingIndicator from '../sections/LoadingIndicator';
 
@@ -16,12 +17,18 @@ const UsersList = ({ users, loading }) => {
   return (
     <ul>
       {users.map(user => (
-        <li key={user.id}>
-          <Link to={`/volunteers/${user.id}`}>
-            <Avatar src={user.picture} />
-            {user.name}
-          </Link>
-        </li>
+        <div className="userTile">
+          <li className="userid" key={user.id}>
+            <div className="userPic">
+              <Link to={`/volunteers/${user.id}`}>
+                <Avatar src={user.picture} />
+              </Link>
+            </div>
+            <div className="userName">
+              <Link to={`/volunteers/${user.id}`}>{user.name}</Link>
+            </div>
+          </li>
+        </div>
       ))}
     </ul>
   );
