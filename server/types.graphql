@@ -17,6 +17,7 @@ type User @model {
   flowdockName: String
   description: String
   role: UserRole @defaultValue(value: REGULAR)
+  projects: Project @relation(name: "ProjectChampions")
   # Uncomment below - you can declare relations between models like this
 
   # posts: [Post!]! @relation(name: "UserPosts")
@@ -47,4 +48,8 @@ type Project @model {
 
   name: String! @isUnique
   description: String
+  # list relation fields are always required.
+  # https://www.graph.cool/docs/reference/database/migrations-paesahku9t/#adding-a-new-relation
+  champions: [User!]! @relation(name: "ProjectChampions")
+
 }
