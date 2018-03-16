@@ -1,11 +1,11 @@
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import { getAuthSession } from './Auth';
 
 const getLoggedInUser = gql`
   query getLoggedInUser($id: ID) {
     user: User(id: $id) {
       id
+      et
       name
       picture
       email
