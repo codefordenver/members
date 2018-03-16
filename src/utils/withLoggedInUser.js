@@ -19,13 +19,14 @@ const getLoggedInUser = gql`
 
 const withLoggedInUser = graphql(getLoggedInUser, {
   // skip: ownProps => { debugger; return !isAuthenticated() },
-  options: {
+  options:
     // fetchPolicy: "network-only",
-    variables: {
-      id: getAuthSession().userId || ''
-    }
-  },
-  props: ({ data: { user } }) => ({ user })
+    // { variables: {
+    // id: getAuthSession().userId || ''
+    // }
+    // },
+    ({ newUserId }) => ({ variables: { id: newUserId || '' } }),
+  props: ({ data: { user, refetch } }) => ({ user, refetch })
 });
 
 export default withLoggedInUser;
