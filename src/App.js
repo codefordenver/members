@@ -37,7 +37,6 @@ class App extends Component {
   render() {
     const isLoggedIn = isAuthenticated();
     const newUserId = localStorage.getItem('user_id');
-    console.log(isLoggedIn);
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">

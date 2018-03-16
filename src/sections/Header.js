@@ -9,43 +9,39 @@ import userIsAdmin from '../utils/userIsAdmin';
 import withLoggedInUser from '../utils/withLoggedInUser';
 import './Header.css';
 
-const Header = ({ isAuthenticated, user, refreshApp, newUserId }) => {
-  // newUserId passed to withLoggedInUser
-  console.log(newUserId);
-  return (
-    <AppBar position="fixed">
-      <Toolbar>
-        <Link to="/">
-          <img className="Header-logo" src={logo} alt="code for denver logo" />
-        </Link>
-        <Grid container justify="space-between" alignItems="center">
-          {isAuthenticated && (
-            <Grid item>
-              <Link className="Header-link" to="/volunteers">
-                All Users
-              </Link>
-              <Link className="Header-link" to="/projects">
-                All Projects
-              </Link>
-              {userIsAdmin(user) && (
-                <Link className="Header-link" to="/admin">
-                  Admin Resources
-                </Link>
-              )}
-            </Grid>
-          )}
+const Header = ({ isAuthenticated, user, refreshApp, newUserId }) => (
+  <AppBar position="fixed">
+    <Toolbar>
+      <Link to="/">
+        <img className="Header-logo" src={logo} alt="code for denver logo" />
+      </Link>
+      <Grid container justify="space-between" alignItems="center">
+        {isAuthenticated && (
           <Grid item>
-            <Login
-              user={user}
-              isAuthenticated={isAuthenticated}
-              refreshApp={refreshApp}
-              newUserId={newUserId}
-            />
+            <Link className="Header-link" to="/volunteers">
+              All Users
+            </Link>
+            <Link className="Header-link" to="/projects">
+              All Projects
+            </Link>
+            {userIsAdmin(user) && (
+              <Link className="Header-link" to="/admin">
+                Admin Resources
+              </Link>
+            )}
           </Grid>
+        )}
+        <Grid item>
+          <Login
+            user={user}
+            isAuthenticated={isAuthenticated}
+            refreshApp={refreshApp}
+            newUserId={newUserId}
+          />
         </Grid>
-      </Toolbar>
-    </AppBar>
-  );
-};
+      </Grid>
+    </Toolbar>
+  </AppBar>
+);
 
 export default withLoggedInUser(Header);

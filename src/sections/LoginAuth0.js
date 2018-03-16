@@ -37,8 +37,6 @@ class LoginAuth0 extends Component {
         if (!authResult || !authResult.accessToken) {
           return;
         }
-        console.log('retrieved data from auth0');
-        console.log(authResult);
         window.location.hash = '';
         // The contents of authResult depend on which authentication parameters were used.
         // It can include the following:
@@ -52,14 +50,8 @@ class LoginAuth0 extends Component {
             }
           })
           .then(({ data }) => {
-            console.log('retrieved data from graphcool');
             const userInfo = data.authenticateUser;
             setAuthSession(authResult, userInfo.id, userInfo.token);
-            // window.location.reload();
-            // this refetches the graphql queries below, but only for this component.
-            // the other components still call their queries without the new "id" argument.
-            // the queries from the other components are probably actually queries from before (not called a second time)
-            // this.props.refreshApp(userInfo.id);
             this.props.refreshApp();
           });
       }
