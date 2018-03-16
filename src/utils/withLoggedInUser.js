@@ -1,6 +1,5 @@
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import { getAuthSession } from './Auth';
 
 const getLoggedInUser = gql`
   query getLoggedInUser($id: ID) {
@@ -19,13 +18,10 @@ const getLoggedInUser = gql`
 
 const withLoggedInUser = graphql(getLoggedInUser, {
   // skip: ownProps => { debugger; return !isAuthenticated() },
-  options: {
+  options:
     // fetchPolicy: "network-only",
-    variables: {
-      id: getAuthSession().userId || ''
-    }
-  },
-  props: ({ data: { user } }) => ({ user })
+    ({ newUserId }) => ({ variables: { id: newUserId || '' } }),
+  props: ({ data: { user, refetch } }) => ({ user, refetch })
 });
 
 export default withLoggedInUser;

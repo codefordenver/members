@@ -9,7 +9,7 @@ import userIsAdmin from '../utils/userIsAdmin';
 import withLoggedInUser from '../utils/withLoggedInUser';
 import './Header.css';
 
-const Header = ({ isAuthenticated, user }) => (
+const Header = ({ isAuthenticated, user, refreshApp, newUserId }) => (
   <AppBar position="fixed">
     <Toolbar>
       <Link to="/">
@@ -32,7 +32,12 @@ const Header = ({ isAuthenticated, user }) => (
           </Grid>
         )}
         <Grid item>
-          <Login isAuthenticated={isAuthenticated} />
+          <Login
+            user={user}
+            isAuthenticated={isAuthenticated}
+            refreshApp={refreshApp}
+            newUserId={newUserId}
+          />
         </Grid>
       </Grid>
     </Toolbar>

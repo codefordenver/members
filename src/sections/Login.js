@@ -26,7 +26,11 @@ class Login extends Component {
   render() {
     if (!this.props.isAuthenticated) {
       return (
-        <LoginAuth0 clientId={env.auth0ClientId} domain={env.auth0Domain} />
+        <LoginAuth0
+          clientId={env.auth0ClientId}
+          domain={env.auth0Domain}
+          refreshApp={this.props.refreshApp}
+        />
       );
     }
     if (!this.props.user) {

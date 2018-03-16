@@ -25,14 +25,28 @@ const theme = createMuiTheme({
 });
 
 class App extends Component {
+  constructor() {
+    super();
+    this.refreshApp = this.refreshApp.bind(this);
+  }
+
+  refreshApp() {
+    this.forceUpdate();
+  }
+
   render() {
     const isLoggedIn = isAuthenticated();
+    const newUserId = localStorage.getItem('user_id');
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
           <GoogleAnalyticsPageTracker />
           <ErrorBoundary>
-            <Header isAuthenticated={isLoggedIn} />
+            <Header
+              refreshApp={this.refreshApp}
+              isAuthenticated={isLoggedIn}
+              newUserId={newUserId}
+            />
           </ErrorBoundary>
           <ErrorBoundary>
             <AppBody isLoggedIn={isLoggedIn} />

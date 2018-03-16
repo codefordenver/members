@@ -38,13 +38,11 @@ class LoginAuth0 extends Component {
           return;
         }
         window.location.hash = '';
-
         // The contents of authResult depend on which authentication parameters were used.
         // It can include the following:
         // authResult.accessToken - access token for the API specified by `audience`
         // authResult.expiresIn - string with the access token's expiration time in seconds
         // authResult.idToken - ID token JWT containing user profile information
-
         props
           .authenticate({
             variables: {
@@ -54,7 +52,7 @@ class LoginAuth0 extends Component {
           .then(({ data }) => {
             const userInfo = data.authenticateUser;
             setAuthSession(authResult, userInfo.id, userInfo.token);
-            window.location.reload();
+            this.props.refreshApp();
           });
       }
     );
@@ -81,7 +79,8 @@ class LoginAuth0 extends Component {
 const LoginAuth0WithData = compose(
   graphql(authenticateQuery, {
     name: 'authenticate'
-  })
-)(withRouter(LoginAuth0));
+  }),
+  withRouter
+)(LoginAuth0);
 
 export default LoginAuth0WithData;
