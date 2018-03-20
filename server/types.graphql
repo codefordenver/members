@@ -17,6 +17,7 @@ type User @model {
   flowdockName: String
   description: String
   role: UserRole @defaultValue(value: REGULAR)
+  projects: Project @relation(name: "ProjectChampions")
   # Uncomment below - you can declare relations between models like this
 
   # posts: [Post!]! @relation(name: "UserPosts")
@@ -49,4 +50,5 @@ type Project @model {
   description: String
   cfapiProjectId: String @isUnique @depricated # Soon to be removed
   repoName: String @isUnique # for linking to github repos and waffle boards
+  champions: [User!]! @relation(name: "ProjectChampions")
 }
