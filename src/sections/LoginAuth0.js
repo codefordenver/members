@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
+import { CircularProgress } from 'material-ui/Progress';
 import auth0 from 'auth0-js';
-import { setAuthSession } from '../utils/Auth';
 import { getEnvironmentVariables } from '../utils';
 import Button from 'material-ui/Button';
+import withAuthSession from '../utils/withAuthSession';
 
 const authenticateQuery = gql`
   mutation authenticate($accessToken: String!) {
@@ -23,21 +23,25 @@ class LoginAuth0 extends Component {
       domain: props.domain,
       clientID: props.clientId
     });
+    this.state = {
+      isLoggingIn: false
+    };
   }
 
   componentDidMount() {
-    const props = this.props;
     this.webAuth.parseHash(
       { hash: window.location.hash },
       (err, authResult) => {
+        window.location.hash = '';
         if (err) {
-          // TODO: Handle errors
+          // TODO: Handle errors better
+          alert(`${err.error}: ${err.errorDescription}`);
           return console.error(err);
         }
         if (!authResult || !authResult.accessToken) {
           return;
         }
-        window.location.hash = '';
+        this.setState({ isLoggingIn: true });
 
         // The contents of authResult depend on which authentication parameters were used.
         // It can include the following:
@@ -45,7 +49,7 @@ class LoginAuth0 extends Component {
         // authResult.expiresIn - string with the access token's expiration time in seconds
         // authResult.idToken - ID token JWT containing user profile information
 
-        props
+        this.props
           .authenticate({
             variables: {
               accessToken: authResult.accessToken
@@ -53,8 +57,8 @@ class LoginAuth0 extends Component {
           })
           .then(({ data }) => {
             const userInfo = data.authenticateUser;
-            setAuthSession(authResult, userInfo.id, userInfo.token);
-            window.location.reload();
+            this.props.setAuthSession(authResult, userInfo.id, userInfo.token);
+            this.setState({ isLoggingIn: false });
           });
       }
     );
@@ -63,7 +67,7 @@ class LoginAuth0 extends Component {
   _showLogin = () => {
     this.webAuth.authorize({
       audience: getEnvironmentVariables().auth0ApiIdentifier,
-      redirectUri: getEnvironmentVariables().siteUrl,
+      redirectUri: window.location.origin,
       responseType: 'token',
       scope: 'openid email profile'
     });
@@ -71,8 +75,15 @@ class LoginAuth0 extends Component {
 
   render() {
     return (
-      <Button color="secondary" onClick={this._showLogin}>
+      <Button
+        color="secondary"
+        onClick={this._showLogin}
+        disabled={this.state.isLoggingIn}
+      >
         Log In
+        {this.state.isLoggingIn && (
+          <CircularProgress size={25} color="secondary" />
+        )}
       </Button>
     );
   }
@@ -81,7 +92,8 @@ class LoginAuth0 extends Component {
 const LoginAuth0WithData = compose(
   graphql(authenticateQuery, {
     name: 'authenticate'
-  })
-)(withRouter(LoginAuth0));
+  }),
+  withAuthSession
+)(LoginAuth0);
 
 export default LoginAuth0WithData;
