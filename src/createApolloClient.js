@@ -3,7 +3,7 @@ import { createHttpLink } from 'apollo-link-http';
 import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { getEnvironmentVariables } from './utils';
-import { getAuthSession } from './utils/Auth';
+import { getBearerTokenForAuthorization } from './utils/withAuthSession';
 
 const graphcoolApi = getEnvironmentVariables().graphcoolApi;
 if (process.env.NODE_ENV === 'development') {
@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'development') {
 const httpLink = createHttpLink({ uri: graphcoolApi });
 const middlewareLink = setContext(() => {
   let authHeader;
-  const { bearerToken } = getAuthSession();
+  const bearerToken = getBearerTokenForAuthorization();
   if (bearerToken) {
     authHeader = `Bearer ${bearerToken}`;
   }
