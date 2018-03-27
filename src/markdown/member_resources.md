@@ -1,5 +1,15 @@
 # Welcome to Code for Denver
 
+We're glad you're here! 😃
+
+Here are some getting started steps we'd love for you to follow:
+1. [Review the information on your profile](/me/edit) and make sure it is correct.
+2. Make sure you get invited to our Flowdock organization (you'll need to talk to someone who has access)
+3. Peruse the links we've provided below to learn about the organization and what tools we use
+4. Help us with a project (We're a very project-oriented group, so we'd like to direct you to working on one)
+    - Look through the [projects we are currently working on](/projects) and see if you're interested in joining any of them
+    - Read [this document on how to contribute to a project](https://docs.google.com/document/d/1p3oehpGhFGLjorp6_T83BXdouPET62LqJFlOEJWEtq0)
+
 Here is some information we hope you'll find useful.
 
 ## Organizational Information
