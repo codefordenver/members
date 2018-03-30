@@ -71,7 +71,6 @@ echo ""
 yellow "Proceeding with the deployment..."
 
 echo ""
-yellow "Deploying the graphcool backend"
 # The following doesn't seem like it should be necessary
 # - see this issue for progress: https://github.com/graphcool/framework/issues/1225
 cat <<EOF > ~/.graphcoolrc
@@ -79,8 +78,17 @@ platformToken: >-
   $GRAPHCOOL_TOKEN
 EOF
 
-if [ "$GRAPHCOOL_FORCE_DEPLOY" == true ]; then
-  npm run deployProdBackend -- --force
+additional_flags='--dry-run'
+
+if [ "$1" == "--actually-deploy-graphcool" ]; then
+  green "Deploying the graphcool backend"
+  additional_flags=''
 else
-  npm run deployProdBackend
+  yellow "Running a dry run of the graphcool backend deploy"
+fi
+
+if [ "$GRAPHCOOL_FORCE_DEPLOY" == true ]; then
+  npm run deployProdBackend -- --force $additional_flags
+else
+  npm run deployProdBackend -- $additional_flags
 fi
