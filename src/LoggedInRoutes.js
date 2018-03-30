@@ -11,6 +11,7 @@ import ProjectEditPage from './pages/ProjectEditPage';
 import ProjectsListPage from './pages/ProjectsListPage';
 import ProjectCreatePage from './pages/ProjectCreatePage';
 import NoMatchPage from './pages/NoMatchPage';
+import StyleReferencePage from './pages/StyleReferencePage';
 import withLoggedInUser from './utils/withLoggedInUser';
 
 const LoggedInRoutes = ({ user }) => (
@@ -24,6 +25,7 @@ const LoggedInRoutes = ({ user }) => (
     <Route exact path="/projects/create" component={ProjectCreatePage} />
     <Route exact path="/projects/:id" component={ProjectPage} />
     <Route exact path="/projects/:id/edit" component={ProjectEditPage} />
+    <Route exact path="/styles" component={StyleReferencePage} />
     {getAdminRoutes(user)}
     <Route component={NoMatchPage} />
   </Switch>
