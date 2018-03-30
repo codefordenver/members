@@ -31,7 +31,6 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "prompt": "^1.0.0",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "start": "npm run check-version && react-scripts start",
@@ -54,6 +53,7 @@
     "husky": "^0.14.3",
     "lint-staged": "^6.1.1",
     "prettier": "^1.10.2",
+    "prompt": "^1.0.0",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5"
   }
