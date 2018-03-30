@@ -9,6 +9,7 @@ const projectQuery = gql`
       id
       name
       description
+      cfapiProjectUrl
     }
   }
 `;

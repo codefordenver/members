@@ -1,9 +1,10 @@
 import React from 'react';
 import EditableText from '../forms/EditableText';
 import EditableMarkdown from '../forms/EditableMarkdown';
+import ProjectIssues from './ProjectIssues';
 
 const ProjectSection = ({ project, editing, onFormDataChange }) => {
-  const { name, description } = project;
+  const { name, description, cfapiProjectUrl } = project;
   const commonProps = {
     onChange: onFormDataChange,
     editing
@@ -19,6 +20,16 @@ const ProjectSection = ({ project, editing, onFormDataChange }) => {
         name="description"
         {...commonProps}
       />
+      {editing ? (
+        <EditableText
+          value={cfapiProjectUrl}
+          label="CfA API Project URL"
+          name="cfapiProjectUrl"
+          {...commonProps}
+        />
+      ) : (
+        <ProjectIssues cfapiProjectUrl={cfapiProjectUrl} />
+      )}
     </React.Fragment>
   );
 };
