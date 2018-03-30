@@ -9,10 +9,11 @@ cache:
 script:
   - npm run lint
   - npm test
+  - bin/deploy_prod_backend.sh --dry-run
 
 deploy:
   - provider: script
     skip_cleanup: true
-    script: bin/deploy_prod_backend.sh
+    script: bin/deploy_prod_backend.sh --actually-deploy-graphcool
     on:
       branch: master
