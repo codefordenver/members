@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:700');
+
 .MarkdownFileRenderer {
   position: relative;
 }
@@ -11,8 +13,13 @@
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   padding: 3px;
   border-radius: 3px;
+  margin: 20px;
 }
 
 .MarkdownFileRenderer:hover > .MarkdownFileRenderer-edit {
   display: block;
+}
+
+.MarkdownFileRenderer {
+  margin: 30px;
 }

@@ -32,7 +32,7 @@ These are the main tools we use (with links for our specific organization). You'
     - [Diversity](https://www.flowdock.com/app/cfa-brigades/diversity) - Discussions around increasing diversity at Code for Denver and in technology in general
     - [Design](https://www.flowdock.com/app/cfa-brigades/design) - General design discussions
 
-### Other Links
+## Other Links
 
 - [Code of Conduct](https://github.com/codefordenver/codeofconduct)
 - [Resources for learning](https://www.codefordenver.org/category/learn/)
