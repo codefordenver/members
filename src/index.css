@@ -2,4 +2,42 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  font-family: Roboto Condensed;
+  color: black;
+}
+
+h1 {
+  font-size: 48px;
+  color: #858585;
+  text-align: left;
+}
+
+h2 {
+  font-size: 24px;
+  color: #858585;
+}
+
+h3 {
+  font-style: bold;
+  letter-spacing: 2px;
+}
+
+ul {
+  font-size: 18px;
+  color: black;
+}
+
+ol {
+  font-size: 18px;
+  color: black;
+}
+
+li {
+  font-size: 18px;
+  color: black;
+}
+
+p {
+  font-size: 18px;
+  color: black;
 }
