@@ -1,12 +1,13 @@
 import React from 'react';
 import LoggedInRoutes from './LoggedInRoutes';
 import LoggedOutRoutes from './LoggedOutRoutes';
+import withAuthSession from './utils/withAuthSession';
 import './AppBody.css';
 
-const AppBody = ({ isLoggedIn, user }) => (
+const AppBody = ({ isAuthenticated }) => (
   <div className="AppBody">
-    {isLoggedIn ? <LoggedInRoutes user={user} /> : <LoggedOutRoutes />}
+    {isAuthenticated ? <LoggedInRoutes /> : <LoggedOutRoutes />}
   </div>
 );
 
-export default AppBody;
+export default withAuthSession(AppBody);

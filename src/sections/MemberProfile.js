@@ -1,16 +1,25 @@
 import React from 'react';
-import Chip from 'material-ui/Chip';
+import Card from 'material-ui/Card';
 import HelpUsImplementThis from './HelpUsImplementThis';
 import LoadingIndicator from './LoadingIndicator';
+import MemberProjects from './MemberProjects';
+import MemberSkills from './MemberSkills';
+import EditableText from '../forms/EditableText';
+import EditableMarkdown from '../forms/EditableMarkdown';
+import './MemberProfile.css';
 
-const MemberProfile = ({ user }) => {
+const MemberProfile = ({ user, onFormDataChange, editing }) => {
   if (!user) {
     return <LoadingIndicator />;
   }
   const { picture, name, description, githubName, flowdockName, email } = user;
+  const commonProps = {
+    onChange: onFormDataChange,
+    editing
+  };
   return (
     <div className="container">
-      <div className="card">
+      <Card className="card">
         <div className="pic">
           <div className="container-nested">
             <img className="rounded profile-photo" src={picture} alt="avatar" />
@@ -18,16 +27,42 @@ const MemberProfile = ({ user }) => {
         </div>
         <div className="user-bio">
           <div className="container-nested">
-            <h2> {name} </h2>
-            <p>{description}</p>
+            <h2>
+              <EditableText
+                value={name}
+                label="Name"
+                name="name"
+                {...commonProps}
+              />
+            </h2>
+            <EditableMarkdown
+              value={description}
+              label="Description"
+              name="description"
+              {...commonProps}
+            />
             <a href={`mailto:${email}`}>email</a>
             <div className="contact">
               <span className="social-links">GitHub: </span>
-              <a href={`github.com/${githubName}`}>{githubName}</a>
+              {editing ? (
+                <EditableText
+                  value={githubName}
+                  label="GitHub username"
+                  name="githubName"
+                  {...commonProps}
+                />
+              ) : (
+                <a href={`https://github.com/${githubName}`}>{githubName}</a>
+              )}
             </div>
             <div className="contact">
               <span className="social-links">Flowdock: </span>
-              <a href={`flowdock.com/${flowdockName}`}>{flowdockName}</a>
+              <EditableText
+                value={flowdockName}
+                label="Flowdock username"
+                name="flowdockName"
+                {...commonProps}
+              />
             </div>
           </div>
         </div>
@@ -55,43 +90,10 @@ const MemberProfile = ({ user }) => {
             </div>
           </div>
         </HelpUsImplementThis>
-      </div>
+      </Card>
 
-      <div className="card">
-        <div className="skillsleft">
-          <h2>Skills</h2>
-        </div>
-        <HelpUsImplementThis>
-          <div className="skillsright">
-            {['Python', 'SQL', 'Enterprise Geodatabases'].map(skill => (
-              <Chip
-                key={skill}
-                className="skills-button"
-                onDelete={() => false}
-                label={skill}
-              />
-            ))}
-          </div>
-        </HelpUsImplementThis>
-      </div>
-
-      <div className="card">
-        <div className="skillsleft">
-          <h2>Projects</h2>
-        </div>
-        <HelpUsImplementThis>
-          <div className="skillsright">
-            {['Members Project', 'Owlet'].map(project => (
-              <Chip
-                key={project}
-                className="skills-button"
-                onDelete={() => false}
-                label={project}
-              />
-            ))}
-          </div>
-        </HelpUsImplementThis>
-      </div>
+      <MemberSkills />
+      <MemberProjects />
     </div>
   );
 };

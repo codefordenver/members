@@ -16,32 +16,43 @@ function getBaseUrl(props) {
  * @param {*} options
  * @returns (Component) => WrappedComponent
  */
-export default function withEditPage(options) {
+export default function withEditPage({ renameProps }) {
+  const propNameMapping = {
+    formData: 'formData',
+    editing: 'editing',
+    onFormDataChange: 'onFormDataChange',
+    ...renameProps
+  };
+
   return WrappedComponent => {
     class EditPageWrapper extends React.PureComponent {
       static displayName = `WithEditPage(${getDisplayName(WrappedComponent)})`;
 
       state = {
-        formData: this.props.formData || {},
+        formData: this.props[propNameMapping.formData] || {},
         submitting: false,
         formIsDirty: false
       };
 
       componentWillReceiveProps(nextProps) {
-        if (nextProps.formData !== this.props.formData) {
-          this.setState({ formData: nextProps.formData });
+        if (
+          nextProps[propNameMapping.formData] !==
+          this.props[propNameMapping.formData]
+        ) {
+          this.setState({
+            formData: nextProps[propNameMapping.formData]
+          });
         }
       }
 
       render() {
-        if (!this.props.formData) {
+        if (!this.props[propNameMapping.formData]) {
           return <LoadingIndicator />;
         }
-
         const cmpProps = {
-          formData: this.state.formData,
-          editing: true,
-          onFormDataChange: this._updateFormData
+          [propNameMapping.formData]: this.state.formData,
+          [propNameMapping.editing]: true,
+          [propNameMapping.onFormDataChange]: this._updateFormData
         };
         return (
           <form onSubmit={this._submitForm}>

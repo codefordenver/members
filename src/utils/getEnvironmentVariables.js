@@ -4,8 +4,7 @@ const envVars = {
   auth0ApiIdentifier:
     process.env.REACT_APP_AUTH0_API_IDENTIFIER || 'http://localhost:3000',
   graphcoolApi: process.env.REACT_APP_GRAPHCOOL_API,
-  routingBase: process.env.REACT_APP_CLIENT_BASE_ROUTE,
-  siteUrl: process.env.REACT_APP_SITE_URL || 'http://localhost:3000'
+  routingBase: process.env.REACT_APP_CLIENT_BASE_ROUTE
 };
 
 function makeSureVarsAreDefined() {

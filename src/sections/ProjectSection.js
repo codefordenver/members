@@ -2,8 +2,8 @@ import React from 'react';
 import EditableText from '../forms/EditableText';
 import EditableMarkdown from '../forms/EditableMarkdown';
 
-const ProjectSection = ({ formData, editing, onFormDataChange }) => {
-  const { name, description } = formData;
+const ProjectSection = ({ project, editing, onFormDataChange }) => {
+  const { name, description } = project;
   const commonProps = {
     onChange: onFormDataChange,
     editing

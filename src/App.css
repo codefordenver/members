@@ -88,18 +88,6 @@ a {
   line-height: 40px;
 }
 
-.card {
-  display: flex;
-  background: white;
-  margin: 0 auto;
-  margin-bottom: 25px;
-  width: 90%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  height: 100%;
-  padding: 20px;
-  align-items: center;
-}
-
 .pic {
   justify-content: center;
   display: flex;
@@ -268,9 +256,6 @@ stupid inline style*/
   }
   .social-links {
     font-size: 12px;
-  }
-  .card {
-    flex-direction: column;
   }
   .pic {
     width: 128px;

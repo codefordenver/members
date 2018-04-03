@@ -1,10 +1,10 @@
 import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
-import { getAuthSession } from './Auth';
+import { graphql, compose } from 'react-apollo';
+import withAuthSession from './withAuthSession';
 
 const getLoggedInUser = gql`
   query getLoggedInUser($id: ID) {
-    User(id: $id) {
+    user: User(id: $id) {
       id
       name
       picture
@@ -12,18 +12,25 @@ const getLoggedInUser = gql`
       flowdockName
       githubName
       description
+      role
     }
   }
 `;
 
-const withLoggedInUser = graphql(getLoggedInUser, {
-  // skip: ownProps => { debugger; return !isAuthenticated() },
-  options: {
-    // fetchPolicy: "network-only",
-    variables: {
-      id: getAuthSession().userId || ''
-    }
-  }
-});
+const withLoggedInUser = compose(
+  withAuthSession,
+  graphql(getLoggedInUser, {
+    skip: ({ isAuthenticated, authSession }) => {
+      return !isAuthenticated || !authSession.userId;
+    },
+    options: ({ authSession }) => ({
+      // fetchPolicy: "network-only",
+      variables: {
+        id: authSession.userId
+      }
+    }),
+    props: ({ data: { user } }) => ({ user })
+  })
+);
 
 export default withLoggedInUser;

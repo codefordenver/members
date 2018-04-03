@@ -9,7 +9,7 @@ Node.js application that connects volunteers with volunteers/projects based on t
 
 ## Requirements
 
-- [Node.js](https://nodejs.org) - version 8.4 (if you have nvm type `nvm use` in the repo to use the correct version)
+- [Node.js](https://nodejs.org) - version 8.9.3 (if you have nvm type `nvm use` in the repo to use the correct version)
 
 Setup:
 1. clone repo

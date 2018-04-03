@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import { withLoggedInUser, GoogleAnalyticsPageTracker } from './utils';
-import { isAuthenticated } from './utils/Auth';
+import { GoogleAnalyticsPageTracker } from './utils';
 import Header from './sections/Header';
 import ErrorBoundary from './utils/ErrorBoundary';
 import AppBody from './AppBody';
@@ -26,17 +25,15 @@ const theme = createMuiTheme({
 
 class App extends Component {
   render() {
-    const { User } = this.props.data || {};
-    const isLoggedIn = isAuthenticated();
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
           <GoogleAnalyticsPageTracker />
           <ErrorBoundary>
-            <Header user={User} isAuthenticated={isLoggedIn} />
+            <Header />
           </ErrorBoundary>
           <ErrorBoundary>
-            <AppBody isLoggedIn={isLoggedIn} user={User} />
+            <AppBody />
           </ErrorBoundary>
         </div>
       </MuiThemeProvider>
@@ -44,4 +41,4 @@ class App extends Component {
   }
 }
 
-export default withLoggedInUser(App);
+export default App;
