@@ -1,17 +1,16 @@
 import React from 'react';
 import withRestData from '../utils/withRestData';
+import ProjectIssue from './ProjectIssue';
 
 const ProjectIssues = ({ issuesInfo }) => {
   return (
-    issuesInfo.objects &&
-    issuesInfo.objects.map(issue => (
-      <div style={{ border: '1px solid red' }} key={issue.id}>
-        <h2>
-          <a href={issue.html_url}>{issue.title}</a>
-        </h2>
-        <p>{issue.body}</p>
-      </div>
-    ))
+    <div>
+      <h2>Issues</h2>
+      {issuesInfo.objects &&
+        issuesInfo.objects.map(issue => (
+          <ProjectIssue issue={issue} key={issue.id} />
+        ))}
+    </div>
   );
 };
 ProjectIssues.defaultProps = {
