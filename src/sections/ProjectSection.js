@@ -28,7 +28,7 @@ const ProjectSection = ({ project, editing, onFormDataChange }) => {
           {...commonProps}
         />
       ) : (
-        <ProjectIssues cfapiProjectUrl={cfapiProjectUrl} />
+        cfapiProjectUrl && <ProjectIssues cfapiProjectUrl={cfapiProjectUrl} />
       )}
     </React.Fragment>
   );
