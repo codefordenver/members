@@ -39,7 +39,7 @@
     "lint": "eslint .",
     "preinstall": "npm run check-version",
     "postinstall": "npm install --prefix server",
-    "setup": "node ./bin/auth0setup/promptUser.js && npm run download-schema",
+    "setup": "node ./bin/auth0setup/promptUser.js",
     "gc": "cd ./server && dotenv -e ../.env.local graphcool",
     "deployProdBackend": "cd ./server && graphcool deploy",
     "check-version": "node ./bin/checkVersion.js",
