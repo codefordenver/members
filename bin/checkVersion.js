@@ -9,6 +9,14 @@ const version = config.engines.node.match(/[0-9.]+/).toString();
 var min = minVersion.split('.');
 var ver = version.split('.');
 
+// turn elements in array from string to number
+min = min.map(function(value, index) {
+  return Number(value);
+});
+ver = ver.map(function(value, index) {
+  return Number(value);
+});
+
 // version comparator
 var test = ((a, b, comp) => {
   // allow only > or >= comparators
