@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { compose } from 'react-apollo';
 import Login from './Login';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
@@ -7,6 +8,7 @@ import Grid from 'material-ui/Grid';
 import logo from '../images/cfd-circle-icon-white.png';
 import userIsAdmin from '../utils/userIsAdmin';
 import withLoggedInUser from '../utils/withLoggedInUser';
+import withAuthSession from '../utils/withAuthSession';
 import './Header.css';
 
 const Header = ({ isAuthenticated, user }) => (
@@ -32,11 +34,11 @@ const Header = ({ isAuthenticated, user }) => (
           </Grid>
         )}
         <Grid item>
-          <Login isAuthenticated={isAuthenticated} />
+          <Login />
         </Grid>
       </Grid>
     </Toolbar>
   </AppBar>
 );
 
-export default withLoggedInUser(Header);
+export default compose(withLoggedInUser, withAuthSession)(Header);
