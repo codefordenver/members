@@ -2,5 +2,15 @@
   "extends": ["react-app"],
   "env": {
     "browser": true
-  }
+  },
+  "rules": {
+    "graphql/template-strings": [
+      "error",
+      {
+        "env": "apollo",
+        "schemaJsonFilepath": "./full-schema.json"
+      }
+    ]
+  },
+  "plugins": ["graphql"]
 }
