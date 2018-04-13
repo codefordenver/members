@@ -27,6 +27,14 @@ functions:
     type: resolver
     schema: ./src/auth0/auth0Authentication.graphql
 
+  cfapi:
+    type: resolver
+    schema: ./src/cfapi/project.graphql
+    handler:
+      code:
+        src: ./src/cfapi/project.js
+
+
 
 # Model/Relation permissions are used to limit the API access
 # To take the burden of thinking about those while development, we

@@ -1,0 +1,88 @@
+# These would have to be separate resolvers
+
+# type CfapiUser {
+#   avatar_url: String,
+#   contributions: Int,
+#   html_url: String,
+#   login: String,
+#   owner: Boolean,
+#   url: String
+# }
+
+# type Github_details {
+#   contributors: [CfapiUser],
+#   contributors_url: String,
+#   created_at: String,
+#   description: String,
+#   forks_count: Int,
+#   homepage: String,
+#   html_url: String,
+#   id: ID,
+#   name: String,
+#   open_issues: Int,
+
+#   owner: CfapiUser, # Won't have all the fields
+#   participation: [Int],
+#   pushed_at: String,
+#   stargazers_count: Int,
+#   subscribers_count: Int,
+#   updated_at: String,
+#   watchers_count: Int
+# }
+
+type CfapiProject {
+  api_url: String!
+  # categories: null,
+  code_url: String
+  commit_status: String
+  description: String
+  # github_details: Github_details,
+  id: ID
+  issues: String
+  languages: [String]
+  last_updated: String
+  link_url: String
+  name: String
+
+  # organization: {
+  #   all_attendance: http://api.codeforamerica.org/api/organizations/Code-for-Denver/attendance,
+  #   all_events: http://api.codeforamerica.org/api/organizations/Code-for-Denver/events,
+  #   all_issues: http://api.codeforamerica.org/api/organizations/Code-for-Denver/issues,
+  #   all_projects: http://api.codeforamerica.org/api/organizations/Code-for-Denver/projects,
+  #   all_stories: http://api.codeforamerica.org/api/organizations/Code-for-Denver/stories,
+  #   api_url: http://api.codeforamerica.org/api/organizations/Code-for-Denver,
+  #   city: Denver, CO,
+  #   events_url: http://www.meetup.com/CodeForDenver/,
+  #   id: Code-for-Denver,
+  #   last_updated: 1523372583,
+  #   latitude: 39.7392,
+  #   logo_url: https://avatars2.githubusercontent.com/u/7472092?v=4,
+  #   longitude: -104.9847,
+  #   member_count: 1878,
+  #   name: Code for Denver,
+  #   past_events: http://api.codeforamerica.org/api/organizations/Code-for-Denver/past_events,
+  #   projects_list_url: https://github.com/codefordenver,
+  #   rss: null,
+  #   social_profiles: {
+  #     facebook: https://www.facebook.com/codefordenver/,
+  #     twitter: @codefordenver
+  #   },
+  #   started_on: 2015-11-26,
+  #   tags: [
+  #     Brigade,
+  #     Official,
+  #     Code for America
+  #   ],
+  #   type: Brigade, Official,
+  #   upcoming_events: http://api.codeforamerica.org/api/organizations/Code-for-Denver/upcoming_events,
+  #   website: http://www.codefordenver.org/
+  # },
+  organization_name: String
+  # status: null,
+  # tags: null,
+  # type: null
+}
+
+extend type Query {
+  CfapiProject(id: ID): CfapiProject!
+}
