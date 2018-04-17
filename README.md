@@ -23,8 +23,8 @@ Setup:
 		3. Select `Auth0 Management API`
 		4. Select the `API Explorer` tab
 		5. Select `CREATE & AUTHORIZE A TEST CLIENT`. This creates a client that can use the Management API.
-		6. Select `Clients` from the side menu
-		7. Select `API Explorer Client`
+		6. Select `Applications` from the side menu
+		7. Select `API Explorer Application`
 5. Go the the command line and run `npm run setup` (You will be asked for the `Domain`, `Client ID`, and `Client Secret` from the
 		`API Explorer Client`. Paste them into the command line). This will create the `.env.local` file in the root of the project.
 
@@ -33,7 +33,7 @@ Setup:
     ![graphcool deploy info](docs/img/setup4_graphcool_deployment_info.png)
     ![graphcool deply target name](docs/img/setup5_graphcool_target_name.png)
     ![graphcool deploy service name](docs/img/setup6_graphcool_service_name.png)
-8. Enter in the `Auth URL` into your browser
+8. If prompted to authenticate, enter in the `Auth URL` into your browser
 9. Sign up for Graphcool
 10. from the output from the previous command copy the `Simple API` url and add it to the `.env.local` file for variable `REACT_APP_GRAPHCOOL_API`
 11. run `npm start`
