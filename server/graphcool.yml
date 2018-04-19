@@ -44,10 +44,22 @@ permissions:
     authenticated: true
     query: ./src/permissions/isSelf.graphql
   - operation: Project.read
-  - operation: Project.update
+  # any user can add another user to the champions field.
+  - operation: ProjectChampions.connect
     authenticated: true
+  # any user can create a project
   - operation: Project.create
     authentication: true
+# CHAMPION PERMISSIONS
+  # champion can remove themself
+  - operation: ProjectChampions.disconnect
+    authenticated: true
+    query: ./src/permissions/isSelfChampion.graphql
+  # champion can update project
+  - operation: Project.update
+    authenticated: true
+    fields: [name, description]
+    query: ./src/permissions/isChampion.graphql
 # ADMIN PERMISSIONS
   - operation: User.delete
     authenticated: true
@@ -57,6 +69,9 @@ permissions:
     fields: [name, picture, githubName, flowdockName, description, role]
     query: ./src/permissions/isAdminNotEditingOtherAdmin.graphql
   - operation: Project.delete
+    authenticated: true
+    query: ./src/permissions/isAdmin.graphql
+  - operation: ProjectChampions.disconnect
     authenticated: true
     query: ./src/permissions/isAdmin.graphql
 
