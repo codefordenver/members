@@ -45,6 +45,13 @@ After you've followed the set up steps listed above, you can subsequently start 
 npm start
 ```
 
+## Debugging
+### General
+Start your app by running `npm start`, and start debugging in VS Code by pressing `F5` or by clicking the green debug icon with `Chrome` as the selected configuration. You can now write code, set breakpoints, make changes to the code, and debug your newly modified code—all from your editor.
+
+### Tests
+Start debugging in VS Code by pressing `F5` or by clicking the green debug icon with `Debug CRA Tests` as the selected configuration. You can now write tests, set breakpoints, make changes to the tests, and debug your newly modified tests—all from your editor.
+
 ## Graphcool
 The [Graphcool framework](https://github.com/graphcool/framework) is used to spin up and manage the backend for this project.
 
