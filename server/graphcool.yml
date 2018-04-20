@@ -74,6 +74,9 @@ permissions:
   - operation: ProjectChampions.disconnect
     authenticated: true
     query: ./src/permissions/isAdmin.graphql
+  - operation: Project.update
+    authenticated: true
+    query: ./src/permissions/isAdmin.graphql
 
 # Your root tokens used for functions to get full access to the API
 # Read more here:
