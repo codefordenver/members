@@ -1,6 +1,6 @@
 # https://www.graph.cool/docs/reference/auth/authorization/permission-queries-iox3aqu0ee#variables-for-relation-permissions
 # "champions" + "User" +  "_id" ("field name" + "type name" + "_id")
-query championRemoveSelf($node_id: ID!, $user_id: ID!, $championsUser_id: ID!) {
+query iAmChampion($node_id: ID!, $user_id: ID!) {
   SomeProjectExists(
     filter: {
       id: $node_id

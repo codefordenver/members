@@ -49,7 +49,11 @@ permissions:
     authenticated: true
   # any user can create a project
   - operation: Project.create
-    authentication: true
+    authenticated: true
+  # any user can update project
+  - operation: Project.update
+    fields: [name, description]
+    authenticated: true
 # CHAMPION PERMISSIONS
   # champion can remove themself
   - operation: ProjectChampions.disconnect
