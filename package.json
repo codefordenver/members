@@ -37,7 +37,7 @@
     "build": "react-scripts build && cpy build/index.html build --rename 404.html",
     "lint": "eslint .",
     "preinstall": "npm run check-version",
-    "postinstall": "npm install --prefix server",
+    "postinstall": "cd ./server && npm install",
     "setup": "node ./bin/auth0setup/promptUser.js",
     "gc": "cd ./server && dotenv -e ../.env.local graphcool",
     "deployProdBackend": "cd ./server && graphcool deploy",
