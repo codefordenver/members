@@ -16,7 +16,7 @@ const Header = ({ isAuthenticated, user }) => (
   <AppBar position="fixed">
     <Toolbar>
       <Grid container justify="center" alignItems="center">
-        <Grid item sx={2} sm={2}>
+        <Grid item sx={2} sm={1}>
           <Link to="/">
             <img
               className="Header-logo"
@@ -25,21 +25,21 @@ const Header = ({ isAuthenticated, user }) => (
             />
           </Link>
         </Grid>
-        <Grid item xs={10} sm={6}>
+        <Grid item xs={10} sm={7}>
           {isAuthenticated && (
             <Grid container justify="flex-start" alignItems="center">
-              <Grid item sx={4}>
+              <Grid item sx={3}>
                 <Link className="Header-link" to="/volunteers">
                   <Button color="secondary">ALL USERS</Button>
                 </Link>
               </Grid>
-              <Grid item sx={4}>
+              <Grid item sx={3}>
                 <Link className="Header-link" to="/projects">
                   <Button color="secondary">ALL PROJECTS</Button>
                 </Link>
               </Grid>
               {userIsAdmin(user) && (
-                <Grid item sx={4}>
+                <Grid item sx={3}>
                   <Link className="Header-link" to="/admin">
                     <Button color="secondary">ADMIN RESOURCES</Button>
                   </Link>
