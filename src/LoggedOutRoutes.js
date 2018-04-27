@@ -6,6 +6,9 @@ import NoMatchPage from './pages/NoMatchPage';
 const LoggedOutRoutes = () => (
   <Switch>
     <Route exact path="/" component={LandingPage} />;
+    <Route path="/projects" component={LandingPage} />;
+    <Route path="/volunteers" component={LandingPage} />;
+    <Route path="/me" component={LandingPage} />;
     <Route component={NoMatchPage} />
   </Switch>
 );
