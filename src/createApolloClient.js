@@ -1,5 +1,7 @@
 import { ApolloClient } from 'apollo-client';
+import { ApolloLink } from 'apollo-link';
 import { createHttpLink } from 'apollo-link-http';
+import { RestLink } from 'apollo-link-rest';
 import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { getEnvironmentVariables } from './utils';
@@ -26,9 +28,19 @@ const middlewareLink = setContext(() => {
   };
 });
 
+// Create a RestLink for the REST API
+// If you are using multiple link types, restLink should go before httpLink,
+// as httpLink will swallow any calls that should be routed through rest!
+const restLink = new RestLink({
+  endpoints: {
+    cfa: 'https://api.codeforamerica.org/api/'
+  },
+  credentials: 'same-origin'
+});
+
 export default function createApolloClient() {
   return new ApolloClient({
-    link: middlewareLink.concat(httpLink),
+    link: ApolloLink.from([restLink, middlewareLink, httpLink]),
     cache: new InMemoryCache()
   });
 }
