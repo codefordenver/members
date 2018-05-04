@@ -1,5 +1,7 @@
 import React from 'react';
-import withRestData from '../utils/withRestData';
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+// import withRestData from '../utils/withRestData';
 import ProjectIssue from './ProjectIssue';
 
 const ProjectIssues = ({ issuesInfo }) => {
@@ -17,11 +19,27 @@ ProjectIssues.defaultProps = {
   issues: []
 };
 
-export default withRestData(({ cfapiProjectUrl }) => {
-  if (cfapiProjectUrl) {
-    return {
-      issuesInfo: cfapiProjectUrl + '/issues'
-    };
+const issuesQuery = gql`
+  query issues($id: String!) {
+    issues(id: $id)
+      @rest(
+        type: "Issues"
+        path: "projects/:id/issues"
+        params: { id: $id }
+        endpoint: "cfa"
+      ) {
+      objects
+    }
   }
-  return {};
+`;
+
+export default graphql(issuesQuery, {
+  options: props => ({
+    variables: {
+      id: props.cfapiProjectUrl.substring(
+        props.cfapiProjectUrl.lastIndexOf('/') + 1
+      )
+    }
+  }),
+  props: ({ data: { issues } }) => ({ issuesInfo: issues || {} })
 })(ProjectIssues);
