@@ -20,14 +20,26 @@ ProjectIssues.defaultProps = {
 };
 
 const issuesQuery = gql`
-  query issues {
-    issues
-      @rest(type: "Issues", path: "projects/46275/issues", endpoint: "cfa") {
+  query issues($id: String!) {
+    issues(id: $id)
+      @rest(
+        type: "Issues"
+        path: "projects/:id/issues"
+        params: { id: $id }
+        endpoint: "cfa"
+      ) {
       objects
     }
   }
 `;
 
 export default graphql(issuesQuery, {
+  options: props => ({
+    variables: {
+      id: props.cfapiProjectUrl.substring(
+        props.cfapiProjectUrl.lastIndexOf('/') + 1
+      )
+    }
+  }),
   props: ({ data: { issues } }) => ({ issuesInfo: issues || {} })
 })(ProjectIssues);
