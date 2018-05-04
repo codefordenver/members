@@ -3,7 +3,7 @@ import EditableText from '../forms/EditableText';
 import EditableMarkdown from '../forms/EditableMarkdown';
 
 const ProjectSection = ({ project, editing, onFormDataChange }) => {
-  const { name, description } = project;
+  const { name, description, githubURL } = project;
   const commonProps = {
     onChange: onFormDataChange,
     editing
@@ -17,6 +17,13 @@ const ProjectSection = ({ project, editing, onFormDataChange }) => {
         value={description}
         label="Description"
         name="description"
+        {...commonProps}
+      />
+
+      <EditableText
+        value={githubURL}
+        label="Github URL"
+        name="githubURL"
         {...commonProps}
       />
     </React.Fragment>

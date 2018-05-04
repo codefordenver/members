@@ -9,16 +9,28 @@ const projectQuery = gql`
       id
       name
       description
+      githubURL
     }
   }
 `;
 
 const updateProjectQuery = gql`
-  mutation updateProject($id: ID!, $name: String!, $description: String) {
-    updateProject(id: $id, name: $name, description: $description) {
+  mutation updateProject(
+    $id: ID!
+    $name: String!
+    $description: String
+    $githubURL: String
+  ) {
+    updateProject(
+      id: $id
+      name: $name
+      description: $description
+      githubURL: $githubURL
+    ) {
       id
       name
       description
+      githubURL
     }
   }
 `;

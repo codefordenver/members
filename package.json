@@ -11,6 +11,7 @@
     "apollo-link-context": "^1.0.7",
     "apollo-link-http": "^1.5.1",
     "auth0-js": "^8.12.2",
+    "axios": "^0.18.0",
     "date-fns": "^1.29.0",
     "graphql": "^0.13.1",
     "graphql-tag": "^2.8.0",

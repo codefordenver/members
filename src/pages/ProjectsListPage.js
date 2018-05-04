@@ -1,8 +1,8 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import { Link } from 'react-router-dom';
 import LoadingIndicator from '../sections/LoadingIndicator';
+import ProjectInfo from '../sections/ProjectInfo';
 
 const ProjectsList = ({ projects, loading }) => {
   if (loading) {
@@ -12,14 +12,9 @@ const ProjectsList = ({ projects, loading }) => {
     return <p>No projects yet</p>;
   }
 
+  //https://api.github.com/repos/codefordenver/members/languages
   return (
-    <ul>
-      {projects.map(project => (
-        <li key={project.id}>
-          <Link to={`/projects/${project.id}`}>{project.name}</Link>
-        </li>
-      ))}
-    </ul>
+    <ul>{projects.map(project => <ProjectInfo projectInfo={project} />)}</ul>
   );
 };
 
@@ -32,6 +27,7 @@ const allProjectsQuery = gql`
     allProjects(orderBy: name_ASC) {
       id
       name
+      githubURL
     }
   }
 `;
