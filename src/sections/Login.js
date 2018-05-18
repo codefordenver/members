@@ -4,7 +4,7 @@ import LoadingIndicator from './LoadingIndicator';
 import LoginAuth0 from './LoginAuth0';
 import { getEnvironmentVariables, withLoggedInUser } from '../utils';
 import withAuthSession from '../utils/withAuthSession';
-import MenuListComposition from './Menu';
+import MenuList from './Menu';
 
 const env = getEnvironmentVariables();
 
@@ -25,7 +25,7 @@ class Login extends Component {
     }
 
     return (
-      <MenuListComposition
+      <MenuList
         avatar={user.picture}
         username={user.name}
         logout={this.props.logout}
