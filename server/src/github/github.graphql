@@ -1,0 +1,10 @@
+type GetRepoLanguagesPayload {
+  size: Int!
+  color: String!
+  id: String!
+  name: String!
+}
+
+extend type Query {
+  getRepoLanguages(owner: String!, name: String!): GetRepoLanguagesPayload!
+}

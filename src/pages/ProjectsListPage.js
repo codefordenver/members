@@ -12,9 +12,12 @@ const ProjectsList = ({ projects, loading }) => {
     return <p>No projects yet</p>;
   }
 
-  //https://api.github.com/repos/codefordenver/members/languages
   return (
-    <ul>{projects.map(project => <ProjectInfo projectInfo={project} />)}</ul>
+    <ul>
+      {projects.map(project => (
+        <ProjectInfo key={project.id} projectInfo={project} />
+      ))}
+    </ul>
   );
 };
 

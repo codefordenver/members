@@ -14,7 +14,11 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "SCALAR", "name": "Boolean", "ofType": null }
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
               },
               "defaultValue": null
             }
@@ -32,7 +36,11 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "SCALAR", "name": "Boolean", "ofType": null }
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
               },
               "defaultValue": null
             }
@@ -40,7 +48,8 @@
         },
         {
           "name": "deprecated",
-          "description": "Marks an element of a GraphQL schema as no longer supported.",
+          "description":
+            "Marks an element of a GraphQL schema as no longer supported.",
           "locations": ["ENUM_VALUE", "FIELD_DEFINITION"],
           "args": [
             {
@@ -96,6 +105,12 @@
           "inputFields": [
             {
               "name": "description",
+              "description": "",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL",
               "description": "",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
@@ -202,7 +217,21 @@
                 {
                   "name": "description",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "githubURL",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
@@ -211,7 +240,11 @@
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
-                    "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
                   },
                   "defaultValue": null
                 }
@@ -227,7 +260,21 @@
                 {
                   "name": "description",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "githubURL",
+                  "description": null,
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
@@ -243,7 +290,11 @@
                 {
                   "name": "name",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 }
               ],
@@ -258,31 +309,51 @@
                 {
                   "name": "auth0UserId",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
                   "name": "description",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
                   "name": "email",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
                   "name": "flowdockName",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
                   "name": "githubName",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
@@ -298,19 +369,31 @@
                 {
                   "name": "name",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
                   "name": "picture",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
                   "name": "role",
                   "description": null,
-                  "type": { "kind": "ENUM", "name": "UserRole", "ofType": null },
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "UserRole",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 }
               ],
@@ -328,7 +411,11 @@
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
-                    "ofType": { "kind": "INPUT_OBJECT", "name": "UpdateProject", "ofType": null }
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "UpdateProject",
+                      "ofType": null
+                    }
                   },
                   "defaultValue": null
                 },
@@ -338,7 +425,11 @@
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
-                    "ofType": { "kind": "INPUT_OBJECT", "name": "CreateProject", "ofType": null }
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "CreateProject",
+                      "ofType": null
+                    }
                   },
                   "defaultValue": null
                 }
@@ -357,7 +448,11 @@
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
-                    "ofType": { "kind": "INPUT_OBJECT", "name": "UpdateUser", "ofType": null }
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "UpdateUser",
+                      "ofType": null
+                    }
                   },
                   "defaultValue": null
                 },
@@ -367,7 +462,11 @@
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
-                    "ofType": { "kind": "INPUT_OBJECT", "name": "CreateUser", "ofType": null }
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "CreateUser",
+                      "ofType": null
+                    }
                   },
                   "defaultValue": null
                 }
@@ -424,14 +523,22 @@
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
-                    "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
                   },
                   "defaultValue": null
                 },
                 {
                   "name": "description",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
@@ -440,38 +547,62 @@
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
-                    "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
                   },
                   "defaultValue": null
                 },
                 {
                   "name": "flowdockName",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
                   "name": "githubName",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
                   "name": "name",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
                   "name": "picture",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
                   "name": "role",
                   "description": null,
-                  "type": { "kind": "ENUM", "name": "UserRole", "ofType": null },
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "UserRole",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 }
               ],
@@ -489,7 +620,11 @@
                   "type": {
                     "kind": "NON_NULL",
                     "name": null,
-                    "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String",
+                      "ofType": null
+                    }
                   },
                   "defaultValue": null
                 }
@@ -497,7 +632,11 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "OBJECT", "name": "AuthenticateUserPayload", "ofType": null }
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "AuthenticateUserPayload",
+                  "ofType": null
+                }
               }
             }
           ],
@@ -520,11 +659,23 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
               }
             },
             {
               "name": "description",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null,
+              "args": [],
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null }
+            },
+            {
+              "name": "githubURL",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null,
@@ -564,7 +715,11 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
               }
             }
           ],
@@ -619,7 +774,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "ENUM", "name": "_ModelMutationType", "ofType": null }
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "_ModelMutationType",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -641,7 +800,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -656,7 +819,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -703,7 +870,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "DateTime",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -717,7 +888,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "DateTime",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -742,7 +917,8 @@
             },
             {
               "name": "createdAt_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "DateTime", "ofType": null },
               "defaultValue": null
             },
@@ -767,7 +943,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -781,7 +961,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -806,7 +990,8 @@
             },
             {
               "name": "description_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
             },
@@ -842,6 +1027,115 @@
             },
             {
               "name": "description_not_ends_with",
+              "description": "All values not ending with the given string.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL",
+              "description": "",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_not",
+              "description": "All values that are not equal to given value.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_in",
+              "description": "All values that are contained in given list.",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_not_in",
+              "description": "All values that are not contained in given list.",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_lt",
+              "description": "All values less than the given value.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_lte",
+              "description": "All values less than or equal the given value.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_gt",
+              "description": "All values greater than the given value.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_gte",
+              "description":
+                "All values greater than or equal the given value.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_contains",
+              "description": "All values containing the given string.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_not_contains",
+              "description": "All values not containing the given string.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_starts_with",
+              "description": "All values starting with the given string.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_not_starts_with",
+              "description": "All values not starting with the given string.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_ends_with",
+              "description": "All values ending with the given string.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_not_ends_with",
               "description": "All values not ending with the given string.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
@@ -906,7 +1200,8 @@
             },
             {
               "name": "id_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "ID", "ofType": null },
               "defaultValue": null
             },
@@ -967,7 +1262,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -981,7 +1280,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -1006,7 +1309,8 @@
             },
             {
               "name": "name_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
             },
@@ -1067,7 +1371,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "DateTime",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -1081,7 +1389,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "DateTime",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -1106,7 +1418,8 @@
             },
             {
               "name": "updatedAt_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "DateTime", "ofType": null },
               "defaultValue": null
             }
@@ -1135,7 +1448,11 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "ENUM", "name": "_ModelMutationType", "ofType": null }
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "_ModelMutationType",
+                  "ofType": null
+                }
               }
             },
             {
@@ -1158,7 +1475,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               }
             },
@@ -1168,7 +1489,11 @@
               "isDeprecated": false,
               "deprecationReason": null,
               "args": [],
-              "type": { "kind": "OBJECT", "name": "ProjectPreviousValues", "ofType": null }
+              "type": {
+                "kind": "OBJECT",
+                "name": "ProjectPreviousValues",
+                "ofType": null
+              }
             }
           ],
           "kind": "OBJECT",
@@ -1198,7 +1523,11 @@
                   "defaultValue": null
                 }
               ],
-              "type": { "kind": "OBJECT", "name": "ProjectSubscriptionPayload", "ofType": null }
+              "type": {
+                "kind": "OBJECT",
+                "name": "ProjectSubscriptionPayload",
+                "ofType": null
+              }
             },
             {
               "name": "User",
@@ -1217,7 +1546,11 @@
                   "defaultValue": null
                 }
               ],
-              "type": { "kind": "OBJECT", "name": "UserSubscriptionPayload", "ofType": null }
+              "type": {
+                "kind": "OBJECT",
+                "name": "UserSubscriptionPayload",
+                "ofType": null
+              }
             }
           ],
           "kind": "OBJECT",
@@ -1227,6 +1560,12 @@
           "inputFields": [
             {
               "name": "description",
+              "description": "",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL",
               "description": "",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
@@ -1353,7 +1692,11 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
               }
             },
             {
@@ -1437,7 +1780,11 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
               }
             }
           ],
@@ -1492,7 +1839,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "ENUM", "name": "_ModelMutationType", "ofType": null }
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "_ModelMutationType",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -1514,7 +1865,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -1529,7 +1884,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -1576,7 +1935,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -1590,7 +1953,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -1615,7 +1982,8 @@
             },
             {
               "name": "auth0UserId_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
             },
@@ -1676,7 +2044,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "DateTime",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -1690,7 +2062,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "DateTime",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -1715,7 +2091,8 @@
             },
             {
               "name": "createdAt_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "DateTime", "ofType": null },
               "defaultValue": null
             },
@@ -1740,7 +2117,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -1754,7 +2135,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -1779,7 +2164,8 @@
             },
             {
               "name": "description_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
             },
@@ -1840,7 +2226,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -1854,7 +2244,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -1879,7 +2273,8 @@
             },
             {
               "name": "email_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
             },
@@ -1940,7 +2335,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -1954,7 +2353,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -1979,7 +2382,8 @@
             },
             {
               "name": "flowdockName_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
             },
@@ -2040,7 +2444,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -2054,7 +2462,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -2079,7 +2491,8 @@
             },
             {
               "name": "githubName_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
             },
@@ -2179,7 +2592,8 @@
             },
             {
               "name": "id_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "ID", "ofType": null },
               "defaultValue": null
             },
@@ -2240,7 +2654,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -2254,7 +2672,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -2279,7 +2701,8 @@
             },
             {
               "name": "name_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
             },
@@ -2340,7 +2763,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -2354,7 +2781,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -2379,7 +2810,8 @@
             },
             {
               "name": "picture_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
             },
@@ -2440,7 +2872,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "ENUM", "name": "UserRole", "ofType": null }
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "UserRole",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -2454,7 +2890,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "ENUM", "name": "UserRole", "ofType": null }
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "UserRole",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -2480,7 +2920,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "DateTime",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -2494,7 +2938,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "DateTime",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -2519,7 +2967,8 @@
             },
             {
               "name": "updatedAt_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "DateTime", "ofType": null },
               "defaultValue": null
             }
@@ -2548,7 +2997,11 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "ENUM", "name": "_ModelMutationType", "ofType": null }
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "_ModelMutationType",
+                  "ofType": null
+                }
               }
             },
             {
@@ -2571,7 +3024,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               }
             },
@@ -2581,7 +3038,11 @@
               "isDeprecated": false,
               "deprecationReason": null,
               "args": [],
-              "type": { "kind": "OBJECT", "name": "UserPreviousValues", "ofType": null }
+              "type": {
+                "kind": "OBJECT",
+                "name": "UserPreviousValues",
+                "ofType": null
+              }
             }
           ],
           "kind": "OBJECT",
@@ -2656,7 +3117,9 @@
           "inputFields": null,
           "name": "Project",
           "description": null,
-          "interfaces": [{ "kind": "INTERFACE", "name": "Node", "ofType": null }],
+          "interfaces": [
+            { "kind": "INTERFACE", "name": "Node", "ofType": null }
+          ],
           "enumValues": null,
           "fields": [
             {
@@ -2668,11 +3131,23 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
               }
             },
             {
               "name": "description",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null,
+              "args": [],
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null }
+            },
+            {
+              "name": "githubURL",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null,
@@ -2712,7 +3187,11 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
               }
             }
           ],
@@ -2730,7 +3209,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "INPUT_OBJECT", "name": "ProjectFilter", "ofType": null }
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "ProjectFilter",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -2744,7 +3227,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "INPUT_OBJECT", "name": "ProjectFilter", "ofType": null }
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "ProjectFilter",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -2770,7 +3257,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "DateTime",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -2784,7 +3275,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "DateTime",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -2809,7 +3304,8 @@
             },
             {
               "name": "createdAt_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "DateTime", "ofType": null },
               "defaultValue": null
             },
@@ -2834,7 +3330,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -2848,7 +3348,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -2873,7 +3377,8 @@
             },
             {
               "name": "description_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
             },
@@ -2909,6 +3414,115 @@
             },
             {
               "name": "description_not_ends_with",
+              "description": "All values not ending with the given string.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL",
+              "description": "",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_not",
+              "description": "All values that are not equal to given value.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_in",
+              "description": "All values that are contained in given list.",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_not_in",
+              "description": "All values that are not contained in given list.",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_lt",
+              "description": "All values less than the given value.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_lte",
+              "description": "All values less than or equal the given value.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_gt",
+              "description": "All values greater than the given value.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_gte",
+              "description":
+                "All values greater than or equal the given value.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_contains",
+              "description": "All values containing the given string.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_not_contains",
+              "description": "All values not containing the given string.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_starts_with",
+              "description": "All values starting with the given string.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_not_starts_with",
+              "description": "All values not starting with the given string.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_ends_with",
+              "description": "All values ending with the given string.",
+              "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+              "defaultValue": null
+            },
+            {
+              "name": "githubURL_not_ends_with",
               "description": "All values not ending with the given string.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
@@ -2973,7 +3587,8 @@
             },
             {
               "name": "id_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "ID", "ofType": null },
               "defaultValue": null
             },
@@ -3034,7 +3649,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -3048,7 +3667,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -3073,7 +3696,8 @@
             },
             {
               "name": "name_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
             },
@@ -3134,7 +3758,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "DateTime",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -3148,7 +3776,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "DateTime",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -3173,7 +3805,8 @@
             },
             {
               "name": "updatedAt_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "DateTime", "ofType": null },
               "defaultValue": null
             }
@@ -3212,6 +3845,18 @@
             },
             {
               "name": "description_DESC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "githubURL_ASC",
+              "description": null,
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "githubURL_DESC",
               "description": null,
               "isDeprecated": false,
               "deprecationReason": null
@@ -3273,13 +3918,21 @@
                 {
                   "name": "filter",
                   "description": "",
-                  "type": { "kind": "INPUT_OBJECT", "name": "ProjectFilter", "ofType": null },
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "ProjectFilter",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
                   "name": "orderBy",
                   "description": null,
-                  "type": { "kind": "ENUM", "name": "ProjectOrderBy", "ofType": null },
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "ProjectOrderBy",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
@@ -3291,13 +3944,21 @@
                 {
                   "name": "after",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
                   "name": "before",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
@@ -3322,7 +3983,11 @@
                   "ofType": {
                     "kind": "NON_NULL",
                     "name": null,
-                    "ofType": { "kind": "OBJECT", "name": "Project", "ofType": null }
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "Project",
+                      "ofType": null
+                    }
                   }
                 }
               }
@@ -3336,13 +4001,21 @@
                 {
                   "name": "filter",
                   "description": "",
-                  "type": { "kind": "INPUT_OBJECT", "name": "UserFilter", "ofType": null },
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "UserFilter",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
                   "name": "orderBy",
                   "description": null,
-                  "type": { "kind": "ENUM", "name": "UserOrderBy", "ofType": null },
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "UserOrderBy",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
@@ -3354,13 +4027,21 @@
                 {
                   "name": "after",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
                   "name": "before",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
@@ -3385,7 +4066,11 @@
                   "ofType": {
                     "kind": "NON_NULL",
                     "name": null,
-                    "ofType": { "kind": "OBJECT", "name": "User", "ofType": null }
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "User",
+                      "ofType": null
+                    }
                   }
                 }
               }
@@ -3399,13 +4084,21 @@
                 {
                   "name": "filter",
                   "description": "",
-                  "type": { "kind": "INPUT_OBJECT", "name": "ProjectFilter", "ofType": null },
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "ProjectFilter",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
                   "name": "orderBy",
                   "description": null,
-                  "type": { "kind": "ENUM", "name": "ProjectOrderBy", "ofType": null },
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "ProjectOrderBy",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
@@ -3417,13 +4110,21 @@
                 {
                   "name": "after",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
                   "name": "before",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
@@ -3442,7 +4143,11 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "OBJECT", "name": "_QueryMeta", "ofType": null }
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "_QueryMeta",
+                  "ofType": null
+                }
               }
             },
             {
@@ -3454,13 +4159,21 @@
                 {
                   "name": "filter",
                   "description": "",
-                  "type": { "kind": "INPUT_OBJECT", "name": "UserFilter", "ofType": null },
+                  "type": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "UserFilter",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
                   "name": "orderBy",
                   "description": null,
-                  "type": { "kind": "ENUM", "name": "UserOrderBy", "ofType": null },
+                  "type": {
+                    "kind": "ENUM",
+                    "name": "UserOrderBy",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
@@ -3472,13 +4185,21 @@
                 {
                   "name": "after",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
                   "name": "before",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
@@ -3497,7 +4218,11 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "OBJECT", "name": "_QueryMeta", "ofType": null }
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "_QueryMeta",
+                  "ofType": null
+                }
               }
             },
             {
@@ -3515,7 +4240,11 @@
                 {
                   "name": "name",
                   "description": "",
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 }
               ],
@@ -3530,13 +4259,21 @@
                 {
                   "name": "auth0UserId",
                   "description": "",
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
                   "name": "email",
                   "description": "",
-                  "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  },
                   "defaultValue": null
                 },
                 {
@@ -3583,7 +4320,9 @@
           "inputFields": null,
           "name": "User",
           "description": null,
-          "interfaces": [{ "kind": "INTERFACE", "name": "Node", "ofType": null }],
+          "interfaces": [
+            { "kind": "INTERFACE", "name": "Node", "ofType": null }
+          ],
           "enumValues": null,
           "fields": [
             {
@@ -3607,7 +4346,11 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
               }
             },
             {
@@ -3691,7 +4434,11 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "DateTime",
+                  "ofType": null
+                }
               }
             }
           ],
@@ -3709,7 +4456,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "INPUT_OBJECT", "name": "UserFilter", "ofType": null }
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "UserFilter",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -3723,7 +4474,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "INPUT_OBJECT", "name": "UserFilter", "ofType": null }
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "UserFilter",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -3749,7 +4504,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -3763,7 +4522,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -3788,7 +4551,8 @@
             },
             {
               "name": "auth0UserId_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
             },
@@ -3849,7 +4613,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "DateTime",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -3863,7 +4631,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "DateTime",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -3888,7 +4660,8 @@
             },
             {
               "name": "createdAt_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "DateTime", "ofType": null },
               "defaultValue": null
             },
@@ -3913,7 +4686,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -3927,7 +4704,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -3952,7 +4733,8 @@
             },
             {
               "name": "description_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
             },
@@ -4013,7 +4795,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -4027,7 +4813,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -4052,7 +4842,8 @@
             },
             {
               "name": "email_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
             },
@@ -4113,7 +4904,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -4127,7 +4922,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -4152,7 +4951,8 @@
             },
             {
               "name": "flowdockName_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
             },
@@ -4213,7 +5013,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -4227,7 +5031,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -4252,7 +5060,8 @@
             },
             {
               "name": "githubName_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
             },
@@ -4352,7 +5161,8 @@
             },
             {
               "name": "id_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "ID", "ofType": null },
               "defaultValue": null
             },
@@ -4413,7 +5223,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -4427,7 +5241,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -4452,7 +5270,8 @@
             },
             {
               "name": "name_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
             },
@@ -4513,7 +5332,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -4527,7 +5350,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -4552,7 +5379,8 @@
             },
             {
               "name": "picture_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "String", "ofType": null },
               "defaultValue": null
             },
@@ -4613,7 +5441,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "ENUM", "name": "UserRole", "ofType": null }
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "UserRole",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -4627,7 +5459,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "ENUM", "name": "UserRole", "ofType": null }
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "UserRole",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -4653,7 +5489,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "DateTime",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -4667,7 +5507,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "SCALAR", "name": "DateTime", "ofType": null }
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "DateTime",
+                    "ofType": null
+                  }
                 }
               },
               "defaultValue": null
@@ -4692,7 +5536,8 @@
             },
             {
               "name": "updatedAt_gte",
-              "description": "All values greater than or equal the given value.",
+              "description":
+                "All values greater than or equal the given value.",
               "type": { "kind": "SCALAR", "name": "DateTime", "ofType": null },
               "defaultValue": null
             }
@@ -4937,7 +5782,11 @@
                   "ofType": {
                     "kind": "NON_NULL",
                     "name": null,
-                    "ofType": { "kind": "ENUM", "name": "__DirectiveLocation", "ofType": null }
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "__DirectiveLocation",
+                      "ofType": null
+                    }
                   }
                 }
               }
@@ -4957,7 +5806,11 @@
                   "ofType": {
                     "kind": "NON_NULL",
                     "name": null,
-                    "ofType": { "kind": "OBJECT", "name": "__InputValue", "ofType": null }
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "__InputValue",
+                      "ofType": null
+                    }
                   }
                 }
               }
@@ -4971,7 +5824,11 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "SCALAR", "name": "Boolean", "ofType": null }
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
               }
             },
             {
@@ -4983,7 +5840,11 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "SCALAR", "name": "Boolean", "ofType": null }
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
               }
             },
             {
@@ -4995,7 +5856,11 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "SCALAR", "name": "Boolean", "ofType": null }
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
               }
             }
           ],
@@ -5113,7 +5978,8 @@
             },
             {
               "name": "INPUT_FIELD_DEFINITION",
-              "description": "Location adjacent to an input object field definition.",
+              "description":
+                "Location adjacent to an input object field definition.",
               "isDeprecated": false,
               "deprecationReason": null
             }
@@ -5159,7 +6025,11 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "SCALAR", "name": "Boolean", "ofType": null }
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
               }
             },
             {
@@ -5217,7 +6087,11 @@
                   "ofType": {
                     "kind": "NON_NULL",
                     "name": null,
-                    "ofType": { "kind": "OBJECT", "name": "__InputValue", "ofType": null }
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "__InputValue",
+                      "ofType": null
+                    }
                   }
                 }
               }
@@ -5243,7 +6117,11 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "SCALAR", "name": "Boolean", "ofType": null }
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                }
               }
             },
             {
@@ -5334,14 +6212,19 @@
                   "ofType": {
                     "kind": "NON_NULL",
                     "name": null,
-                    "ofType": { "kind": "OBJECT", "name": "__Type", "ofType": null }
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "__Type",
+                      "ofType": null
+                    }
                   }
                 }
               }
             },
             {
               "name": "queryType",
-              "description": "The type that query operations will be rooted at.",
+              "description":
+                "The type that query operations will be rooted at.",
               "isDeprecated": false,
               "deprecationReason": null,
               "args": [],
@@ -5371,7 +6254,8 @@
             },
             {
               "name": "directives",
-              "description": "A list of all directives supported by this server.",
+              "description":
+                "A list of all directives supported by this server.",
               "isDeprecated": false,
               "deprecationReason": null,
               "args": [],
@@ -5384,7 +6268,11 @@
                   "ofType": {
                     "kind": "NON_NULL",
                     "name": null,
-                    "ofType": { "kind": "OBJECT", "name": "__Directive", "ofType": null }
+                    "ofType": {
+                      "kind": "OBJECT",
+                      "name": "__Directive",
+                      "ofType": null
+                    }
                   }
                 }
               }
@@ -5410,7 +6298,11 @@
               "type": {
                 "kind": "NON_NULL",
                 "name": null,
-                "ofType": { "kind": "ENUM", "name": "__TypeKind", "ofType": null }
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "__TypeKind",
+                  "ofType": null
+                }
               }
             },
             {
@@ -5438,7 +6330,11 @@
                 {
                   "name": "includeDeprecated",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
                   "defaultValue": "false"
                 }
               ],
@@ -5448,7 +6344,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "OBJECT", "name": "__Field", "ofType": null }
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__Field",
+                    "ofType": null
+                  }
                 }
               }
             },
@@ -5464,7 +6364,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "OBJECT", "name": "__Type", "ofType": null }
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__Type",
+                    "ofType": null
+                  }
                 }
               }
             },
@@ -5480,7 +6384,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "OBJECT", "name": "__Type", "ofType": null }
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__Type",
+                    "ofType": null
+                  }
                 }
               }
             },
@@ -5493,7 +6401,11 @@
                 {
                   "name": "includeDeprecated",
                   "description": null,
-                  "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Boolean",
+                    "ofType": null
+                  },
                   "defaultValue": "false"
                 }
               ],
@@ -5503,7 +6415,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "OBJECT", "name": "__EnumValue", "ofType": null }
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__EnumValue",
+                    "ofType": null
+                  }
                 }
               }
             },
@@ -5519,7 +6435,11 @@
                 "ofType": {
                   "kind": "NON_NULL",
                   "name": null,
-                  "ofType": { "kind": "OBJECT", "name": "__InputValue", "ofType": null }
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "__InputValue",
+                    "ofType": null
+                  }
                 }
               }
             },
@@ -5538,7 +6458,8 @@
         {
           "inputFields": null,
           "name": "__TypeKind",
-          "description": "An enum describing what kind of type a given `__Type` is.",
+          "description":
+            "An enum describing what kind of type a given `__Type` is.",
           "interfaces": null,
           "enumValues": [
             {
@@ -5563,13 +6484,15 @@
             },
             {
               "name": "UNION",
-              "description": "Indicates this type is a union. `possibleTypes` is a valid field.",
+              "description":
+                "Indicates this type is a union. `possibleTypes` is a valid field.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "ENUM",
-              "description": "Indicates this type is an enum. `enumValues` is a valid field.",
+              "description":
+                "Indicates this type is an enum. `enumValues` is a valid field.",
               "isDeprecated": false,
               "deprecationReason": null
             },
@@ -5582,13 +6505,15 @@
             },
             {
               "name": "LIST",
-              "description": "Indicates this type is a list. `ofType` is a valid field.",
+              "description":
+                "Indicates this type is a list. `ofType` is a valid field.",
               "isDeprecated": false,
               "deprecationReason": null
             },
             {
               "name": "NON_NULL",
-              "description": "Indicates this type is a non-null. `ofType` is a valid field.",
+              "description":
+                "Indicates this type is a non-null. `ofType` is a valid field.",
               "isDeprecated": false,
               "deprecationReason": null
             }
@@ -5600,7 +6525,8 @@
         {
           "inputFields": null,
           "name": "Boolean",
-          "description": "The `Boolean` scalar type represents `true` or `false`.",
+          "description":
+            "The `Boolean` scalar type represents `true` or `false`.",
           "interfaces": null,
           "enumValues": null,
           "fields": null,

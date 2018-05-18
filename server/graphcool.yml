@@ -26,6 +26,15 @@ functions:
           REACT_APP_AUTH0_API_IDENTIFIER: ${env:REACT_APP_AUTH0_API_IDENTIFIER}
     type: resolver
     schema: ./src/auth0/auth0Authentication.graphql
+  github:
+    handler:
+      code:
+        src: ./src/github/github.js
+        environment:
+          REACT_APP_GITHUB_API: ${env:REACT_APP_GITHUB_API}
+    type: resolver
+    schema: ./src/github/github.graphql
+
 
 
 # Model/Relation permissions are used to limit the API access
