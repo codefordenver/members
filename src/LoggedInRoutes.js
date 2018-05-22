@@ -10,6 +10,7 @@ import ProjectPage from './pages/ProjectPage';
 import ProjectEditPage from './pages/ProjectEditPage';
 import ProjectsListPage from './pages/ProjectsListPage';
 import ProjectCreatePage from './pages/ProjectCreatePage';
+import FlowdockRedirect from './pages/FlowdockRedirect';
 import NoMatchPage from './pages/NoMatchPage';
 import StyleReferencePage from './pages/StyleReferencePage';
 import withLoggedInUser from './utils/withLoggedInUser';
@@ -19,6 +20,7 @@ const LoggedInRoutes = ({ user }) => (
     <Route exact path="/" component={MemberResourcesPage} />
     <Route exact path="/me" component={MyProfilePage} />
     <Route exact path="/me/edit" component={MemberProfileEditPage} />
+    <Route exact path="/flowdock" component={FlowdockRedirect} />
     <Route exact path="/volunteers" component={UsersListPage} />
     <Route exact path="/volunteers/:id" component={MemberProfilePage} />
     <Route exact path="/projects" component={ProjectsListPage} />
