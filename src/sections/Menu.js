@@ -5,7 +5,6 @@ import Button from 'material-ui/Button';
 import { MenuItem } from 'material-ui/Menu';
 import { Link } from 'react-router-dom';
 import Menu from 'material-ui/Menu';
-/*import Fade from 'material-ui/Fade';*/
 import './Menu.css';
 
 class FadeMenu extends React.Component {
