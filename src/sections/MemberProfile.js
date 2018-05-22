@@ -20,12 +20,12 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
   return (
     <div className="container">
       <Card className="card">
-        <div className="pic">
+        <div className="member-pic">
           <div className="container-nested">
-            <img className="rounded profile-photo" src={picture} alt="avatar" />
+            <img className="rounded member-photo" src={picture} alt="avatar" />
           </div>
         </div>
-        <div className="user-bio">
+        <div className="member-bio">
           <div className="container-nested">
             <h2>
               <EditableText
@@ -42,7 +42,7 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
               {...commonProps}
             />
             <a href={`mailto:${email}`}>email</a>
-            <div className="contact">
+            <div className="member-contact">
               <span className="social-links">GitHub: </span>
               {editing ? (
                 <EditableText
@@ -55,7 +55,7 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
                 <a href={`https://github.com/${githubName}`}>{githubName}</a>
               )}
             </div>
-            <div className="contact">
+            <div className="member-contact">
               <span className="social-links">Flowdock: </span>
               <EditableText
                 value={flowdockName}
@@ -67,24 +67,24 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
           </div>
         </div>
         <HelpUsImplementThis>
-          <div className="user-experience">
+          <div className="member-experience">
             <div className="contributions-nested">
               <div className="first-child">
                 <div>
-                  <span className="hours-contributed">1</span>
-                  <div className="details">hours contributed</div>
+                  <span className="member-hours">1</span>
+                  <div className="member-details">hours contributed</div>
                 </div>
               </div>
               <div className="second-child">
                 <div>
-                  <span className="projects-completed">5</span>
-                  <div className="details">projects completed</div>
+                  <span className="member-projects">5</span>
+                  <div className="member-details">projects</div>
                 </div>
               </div>
               <div className="last-child">
                 <div>
-                  <span className="hours-contributed">35</span>
-                  <div className="details">meetups attended</div>
+                  <span className="member-hours">35</span>
+                  <div className="member-details">meetups attended</div>
                 </div>
               </div>
             </div>

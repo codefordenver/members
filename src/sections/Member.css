@@ -1,0 +1,241 @@
+.card {
+  display: flex;
+  background: white;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  width: 90%;
+  align-items: center;
+}
+
+@media screen and (max-width: 40em) {
+  .card {
+    flex-direction: column;
+  }
+}
+
+.member-photo {
+  overflow: hidden;
+  width: 100%;
+  max-width: 256px;
+}
+
+.member-bio {
+  display: flex;
+  height: 100%;
+  width: 90%;
+  padding: 10px;
+  border-right: 1px solid gray;
+  margin: 20px;
+}
+
+.member-experience {
+  padding: 10px;
+  text-align: center;
+}
+
+.member-pic {
+  justify-content: center;
+  display: flex;
+  height: auto;
+  flex-basis: 50%;
+  margin: 20px;
+  min-height: 0;
+  min-width: 128px;
+}
+
+.member-contact {
+  line-height: 40px;
+}
+
+.member-details {
+  color: #828282;
+  font-style: italic;
+}
+
+.member-hours {
+  word-spacing: 1px;
+  text-align: center;
+  font-size: 46px;
+  height: 46px;
+  color: #e24e54;
+}
+
+.member-projects {
+  word-spacing: 1px;
+  font-size: 46px;
+  height: 46px;
+  color: #4ecae2;
+}
+
+.member-meetups {
+  word-spacing: 1px;
+  text-align: center;
+  font-size: 46px;
+  height: 46px;
+  color: #e24e54;
+}
+
+.contributions-nested {
+  display: flex;
+}
+
+.container-nested {
+  overflow: hidden;
+  width: 100%;
+  align-content: center;
+}
+
+.container {
+  flex-direction: column;
+  background: #eee;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.first-child {
+  padding: 5px;
+  border-right: 1px solid gray;
+}
+
+.second-child {
+  padding: 5px;
+  border-right: 1px solid gray;
+}
+
+.last-child {
+  padding: 5px;
+}
+
+.social-links {
+  font-weight: bold;
+  font-size: 20px;
+  color: black;
+}
+
+.skillsleft {
+  flex-basis: 20%;
+  height: 80px;
+  display: flex;
+  border-right: 1px solid black;
+  justify-content: center;
+  align-items: center;
+}
+
+.skillsright {
+  flex-basis: 80%;
+  display: flex;
+  margin-left: 20px;
+  flex-wrap: wrap;
+}
+
+.skillsright li {
+  border: 1px solid black;
+  border-radius: 20%;
+  color: black;
+  padding: 3px;
+  margin: 5px;
+}
+
+/* Be advised! The !important tag is to be used to override the default styling from
+Material UI, without these !important tags, we won't be able to override Material UI's
+stupid inline style */
+
+.skills-button {
+  font-family: 'Roboto Condensed', sans-serif !important;
+  color: #e24e54 !important;
+  border: 2px solid #e24e54 !important;
+  border-radius: 15px !important;
+  line-height: 32px !important;
+  background-color: transparent !important;
+  display: flex !important;
+  margin: 3px !important;
+}
+
+@media screen and (max-width: 67em) {
+  h2 {
+    font-size: 35px;
+  }
+  .member-hours {
+    font-size: 40px;
+  }
+  .member-projects {
+    font-size: 40px;
+  }
+  .member-details {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 60em) {
+  h2 {
+    font-size: 33px;
+  }
+  .member-hours {
+    font-size: 37px;
+  }
+  .member-projects {
+    font-size: 37px;
+  }
+  .member-details {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 53em) {
+  h2 {
+    font-size: 27px;
+  }
+  .member-hours {
+    font-size: 30px;
+  }
+  .member-projects {
+    font-size: 30px;
+  }
+  .member-details {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 45em) {
+  h2 {
+    font-size: 20px;
+  }
+  .member-hours {
+    font-size: 20px;
+  }
+  .member-projects {
+    font-size: 20px;
+  }
+  .member-details {
+    font-size: 10px;
+  }
+  .social-links {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 40em) {
+  h2 {
+    font-size: 20px;
+  }
+  .member-hours {
+    font-size: 20px;
+  }
+  .member-projects {
+    font-size: 20px;
+  }
+  .member-details {
+    font-size: 10px;
+  }
+  .social-links {
+    font-size: 12px;
+  }
+  .member-pic {
+    width: 128px;
+  }
+  .member-bio {
+    border-right: none;
+  }
+  .skillsleft {
+    border-right: none;
+  }
+}
