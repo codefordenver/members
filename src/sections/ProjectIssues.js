@@ -18,6 +18,7 @@ ProjectIssues.defaultProps = {
   issues: []
 };
 
+/* eslint-disable graphql/template-strings */
 const issuesQuery = gql`
   query issues($id: String!) {
     issues(id: $id)
@@ -31,13 +32,12 @@ const issuesQuery = gql`
     }
   }
 `;
+/* eslint-enable graphql/template-strings */
 
 export default graphql(issuesQuery, {
   options: props => ({
     variables: {
-      id: props.cfapiProjectUrl.substring(
-        props.cfapiProjectUrl.lastIndexOf('/') + 1
-      )
+      id: props.cfapiProjectId
     }
   }),
   props: ({ data: { issues } }) => ({ issuesInfo: issues || {} })

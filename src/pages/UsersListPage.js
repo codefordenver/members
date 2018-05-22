@@ -17,18 +17,16 @@ const UsersList = ({ users, loading }) => {
   return (
     <ul>
       {users.map(user => (
-        <div className="userTile">
-          <li className="userid" key={user.id}>
-            <div className="userPic">
-              <Link to={`/volunteers/${user.id}`}>
-                <Avatar src={user.picture} />
-              </Link>
-            </div>
-            <div className="userName">
-              <Link to={`/volunteers/${user.id}`}>{user.name}</Link>
-            </div>
-          </li>
-        </div>
+        <li className="userid userTile" key={user.id}>
+          <div className="userPic">
+            <Link to={`/volunteers/${user.id}`}>
+              <Avatar src={user.picture} />
+            </Link>
+          </div>
+          <div className="userName">
+            <Link to={`/volunteers/${user.id}`}>{user.name}</Link>
+          </div>
+        </li>
       ))}
     </ul>
   );
