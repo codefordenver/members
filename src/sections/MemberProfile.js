@@ -6,7 +6,7 @@ import MemberProjects from './MemberProjects';
 import MemberSkills from './MemberSkills';
 import EditableText from '../forms/EditableText';
 import EditableMarkdown from '../forms/EditableMarkdown';
-import './MemberProfile.css';
+import './Member.css';
 
 const MemberProfile = ({ user, onFormDataChange, editing }) => {
   if (!user) {
@@ -18,15 +18,15 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
     editing
   };
   return (
-    <div className="container">
-      <Card className="card">
-        <div className="pic">
-          <div className="container-nested">
-            <img className="rounded profile-photo" src={picture} alt="avatar" />
+    <div className="Member-container">
+      <Card className="Member-card">
+        <div className="Member-pic">
+          <div className="Member-div">
+            <img className="rounded Member-photo" src={picture} alt="avatar" />
           </div>
         </div>
-        <div className="user-bio">
-          <div className="container-nested">
+        <div className="Member-bio">
+          <div className="Member-div">
             <h2>
               <EditableText
                 value={name}
@@ -42,8 +42,8 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
               {...commonProps}
             />
             <a href={`mailto:${email}`}>email</a>
-            <div className="contact">
-              <span className="social-links">GitHub: </span>
+            <div className="Member-contact">
+              <span className="Member-social-links">GitHub: </span>
               {editing ? (
                 <EditableText
                   value={githubName}
@@ -55,8 +55,8 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
                 <a href={`https://github.com/${githubName}`}>{githubName}</a>
               )}
             </div>
-            <div className="contact">
-              <span className="social-links">Flowdock: </span>
+            <div className="Member-contact">
+              <span className="Member-social-links">Flowdock: </span>
               <EditableText
                 value={flowdockName}
                 label="Flowdock username"
@@ -67,25 +67,19 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
           </div>
         </div>
         <HelpUsImplementThis>
-          <div className="user-experience">
-            <div className="contributions-nested">
-              <div className="first-child">
-                <div>
-                  <span className="hours-contributed">1</span>
-                  <div className="details">hours contributed</div>
-                </div>
+          <div className="Member-experience">
+            <div className="Member-contributions">
+              <div>
+                <span className="Member-hours">1</span>
+                <div className="Member-details">hours contributed</div>
               </div>
-              <div className="second-child">
-                <div>
-                  <span className="projects-completed">5</span>
-                  <div className="details">projects completed</div>
-                </div>
+              <div>
+                <span className="Member-projects">5</span>
+                <div className="Member-details">projects involved</div>
               </div>
-              <div className="last-child">
-                <div>
-                  <span className="hours-contributed">35</span>
-                  <div className="details">meetups attended</div>
-                </div>
+              <div>
+                <span className="Member-hours">35</span>
+                <div className="Member-details">meetups attended</div>
               </div>
             </div>
           </div>

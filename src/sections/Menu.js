@@ -32,7 +32,7 @@ class FadeMenu extends React.Component {
           color="secondary"
         >
           <Avatar src={this.props.avatar} alt={this.props.username} />
-          <span className="username"> {this.props.username} </span>
+          <span className="Menu-username"> {this.props.username} </span>
           <Icon> arrow_drop_down </Icon>
         </Button>
         <Menu
