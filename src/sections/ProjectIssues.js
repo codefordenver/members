@@ -1,7 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-// import withRestData from '../utils/withRestData';
 import ProjectIssue from './ProjectIssue';
 
 const ProjectIssues = ({ issuesInfo }) => {

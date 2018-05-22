@@ -35,7 +35,7 @@ const restLink = new RestLink({
   endpoints: {
     cfa: 'https://api.codeforamerica.org/api/'
   },
-  credentials: 'same-origin'
+  credentials: 'omit'
 });
 
 export default function createApolloClient() {
