@@ -1,8 +1,10 @@
 .Header-logo {
   height: 50px;
+  width: 50px;
+  margin: 5px;
 }
 
 .Header-link {
   color: white;
-  margin: 0 0 0 10px;
+  padding: 5px;
 }
