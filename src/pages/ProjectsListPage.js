@@ -1,8 +1,9 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import { Link } from 'react-router-dom';
 import LoadingIndicator from '../sections/LoadingIndicator';
+import CardComponent from '../sections/CardProjectList';
+import Grid from 'material-ui/Grid';
 
 const ProjectsList = ({ projects, loading }) => {
   if (loading) {
@@ -13,13 +14,19 @@ const ProjectsList = ({ projects, loading }) => {
   }
 
   return (
-    <ul>
-      {projects.map(project => (
-        <li key={project.id}>
-          <Link to={`/projects/${project.id}`}>{project.name}</Link>
-        </li>
-      ))}
-    </ul>
+    <Grid container>
+      <Grid item xs={1} />
+      <Grid item xs={10}>
+        <Grid container>
+          {projects.map(project => (
+            <Grid item xs={12} sm={6} md={4}>
+              <CardComponent key={project.id} project={project} />
+            </Grid>
+          ))}
+        </Grid>
+        <Grid item xs={1} />
+      </Grid>
+    </Grid>
   );
 };
 
