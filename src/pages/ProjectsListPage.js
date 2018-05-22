@@ -17,7 +17,7 @@ const ProjectsList = ({ projects, loading }) => {
     <Grid container>
       <Grid item xs={1} />
       <Grid item xs={10}>
-        <Grid container>
+        <Grid container spacing={16}>
           {projects.map(project => (
             <Grid item xs={12} sm={6} md={4}>
               <CardComponent key={project.id} project={project} />
