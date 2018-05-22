@@ -6,7 +6,7 @@ import MemberProjects from './MemberProjects';
 import MemberSkills from './MemberSkills';
 import EditableText from '../forms/EditableText';
 import EditableMarkdown from '../forms/EditableMarkdown';
-import './MemberProfile.css';
+import './Member.css';
 
 const MemberProfile = ({ user, onFormDataChange, editing }) => {
   if (!user) {

@@ -2,6 +2,7 @@ import React from 'react';
 import Card from 'material-ui/Card';
 import Chip from 'material-ui/Chip';
 import HelpUsImplementThis from './HelpUsImplementThis';
+import './Member.css';
 
 const MemberSkills = () => (
   <Card className="card">
