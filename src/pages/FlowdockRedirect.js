@@ -3,21 +3,20 @@ import alertify from 'alertifyjs';
 import './FlowdockRedirect.css';
 
 function Alert() {
+  alertify.defaults.notifier.delay = 0;
   alertify.alert(
-    'Almost there..',
-    'Please check your email to accept the invite!'
+    'Almost there...',
+    'Please check your email to complete the process!',
+    function() {
+      window.open('https://www.flowdock.com/app/cfa-brigades/code-for-denver');
+    }
   );
 }
 
 const FlowdockRedirect = () => (
-  <div>
-    <a
-      onClick={Alert}
-      href="https://www.flowdock.com/app/cfa-brigades/code-for-denver"
-    >
-      <h1>Click to request a Flowdock invitation</h1>
-    </a>
-    <p>Please check your email to accept the invite.</p>
+  <div className="Flowdock-link">
+    <h1 onClick={Alert}>Click to request an invite to join CfD on Flowdock</h1>
+    <h2>Please check your email to complete the process.</h2>
   </div>
 );
 
