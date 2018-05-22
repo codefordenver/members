@@ -12,7 +12,7 @@ function SimpleMediaCard(props) {
     <div>
       <Card>
         {/*Card Media can be used to add a sample image of each project later */}
-        <CardMedia image="" title={props.project.name} />
+        {/* <CardMedia image="" title={props.project.name} /> */}
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
             {props.project.name}
