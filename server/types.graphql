@@ -47,5 +47,5 @@ type Project @model {
 
   name: String! @isUnique
   description: String
-  cfapiProjectUrl: String # for linking to the Code for America API: https://github.com/codeforamerica/cfapi
+  cfapiProjectUrl: String! # for linking to the Code for America API: https://github.com/codeforamerica/cfapi
 }
