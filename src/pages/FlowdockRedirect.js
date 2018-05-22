@@ -1,8 +1,12 @@
 import React from 'react';
+import alertify from 'alertifyjs';
 import './FlowdockRedirect.css';
 
 function Alert() {
-  alert('Please check your email to accept the invite!');
+  alertify.alert(
+    'Almost there..',
+    'Please check your email to accept the invite!'
+  );
 }
 
 const FlowdockRedirect = () => (
