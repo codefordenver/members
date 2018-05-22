@@ -2,7 +2,7 @@ import React from 'react';
 import Card from 'material-ui/Card';
 import CardActions from 'material-ui/Card/CardActions';
 import CardContent from 'material-ui/Card/CardContent';
-import CardMedia from 'material-ui/Card/CardMedia';
+/* import CardMedia from 'material-ui/Card/CardMedia'; */
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import { Link } from 'react-router-dom';
