@@ -33,7 +33,7 @@ These are the main tools we use (with links for our specific organization). You'
   - Collaborative coding
 - [Waffle](https://waffle.io/codefordenver)
   - Task management built on top of github issues
-- [Flowdock](https://www.flowdock.com/app/cfa-brigades/code-for-denver)
+- [Flowdock](/flowdock)
   - Chat tool
   - Requires an invite to join our flowdock organization
   - Some flows of note:
