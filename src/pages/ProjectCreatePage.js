@@ -4,8 +4,16 @@ import ProjectSection from '../sections/ProjectSection';
 import withCreatePage from '../utils/withCreatePage';
 
 const createProjectQuery = gql`
-  mutation createProject($name: String!, $description: String) {
-    createProject(name: $name, description: $description) {
+  mutation createProject(
+    $name: String!
+    $description: String
+    $cfapiProjectId: String!
+  ) {
+    createProject(
+      name: $name
+      description: $description
+      cfapiProjectId: $cfapiProjectId
+    ) {
       id
       name
       description
