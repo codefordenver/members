@@ -19,20 +19,14 @@ const drawerWidth = 240;
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: 430,
+    height: '100%',
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
     display: 'flex',
     width: '100%'
   },
-  appBar: {
-    position: 'absolute',
-    marginLeft: drawerWidth,
-    [theme.breakpoints.up('md')]: {
-      width: `calc(100% - ${drawerWidth}px)`
-    }
-  },
+
   navIconHide: {
     [theme.breakpoints.up('md')]: {
       display: 'none'
@@ -66,7 +60,6 @@ class ResponsiveDrawer extends React.Component {
 
     const drawer = (
       <div>
-        <div className={classes.toolbar} />
         <Divider />
         <List component="nav">
           {projects.map(project => (
@@ -99,16 +92,17 @@ class ResponsiveDrawer extends React.Component {
               Responsive drawer
             </Typography>
           </Toolbar>
-    </AppBar> */}
-
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={this.handleDrawerToggle}
-          className={classes.navIconHide}
-        >
-          <Icon> menu </Icon>
-        </IconButton>
+        </AppBar> */}
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={this.handleDrawerToggle}
+            className={classes.navIconHide}
+          >
+            <Icon> menu </Icon>
+          </IconButton>
+        </Toolbar>
 
         <Hidden mdUp>
           <Drawer
@@ -138,10 +132,7 @@ class ResponsiveDrawer extends React.Component {
           </Drawer>
         </Hidden>
         <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <Typography noWrap>
-            {'You think water moves fast? You should see ice.'}
-          </Typography>
+          <Typography noWrap>{''}</Typography>
         </main>
       </div>
     );
