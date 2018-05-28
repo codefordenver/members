@@ -9,16 +9,28 @@ const projectQuery = gql`
       id
       name
       description
+      cfapiProjectId
     }
   }
 `;
 
 const updateProjectQuery = gql`
-  mutation updateProject($id: ID!, $name: String!, $description: String) {
-    updateProject(id: $id, name: $name, description: $description) {
+  mutation updateProject(
+    $id: ID!
+    $name: String!
+    $description: String
+    $cfapiProjectId: String
+  ) {
+    updateProject(
+      id: $id
+      name: $name
+      description: $description
+      cfapiProjectId: $cfapiProjectId
+    ) {
       id
       name
       description
+      cfapiProjectId
     }
   }
 `;
