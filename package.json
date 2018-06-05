@@ -6,6 +6,7 @@
     "node": ">=8.9.0"
   },
   "dependencies": {
+    "@material-ui/core": "^1.2.0",
     "apollo-cache-inmemory": "^1.1.9",
     "apollo-client": "^2.2.5",
     "apollo-link-context": "^1.0.7",
@@ -16,7 +17,6 @@
     "graphql": "^0.13.1",
     "graphql-tag": "^2.8.0",
     "marked": "^0.3.16",
-    "material-ui": "^1.0.0-beta.35",
     "react": "^16.2.0",
     "react-apollo": "^2.0.4",
     "react-dom": "^16.2.0",

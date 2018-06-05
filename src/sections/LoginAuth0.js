@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
-import { CircularProgress } from 'material-ui/Progress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import auth0 from 'auth0-js';
 import { getEnvironmentVariables } from '../utils';
-import Button from 'material-ui/Button';
+import Button from '@material-ui/core/Button';
 import withAuthSession from '../utils/withAuthSession';
 
 const authenticateQuery = gql`

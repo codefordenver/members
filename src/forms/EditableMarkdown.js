@@ -1,7 +1,7 @@
 import React from 'react';
-import TextField from 'material-ui/TextField';
-import AppBar from 'material-ui/AppBar';
-import Tabs, { Tab } from 'material-ui/Tabs';
+import TextField from '@material-ui/core/TextField';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs, { Tab } from '@material-ui/core/Tabs';
 import Markdown from '../utils/Markdown';
 
 class EditableMarkdown extends React.PureComponent {
