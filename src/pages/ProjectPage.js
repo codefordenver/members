@@ -1,25 +1,34 @@
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
-import withViewPage from '../utils/withViewPage';
 import ProjectSection from '../sections/ProjectSection';
 
+/* eslint-disable graphql/template-strings */
 const projectQuery = gql`
-  query getProject($id: ID!) {
-    Project(id: $id) {
-      id
-      name
+  query Project($id: String!) {
+    Project(id: $id)
+      @rest(
+        type: "Project"
+        path: "projects/:id"
+        params: { id: $id }
+        endpoint: "cfa"
+      ) {
+      api_url
+      categories
+      code_url
+      commit_status
       description
-      cfapiProjectId
-    }
-  }
-`;
-
-const updateProjectQuery = gql`
-  mutation updateProject($id: ID!, $name: String!, $description: String) {
-    updateProject(id: $id, name: $name, description: $description) {
+      github_details
       id
+      issues
+      languages
+      last_updated
+      link_url
       name
-      description
+      organization
+      organization_name
+      status
+      tags
+      type
     }
   }
 `;
@@ -27,17 +36,7 @@ const updateProjectQuery = gql`
 const ProjectPage = compose(
   graphql(projectQuery, {
     options: props => ({ variables: { id: props.match.params.id } }),
-    props: ({ data: { Project } }) => ({ project: Project })
-  }),
-  graphql(updateProjectQuery, {
-    props: ({ mutate }) => ({
-      onEdit: updatedProject => mutate({ variables: updatedProject })
-    })
-  }),
-  withViewPage({
-    renameProps: {
-      formData: 'project'
-    }
+    props: ({ data }) => ({ project: data.Project, loading: data.loading })
   })
 )(ProjectSection);
 

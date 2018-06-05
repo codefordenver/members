@@ -14,11 +14,15 @@ const ProjectsList = ({ projects, loading }) => {
 
   return (
     <ul>
-      {projects.map(project => (
-        <li key={project.id}>
-          <Link to={`/projects/${project.id}`}>{project.name}</Link>
-        </li>
-      ))}
+      {projects
+        .filter(project => project.status === 'Ideation')
+        .map(project => (
+          <li key={project.id}>
+            <Link to={`/projects/${project.id}`}>
+              {project.description || project.name}
+            </Link>
+          </li>
+        ))}
     </ul>
   );
 };
@@ -27,19 +31,25 @@ ProjectsList.defaultProps = {
   projects: []
 };
 
+/* eslint-disable graphql/template-strings */
 const allProjectsQuery = gql`
   query projects {
-    allProjects(orderBy: name_ASC) {
-      id
-      name
+    projects
+      @rest(
+        type: "Projects"
+        path: "organizations/Code-for-Denver/projects"
+        endpoint: "cfa"
+      ) {
+      objects
     }
   }
 `;
+/* eslint-enable graphql/template-strings */
 
 const ProjectsListPage = graphql(allProjectsQuery, {
   options: () => ({}),
-  props: ({ data: { allProjects, loading } }) => ({
-    projects: allProjects,
+  props: ({ data: { projects, loading } }) => ({
+    projects: projects ? projects.objects : projects,
     loading
   })
 })(ProjectsList);
