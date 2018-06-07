@@ -14,15 +14,11 @@ const ProjectsList = ({ projects, loading }) => {
 
   return (
     <ul>
-      {projects
-        .filter(project => project.status === 'Ideation')
-        .map(project => (
-          <li key={project.id}>
-            <Link to={`/projects/${project.id}`}>
-              {project.description || project.name}
-            </Link>
-          </li>
-        ))}
+      {projects.filter(project => project.status).map(project => (
+        <li key={project.id}>
+          <Link to={`/projects/${project.id}`}>{project.name}</Link>
+        </li>
+      ))}
     </ul>
   );
 };

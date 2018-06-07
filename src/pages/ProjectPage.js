@@ -36,7 +36,7 @@ const projectQuery = gql`
 const ProjectPage = compose(
   graphql(projectQuery, {
     options: props => ({ variables: { id: props.match.params.id } }),
-    props: ({ data }) => ({ project: data.Project, loading: data.loading })
+    props: ({ data: { Project, loading } }) => ({ Project, loading })
   })
 )(ProjectSection);
 
