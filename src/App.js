@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { GoogleAnalyticsPageTracker } from './utils';
 import Header from './sections/Header';
 import ErrorBoundary from './utils/ErrorBoundary';

@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import Avatar from 'material-ui/Avatar';
+import Avatar from '@material-ui/core/Avatar';
 import './UsersListPage.css';
 import { Link } from 'react-router-dom';
 import LoadingIndicator from '../sections/LoadingIndicator';

@@ -1,6 +1,6 @@
 import React from 'react';
-import Card from 'material-ui/Card';
-import Chip from 'material-ui/Chip';
+import Card from '@material-ui/core/Card';
+import Chip from '@material-ui/core/Chip';
 import HelpUsImplementThis from './HelpUsImplementThis';
 import './Member.css';
 

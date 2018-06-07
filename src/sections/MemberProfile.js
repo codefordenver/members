@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from 'material-ui/Card';
+import Card from '@material-ui/core/Card';
 import HelpUsImplementThis from './HelpUsImplementThis';
 import LoadingIndicator from './LoadingIndicator';
 import MemberProjects from './MemberProjects';
