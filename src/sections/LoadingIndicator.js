@@ -1,5 +1,5 @@
 import React from 'react';
-import { CircularProgress } from 'material-ui/Progress';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 // The presentation of the indicator is delayed to improve perceived performance
 // See: https://material-ui-next.com/demos/progress/#delaying-appearance

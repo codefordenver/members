@@ -3,7 +3,7 @@ import {
   MuiThemeProvider,
   createMuiTheme,
   withStyles
-} from 'material-ui/styles';
+} from '@material-ui/core/styles';
 import { GoogleAnalyticsPageTracker } from './utils';
 import Header from './sections/Header';
 import ErrorBoundary from './utils/ErrorBoundary';

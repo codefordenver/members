@@ -1,13 +1,13 @@
 import React from 'react';
-import { withStyles } from 'material-ui/styles';
-import Drawer from 'material-ui/Drawer';
-import List from 'material-ui/List';
-import ListItem from 'material-ui/List/ListItem';
-import ListItemText from 'material-ui/List/ListItemText';
-import IconButton from 'material-ui/IconButton';
-import Hidden from 'material-ui/Hidden';
-import Divider from 'material-ui/Divider';
-import Icon from 'material-ui/Icon';
+import { withStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import IconButton from '@material-ui/core/IconButton';
+import Hidden from '@material-ui/core/Hidden';
+import Divider from '@material-ui/core/Divider';
+import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
 import './Menu.css';
 import LoggedInRoutesSidebar from '../LoggedInRoutesSidebar';
@@ -81,7 +81,7 @@ class ResponsiveDrawer extends React.Component {
           onClick={this.handleDrawerToggle}
           className={classes.navIconHide}
         >
-          <Icon> menu </Icon>
+          <MenuIcon />
         </IconButton>
 
         <Hidden mdUp>
