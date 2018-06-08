@@ -5,8 +5,6 @@ import MyProfilePage from './pages/MyProfilePage';
 import MemberProfileEditPage from './pages/MemberProfileEditPage';
 import UsersListPage from './pages/UsersListPage';
 import MemberProfilePage from './pages/MemberProfilePage';
-import ProjectEditPage from './pages/ProjectEditPage';
-import ProjectCreatePage from './pages/ProjectCreatePage';
 import FlowdockLanding from './pages/FlowdockLanding';
 import NoMatchPage from './pages/NoMatchPage';
 import StyleReferencePage from './pages/StyleReferencePage';
@@ -22,9 +20,7 @@ const LoggedInRoutes = ({ user }) => (
     <Route exact path="/flowdock" component={FlowdockLanding} />
     <Route exact path="/volunteers" component={UsersListPage} />
     <Route exact path="/volunteers/:id" component={MemberProfilePage} />
-    <Route path={'/projects'} component={ProjectsListPage} />
-    <Route exact path="/projects/create" component={ProjectCreatePage} />
-    <Route exact path="/projects/:id/edit" component={ProjectEditPage} />
+    <Route path="/projects" component={ProjectsListPage} />
     <Route exact path="/styles" component={StyleReferencePage} />
     {getAdminRoutes(user)}
     <Route component={NoMatchPage} />

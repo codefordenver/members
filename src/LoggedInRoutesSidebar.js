@@ -3,11 +3,15 @@ import { Route, Switch } from 'react-router-dom';
 import ProjectPage from './pages/ProjectPage';
 import GeneralProjectPage from './pages/GeneralProjectPage';
 import withLoggedInUser from './utils/withLoggedInUser';
+import ProjectEditPage from './pages/ProjectEditPage';
+import ProjectCreatePage from './pages/ProjectCreatePage';
 
 const LoggedInRoutesSidebar = ({ user, match }) => (
   <Switch>
-    <Route path={'/projects/:id'} component={ProjectPage} />
-    <Route path={'/projects'} component={GeneralProjectPage} />
+    <Route path="/projects/create" component={ProjectCreatePage} />
+    <Route path="/projects/:id/edit" component={ProjectEditPage} />
+    <Route path="/projects/:id" component={ProjectPage} />
+    <Route path="/projects" component={GeneralProjectPage} />
   </Switch>
 );
 
