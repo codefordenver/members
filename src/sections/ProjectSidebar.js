@@ -1,25 +1,22 @@
 import React from 'react';
 import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
 import List from 'material-ui/List';
 import ListItem from 'material-ui/List/ListItem';
 import ListItemText from 'material-ui/List/ListItemText';
-import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import Hidden from 'material-ui/Hidden';
 import Divider from 'material-ui/Divider';
 import Icon from 'material-ui/Icon';
 import { Link } from 'react-router-dom';
-import './Menu.css'; /*Need to only add material icon sets */
+import './Menu.css';
+import LoggedInRoutesSidebar from '../LoggedInRoutesSidebar';
 
 const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: '100%',
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
@@ -78,31 +75,14 @@ class ResponsiveDrawer extends React.Component {
 
     return (
       <div className={classes.root}>
-        {/* <AppBar className={classes.appBar}>
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={this.handleDrawerToggle}
-              className={classes.navIconHide}
-            >
-              <Icon> menu </Icon>
-            </IconButton>
-            <Typography variant="title" color="inherit" noWrap>
-              Responsive drawer
-            </Typography>
-          </Toolbar>
-        </AppBar> */}
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={this.handleDrawerToggle}
-            className={classes.navIconHide}
-          >
-            <Icon> menu </Icon>
-          </IconButton>
-        </Toolbar>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={this.handleDrawerToggle}
+          className={classes.navIconHide}
+        >
+          <Icon> menu </Icon>
+        </IconButton>
 
         <Hidden mdUp>
           <Drawer
@@ -132,7 +112,7 @@ class ResponsiveDrawer extends React.Component {
           </Drawer>
         </Hidden>
         <main className={classes.content}>
-          <Typography noWrap>{''}</Typography>
+          <LoggedInRoutesSidebar />
         </main>
       </div>
     );
