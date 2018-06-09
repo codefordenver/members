@@ -11,8 +11,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
 import './Menu.css';
 import LoggedInRoutesSidebar from '../LoggedInRoutesSidebar';
+import ListSubheader from '@material-ui/core/ListSubheader';
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const styles = theme => ({
   root: {
@@ -40,6 +41,11 @@ const styles = theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3
+  },
+  navTitle: {
+    textAlign: 'center',
+    fontSize: '0.75em',
+    fontWeight: 'bold'
   }
 });
 
@@ -57,8 +63,15 @@ class ResponsiveDrawer extends React.Component {
 
     const drawer = (
       <div>
-        <Divider />
-        <List component="nav">
+        <List
+          component="nav"
+          subheader={
+            <ListSubheader component="div" className={classes.navTitle}>
+              ACTIVE PROJECTS
+            </ListSubheader>
+          }
+        >
+          <Divider />
           {projects.map(project => (
             <React.Fragment>
               <ListItem
