@@ -1,6 +1,6 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import Icon from '@material-ui/core/Icon';
+import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Link } from 'react-router-dom';
@@ -33,7 +33,7 @@ class FadeMenu extends React.Component {
         >
           <Avatar src={this.props.avatar} alt={this.props.username} />
           <span className="Menu-username"> {this.props.username} </span>
-          <Icon> arrow_drop_down </Icon>
+          <ArrowDropDown />
         </Button>
         <Menu
           id="fade-menu"
