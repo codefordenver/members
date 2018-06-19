@@ -75,16 +75,28 @@ class LoginAuth0 extends Component {
 
   render() {
     return (
-      <Button
-        color="secondary"
-        onClick={this._showLogin}
-        disabled={this.state.isLoggingIn}
-      >
-        Log In
-        {this.state.isLoggingIn && (
-          <CircularProgress size={25} color="secondary" />
-        )}
-      </Button>
+      <div>
+        <Button
+          color="secondary"
+          onClick={this._showLogin}
+          disabled={this.state.isLoggingIn}
+        >
+          Log In
+          {this.state.isLoggingIn && (
+            <CircularProgress size={25} color="secondary" />
+          )}
+        </Button>
+        <Button
+          color="secondary"
+          onClick={this._showLogin}
+          disabled={this.state.isLoggingIn}
+        >
+          Sign In
+          {this.state.isLoggingIn && (
+            <CircularProgress size={25} color="secondary" />
+          )}
+        </Button>
+      </div>
     );
   }
 }
