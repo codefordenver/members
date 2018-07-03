@@ -81,7 +81,7 @@ class LoginAuth0 extends Component {
           onClick={this._showLogin}
           disabled={this.state.isLoggingIn}
         >
-          Log In
+          Sign Up
           {this.state.isLoggingIn && (
             <CircularProgress size={25} color="secondary" />
           )}
@@ -91,7 +91,7 @@ class LoginAuth0 extends Component {
           onClick={this._showLogin}
           disabled={this.state.isLoggingIn}
         >
-          Sign In
+          Log In
           {this.state.isLoggingIn && (
             <CircularProgress size={25} color="secondary" />
           )}
