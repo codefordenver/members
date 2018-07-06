@@ -1,6 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
+import { format, subMonths } from 'date-fns';
 import LoadingIndicator from '../sections/LoadingIndicator';
 import ProjectSideBar from '../sections/ProjectSidebar';
 
@@ -21,24 +22,26 @@ ProjectsList.defaultProps = {
 
 /* eslint-disable graphql/template-strings */
 const allProjectsQuery = gql`
-  query projects {
-    projects
+  query projects($date: String!) {
+    projects(date: $date)
       @rest(
         type: "Projects"
-        path: "orgs/codefordenver/repos"
+        path: "search/repositories?q=org%3Acodefordenver+pushed%3A>:date"
+        params: { date: $date }
         endpoint: "github"
       ) {
-      id
-      name
+      items
     }
   }
 `;
 /* eslint-enable graphql/template-strings */
 
 const ProjectsListPage = graphql(allProjectsQuery, {
-  options: () => ({}),
+  options: () => ({
+    variables: { date: format(subMonths(new Date(), 3), 'YYYY-MM-DD') }
+  }),
   props: ({ data: { projects, loading } }) => ({
-    projects,
+    projects: (projects && projects.items) || [],
     loading
   })
 })(ProjectsList);
