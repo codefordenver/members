@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  withStyles
+} from '@material-ui/core/styles';
 import { GoogleAnalyticsPageTracker } from './utils';
 import Header from './sections/Header';
 import ErrorBoundary from './utils/ErrorBoundary';
@@ -23,8 +27,13 @@ const theme = createMuiTheme({
   }
 });
 
+const styles = theme => ({
+  toolbar: theme.mixins.toolbar
+});
+
 class App extends Component {
   render() {
+    const { classes } = this.props;
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
@@ -33,6 +42,7 @@ class App extends Component {
             <Header />
           </ErrorBoundary>
           <ErrorBoundary>
+            <div className={classes.toolbar} />
             <AppBody />
           </ErrorBoundary>
         </div>
@@ -41,4 +51,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withStyles(styles, { withTheme: true })(App);
