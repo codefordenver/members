@@ -33,7 +33,8 @@ const middlewareLink = setContext(() => {
 // as httpLink will swallow any calls that should be routed through rest!
 const restLink = new RestLink({
   endpoints: {
-    cfa: 'https://api.codeforamerica.org/api/'
+    cfa: 'https://api.codeforamerica.org/api/',
+    github: 'https://api.github.com/'
   },
   credentials: 'omit'
 });

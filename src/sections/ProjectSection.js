@@ -3,9 +3,9 @@ import EditableText from '../forms/EditableText';
 import EditableMarkdown from '../forms/EditableMarkdown';
 import ProjectIssues from './ProjectIssues';
 
-const ProjectSection = ({ project, loading }) => {
+const ProjectSection = ({ Project, loading }) => {
   if (loading) return '';
-  const { name, description, cfapiProjectId } = project;
+  const { name, description, cfapiProjectId } = Project;
   const commonProps = {
     onChange: null,
     editing: false

@@ -14,15 +14,11 @@ const ProjectsList = ({ projects, loading }) => {
 
   return (
     <ul>
-      {projects
-        .filter(project => project.status === 'Ideation')
-        .map(project => (
-          <li key={project.id}>
-            <Link to={`/projects/${project.id}`}>
-              {project.description || project.name}
-            </Link>
-          </li>
-        ))}
+      {projects.map(project => (
+        <li key={project.id}>
+          <Link to={`/projects/${project.name}`}>{project.name}</Link>
+        </li>
+      ))}
     </ul>
   );
 };
@@ -37,10 +33,11 @@ const allProjectsQuery = gql`
     projects
       @rest(
         type: "Projects"
-        path: "organizations/Code-for-Denver/projects"
-        endpoint: "cfa"
+        path: "orgs/codefordenver/repos"
+        endpoint: "github"
       ) {
-      objects
+      id
+      name
     }
   }
 `;
@@ -49,7 +46,7 @@ const allProjectsQuery = gql`
 const ProjectsListPage = graphql(allProjectsQuery, {
   options: () => ({}),
   props: ({ data: { projects, loading } }) => ({
-    projects: projects ? projects.objects : projects,
+    projects,
     loading
   })
 })(ProjectsList);
