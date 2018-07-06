@@ -4,12 +4,12 @@ import ProjectSection from '../sections/ProjectSection';
 
 /* eslint-disable graphql/template-strings */
 const projectQuery = gql`
-  query Project($id: String!) {
-    Project(repoName: $id)
+  query Project($repoName: String!) {
+    Project(repoName: $repoName)
       @rest(
-        type: "Project"
+        type: "githubRepo"
         path: "repos/codefordenver/:repoName"
-        params: { id: $repoName }
+        params: { repoName: $repoName }
         endpoint: "github"
       ) {
       id
@@ -21,7 +21,7 @@ const projectQuery = gql`
 
 const ProjectPage = compose(
   graphql(projectQuery, {
-    options: props => ({ variables: { id: props.match.params.id } }),
+    options: props => ({ variables: { repoName: props.match.params.id } }),
     props: ({ data: { Project, loading } }) => ({ Project, loading })
   })
 )(ProjectSection);

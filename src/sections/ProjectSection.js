@@ -29,7 +29,7 @@ const ProjectSection = ({ Project, loading }) => {
           {...commonProps}
         />
       ) : (
-        cfapiProjectId && <ProjectIssues cfapiProjectId={cfapiProjectId} />
+        <ProjectIssues repoName={name} />
       )}
     </React.Fragment>
   );
