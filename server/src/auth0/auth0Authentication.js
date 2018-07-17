@@ -45,17 +45,18 @@ const verifyToken = token =>
   });
 
 //Retrieves the Graphcool user record using the Auth0 user id
-const getGraphcoolUser = (auth0UserId, api) =>
+const getGraphcoolUser = (email, api) =>
   api
     .request(
       `
-        query getUser($auth0UserId: String!){
-          User(auth0UserId: $auth0UserId){
-            id
+        query getUser($email: String!){
+          User(email: $email){
+            id,
+            auth0UserId
           }
         }
       `,
-      { auth0UserId }
+      { email }
     )
     .then(queryResult => queryResult.User);
 
@@ -86,13 +87,6 @@ const createGraphCoolUser = (userData, api) =>
     )
     .then(queryResult => queryResult.createUser);
 
-const fetchAuth0UserData = accessToken =>
-  fetch(
-    `https://${
-      process.env.REACT_APP_AUTH0_DOMAIN
-    }/userinfo?access_token=${accessToken}`
-  ).then(response => response.json());
-
 module.exports = async event => {
   try {
     if (
@@ -103,22 +97,25 @@ module.exports = async event => {
         'Missing REACT_APP_AUTH0_DOMAIN or REACT_APP_AUTH0_API_IDENTIFIER environment variable'
       );
     }
-    const { accessToken } = event.data;
+    const { accessToken, email, name, picture } = event.data;
 
     const decodedToken = await verifyToken(accessToken);
     const graphcool = fromEvent(event);
     const api = graphcool.api('simple/v1');
 
-    let graphCoolUser = await getGraphcoolUser(decodedToken.sub, api);
+    let graphCoolUser = await getGraphcoolUser(email, api);
     //If the user doesn't exist, a new record is created.
-    if (graphCoolUser === null) {
-      const userData = await fetchAuth0UserData(accessToken);
+    if (graphCoolUser && graphCoolUser.auth0UserId !== decodedToken.sub) {
+      return {
+        error: 'The user already exists.'
+      };
+    } else if (!graphCoolUser) {
       graphCoolUser = await createGraphCoolUser(
         {
           auth0UserId: decodedToken.sub,
-          email: userData.email,
-          name: userData.name,
-          picture: userData.picture
+          email,
+          name,
+          picture
           // TODO: Support github user name if the provider is github
         },
         api
