@@ -1,4 +1,3 @@
-const fetch = require('isomorphic-fetch');
 const jwt = require('jsonwebtoken');
 const jwkRsa = require('jwks-rsa');
 const fromEvent = require('graphcool-lib').fromEvent;
