@@ -72,8 +72,8 @@ class LoginAuth0 extends Component {
           })
           .then(({ data }) => {
             const userInfo = data.authenticateUser;
-            this.props.setAuthSession(authResult, userInfo.id, userInfo.token);
             this.setState({ isLoggingIn: false });
+            this.props.setAuthSession(authResult, userInfo.id, userInfo.token);
           })
           .catch(error => {
             const alertMessage = error.message.includes(
