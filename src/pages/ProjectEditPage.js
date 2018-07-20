@@ -9,7 +9,7 @@ const projectQuery = gql`
       id
       name
       description
-      cfapiProjectId
+      repoName
     }
   }
 `;
@@ -19,18 +19,18 @@ const updateProjectQuery = gql`
     $id: ID!
     $name: String!
     $description: String
-    $cfapiProjectId: String
+    $repoName: String
   ) {
     updateProject(
       id: $id
       name: $name
       description: $description
-      cfapiProjectId: $cfapiProjectId
+      repoName: $repoName
     ) {
       id
       name
       description
-      cfapiProjectId
+      repoName
     }
   }
 `;

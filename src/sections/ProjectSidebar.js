@@ -73,13 +73,8 @@ class ResponsiveDrawer extends React.Component {
         >
           <Divider />
           {projects.map(project => (
-            <React.Fragment>
-              <ListItem
-                button
-                key={project.id}
-                component={Link}
-                to={`/projects/${project.id}`}
-              >
+            <React.Fragment key={project.id}>
+              <ListItem button component={Link} to={`/projects/${project.id}`}>
                 <ListItemText primary={project.name} />
               </ListItem>
               <Divider />
