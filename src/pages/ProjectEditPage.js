@@ -4,8 +4,8 @@ import ProjectSection from '../sections/ProjectSection';
 import withEditPage from '../utils/withEditPage';
 
 const projectQuery = gql`
-  query getProject($id: ID!) {
-    Project(id: $id) {
+  query getProject($repoName: String!) {
+    Project(repoName: $repoName) {
       id
       name
       description
@@ -19,7 +19,7 @@ const updateProjectQuery = gql`
     $id: ID!
     $name: String!
     $description: String
-    $repoName: String
+    $repoName: String!
   ) {
     updateProject(
       id: $id
@@ -27,7 +27,6 @@ const updateProjectQuery = gql`
       description: $description
       repoName: $repoName
     ) {
-      id
       name
       description
       repoName
@@ -37,12 +36,19 @@ const updateProjectQuery = gql`
 
 const ProjectEditPage = compose(
   graphql(projectQuery, {
-    options: props => ({ variables: { id: props.match.params.id } }),
+    options: props => ({
+      variables: { repoName: props.match.params.repoName }
+    }),
     props: ({ data: { Project } }) => ({ project: Project })
   }),
   graphql(updateProjectQuery, {
     props: ({ mutate }) => ({
-      onEdit: updatedProject => mutate({ variables: updatedProject })
+      onEdit: updatedProject => {
+        if (updatedProject.repoName) {
+          return mutate({ variables: updatedProject });
+        }
+        return Promise.reject('A repository name is required');
+      }
     })
   }),
   withEditPage({

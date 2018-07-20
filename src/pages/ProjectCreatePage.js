@@ -10,7 +10,6 @@ const createProjectQuery = gql`
     $repoName: String!
   ) {
     createProject(name: $name, description: $description, repoName: $repoName) {
-      id
       name
       description
       repoName
@@ -21,7 +20,12 @@ const createProjectQuery = gql`
 const ProjectCreatePage = compose(
   graphql(createProjectQuery, {
     props: ({ mutate }) => ({
-      onCreate: newProject => mutate({ variables: newProject })
+      onCreate: newProject => {
+        if (newProject.repoName) {
+          return mutate({ variables: newProject });
+        }
+        return Promise.reject('A repository name is required');
+      }
     }),
     options: {
       refetchQueries: ['allProjects']
