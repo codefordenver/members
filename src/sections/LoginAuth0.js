@@ -8,8 +8,18 @@ import Button from '@material-ui/core/Button';
 import withAuthSession from '../utils/withAuthSession';
 
 const authenticateQuery = gql`
-  mutation authenticate($accessToken: String!) {
-    authenticateUser(accessToken: $accessToken) {
+  mutation authenticate(
+    $accessToken: String!
+    $email: String!
+    $name: String!
+    $picture: String!
+  ) {
+    authenticateUser(
+      accessToken: $accessToken
+      email: $email
+      name: $name
+      picture: $picture
+    ) {
       id
       token
     }
@@ -49,16 +59,32 @@ class LoginAuth0 extends Component {
         // authResult.expiresIn - string with the access token's expiration time in seconds
         // authResult.idToken - ID token JWT containing user profile information
 
+        const { name, email, picture } = authResult.idTokenPayload;
+
         this.props
           .authenticate({
             variables: {
-              accessToken: authResult.accessToken
+              accessToken: authResult.accessToken,
+              name,
+              email,
+              picture
             }
           })
           .then(({ data }) => {
             const userInfo = data.authenticateUser;
-            this.props.setAuthSession(authResult, userInfo.id, userInfo.token);
             this.setState({ isLoggingIn: false });
+            this.props.setAuthSession(authResult, userInfo.id, userInfo.token);
+          })
+          .catch(error => {
+            const alertMessage = error.message.includes(
+              'The user already exists'
+            )
+              ? 'A user already exists with the provided email. Trying signing in with a different provider.'
+              : error.message;
+
+            alert(alertMessage);
+            this.setState({ isLoggingIn: false });
+            return console.error(error);
           });
       }
     );
@@ -68,7 +94,7 @@ class LoginAuth0 extends Component {
     this.webAuth.authorize({
       audience: getEnvironmentVariables().auth0ApiIdentifier,
       redirectUri: window.location.origin,
-      responseType: 'token',
+      responseType: 'token id_token',
       scope: 'openid email profile'
     });
   };
