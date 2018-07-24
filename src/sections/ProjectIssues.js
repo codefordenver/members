@@ -3,14 +3,11 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import ProjectIssue from './ProjectIssue';
 
-const ProjectIssues = ({ issuesInfo }) => {
+const ProjectIssues = ({ issues }) => {
   return (
     <div>
-      <h2>Issues</h2>
-      {issuesInfo.objects &&
-        issuesInfo.objects.map(issue => (
-          <ProjectIssue issue={issue} key={issue.id} />
-        ))}
+      <h2>Issues ready to be worked on</h2>
+      {issues.map(issue => <ProjectIssue issue={issue} key={issue.id} />)}
     </div>
   );
 };
@@ -20,15 +17,17 @@ ProjectIssues.defaultProps = {
 
 /* eslint-disable graphql/template-strings */
 const issuesQuery = gql`
-  query issues($id: String!) {
-    issues(id: $id)
+  query issues($repoName: String!) {
+    issues(repoName: $repoName)
       @rest(
-        type: "Issues"
-        path: "projects/:id/issues"
-        params: { id: $id }
-        endpoint: "cfa"
+        type: "githubIssue"
+        path: "repos/codefordenver/:repoName/issues?labels=ready"
+        params: { repoName: $repoName }
+        endpoint: "github"
       ) {
-      objects
+      id
+      html_url
+      title
     }
   }
 `;
@@ -37,8 +36,10 @@ const issuesQuery = gql`
 export default graphql(issuesQuery, {
   options: props => ({
     variables: {
-      id: props.cfapiProjectId
+      repoName: props.repoName
     }
   }),
-  props: ({ data: { issues } }) => ({ issuesInfo: issues || {} })
+  props: ({ data: { issues } }) => {
+    return { issues };
+  }
 })(ProjectIssues);

@@ -7,17 +7,13 @@ const createProjectQuery = gql`
   mutation createProject(
     $name: String!
     $description: String
-    $cfapiProjectId: String!
+    $repoName: String!
   ) {
-    createProject(
-      name: $name
-      description: $description
-      cfapiProjectId: $cfapiProjectId
-    ) {
+    createProject(name: $name, description: $description, repoName: $repoName) {
       id
       name
       description
-      cfapiProjectId
+      repoName
     }
   }
 `;
