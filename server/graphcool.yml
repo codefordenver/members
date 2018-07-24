@@ -52,7 +52,6 @@ permissions:
     authenticated: true
   # any user can update project
   - operation: Project.update
-    fields: [name, description]
     authenticated: true
 # CHAMPION PERMISSIONS
   # champion can remove themself
@@ -62,7 +61,6 @@ permissions:
   # champion can update project
   - operation: Project.update
     authenticated: true
-    fields: [name, description]
     query: ./src/permissions/isChampion.graphql
 # ADMIN PERMISSIONS
   - operation: User.delete
