@@ -9,8 +9,8 @@ import ProjectCreatePage from './pages/ProjectCreatePage';
 const LoggedInRoutesSidebar = ({ user, match }) => (
   <Switch>
     <Route path="/projects/create" component={ProjectCreatePage} />
-    <Route path="/projects/:id/edit" component={ProjectEditPage} />
-    <Route path="/projects/:id" component={ProjectPage} />
+    <Route path="/projects/:repoName/edit" component={ProjectEditPage} />
+    <Route path="/projects/:repoName" component={ProjectPage} />
     <Route path="/projects" component={GeneralProjectPage} />
   </Switch>
 );

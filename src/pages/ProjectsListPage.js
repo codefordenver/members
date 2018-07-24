@@ -22,8 +22,8 @@ ProjectsList.defaultProps = {
 const allProjectsQuery = gql`
   query projects {
     allProjects(orderBy: name_ASC) {
-      id
       name
+      repoName
     }
   }
 `;

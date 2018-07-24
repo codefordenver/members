@@ -4,8 +4,8 @@ import withViewPage from '../utils/withViewPage';
 import ProjectSection from '../sections/ProjectSection';
 
 const projectQuery = gql`
-  query getProject($id: ID!) {
-    Project(id: $id) {
+  query getProject($repoName: String!) {
+    Project(repoName: $repoName) {
       id
       name
       description
@@ -17,7 +17,6 @@ const projectQuery = gql`
 const updateProjectQuery = gql`
   mutation updateProject($id: ID!, $name: String!, $description: String) {
     updateProject(id: $id, name: $name, description: $description) {
-      id
       name
       description
     }
@@ -26,7 +25,9 @@ const updateProjectQuery = gql`
 
 const ProjectPage = compose(
   graphql(projectQuery, {
-    options: props => ({ variables: { id: props.match.params.id } }),
+    options: props => ({
+      variables: { repoName: props.match.params.repoName }
+    }),
     props: ({ data: { Project } }) => ({ project: Project })
   }),
   graphql(updateProjectQuery, {

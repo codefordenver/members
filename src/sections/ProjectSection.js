@@ -28,7 +28,7 @@ const ProjectSection = ({ project, editing, onFormDataChange }) => {
           {...commonProps}
         />
       ) : (
-        repoName && <ProjectIssues repoName={repoName} />
+        <ProjectIssues repoName={repoName} />
       )}
     </React.Fragment>
   );

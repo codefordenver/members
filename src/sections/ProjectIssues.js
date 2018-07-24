@@ -1,13 +1,20 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
+import ErrorBox from '../sections/ErrorBox';
 import ProjectIssue from './ProjectIssue';
 
-const ProjectIssues = ({ issues }) => {
+const ProjectIssues = ({ issues, error }) => {
   return (
     <div>
       <h2>Issues ready to be worked on</h2>
-      {issues.map(issue => <ProjectIssue issue={issue} key={issue.id} />)}
+      {error ? (
+        <ErrorBox>
+          {'There was an error retrieving the project issues'}
+        </ErrorBox>
+      ) : (
+        issues.map(issue => <ProjectIssue issue={issue} key={issue.id} />)
+      )}
     </div>
   );
 };
@@ -39,7 +46,7 @@ export default graphql(issuesQuery, {
       repoName: props.repoName
     }
   }),
-  props: ({ data: { issues } }) => {
-    return { issues };
+  props: ({ data: { issues, error } }) => {
+    return { issues, error };
   }
 })(ProjectIssues);
