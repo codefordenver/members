@@ -69,7 +69,18 @@ class LoginAuth0 extends Component {
       audience: getEnvironmentVariables().auth0ApiIdentifier,
       redirectUri: window.location.origin,
       responseType: 'token',
-      scope: 'openid email profile'
+      scope: 'openid email profile',
+      initialScreen: 'login'
+    });
+  };
+
+  _showSignUp = () => {
+    this.webAuth.signup({
+      audience: getEnvironmentVariables().auth0ApiIdentifier,
+      redirectUri: window.location.origin,
+      responseType: 'token',
+      scope: 'openid email profile',
+      initialScreen: 'signUp'
     });
   };
 
@@ -78,7 +89,7 @@ class LoginAuth0 extends Component {
       <div>
         <Button
           color="secondary"
-          onClick={this._showLogin}
+          onClick={this._showSignUp}
           disabled={this.state.isLoggingIn}
         >
           Sign Up
