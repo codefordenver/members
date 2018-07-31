@@ -50,7 +50,7 @@ permissions:
   # any user can create a project
   - operation: Project.create
     authenticated: true
-  # any user can update project
+  # any user can update a project
   - operation: Project.update
     authenticated: true
 # CHAMPION PERMISSIONS
@@ -62,6 +62,13 @@ permissions:
   - operation: Project.update
     authenticated: true
     query: ./src/permissions/isChampion.graphql
+  - operation: Skill.read
+  - operation: Skill.create
+    authenticated: true
+  - operation: UserSkills.connect
+    authenticated: true
+  - operation: UserSkills.disconnect
+    authenticated: true
 # ADMIN PERMISSIONS
   - operation: User.delete
     authenticated: true
@@ -79,6 +86,12 @@ permissions:
   - operation: Project.update
     authenticated: true
     query: ./src/permissions/isAdmin.graphql
+  - operation: Skill.update
+    authenticated: true
+    query: ./src/permissions/isAdminNotEditingOtherAdmin.graphql
+  - operation: Skill.delete
+    authenticated: true
+    query: ./src/permissions/isAdminNotEditingOtherAdmin.graphql
 
 # Your root tokens used for functions to get full access to the API
 # Read more here:

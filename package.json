@@ -43,6 +43,8 @@
     "postinstall": "cd ./server && npm install",
     "setup": "node ./bin/auth0setup/promptUser.js",
     "gc": "cd ./server && dotenv -e ../.env.local graphcool",
+    "_forceDeploy": "cd ./server && graphcool deploy --force",
+    "gc:forceDeploy": "dotenv -e .env.local npm run _forceDeploy",
     "deployProdBackend": "cd ./server && graphcool deploy",
     "check-version": "node ./bin/checkVersion.js",
     "download-schema": "dotenv -e ./.env.local node ./bin/download-schema.js"
