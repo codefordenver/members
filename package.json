@@ -13,7 +13,7 @@
     "apollo-link-context": "^1.0.7",
     "apollo-link-http": "^1.5.1",
     "apollo-link-rest": "^0.2.4",
-    "auth0-js": "^8.12.2",
+    "auth0-js": "^9.7.3",
     "babel-polyfill": "^6.26.0",
     "date-fns": "^1.29.0",
     "graphql": "^0.13.1",

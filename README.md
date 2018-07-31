@@ -25,6 +25,12 @@ Setup:
 		5. Select `CREATE & AUTHORIZE A TEST CLIENT`. This creates a client that can use the Management API.
 		6. Select `Applications` from the side menu
 		7. Select `API Explorer Application`
+
+    (To enable Log In/ Sign Up functionality, please go to your Auth0 dashboard, navigate to "Hosted Pages", and enter the following line within the 'lock' variable.
+
+          initialScreen: config.extraParams.initial_screen,
+    )
+
 5. Go the the command line and run `npm run setup` (You will be asked for the `Domain`, `Client ID`, and `Client Secret` from the
 		`API Explorer Client`. Paste them into the command line). This will create the `.env.local` file in the root of the project.
 

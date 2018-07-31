@@ -95,22 +95,46 @@ class LoginAuth0 extends Component {
       audience: getEnvironmentVariables().auth0ApiIdentifier,
       redirectUri: window.location.origin,
       responseType: 'token id_token',
+      scope: 'openid email profile',
+      initialScreen: 'login'
+    });
+  };
+
+  _showSignUp = () => {
+    //
+    this.webAuth.authorize({
+      audience: getEnvironmentVariables().auth0ApiIdentifier,
+      redirectUri: window.location.origin,
+      initialScreen: 'signUp',
+      responseType: 'token id_token',
       scope: 'openid email profile'
     });
   };
 
   render() {
     return (
-      <Button
-        color="secondary"
-        onClick={this._showLogin}
-        disabled={this.state.isLoggingIn}
-      >
-        Log In
-        {this.state.isLoggingIn && (
-          <CircularProgress size={25} color="secondary" />
-        )}
-      </Button>
+      <div>
+        <Button
+          color="secondary"
+          onClick={this._showSignUp}
+          disabled={this.state.isLoggingIn}
+        >
+          Sign Up
+          {this.state.isLoggingIn && (
+            <CircularProgress size={25} color="secondary" />
+          )}
+        </Button>
+        <Button
+          color="secondary"
+          onClick={this._showLogin}
+          disabled={this.state.isLoggingIn}
+        >
+          Log In
+          {this.state.isLoggingIn && (
+            <CircularProgress size={25} color="secondary" />
+          )}
+        </Button>
+      </div>
     );
   }
 }
