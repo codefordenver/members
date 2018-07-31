@@ -1,0 +1,15 @@
+# https://www.graph.cool/docs/reference/auth/authorization/permission-queries-iox3aqu0ee#variables-for-relation-permissions
+# "champions" + "User" +  "_id" ("field name" + "type name" + "_id")
+query championRemoveSelf(
+  $projectsChampionedProject_id: ID!
+  $user_id: ID!
+  $championsUser_id: ID!
+) {
+  SomeProjectExists(
+    filter: {
+      id: $projectsChampionedProject_id
+      # check champions field to see if the user making the request is the same user being queried/mutated.
+      champions_some: { AND: [{ id: $user_id }, { id: $championsUser_id }] }
+    }
+  )
+}
