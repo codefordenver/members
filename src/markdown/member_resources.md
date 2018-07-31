@@ -21,7 +21,7 @@ Here is some information we hope you'll find useful.
   - NOTE: We also track our projects in a waffle board [here](https://waffle.io/codefordenver/projects)
 - [2015 Report](http://archive.codefordenver.org/2015/)
 - [2016 Report](http://www.codefordenver.org/2016-end-year-report/)
-- 2017 Report - coming soon
+- [2017 Report](http://2017.codefordenver.org)
 
 ## Tools
 
