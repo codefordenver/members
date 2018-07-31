@@ -75,7 +75,8 @@ class LoginAuth0 extends Component {
   };
 
   _showSignUp = () => {
-    this.webAuth.signup({
+    //
+    this.webAuth.authorize({
       audience: getEnvironmentVariables().auth0ApiIdentifier,
       redirectUri: window.location.origin,
       responseType: 'token',
