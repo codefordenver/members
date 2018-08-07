@@ -64,6 +64,15 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
                 {...commonProps}
               />
             </div>
+            <div className="Member-contact">
+              <span className="Member-social-links">Member Since: </span>
+              <EditableText
+                value={flowdockName}
+                label="Member since"
+                name="memberSince"
+                {...commonProps}
+              />
+            </div>
           </div>
         </div>
         <HelpUsImplementThis>
