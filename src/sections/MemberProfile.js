@@ -12,7 +12,15 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
   if (!user) {
     return <LoadingIndicator />;
   }
-  const { picture, name, description, githubName, flowdockName, email } = user;
+  const {
+    picture,
+    name,
+    description,
+    githubName,
+    flowdockName,
+    email,
+    memberSince
+  } = user;
   const commonProps = {
     onChange: onFormDataChange,
     editing
@@ -67,7 +75,7 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
             <div className="Member-contact">
               <span className="Member-social-links">Member Since: </span>
               <EditableText
-                value={flowdockName}
+                value={memberSince}
                 label="Member since"
                 name="memberSince"
                 {...commonProps}
