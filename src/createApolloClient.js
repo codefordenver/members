@@ -7,7 +7,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { getEnvironmentVariables } from './utils';
 import { getBearerTokenForAuthorization } from './utils/withAuthSession';
 
-const graphcoolApi = getEnvironmentVariables().graphcoolApi;
+const { graphcoolApi, devMode } = getEnvironmentVariables();
 if (process.env.NODE_ENV === 'development') {
   console.log('Trying to connect to: ', graphcoolApi);
 }
@@ -41,6 +41,7 @@ const restLink = new RestLink({
 export default function createApolloClient() {
   return new ApolloClient({
     link: ApolloLink.from([restLink, middlewareLink, httpLink]),
-    cache: new InMemoryCache()
+    cache: new InMemoryCache(),
+    connectToDevTools: devMode
   });
 }

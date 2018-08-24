@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
+import gql from 'graphql-tag';
 import HelpUsImplementThis from './HelpUsImplementThis';
 import LoadingIndicator from './LoadingIndicator';
 import MemberProjects from './MemberProjects';
@@ -12,7 +13,15 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
   if (!user) {
     return <LoadingIndicator />;
   }
-  const { picture, name, description, githubName, flowdockName, email } = user;
+  const {
+    picture,
+    name,
+    description,
+    githubName,
+    flowdockName,
+    email,
+    skills
+  } = user;
   const commonProps = {
     onChange: onFormDataChange,
     editing
@@ -86,10 +95,19 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
         </HelpUsImplementThis>
       </Card>
 
-      <MemberSkills />
+      <MemberSkills skills={skills} editing={editing} />
       <MemberProjects />
     </div>
   );
+};
+MemberProfile.fragments = {
+  skills: gql`
+    fragment Skills on User {
+      skills {
+        name
+      }
+    }
+  `
 };
 
 export default MemberProfile;

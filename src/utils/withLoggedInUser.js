@@ -13,6 +13,9 @@ const getLoggedInUser = gql`
       githubName
       description
       role
+      skills {
+        name
+      }
     }
   }
 `;
