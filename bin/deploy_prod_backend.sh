@@ -43,9 +43,9 @@ function verify_env_var_present {
 green "Preparing to deploy the members application (server and client)"
 echo ""
 echo "Verifying environment executables are the right version"
-verify_version node v8.9.3
-verify_version npm 5.5.1
-verify_version npx 9.6.0
+verify_version node v10.8.0
+verify_version npm 6.2.0
+verify_version npx 6.2.0
 
 echo ""
 echo "Verifying environment variables are present"
