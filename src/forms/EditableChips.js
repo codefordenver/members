@@ -6,7 +6,27 @@ const EditableChips = ({ value, label, name, editing, onChange }) => {
     return value.map(skill => <Chip key={skill.name} label={skill.name} />);
   }
   if (editing) {
-    return <div>TODO</div>;
+    return (
+      <div>
+        {value.map(skill => (
+          <Chip
+            key={skill.name}
+            label={skill.name}
+            onDelete={() => {
+              const newChipData = [...value];
+              const chipToDelete = newChipData.indexOf(skill);
+              newChipData.splice(chipToDelete, 1);
+              onChange({
+                target: {
+                  value: newChipData,
+                  name
+                }
+              });
+            }}
+          />
+        ))}
+      </div>
+    );
   }
 };
 

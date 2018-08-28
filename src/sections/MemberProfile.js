@@ -4,10 +4,11 @@ import gql from 'graphql-tag';
 import HelpUsImplementThis from './HelpUsImplementThis';
 import LoadingIndicator from './LoadingIndicator';
 import MemberProjects from './MemberProjects';
-import MemberSkills from './MemberSkills';
+import EditableChips from '../forms/EditableChips';
 import EditableText from '../forms/EditableText';
 import EditableMarkdown from '../forms/EditableMarkdown';
 import './Member.css';
+import { common } from '@material-ui/core/colors';
 
 const MemberProfile = ({ user, onFormDataChange, editing }) => {
   if (!user) {
@@ -95,7 +96,14 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
         </HelpUsImplementThis>
       </Card>
 
-      <MemberSkills skills={skills} editing={editing} />
+      <Card className="Member-card">
+        <div className="Member-skills-left">
+          <h2>Skills</h2>
+        </div>
+        <div className="Member-skills-right">
+          <EditableChips value={skills} name="skills" {...commonProps} />
+        </div>
+      </Card>
       <MemberProjects />
     </div>
   );
