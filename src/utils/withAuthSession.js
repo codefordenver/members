@@ -3,10 +3,12 @@ import { withApollo } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
 import getDisplayName from './getDisplayName';
 
-const ACCESS_TOKEN_KEY = 'access_token';
-const EXPIRES_AT_KEY = 'expires_at';
-const USER_ID = 'user_id';
-const BEARER_TOKEN = 'cfd-members-auth0IdToken';
+import {
+  ACCESS_TOKEN_KEY,
+  BEARER_TOKEN,
+  USER_ID,
+  EXPIRES_AT_KEY
+} from '../constants/storageKeys';
 
 function setAuthSession(authResult, userId, bearerToken) {
   const localStorage = global.localStorage;
@@ -40,7 +42,7 @@ function logout() {
   localStorage.removeItem(BEARER_TOKEN);
 }
 
-function isAuthenticated() {
+export function isAuthenticated() {
   const localStorage = global.localStorage;
   const expiresAt = JSON.parse(localStorage.getItem(EXPIRES_AT_KEY));
   const userId = localStorage.getItem(USER_ID);
@@ -51,7 +53,7 @@ function isAuthenticated() {
   return authenticated;
 }
 
-function getUpdatedState() {
+export function getUpdatedState() {
   return {
     authSession: getAuthSession(),
     isAuthenticated: isAuthenticated()

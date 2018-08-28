@@ -1,12 +1,14 @@
 import './testShims';
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
 import * as getEnvironmentVariableModule from './utils/getEnvironmentVariables';
-
-configure({ adapter: new Adapter() });
+import * as withLoggedInUser from './utils/withLoggedInUser';
 
 getEnvironmentVariableModule.default = jest.fn().mockReturnValue({
   auth0ClientId: '',
   auth0Domain: '',
   graphcoolApi: ''
+});
+
+withLoggedInUser.isAuthenticated = jest.fn().mockReturnValue(true);
+withLoggedInUser.getAuthSession = jest.fn().mockReturnValue({
+  userId: 'fsdafdsajfkldsa;'
 });
