@@ -5,47 +5,32 @@ const comparator = config.engines.node.match(/[^0-9.]+/).toString();
 const minVersion = process.version.match(/[0-9.]+/).toString();
 const version = config.engines.node.match(/[0-9.]+/).toString();
 
-// convert to array [major, minor, patch]
-var min = minVersion.split('.');
-var ver = version.split('.');
-
-// turn elements in array from string to number
-min = min.map(function(value, index) {
-  return Number(value);
-});
-ver = ver.map(function(value, index) {
-  return Number(value);
-});
-
-// version comparator
-var test = ((a, b, comp) => {
-  // allow only > or >= comparators
-  if (comp !== '>' && comp !== '>=') {
-    console.log(
-      'Error: invalid Node version comparator, should contain > || >='
-    );
-    process.exit(1);
-  }
-  // greater than
-  if (a[0] > b[0]) {
-    return true;
-  }
-  if (a[1] > b[1]) {
-    return true;
-  }
-  if (a[2] > b[2]) {
-    return true;
-  }
-  // greater than or equal
-  if (comp === '>=') {
-    if (a[0] === b[0] && a[1] === b[1] && a[2] === b[2]) {
-      return true;
+function compareVersions(left, right) {
+  if (left === right) return 0;
+  const a = left.split('.').map(Number);
+  const b = right.split('.').map(Number);
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] > b[i]) {
+      return 1;
+    }
+    if (a[i] < b[i]) {
+      return -1;
     }
   }
-  return false;
-})(min, ver, comparator);
+  return true;
+}
 
-if (test) {
+if (comparator !== '>' && comparator !== '>=') {
+  console.log('Error: invalid Node version comparator, should contain > || >=');
+  process.exit(1);
+}
+
+const comparison = compareVersions(version, minVersion);
+
+const success =
+  comparator === '>=' ? comparison === 0 || comparison === 1 : comparison === 1;
+
+if (success) {
   console.log(
     `Notice: Node version check ${minVersion} ${comparator} ${version} good`
   );

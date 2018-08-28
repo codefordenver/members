@@ -9,7 +9,7 @@ Node.js application that connects volunteers with volunteers/projects based on t
 
 ## Requirements
 
-- [Node.js](https://nodejs.org) - version 8.9.3 (if you have nvm type `nvm use` in the repo to use the correct version)
+- [Node.js](https://nodejs.org) - version 10.8.0 (if you have nvm type `nvm use` in the repo to use the correct version)
 
 Setup:
 1. clone repo
@@ -78,10 +78,10 @@ The [Graphcool framework](https://github.com/graphcool/framework) is used to spi
 ### Linting
 This project employs the ESLint plugin [eslint-plugin-graphql](https://github.com/apollographql/eslint-plugin-graphql) to help developers write schema-compliant GraphQL queries. This plugin will red-line invalid queries that are not schema compliant if you are using an editor with an installed ESLint plugin. If a query fails validation and hence the lint, the travis build will fail as well.
 
-The schema file is checked in to the root directory of the repository as `full-schema.json`. If the schema on Graphcool is updated and `full-schema.json` is out of date. It is necessary to run the `download-schema` NPM script in order to update linting information. 
+The schema file is checked in to the root directory of the repository as `full-schema.json`. If the schema on Graphcool is updated and `full-schema.json` is out of date. It is necessary to run the `download-schema` NPM script in order to update linting information.
 
 ### Material-UI
-This project uses [Material-UI](https://material-ui.com/) for theming. Be sure to check out their component demos, like [this one for avatars](https://material-ui.com/demos/avatars/). 
+This project uses [Material-UI](https://material-ui.com/) for theming. Be sure to check out their component demos, like [this one for avatars](https://material-ui.com/demos/avatars/).
 
 ### Create React App
 The front end for this project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). Here are some [generated docs](./docs/CreateReactApp.md) from this project for helpful tips on how to do common things.
