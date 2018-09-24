@@ -13,7 +13,7 @@ export default {
       case EXPIRES_AT_KEY:
         return 2535419869506;
       case USER_ID:
-        return 'userId';
+        return 'mocked-test-user-id';
       case BEARER_TOKEN:
         return 'bearerToken';
       default:

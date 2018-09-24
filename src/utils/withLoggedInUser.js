@@ -24,24 +24,15 @@ export const getLoggedInUser = gql`
 const withLoggedInUser = compose(
   withAuthSession,
   graphql(getLoggedInUser, {
-    skip: ({ isAuthenticated, authSession, ...props }) => {
-      console.log(
-        `isAuthenticated: ${isAuthenticated} authSession.userId: ${
-          authSession.userId
-        }`
-      );
+    skip: ({ isAuthenticated, authSession }) => {
       return !isAuthenticated || !authSession.userId;
     },
     options: ({ authSession }) => ({
-      // fetchPolicy: "network-only",
       variables: {
         id: authSession.userId
       }
     }),
-    props: data => {
-      console.log(data);
-      return { user: data.user };
-    }
+    props: ({ data: { user } }) => ({ user })
   })
 );
 

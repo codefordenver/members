@@ -10,5 +10,5 @@ getEnvironmentVariableModule.default = jest.fn().mockReturnValue({
 
 withLoggedInUser.isAuthenticated = jest.fn().mockReturnValue(true);
 withLoggedInUser.getAuthSession = jest.fn().mockReturnValue({
-  userId: 'fsdafdsajfkldsa;'
+  userId: 'mocked-test-user-id;'
 });

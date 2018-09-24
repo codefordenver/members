@@ -1,5 +1,5 @@
 import React from 'react';
-import { queryByText, getByText, waitForElement } from 'react-testing-library';
+import { waitForElement, cleanup } from 'react-testing-library';
 import Header from '../Header';
 import { mountWithAuth, mountWithContext } from '../../testUtils';
 import localStorageMock from '../../mocks/localStorageMock';
@@ -12,6 +12,8 @@ const mockAdminUser = {
   role: 'ADMIN'
 };
 
+afterEach(cleanup);
+
 describe('Header', () => {
   describe('if the user is logged in', () => {
     it('should not show the login button', () => {
@@ -23,7 +25,7 @@ describe('Header', () => {
 
     describe('and the user is not admin', () => {
       it('should show the correct navigation links', async () => {
-        const { getByText, queryByText, container } = mountWithAuth(
+        const { getByText, queryByText } = mountWithAuth(
           <Header isAuthenticated={true} user={mockUser} />
         );
 
@@ -32,23 +34,23 @@ describe('Header', () => {
         expect(getByText('All Users')).toBeDefined();
         expect(getByText('All Projects')).toBeDefined();
         expect(queryByText('Admin Resources')).toBeNull();
-        expect(container).toMatchSnapshot();
       });
     });
 
     describe('and the user is admin', () => {
-      it('should show the correct navigation links', () => {
-        const { getByText, container } = mountWithAuth(
+      it('should show the correct navigation links', async () => {
+        const { getByText } = mountWithAuth(
           <Header isAuthenticated={true} user={mockAdminUser} />,
           {
             routes: ['/']
           }
         );
 
+        await waitForElement(() => getByText('Admin Resources'));
+
         expect(getByText('All Users')).toBeDefined();
         expect(getByText('All Projects')).toBeDefined();
         expect(getByText('Admin Resources')).toBeDefined();
-        expect(container).toMatchSnapshot();
       });
     });
   });
@@ -62,27 +64,30 @@ describe('Header', () => {
       global.localStorage.getItem = localStorageMock.getItem;
     });
 
-    it('not should show any navigation links', () => {
-      const { queryByText, container } = mountWithContext(<Header />, {
-        routes: ['/']
-      });
-
-      expect(queryByText('All Users')).not.toBeDefined();
-      expect(queryByText('All Projects')).not.toBeDefined();
-      expect(queryByText('Admin Resources')).not.toBeDefined();
-      expect(container).toMatchSnapshot();
-    });
-
-    it('should show the login button', () => {
-      const { getByText, container } = mountWithContext(
+    it('not should show any navigation links', async () => {
+      const { queryByText, getByText } = mountWithContext(
         <Header isAuthenticated={false} />,
         {
           routes: ['/']
         }
       );
 
-      expect(getByText('Log In')).toBeDefined();
-      expect(container).toMatchSnapshot();
+      await waitForElement(() => getByText('Log In'));
+
+      expect(queryByText('All Users')).toBeNull();
+      expect(queryByText('All Projects')).toBeNull();
+      expect(queryByText('Admin Resources')).toBeNull();
+    });
+
+    it('should show the login button', async () => {
+      const { getByText } = mountWithContext(
+        <Header isAuthenticated={false} />,
+        {
+          routes: ['/']
+        }
+      );
+
+      await waitForElement(() => getByText('Log In'));
     });
   });
 });

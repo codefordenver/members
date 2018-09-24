@@ -12,7 +12,6 @@ import withAuthSession from '../utils/withAuthSession';
 import './Header.css';
 
 const Header = ({ isAuthenticated, user }) => {
-  console.log(user);
   return (
     <AppBar position="fixed">
       <Toolbar>
