@@ -38,7 +38,7 @@ permissions:
   - operation: User.read
   - operation: User.update
     authenticated: true
-    fields: [email, name, picture, githubName, flowdockName, description]
+    fields: [email, name, picture, githubName, flowdockName, description, skills]
     query: ./src/permissions/isSelf.graphql
   - operation: User.delete
     authenticated: true
@@ -53,6 +53,13 @@ permissions:
   # any user can update a project
   - operation: Project.update
     authenticated: true
+  - operation: Skill.read
+  - operation: Skill.create
+    authenticated: true
+  - operation: UserSkills.connect
+    authenticated: true
+  - operation: UserSkills.disconnect
+    authenticated: true
 # CHAMPION PERMISSIONS
   # champion can remove themself
   - operation: ProjectChampions.disconnect
@@ -62,34 +69,8 @@ permissions:
   - operation: Project.update
     authenticated: true
     query: ./src/permissions/isChampion.graphql
-  - operation: Skill.read
-  - operation: Skill.create
-    authenticated: true
-  - operation: UserSkills.connect
-    authenticated: true
-  - operation: UserSkills.disconnect
-    authenticated: true
 # ADMIN PERMISSIONS
-  - operation: User.delete
-    authenticated: true
-    query: ./src/permissions/isAdminNotEditingOtherAdmin.graphql
-  - operation: User.update
-    authenticated: true
-    fields: [name, picture, githubName, flowdockName, description, role]
-    query: ./src/permissions/isAdminNotEditingOtherAdmin.graphql
-  - operation: Project.delete
-    authenticated: true
-    query: ./src/permissions/isAdmin.graphql
-  - operation: ProjectChampions.disconnect
-    authenticated: true
-    query: ./src/permissions/isAdmin.graphql
-  - operation: Project.update
-    authenticated: true
-    query: ./src/permissions/isAdmin.graphql
-  - operation: Skill.update
-    authenticated: true
-    query: ./src/permissions/isAdminNotEditingOtherAdmin.graphql
-  - operation: Skill.delete
+  - operation: "*"
     authenticated: true
     query: ./src/permissions/isAdminNotEditingOtherAdmin.graphql
 

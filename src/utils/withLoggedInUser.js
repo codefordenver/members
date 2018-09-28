@@ -14,6 +14,7 @@ const getLoggedInUser = gql`
       description
       role
       skills {
+        id
         name
       }
     }

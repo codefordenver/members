@@ -11,6 +11,7 @@ const updateUserQuery = gql`
     $githubName: String
     $flowdockName: String
     $description: String
+    $skillsIds: [ID!]
   ) {
     updateUser(
       id: $id
@@ -18,6 +19,7 @@ const updateUserQuery = gql`
       githubName: $githubName
       flowdockName: $flowdockName
       description: $description
+      skillsIds: $skillsIds
     ) {
       id
       name
@@ -26,15 +28,31 @@ const updateUserQuery = gql`
       flowdockName
       githubName
       description
+      skills {
+        id
+        name
+      }
     }
   }
 `;
+
+function prepUserForUpdate(updatedUser) {
+  const skillsIds = updatedUser.skills
+    .filter(skill => skill.id)
+    .map(skill => skill.id);
+  return {
+    ...updatedUser,
+    skillsIds
+  };
+}
 
 export default compose(
   withLoggedInUser,
   graphql(updateUserQuery, {
     props: ({ mutate }) => ({
-      onEdit: updatedUser => mutate({ variables: updatedUser })
+      onEdit: updatedUser => {
+        return mutate({ variables: prepUserForUpdate(updatedUser) });
+      }
     })
   }),
   withEditPage({

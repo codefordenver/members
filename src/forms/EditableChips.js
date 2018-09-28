@@ -8,26 +8,29 @@ const EditableChips = ({
   name,
   editing,
   onChange,
-  allOptions
+  allOptions,
+  allOptionsLoading,
+  createChip
 }) => {
   if (!editing) {
-    return value.map(skill => <Chip key={skill.name} label={skill.name} />);
+    return value.map(option => <Chip key={option.name} label={option.name} />);
   }
+
   if (editing) {
-    const skillSet = new Set(value.map(skill => skill.name));
+    const optionSet = new Set(value.map(option => option.name));
     return (
       <div>
-        {value.map(skill => (
+        {value.map(option => (
           <Chip
-            key={skill.name}
-            label={skill.name}
+            key={option.name}
+            label={option.name}
             onDelete={() => {
-              const newChipData = [...value];
-              const chipToDelete = newChipData.indexOf(skill);
-              newChipData.splice(chipToDelete, 1);
+              const newChipsData = [...value];
+              const chipToDelete = newChipsData.indexOf(option);
+              newChipsData.splice(chipToDelete, 1);
               onChange({
                 target: {
-                  value: newChipData,
+                  value: newChipsData,
                   name
                 }
               });
@@ -35,17 +38,19 @@ const EditableChips = ({
           />
         ))}
         <AutocompleteChip
-          options={allOptions.filter(option => !skillSet.has(option.name))}
+          isLoading={allOptionsLoading}
+          options={allOptions.filter(option => !optionSet.has(option.name))}
           placeholder={label}
           onAdd={newValue => {
-            const newChipData = [...value, { name: newValue }];
+            const newChipsData = [...value, newValue];
             onChange({
               target: {
-                value: newChipData,
+                value: newChipsData,
                 name
               }
             });
           }}
+          onCreate={createChip}
         />
       </div>
     );
@@ -53,7 +58,8 @@ const EditableChips = ({
 };
 
 EditableChips.defaultProps = {
-  value: []
+  value: [],
+  allOptions: []
 };
 
 export default EditableChips;

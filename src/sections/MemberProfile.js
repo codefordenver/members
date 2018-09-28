@@ -4,22 +4,10 @@ import gql from 'graphql-tag';
 import HelpUsImplementThis from './HelpUsImplementThis';
 import LoadingIndicator from './LoadingIndicator';
 import MemberProjects from './MemberProjects';
-import EditableChips from '../forms/EditableChips';
+import EditableSkills from '../forms/EditableSkills';
 import EditableText from '../forms/EditableText';
 import EditableMarkdown from '../forms/EditableMarkdown';
 import './Member.css';
-
-function createOption(name) {
-  return {
-    name
-  };
-}
-
-const options = [
-  createOption('CSS'),
-  createOption('JavaScript'),
-  createOption('Clojure')
-];
 
 const MemberProfile = ({ user, onFormDataChange, editing }) => {
   if (!user) {
@@ -112,11 +100,10 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
           <h2>Skills</h2>
         </div>
         <div className="Member-skills-right">
-          <EditableChips
+          <EditableSkills
             value={skills}
             name="skills"
             label="Add Skill"
-            allOptions={options}
             {...commonProps}
           />
         </div>
@@ -129,6 +116,7 @@ MemberProfile.fragments = {
   skills: gql`
     fragment Skills on User {
       skills {
+        id
         name
       }
     }
