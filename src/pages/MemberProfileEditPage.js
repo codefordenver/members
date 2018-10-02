@@ -37,9 +37,7 @@ const updateUserQuery = gql`
 `;
 
 function prepUserForUpdate(updatedUser) {
-  const skillsIds = updatedUser.skills
-    .filter(skill => skill.id)
-    .map(skill => skill.id);
+  const skillsIds = updatedUser.skills.map(skill => skill.id);
   return {
     ...updatedUser,
     skillsIds

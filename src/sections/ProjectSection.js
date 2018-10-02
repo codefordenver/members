@@ -1,10 +1,12 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import EditableText from '../forms/EditableText';
 import EditableMarkdown from '../forms/EditableMarkdown';
+import EditableSkills from '../forms/EditableSkills';
 import ProjectIssues from './ProjectIssues';
 
 const ProjectSection = ({ project, editing, onFormDataChange }) => {
-  const { name, description, repoName } = project;
+  const { name, description, skills, repoName } = project;
   const commonProps = {
     onChange: onFormDataChange,
     editing
@@ -20,6 +22,15 @@ const ProjectSection = ({ project, editing, onFormDataChange }) => {
         name="description"
         {...commonProps}
       />
+
+      <h2>Skills Needed</h2>
+      <EditableSkills
+        value={skills}
+        name="skills"
+        label="Add Skill"
+        {...commonProps}
+      />
+
       {editing ? (
         <EditableText
           value={repoName}
@@ -32,6 +43,21 @@ const ProjectSection = ({ project, editing, onFormDataChange }) => {
       )}
     </React.Fragment>
   );
+};
+
+ProjectSection.fragments = {
+  ProjectSectionFields: gql`
+    fragment ProjectSectionFields on Project {
+      id
+      name
+      description
+      repoName
+      skills {
+        id
+        name
+      }
+    }
+  `
 };
 
 export default ProjectSection;

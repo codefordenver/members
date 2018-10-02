@@ -6,12 +6,11 @@ import withEditPage from '../utils/withEditPage';
 const projectQuery = gql`
   query getProject($id: ID!) {
     Project(id: $id) {
-      id
-      name
-      description
-      repoName
+      ...ProjectSectionFields
     }
   }
+
+  ${ProjectSection.fragments.ProjectSectionFields}
 `;
 
 const updateProjectQuery = gql`
@@ -20,19 +19,20 @@ const updateProjectQuery = gql`
     $name: String!
     $description: String
     $repoName: String
+    $skillsIds: [ID!]
   ) {
     updateProject(
       id: $id
       name: $name
       description: $description
       repoName: $repoName
+      skillsIds: $skillsIds
     ) {
-      id
-      name
-      description
-      repoName
+      ...ProjectSectionFields
     }
   }
+
+  ${ProjectSection.fragments.ProjectSectionFields}
 `;
 
 const ProjectEditPage = compose(
@@ -42,7 +42,13 @@ const ProjectEditPage = compose(
   }),
   graphql(updateProjectQuery, {
     props: ({ mutate }) => ({
-      onEdit: updatedProject => mutate({ variables: updatedProject })
+      onEdit: updatedProject =>
+        mutate({
+          variables: {
+            ...updatedProject,
+            skillsIds: updatedProject.skills.map(skill => skill.id)
+          }
+        })
     })
   }),
   withEditPage({
