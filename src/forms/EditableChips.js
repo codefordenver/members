@@ -1,6 +1,7 @@
 import React from 'react';
 import Chip from '@material-ui/core/Chip';
 import AutocompleteChip from './AutocompleteChip';
+import './EditableChips.css';
 
 const EditableChips = ({
   value,
@@ -13,15 +14,26 @@ const EditableChips = ({
   createChip
 }) => {
   if (!editing) {
-    return value.map(option => <Chip key={option.name} label={option.name} />);
+    return (
+      <div className="EditableChips">
+        {value.map(option => (
+          <Chip
+            className="EditableChips-chip"
+            key={option.name}
+            label={option.name}
+          />
+        ))}
+      </div>
+    );
   }
 
   if (editing) {
     const optionSet = new Set(value.map(option => option.name));
     return (
-      <div>
+      <div className="EditableChips">
         {value.map(option => (
           <Chip
+            className="EditableChips-chip"
             key={option.name}
             label={option.name}
             onDelete={() => {

@@ -3,8 +3,8 @@ import Card from '@material-ui/core/Card';
 import gql from 'graphql-tag';
 import HelpUsImplementThis from './HelpUsImplementThis';
 import LoadingIndicator from './LoadingIndicator';
-import MemberProjects from './MemberProjects';
 import EditableSkills from '../forms/EditableSkills';
+import EditableChips from '../forms/EditableChips';
 import EditableText from '../forms/EditableText';
 import EditableMarkdown from '../forms/EditableMarkdown';
 import './Member.css';
@@ -108,7 +108,20 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
           />
         </div>
       </Card>
-      <MemberProjects />
+
+      <Card className="Member-card">
+        <div className="Member-skills-left">
+          <h2>Projects</h2>
+        </div>
+        <HelpUsImplementThis>
+          <div className="Member-skills-right">
+            <EditableChips
+              value={[{ name: 'Members Project' }, { name: 'Owlet' }]}
+              label="Add Project"
+            />
+          </div>
+        </HelpUsImplementThis>
+      </Card>
     </div>
   );
 };
