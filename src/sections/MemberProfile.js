@@ -1,9 +1,10 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
+import gql from 'graphql-tag';
 import HelpUsImplementThis from './HelpUsImplementThis';
 import LoadingIndicator from './LoadingIndicator';
-import MemberProjects from './MemberProjects';
-import MemberSkills from './MemberSkills';
+import EditableSkills from '../forms/EditableSkills';
+import EditableChips from '../forms/EditableChips';
 import EditableText from '../forms/EditableText';
 import EditableMarkdown from '../forms/EditableMarkdown';
 import './Member.css';
@@ -12,7 +13,15 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
   if (!user) {
     return <LoadingIndicator />;
   }
-  const { picture, name, description, githubName, flowdockName, email } = user;
+  const {
+    picture,
+    name,
+    description,
+    githubName,
+    flowdockName,
+    email,
+    skills
+  } = user;
   const commonProps = {
     onChange: onFormDataChange,
     editing
@@ -86,10 +95,45 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
         </HelpUsImplementThis>
       </Card>
 
-      <MemberSkills />
-      <MemberProjects />
+      <Card className="Member-card">
+        <div className="Member-skills-left">
+          <h2>Skills</h2>
+        </div>
+        <div className="Member-skills-right">
+          <EditableSkills
+            value={skills}
+            name="skills"
+            label="Add Skill"
+            {...commonProps}
+          />
+        </div>
+      </Card>
+
+      <Card className="Member-card">
+        <div className="Member-skills-left">
+          <h2>Projects</h2>
+        </div>
+        <HelpUsImplementThis>
+          <div className="Member-skills-right">
+            <EditableChips
+              value={[{ name: 'Members Project' }, { name: 'Owlet' }]}
+              label="Add Project"
+            />
+          </div>
+        </HelpUsImplementThis>
+      </Card>
     </div>
   );
+};
+MemberProfile.fragments = {
+  skills: gql`
+    fragment Skills on User {
+      skills {
+        id
+        name
+      }
+    }
+  `
 };
 
 export default MemberProfile;

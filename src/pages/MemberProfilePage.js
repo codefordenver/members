@@ -5,18 +5,23 @@ import MemberProfile from '../sections/MemberProfile';
 const userQuery = gql`
   query getUser($id: ID) {
     user: User(id: $id) {
+      id
       picture
       name
       description
       githubName
       flowdockName
       email
+      ...Skills
     }
   }
+  ${MemberProfile.fragments.skills}
 `;
 
 const MemberProfilePage = graphql(userQuery, {
-  options: props => ({ variables: { id: props.match.params.id } }),
+  options: props => {
+    return { variables: { id: props.match.params.id } };
+  },
   props: ({ data: { user } }) => ({ user })
 })(MemberProfile);
 

@@ -21,6 +21,7 @@ type User @model {
   # Uncomment below - you can declare relations between models like this
 
   # posts: [Post!]! @relation(name: "UserPosts")
+  skills: [Skill!]! @relation(name: "UserSkills")
 }
 
 enum UserRole {
@@ -51,4 +52,17 @@ type Project @model {
   cfapiProjectId: String @isUnique @depricated # Soon to be removed
   repoName: String @isUnique # for linking to github repos and waffle boards
   champions: [User!]! @relation(name: "ProjectChampions")
+}
+
+type Skill @model {
+  # Required system field:
+  id: ID! @isUnique # read-only (managed by Graphcool)
+
+  # Optional system fields (remove if not needed):
+  createdAt: DateTime! # read-only (managed by Graphcool)
+  updatedAt: DateTime! # read-only (managed by Graphcool)
+
+  name: String! @isUnique
+
+  usersWithSkill: [User!]! @relation(name: "UserSkills")
 }

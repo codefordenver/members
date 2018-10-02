@@ -24,7 +24,8 @@
     "react-dom": "^16.3.2",
     "react-ga": "^2.4.1",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "^1.1.5"
+    "react-scripts": "^1.1.5",
+    "react-select": "^2.0.0"
   },
   "lint-staged": {
     "{src,bin,server/src}/**/*.{js,json,css,graphql}": [
@@ -43,6 +44,8 @@
     "postinstall": "cd ./server && npm install",
     "setup": "node ./bin/auth0setup/promptUser.js",
     "gc": "cd ./server && dotenv -e ../.env.local graphcool",
+    "_forceDeploy": "cd ./server && graphcool deploy --force",
+    "gc:forceDeploy": "dotenv -e .env.local npm run _forceDeploy",
     "deployProdBackend": "cd ./server && graphcool deploy",
     "check-version": "node ./bin/checkVersion.js",
     "download-schema": "dotenv -e ./.env.local node ./bin/download-schema.js"
