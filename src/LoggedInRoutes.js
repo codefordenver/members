@@ -11,6 +11,7 @@ import StyleReferencePage from './pages/StyleReferencePage';
 import withLoggedInUser from './utils/withLoggedInUser';
 import MemberResourcesPage from './pages/MemberResourcesPage';
 import ProjectsListPage from './pages/ProjectsListPage';
+import SkillPage from './pages/SkillPage';
 
 const LoggedInRoutes = ({ user }) => (
   <Switch>
@@ -22,6 +23,7 @@ const LoggedInRoutes = ({ user }) => (
     <Route exact path="/volunteers/:id" component={MemberProfilePage} />
     <Route path="/projects" component={ProjectsListPage} />
     <Route exact path="/styles" component={StyleReferencePage} />
+    <Route exact path="/skills/:id" component={SkillPage} />
     {getAdminRoutes(user)}
     <Route component={NoMatchPage} />
   </Switch>

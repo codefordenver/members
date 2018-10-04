@@ -1,7 +1,7 @@
 /* Be advised! The !important tag is to be used to override the default styling from
 Material UI, without these !important tags, we won't be able to override Material UI's
 inline style */
-.EditableChips-chip {
+.EditableList-chip {
   color: #e24e54 !important;
   border: 2px solid #e24e54 !important;
   background-color: transparent !important;

@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import HelpUsImplementThis from './HelpUsImplementThis';
 import LoadingIndicator from './LoadingIndicator';
 import EditableSkills from '../forms/EditableSkills';
-import EditableChips from '../forms/EditableChips';
+import EditableList from '../forms/EditableList';
 import EditableText from '../forms/EditableText';
 import EditableMarkdown from '../forms/EditableMarkdown';
 import './Member.css';
@@ -115,7 +115,7 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
         </div>
         <HelpUsImplementThis>
           <div className="Member-skills-right">
-            <EditableChips
+            <EditableList
               value={[{ name: 'Members Project' }, { name: 'Owlet' }]}
               label="Add Project"
             />
