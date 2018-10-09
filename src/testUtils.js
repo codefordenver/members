@@ -18,7 +18,7 @@ export function mountWithAuth(
   additionalMocks = []
 ) {
   return mountWithContext(cmp, routes, [
-    withLoggedInUserMock,
-    ...additionalMocks
+    ...additionalMocks,
+    ...withLoggedInUserMock
   ]);
 }

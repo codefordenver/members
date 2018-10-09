@@ -1,71 +1,64 @@
 import React from 'react';
 import { waitForElement, cleanup } from 'react-testing-library';
+
 import Header from '../Header';
-import { mountWithAuth, mountWithContext } from '../../testUtils';
-import localStorageMock from '../../mocks/localStorageMock';
-
-const mockUser = {
-  role: 'USER'
-};
-
-const mockAdminUser = {
-  role: 'ADMIN'
-};
+import { mountWithAuth } from '../../testUtils';
+import {
+  mockAdminUser,
+  mockRegularUser,
+  mockUnauthenticated
+} from '../../mocks/localStorageMock';
+import { adminUserServerResponseMock } from '../../mocks/withLoggedInUserMock';
 
 afterEach(cleanup);
 
 describe('Header', () => {
-  describe('if the user is logged in', () => {
+  describe('if the user is logged in and is not an admin', () => {
+    beforeAll(mockRegularUser);
+
     it('should not show the login button', () => {
-      const { queryByText } = mountWithAuth(
-        <Header isAuthenticated={true} user={mockUser} />
-      );
+      const { queryByText } = mountWithAuth(<Header isAuthenticated={true} />);
       expect(queryByText('Log In')).toBeNull();
     });
 
-    describe('and the user is not admin', () => {
-      it('should show the correct navigation links', async () => {
-        const { getByText, queryByText } = mountWithAuth(
-          <Header isAuthenticated={true} user={mockUser} />
-        );
+    it("should show the just 'all users' and 'all projects' links", async () => {
+      const { getByText, queryByText } = mountWithAuth(
+        <Header isAuthenticated={true} />
+      );
 
-        await waitForElement(() => getByText('All Users'));
+      await waitForElement(() => getByText('All Users'));
 
-        expect(getByText('All Users')).toBeDefined();
-        expect(getByText('All Projects')).toBeDefined();
-        expect(queryByText('Admin Resources')).toBeNull();
-      });
+      expect(getByText('All Users')).toBeDefined();
+      expect(getByText('All Projects')).toBeDefined();
+      expect(queryByText('Admin Resources')).toBeNull();
     });
+  });
 
-    describe('and the user is admin', () => {
-      it('should show the correct navigation links', async () => {
-        const { getByText } = mountWithAuth(
-          <Header isAuthenticated={true} user={mockAdminUser} />,
-          {
-            routes: ['/']
-          }
-        );
+  describe('if the user is logged in and is an admin', () => {
+    beforeAll(mockAdminUser);
 
-        await waitForElement(() => getByText('Admin Resources'));
+    it('should show the admin resources link', async () => {
+      const { getByText } = mountWithAuth(
+        <Header isAuthenticated={true} />,
+        {
+          routes: ['/']
+        },
+        [adminUserServerResponseMock]
+      );
 
-        expect(getByText('All Users')).toBeDefined();
-        expect(getByText('All Projects')).toBeDefined();
-        expect(getByText('Admin Resources')).toBeDefined();
-      });
+      await waitForElement(() => getByText('Admin Resources'));
+
+      expect(getByText('All Users')).toBeDefined();
+      expect(getByText('All Projects')).toBeDefined();
+      expect(getByText('Admin Resources')).toBeDefined();
     });
   });
 
   describe('if the user is not logged in', () => {
-    beforeAll(() => {
-      global.localStorage.getItem = jest.fn(() => null);
-    });
-
-    afterAll(() => {
-      global.localStorage.getItem = localStorageMock.getItem;
-    });
+    beforeAll(mockUnauthenticated);
 
     it('not should show any navigation links', async () => {
-      const { queryByText, getByText } = mountWithContext(
+      const { queryByText, getByText } = mountWithAuth(
         <Header isAuthenticated={false} />,
         {
           routes: ['/']
@@ -80,12 +73,9 @@ describe('Header', () => {
     });
 
     it('should show the login button', async () => {
-      const { getByText } = mountWithContext(
-        <Header isAuthenticated={false} />,
-        {
-          routes: ['/']
-        }
-      );
+      const { getByText } = mountWithAuth(<Header isAuthenticated={false} />, {
+        routes: ['/']
+      });
 
       await waitForElement(() => getByText('Log In'));
     });

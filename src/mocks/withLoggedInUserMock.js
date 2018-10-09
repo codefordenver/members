@@ -1,34 +1,57 @@
 import { getLoggedInUser } from '../utils/withLoggedInUser';
-import gql from 'graphql-tag';
+import { adminUserId, regularUserId } from '../testData';
 
-const userId = 'mocked-test-user-id',
-  name = 'Test User',
+const name = 'Test User',
   picture = '<empty>',
   email = 'test-user@nonexistent.com',
   flowdockName = 'TestUser',
   githubName = '@testUser',
-  description = 'Test User',
-  role = 'ADMIN';
+  description = 'Test User';
 
-export default {
+export const adminUserServerResponseMock = {
   request: {
     query: getLoggedInUser,
     variables: {
-      id: userId
+      id: adminUserId
     }
   },
   result: {
     data: {
       user: {
-        id: userId,
+        id: adminUserId,
         name,
         picture,
         email,
         flowdockName,
         githubName,
         description,
-        role
+        role: 'ADMIN'
       }
     }
   }
 };
+
+export default [
+  {
+    request: {
+      query: getLoggedInUser,
+      variables: {
+        id: regularUserId
+      }
+    },
+    result: {
+      data: {
+        user: {
+          id: regularUserId,
+          name,
+          picture,
+          email,
+          flowdockName,
+          githubName,
+          description,
+          role: 'USER'
+        }
+      }
+    }
+  }
+];
