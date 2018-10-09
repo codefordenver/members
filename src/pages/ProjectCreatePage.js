@@ -8,20 +8,31 @@ const createProjectQuery = gql`
     $name: String!
     $description: String
     $repoName: String!
+    $skillsIds: [ID!]
   ) {
-    createProject(name: $name, description: $description, repoName: $repoName) {
-      id
-      name
-      description
-      repoName
+    createProject(
+      name: $name
+      description: $description
+      repoName: $repoName
+      skillsIds: $skillsIds
+    ) {
+      ...ProjectSectionFields
     }
   }
+
+  ${ProjectSection.fragments.ProjectSectionFields}
 `;
 
 const ProjectCreatePage = compose(
   graphql(createProjectQuery, {
     props: ({ mutate }) => ({
-      onCreate: newProject => mutate({ variables: newProject })
+      onCreate: newProject =>
+        mutate({
+          variables: {
+            ...newProject,
+            skillsIds: newProject.skills.map(skill => skill.id)
+          }
+        })
     }),
     options: {
       refetchQueries: ['allProjects']

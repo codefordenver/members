@@ -52,6 +52,7 @@ type Project @model {
   cfapiProjectId: String @isUnique @depricated # Soon to be removed
   repoName: String @isUnique # for linking to github repos and waffle boards
   champions: [User!]! @relation(name: "ProjectChampions")
+  skills: [Skill!]! @relation(name: "ProjectSkills")
 }
 
 type Skill @model {
@@ -65,4 +66,5 @@ type Skill @model {
   name: String! @isUnique
 
   usersWithSkill: [User!]! @relation(name: "UserSkills")
+  projectsWithSkill: [Project!]! @relation(name: "ProjectSkills")
 }
