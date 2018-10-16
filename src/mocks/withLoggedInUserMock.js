@@ -31,27 +31,25 @@ export const adminUserServerResponseMock = {
   }
 };
 
-export default [
-  {
-    request: {
-      query: getLoggedInUser,
-      variables: {
-        id: regularUserId
-      }
-    },
-    result: {
-      data: {
-        user: {
-          id: regularUserId,
-          name,
-          picture,
-          email,
-          flowdockName,
-          githubName,
-          description,
-          role: 'USER'
-        }
+export const regularUserServerResponseMock = {
+  request: {
+    query: getLoggedInUser,
+    variables: {
+      id: regularUserId
+    }
+  },
+  result: {
+    data: {
+      user: {
+        id: regularUserId,
+        name,
+        picture,
+        email,
+        flowdockName,
+        githubName,
+        description,
+        role: 'USER'
       }
     }
   }
-];
+};

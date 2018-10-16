@@ -42,7 +42,7 @@ function logout() {
   localStorage.removeItem(BEARER_TOKEN);
 }
 
-export function isAuthenticated() {
+function isAuthenticated() {
   const localStorage = global.localStorage;
   const expiresAt = JSON.parse(localStorage.getItem(EXPIRES_AT_KEY));
   const userId = localStorage.getItem(USER_ID);
@@ -53,7 +53,7 @@ export function isAuthenticated() {
   return authenticated;
 }
 
-export function getUpdatedState() {
+function getUpdatedState() {
   return {
     authSession: getAuthSession(),
     isAuthenticated: isAuthenticated()

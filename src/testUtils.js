@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-testing-library';
 import { MemoryRouter } from 'react-router-dom';
 import { MockedProvider } from 'react-apollo/test-utils';
-import withLoggedInUserMock from './mocks/withLoggedInUserMock';
+import { regularUserServerResponseMock } from './mocks/withLoggedInUserMock';
 
 export function mountWithContext(cmp, { routes = ['/'] } = {}, mocks) {
   return render(
@@ -19,6 +19,6 @@ export function mountWithAuth(
 ) {
   return mountWithContext(cmp, routes, [
     ...additionalMocks,
-    ...withLoggedInUserMock
+    regularUserServerResponseMock
   ]);
 }

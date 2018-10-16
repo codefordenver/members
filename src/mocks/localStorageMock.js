@@ -17,36 +17,26 @@ export const unauthenticated = {
 export const adminUser = {
   ...unauthenticated,
   getItem: jest.fn(key => {
-    switch (key) {
-      case ACCESS_TOKEN_KEY:
-        return 'accessToken';
-      case EXPIRES_AT_KEY:
-        return 2535419869506;
-      case USER_ID:
-        return adminUserId;
-      case BEARER_TOKEN:
-        return 'bearerToken';
-      default:
-        return null;
-    }
+    const adminLocalStorageData = {
+      [ACCESS_TOKEN_KEY]: 'accessToken',
+      [EXPIRES_AT_KEY]: '2535419869506',
+      [USER_ID]: adminUserId,
+      [BEARER_TOKEN]: 'bearerToken'
+    };
+    return adminLocalStorageData[key];
   })
 };
 
 export const regularUser = {
   ...unauthenticated,
   getItem: jest.fn(key => {
-    switch (key) {
-      case ACCESS_TOKEN_KEY:
-        return 'accessToken';
-      case EXPIRES_AT_KEY:
-        return 2535419869506;
-      case USER_ID:
-        return regularUserId;
-      case BEARER_TOKEN:
-        return 'bearerToken';
-      default:
-        return null;
-    }
+    const regularLocalStorageData = {
+      [ACCESS_TOKEN_KEY]: 'accessToken',
+      [EXPIRES_AT_KEY]: '2535419869506',
+      [USER_ID]: regularUserId,
+      [BEARER_TOKEN]: 'bearerToken'
+    };
+    return regularLocalStorageData[key] || 'asdf';
   })
 };
 

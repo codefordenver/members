@@ -7,8 +7,3 @@ getEnvironmentVariableModule.default = jest.fn().mockReturnValue({
   auth0Domain: '',
   graphcoolApi: ''
 });
-
-withLoggedInUser.isAuthenticated = jest.fn().mockReturnValue(true);
-withLoggedInUser.getAuthSession = jest.fn().mockReturnValue({
-  userId: 'mocked-test-user-id;'
-});
