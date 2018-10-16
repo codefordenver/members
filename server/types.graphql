@@ -25,8 +25,8 @@ type User @model {
 }
 
 enum UserRole {
-   REGULAR,
-   ADMIN
+  REGULAR,
+  ADMIN
 }
 
 # Uncomment the model below as well
@@ -39,6 +39,15 @@ enum UserRole {
 #   author: User! @relation(name: "UserPosts")
 # }
 
+enum ProjectStatus {
+  Idea
+  Pitch
+  Exploration
+  ActiveDevelopment
+  Support
+  Inactive
+}
+
 type Project @model {
   # Required system field:
   id: ID! @isUnique # read-only (managed by Graphcool)
@@ -48,6 +57,7 @@ type Project @model {
   updatedAt: DateTime! # read-only (managed by Graphcool)
 
   name: String! @isUnique
+  status: ProjectStatus @defaultValue(value: Idea)
   description: String
   cfapiProjectId: String @isUnique @depricated # Soon to be removed
   repoName: String @isUnique # for linking to github repos and waffle boards
