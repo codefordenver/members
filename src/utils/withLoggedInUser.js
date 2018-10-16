@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
 import withAuthSession from './withAuthSession';
 
-const getLoggedInUser = gql`
+export const getLoggedInUser = gql`
   query getLoggedInUser($id: ID) {
     user: User(id: $id) {
       id
@@ -28,7 +28,6 @@ const withLoggedInUser = compose(
       return !isAuthenticated || !authSession.userId;
     },
     options: ({ authSession }) => ({
-      // fetchPolicy: "network-only",
       variables: {
         id: authSession.userId
       }

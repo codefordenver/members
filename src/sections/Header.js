@@ -11,34 +11,36 @@ import withLoggedInUser from '../utils/withLoggedInUser';
 import withAuthSession from '../utils/withAuthSession';
 import './Header.css';
 
-const Header = ({ isAuthenticated, user }) => (
-  <AppBar position="fixed">
-    <Toolbar>
-      <Link to="/">
-        <img className="Header-logo" src={logo} alt="code for denver logo" />
-      </Link>
-      <Grid container justify="space-between" alignItems="center">
-        {isAuthenticated && (
-          <Grid item>
-            <Link className="Header-link" to="/volunteers">
-              All Users
-            </Link>
-            <Link className="Header-link" to="/projects">
-              All Projects
-            </Link>
-            {userIsAdmin(user) && (
-              <Link className="Header-link" to="/admin">
-                Admin Resources
+const Header = ({ isAuthenticated, user }) => {
+  return (
+    <AppBar position="fixed">
+      <Toolbar>
+        <Link to="/">
+          <img className="Header-logo" src={logo} alt="code for denver logo" />
+        </Link>
+        <Grid container justify="space-between" alignItems="center">
+          {isAuthenticated && (
+            <Grid item>
+              <Link className="Header-link" to="/volunteers">
+                All Users
               </Link>
-            )}
+              <Link className="Header-link" to="/projects">
+                All Projects
+              </Link>
+              {userIsAdmin(user) && (
+                <Link className="Header-link" to="/admin">
+                  Admin Resources
+                </Link>
+              )}
+            </Grid>
+          )}
+          <Grid item>
+            <Login />
           </Grid>
-        )}
-        <Grid item>
-          <Login />
         </Grid>
-      </Grid>
-    </Toolbar>
-  </AppBar>
-);
+      </Toolbar>
+    </AppBar>
+  );
+};
 
 export default compose(withLoggedInUser, withAuthSession)(Header);
