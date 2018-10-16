@@ -25,7 +25,8 @@ export const adminUserServerResponseMock = {
         flowdockName,
         githubName,
         description,
-        role: 'ADMIN'
+        role: 'ADMIN',
+        skills: []
       }
     }
   }
@@ -48,7 +49,8 @@ export const regularUserServerResponseMock = {
         flowdockName,
         githubName,
         description,
-        role: 'USER'
+        role: 'USER',
+        skills: []
       }
     }
   }
