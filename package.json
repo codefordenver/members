@@ -16,6 +16,7 @@
     "auth0-js": "^9.7.3",
     "babel-polyfill": "^6.26.0",
     "date-fns": "^1.29.0",
+    "fetch-headers": "^2.0.0",
     "graphql": "^0.13.1",
     "graphql-tag": "^2.8.0",
     "marked": "^0.3.16",
