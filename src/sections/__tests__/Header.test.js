@@ -2,7 +2,7 @@ import React from 'react';
 import { waitForElement, cleanup } from 'react-testing-library';
 
 import Header from '../Header';
-import { mountWithAuth } from '../../testUtils';
+import { mountWithAuth, mountWithContext } from '../../testUtils';
 import {
   mockAdminUser,
   mockRegularUser,
@@ -17,14 +17,12 @@ describe('Header', () => {
     beforeAll(mockRegularUser);
 
     it('should not show the login button', () => {
-      const { queryByText } = mountWithAuth(<Header isAuthenticated={true} />);
+      const { queryByText } = mountWithAuth(<Header />);
       expect(queryByText('Log In')).toBeNull();
     });
 
-    it("should show the just 'all users' and 'all projects' links", async () => {
-      const { getByText, queryByText } = mountWithAuth(
-        <Header isAuthenticated={true} />
-      );
+    it("should show just the 'all users' and 'all projects' links", async () => {
+      const { getByText, queryByText } = mountWithAuth(<Header />);
 
       await waitForElement(() => getByText('All Users'));
 
@@ -39,7 +37,7 @@ describe('Header', () => {
 
     it('should show the admin resources link', async () => {
       const { getByText } = mountWithAuth(
-        <Header isAuthenticated={true} />,
+        <Header />,
         {
           routes: ['/']
         },
@@ -58,12 +56,9 @@ describe('Header', () => {
     beforeAll(mockUnauthenticated);
 
     it('not should show any navigation links', async () => {
-      const { queryByText, getByText } = mountWithAuth(
-        <Header isAuthenticated={false} />,
-        {
-          routes: ['/']
-        }
-      );
+      const { queryByText, getByText } = mountWithContext(<Header />, {
+        routes: ['/']
+      });
 
       await waitForElement(() => getByText('Log In'));
 
@@ -73,7 +68,7 @@ describe('Header', () => {
     });
 
     it('should show the login button', async () => {
-      const { getByText } = mountWithAuth(<Header isAuthenticated={false} />, {
+      const { getByText } = mountWithContext(<Header />, {
         routes: ['/']
       });
 
