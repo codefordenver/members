@@ -1,5 +1,6 @@
 import React from 'react';
 import marked from 'marked';
+import './Markdown.css';
 
 marked.setOptions({
   gfm: true,
@@ -12,6 +13,7 @@ const Markdown = ({ text }) => {
   }
   return (
     <div
+      className="Markdown"
       key="markdown-content"
       dangerouslySetInnerHTML={{ __html: marked(text) }}
     />

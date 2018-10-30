@@ -57,6 +57,7 @@ type Project @model {
   updatedAt: DateTime! # read-only (managed by Graphcool)
 
   name: String! @isUnique
+  headerImage: String
   status: ProjectStatus @defaultValue(value: Idea)
   description: String
   cfapiProjectId: String @isUnique @depricated # Soon to be removed
