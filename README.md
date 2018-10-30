@@ -3,13 +3,15 @@
 
 # members.codefordenver.com
 
-Node.js application that connects volunteers with volunteers/projects based on their skill sets.
+Online portal for Code for Denver member resources
+
+![screen shot of website](docs/img/screen_shot_2018-10-10.png)
 
 ---
 
 ## Requirements
 
-- [Node.js](https://nodejs.org) - version 10.8.0 (if you have nvm type `nvm use` in the repo to use the correct version)
+- [Node.js](https://nodejs.org) - version 10.8.0 (if you have [nvm](https://github.com/creationix/nvm) type `nvm use` in the repo to use the correct version)
 
 Setup:
 1. clone repo
