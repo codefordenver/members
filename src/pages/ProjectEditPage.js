@@ -17,6 +17,7 @@ const updateProjectQuery = gql`
   mutation updateProject(
     $id: ID!
     $name: String!
+    $headerImage: String
     $description: String
     $repoName: String
     $skillsIds: [ID!]
@@ -24,6 +25,7 @@ const updateProjectQuery = gql`
     updateProject(
       id: $id
       name: $name
+      headerImage: $headerImage
       description: $description
       repoName: $repoName
       skillsIds: $skillsIds

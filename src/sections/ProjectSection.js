@@ -3,16 +3,24 @@ import gql from 'graphql-tag';
 import EditableText from '../forms/EditableText';
 import EditableMarkdown from '../forms/EditableMarkdown';
 import EditableSkills from '../forms/EditableSkills';
+import EditableImageLink from '../forms/EditableImageLink';
 import ProjectIssues from './ProjectIssues';
 
 const ProjectSection = ({ project, editing, onFormDataChange }) => {
-  const { name, description, skills, repoName } = project;
+  const { name, description, skills, repoName, headerImage } = project;
   const commonProps = {
     onChange: onFormDataChange,
     editing
   };
   return (
     <React.Fragment>
+      <EditableImageLink
+        value={headerImage}
+        label="Header image"
+        alt="header image"
+        name="headerImage"
+        {...commonProps}
+      />
       <h1>
         <EditableText value={name} label="Title" name="name" {...commonProps} />
       </h1>
@@ -50,6 +58,7 @@ ProjectSection.fragments = {
     fragment ProjectSectionFields on Project {
       id
       name
+      headerImage
       description
       repoName
       skills {
