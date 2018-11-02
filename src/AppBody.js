@@ -1,6 +1,6 @@
 import React from 'react';
-import LoggedInRoutes from './LoggedInRoutes';
-import LoggedOutRoutes from './LoggedOutRoutes';
+import LoggedInRoutes from './authenticated/LoggedInRoutes';
+import LoggedOutRoutes from './unauthenticated/LoggedOutRoutes';
 import withAuthSession from './utils/withAuthSession';
 
 const AppBody = ({ isAuthenticated }) => (

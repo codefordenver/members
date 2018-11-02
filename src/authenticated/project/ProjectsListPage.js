@@ -1,8 +1,9 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
+import Grid from '@material-ui/core/Grid';
 import LoadingIndicator from '../../shared-components/LoadingIndicator';
-import ProjectSideBar from './ProjectSidebar';
+import ProjectCard from './ProjectCard';
 
 const ProjectsList = ({ projects, loading }) => {
   if (loading) {
@@ -12,7 +13,15 @@ const ProjectsList = ({ projects, loading }) => {
     return <p>No projects yet</p>;
   }
 
-  return <ProjectSideBar projects={projects} />;
+  return (
+    <Grid container spacing={24}>
+      {projects.map(project => (
+        <Grid sm={12} md={6} lg={4}>
+          <ProjectCard key={project.id} {...project} />
+        </Grid>
+      ))}
+    </Grid>
+  );
 };
 
 ProjectsList.defaultProps = {
@@ -22,10 +31,10 @@ ProjectsList.defaultProps = {
 const allProjectsQuery = gql`
   query projects {
     allProjects(orderBy: name_ASC) {
-      id
-      name
+      ...ProjectCardFields
     }
   }
+  ${ProjectCard.fragments.ProjectCardFields}
 `;
 
 const ProjectsListPage = graphql(allProjectsQuery, {

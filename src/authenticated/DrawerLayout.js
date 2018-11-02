@@ -1,16 +1,9 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import Hidden from '@material-ui/core/Hidden';
-import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
-import { Link } from 'react-router-dom';
-import LoggedInRoutesSidebar from '../../LoggedInRoutesSidebar';
-import ListSubheader from '@material-ui/core/ListSubheader';
 
 const drawerWidth = 300;
 
@@ -41,11 +34,6 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3
   },
-  navTitle: {
-    textAlign: 'center',
-    fontSize: '0.75em',
-    fontWeight: 'bold'
-  }
 });
 
 class ResponsiveDrawer extends React.Component {
@@ -58,30 +46,7 @@ class ResponsiveDrawer extends React.Component {
   };
 
   render() {
-    const { classes, theme, projects } = this.props;
-
-    const drawer = (
-      <div>
-        <List
-          component="nav"
-          subheader={
-            <ListSubheader component="div" className={classes.navTitle}>
-              ACTIVE PROJECTS
-            </ListSubheader>
-          }
-        >
-          <Divider />
-          {projects.map(project => (
-            <React.Fragment key={project.id}>
-              <ListItem button component={Link} to={`/projects/${project.id}`}>
-                <ListItemText primary={project.name} />
-              </ListItem>
-              <Divider />
-            </React.Fragment>
-          ))}
-        </List>
-      </div>
-    );
+    const { classes, theme, children, drawer } = this.props;
 
     return (
       <div className={classes.root}>
@@ -122,7 +87,7 @@ class ResponsiveDrawer extends React.Component {
           </Drawer>
         </Hidden>
         <main className={classes.content}>
-          <LoggedInRoutesSidebar />
+          {children}
         </main>
       </div>
     );
