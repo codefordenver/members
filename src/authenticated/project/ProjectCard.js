@@ -12,12 +12,14 @@ import './ProjectCard.css';
 const ProjectCard = ({ id, name, skills, repoName, headerImage }) => {
   return (
     <Card className="ProjectCard">
-      {headerImage && ( // <img className="ProjectCard-img" src={headerImage} />
-        <CardMedia
-          className="ProjectCard-media"
-          image={headerImage}
-          title={name}
-        />
+      {headerImage && (
+        <Link to={`/projects/${id}`}>
+          <CardMedia
+            className="ProjectCard-media"
+            image={headerImage}
+            title={name}
+          />
+        </Link>
       )}
       <CardContent>
         <Typography
