@@ -1,17 +1,17 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import getAdminRoutes from './getAdminRoutes';
-import MyProfilePage from './pages/MyProfilePage';
-import MemberProfileEditPage from './pages/MemberProfileEditPage';
-import UsersListPage from './pages/UsersListPage';
-import MemberProfilePage from './pages/MemberProfilePage';
-import FlowdockLanding from './pages/FlowdockLanding';
-import NoMatchPage from './pages/NoMatchPage';
-import StyleReferencePage from './pages/StyleReferencePage';
+import getAdminRoutes from './authenticated/admin/getAdminRoutes';
+import MyProfilePage from './authenticated/member/MyProfilePage';
+import MemberProfileEditPage from './authenticated/member/MemberProfileEditPage';
+import UsersListPage from './authenticated/member/UsersListPage';
+import MemberProfilePage from './authenticated/member/MemberProfilePage';
+import MemberResourcesPage from './authenticated/member/MemberResourcesPage';
+import FlowdockLanding from './authenticated/FlowdockLanding';
+import NoMatchPage from './shared-components/NoMatchPage';
+import StyleReferencePage from './authenticated/StyleReferencePage';
 import withLoggedInUser from './utils/withLoggedInUser';
-import MemberResourcesPage from './pages/MemberResourcesPage';
-import ProjectsListPage from './pages/ProjectsListPage';
-import SkillPage from './pages/SkillPage';
+import ProjectsListPage from './authenticated/project/ProjectsListPage';
+import SkillPage from './authenticated/skill/SkillPage';
 
 const LoggedInRoutes = ({ user }) => (
   <Switch>

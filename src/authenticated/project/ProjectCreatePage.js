@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
-import ProjectSection from '../sections/ProjectSection';
-import withCreatePage from '../utils/withCreatePage';
+import ProjectSection from './ProjectSection';
+import withCreatePage from '../../utils/withCreatePage';
 
 const createProjectQuery = gql`
   mutation createProject(

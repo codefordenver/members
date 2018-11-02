@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
-import withEditPage from '../utils/withEditPage';
-import MemberProfile from '../sections/MemberProfile';
-import { withLoggedInUser } from '../utils';
+import withEditPage from '../../utils/withEditPage';
+import MemberProfile from './MemberProfile';
+import { withLoggedInUser } from '../../utils';
 
 const updateUserQuery = gql`
   mutation updateUser(

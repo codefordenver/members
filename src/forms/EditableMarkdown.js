@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import AppBar from '@material-ui/core/AppBar';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
-import Markdown from '../utils/Markdown';
+import Markdown from '../shared-components/Markdown';
 
 class EditableMarkdown extends React.PureComponent {
   state = {

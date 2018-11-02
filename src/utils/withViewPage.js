@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import { Link, withRouter } from 'react-router-dom';
 import getDisplayName from './getDisplayName';
-import LoadingIndicator from '../sections/LoadingIndicator';
+import LoadingIndicator from '../shared-components/LoadingIndicator';
 
 /**
  * A Higher Order Component that takes options, then a component to wrap.

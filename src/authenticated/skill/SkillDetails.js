@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import UserList from './UserList';
-import LoadingIndicator from './LoadingIndicator';
+import UserList from '../member/UserList';
+import LoadingIndicator from '../../shared-components/LoadingIndicator';
 
 const SkillDetails = ({ skill, loading }) => {
   if (loading) {

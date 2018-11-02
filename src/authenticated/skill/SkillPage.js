@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import SkillDetails from '../sections/SkillDetails';
+import SkillDetails from './SkillDetails';
 
 const skillQuery = gql`
   query getSkill($id: ID) {

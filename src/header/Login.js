@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { compose } from 'react-apollo';
-import LoadingIndicator from './LoadingIndicator';
+import LoadingIndicator from '../shared-components/LoadingIndicator';
 import LoginAuth0 from './LoginAuth0';
 import { getEnvironmentVariables, withLoggedInUser } from '../utils';
 import withAuthSession from '../utils/withAuthSession';

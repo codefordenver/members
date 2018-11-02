@@ -1,8 +1,8 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import LoadingIndicator from '../sections/LoadingIndicator';
-import ProjectSideBar from '../sections/ProjectSidebar';
+import LoadingIndicator from '../../shared-components/LoadingIndicator';
+import ProjectSideBar from './ProjectSidebar';
 
 const ProjectsList = ({ projects, loading }) => {
   if (loading) {

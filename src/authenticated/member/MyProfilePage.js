@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 import { compose, graphql } from 'react-apollo';
-import withViewPage from '../utils/withViewPage';
-import MemberProfile from '../sections/MemberProfile';
-import { withAuthSession } from '../utils';
+import withViewPage from '../../utils/withViewPage';
+import MemberProfile from './MemberProfile';
+import { withAuthSession } from '../../utils';
 
 const userQuery = gql`
   query getUser($id: ID) {
