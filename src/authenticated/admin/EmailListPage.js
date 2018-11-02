@@ -2,7 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { format, subDays } from 'date-fns';
-import LoadingIndicator from '../sections/LoadingIndicator';
+import LoadingIndicator from '../../shared-components/LoadingIndicator';
 
 const EmailList = ({ users, loading }) => (
   <div>

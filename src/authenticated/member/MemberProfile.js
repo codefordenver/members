@@ -1,12 +1,12 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
 import gql from 'graphql-tag';
-import HelpUsImplementThis from './HelpUsImplementThis';
-import LoadingIndicator from './LoadingIndicator';
-import EditableSkills from '../forms/EditableSkills';
-import EditableList from '../forms/EditableList';
-import EditableText from '../forms/EditableText';
-import EditableMarkdown from '../forms/EditableMarkdown';
+import HelpUsImplementThis from '../../shared-components/HelpUsImplementThis';
+import LoadingIndicator from '../../shared-components/LoadingIndicator';
+import EditableSkills from '../../forms/EditableSkills';
+import EditableList from '../../forms/EditableList';
+import EditableText from '../../forms/EditableText';
+import EditableMarkdown from '../../forms/EditableMarkdown';
 import './Member.css';
 
 const MemberProfile = ({ user, onFormDataChange, editing }) => {

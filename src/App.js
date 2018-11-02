@@ -4,9 +4,9 @@ import {
   createMuiTheme,
   withStyles
 } from '@material-ui/core/styles';
-import { GoogleAnalyticsPageTracker } from './utils';
-import Header from './sections/Header';
-import ErrorBoundary from './utils/ErrorBoundary';
+import GoogleAnalyticsPageTracker from './shared-components/GoogleAnalyticsPageTracker';
+import Header from './header/Header';
+import ErrorBoundary from './shared-components/ErrorBoundary';
 import AppBody from './AppBody';
 import './App.css';
 

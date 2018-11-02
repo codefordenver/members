@@ -1,7 +1,7 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import { Link } from 'react-router-dom';
-import LoadingIndicator from '../sections/LoadingIndicator';
+import LoadingIndicator from '../../shared-components/LoadingIndicator';
 import './UsersList.css';
 
 const UsersList = ({ users, loading }) => {

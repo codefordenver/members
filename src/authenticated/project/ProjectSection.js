@@ -1,9 +1,9 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import EditableText from '../forms/EditableText';
-import EditableMarkdown from '../forms/EditableMarkdown';
-import EditableSkills from '../forms/EditableSkills';
-import EditableImageLink from '../forms/EditableImageLink';
+import EditableText from '../../forms/EditableText';
+import EditableMarkdown from '../../forms/EditableMarkdown';
+import EditableSkills from '../../forms/EditableSkills';
+import EditableImageLink from '../../forms/EditableImageLink';
 import ProjectIssues from './ProjectIssues';
 
 const ProjectSection = ({ project, editing, onFormDataChange }) => {

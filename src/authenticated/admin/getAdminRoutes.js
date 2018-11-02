@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import EmailListPage from './pages/EmailListPage';
-import userIsAdmin from './utils/userIsAdmin';
-import AdminPage from './pages/AdminPage';
+import EmailListPage from './EmailListPage';
+import AdminPage from './AdminPage';
+import userIsAdmin from '../../utils/userIsAdmin';
 
 function getAdminRoutes(user) {
   return userIsAdmin(user)

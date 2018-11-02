@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import LandingPage from './pages/LandingPage';
-import NoMatchPage from './pages/NoMatchPage';
+import LandingPage from './unauthenticated/LandingPage';
+import NoMatchPage from './shared-components/NoMatchPage';
 
 const LoggedOutRoutes = () => (
   <Switch>

@@ -9,8 +9,7 @@ import Hidden from '@material-ui/core/Hidden';
 import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
-import './Menu.css';
-import LoggedInRoutesSidebar from '../LoggedInRoutesSidebar';
+import LoggedInRoutesSidebar from '../../LoggedInRoutesSidebar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 
 const drawerWidth = 300;

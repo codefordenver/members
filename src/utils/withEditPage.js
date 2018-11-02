@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import { Link, withRouter, Prompt } from 'react-router-dom';
 import getDisplayName from './getDisplayName';
-import LoadingIndicator from '../sections/LoadingIndicator';
+import LoadingIndicator from '../shared-components/LoadingIndicator';
 
 function getBaseUrl(props) {
   return props.match.url.split('/edit')[0];

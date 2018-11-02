@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import UsersList from '../sections/UserList';
+import UsersList from './UserList';
 
 const allUsersQuery = gql`
   query users {

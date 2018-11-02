@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
-import withViewPage from '../utils/withViewPage';
-import ProjectSection from '../sections/ProjectSection';
+import withViewPage from '../../utils/withViewPage';
+import ProjectSection from './ProjectSection';
 
 const projectQuery = gql`
   query getProject($id: ID!) {
