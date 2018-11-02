@@ -2,6 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
+import Grid from '@material-ui/core/Grid';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import EditableSkills from '../../forms/EditableSkills';
@@ -9,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import './ProjectCard.css';
 
-const ProjectCard = ({ id, name, skills, repoName, headerImage }) => {
+const ProjectCard = ({ id, name, skills, status, repoName, headerImage }) => {
   return (
     <Card className="ProjectCard">
       {headerImage && (
@@ -32,12 +33,13 @@ const ProjectCard = ({ id, name, skills, repoName, headerImage }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <EditableSkills value={skills} name="skills" />
-        <div>
+        <Grid container spacing={16} alignItems="center">
+          <EditableSkills value={skills} name="skills" />
           <Link to={`https://github.com/codefordenver/${repoName}`}>
             GitHub
           </Link>
-        </div>
+          <Grid item>{status && <span> Status: {status}</span>}</Grid>
+        </Grid>
       </CardActions>
     </Card>
   );
@@ -50,6 +52,7 @@ ProjectCard.fragments = {
       name
       headerImage
       repoName
+      status
       skills {
         id
         name
