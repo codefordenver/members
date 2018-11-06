@@ -26,7 +26,8 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "^1.1.5",
     "react-select": "^2.0.0",
-    "react-testing-library": "^4.1.3"
+    "react-testing-library": "^4.1.3",
+    "whatwg-fetch": "^3.0.0"
   },
   "lint-staged": {
     "{src,bin,server/src}/**/*.{js,json,css,graphql}": [
