@@ -35,7 +35,10 @@ const restLink = new RestLink({
   endpoints: {
     github: 'https://api.github.com/'
   },
-  credentials: 'omit'
+  credentials: 'omit',
+  headers: {
+    'Content-Type': 'application/json'
+  }
 });
 
 export default function createApolloClient() {
