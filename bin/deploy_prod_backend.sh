@@ -79,8 +79,17 @@ platformToken: >-
   $GRAPHCOOL_TOKEN
 EOF
 
-if [ "$GRAPHCOOL_FORCE_DEPLOY" == true ]; then
-  npm run deployProdBackend -- --force
+additional_flags='--dry-run'
+
+if [ "$1" == "--actually-deploy-graphcool" ]; then
+  green "Deploying the graphcool backend"
+  additional_flags=''
 else
-  npm run deployProdBackend
+  yellow "Running a dry run of the graphcool backend deploy"
+fi
+
+if [ "$GRAPHCOOL_FORCE_DEPLOY" == true ]; then
+  npm run deployProdBackend -- --force $additional_flags
+else
+  npm run deployProdBackend -- $additional_flags
 fi
