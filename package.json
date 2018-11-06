@@ -14,7 +14,7 @@
     "apollo-link-context": "^1.0.9",
     "apollo-link-http": "^1.5.5",
     "apollo-link-rest": "^0.2.4",
-    "auth0-js": "^9.7.3",
+    "auth0-js": "^9.8.1",
     "babel-polyfill": "^6.26.0",
     "date-fns": "^1.29.0",
     "graphql": "^14.0.2",
