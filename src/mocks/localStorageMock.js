@@ -40,14 +40,22 @@ export const regularUser = {
   })
 };
 
+function mockLocalStorageWith(value) {
+  Object.defineProperty(window, 'localStorage', {
+    value,
+    configurable: true,
+    writable: true
+  });
+}
+
 export const mockAdminUser = () => {
-  global.localStorage = adminUser;
+  mockLocalStorageWith(adminUser);
 };
 
 export const mockRegularUser = () => {
-  global.localStorage = regularUser;
+  mockLocalStorageWith(regularUser);
 };
 
 export const mockUnauthenticated = () => {
-  global.localStorage = unauthenticated;
+  mockLocalStorageWith(unauthenticated);
 };
