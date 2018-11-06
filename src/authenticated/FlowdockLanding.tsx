@@ -7,7 +7,8 @@ const FlowdockLanding = () => (
     <ol>
       <li>Check your email for a link to join our organization on Flowdock.</li>
       <li>
-        Already part of CfD on Flowdock{'?'}{' '}
+        Already part of CfD on Flowdock
+        {'?'}{' '}
         <a href="https://www.flowdock.com/app/cfa-brigades/code-for-denver">
           Go to Flows
         </a>

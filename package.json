@@ -8,6 +8,12 @@
   "dependencies": {
     "@material-ui/core": "^3.4.0",
     "@material-ui/icons": "^3.0.1",
+    "@types/graphql": "^14.0.3",
+    "@types/jest": "^23.3.9",
+    "@types/node": "^10.12.2",
+    "@types/react": "^16.4.18",
+    "@types/react-dom": "^16.0.9",
+    "@types/react-router-dom": "^4.3.1",
     "apollo-cache-inmemory": "^1.3.8",
     "apollo-client": "^2.4.5",
     "apollo-link": "^1.2.3",
@@ -29,10 +35,11 @@
     "react-scripts": "^2.1.1",
     "react-select": "^2.1.1",
     "react-testing-library": "^5.2.3",
+    "typescript": "^3.1.6",
     "whatwg-fetch": "^3.0.0"
   },
   "lint-staged": {
-    "{src,bin,server/src}/**/*.{js,json,css,graphql}": [
+    "{src,bin,server/src}/**/*.{js,json,css,ts,tsx,graphql,md}": [
       "prettier --single-quote --write",
       "git add"
     ]
