@@ -42,7 +42,7 @@ class MarkdownFileRenderer extends React.Component {
             <a
               key="markdown-edit-link"
               className="MarkdownFileRenderer-edit"
-              href={`https://github.com/codefordenver/members/edit/master/src/markdown/${
+              href={`https://github.com/codefordenver/members/edit/master/public/markdown/${
                 this.props.fileName
               }.md`}
             >
