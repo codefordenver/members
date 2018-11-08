@@ -16,7 +16,7 @@ const ProjectsList = ({ projects, loading }) => {
   return (
     <Grid container spacing={24}>
       {projects.map(project => (
-        <Grid sm={12} md={6} lg={4}>
+        <Grid key={project.id} item sm={12} md={6} lg={4}>
           <ProjectCard key={project.id} {...project} />
         </Grid>
       ))}

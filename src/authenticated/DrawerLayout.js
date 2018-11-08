@@ -18,6 +18,7 @@ const styles = theme => ({
   },
 
   navIconHide: {
+    height: '48px',
     [theme.breakpoints.up('md')]: {
       display: 'none'
     }

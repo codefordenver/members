@@ -25,7 +25,7 @@ const ProjectCard = ({ id, name, skills, status, repoName, headerImage }) => {
       <CardContent>
         <Typography
           gutterBottom
-          variant="headline"
+          variant="h5"
           component={Link}
           to={`/projects/${id}`}
         >

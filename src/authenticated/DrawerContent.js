@@ -25,14 +25,15 @@ const DrawerContent = ({ projects, loading, classes }) => {
         }
       >
         <Divider />
-        {projects.map(project => (
-          <React.Fragment key={project.id}>
-            <ListItem button component={Link} to={`/projects/${project.id}`}>
-              <ListItemText primary={project.name} />
-            </ListItem>
-            <Divider />
-          </React.Fragment>
-        ))}
+        {projects &&
+          projects.map(project => (
+            <React.Fragment key={project.id}>
+              <ListItem button component={Link} to={`/projects/${project.id}`}>
+                <ListItemText primary={project.name} />
+              </ListItem>
+              <Divider />
+            </React.Fragment>
+          ))}
       </List>
     </div>
   );
