@@ -10,7 +10,23 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import './ProjectCard.css';
 
-const ProjectCard = ({ id, name, skills, status, repoName, headerImage }) => {
+interface Props {
+  name: string;
+  id: string;
+  skills: Array<object>;
+  status: string;
+  repoName: string;
+  headerImage: string;
+}
+
+const ProjectCard: React.SFC<Props> = ({
+  id,
+  name,
+  skills,
+  status,
+  repoName,
+  headerImage
+}) => {
   return (
     <Card className="ProjectCard">
       {headerImage && (

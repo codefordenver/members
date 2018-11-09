@@ -8,7 +8,7 @@
   "dependencies": {
     "@material-ui/core": "^3.4.0",
     "@material-ui/icons": "^3.0.1",
-    "@types/graphql": "^14.0.3",
+    "@types/graphql": "14.0.1",
     "@types/jest": "^23.3.9",
     "@types/node": "^10.12.2",
     "@types/react": "^16.4.18",
@@ -23,7 +23,7 @@
     "auth0-js": "^9.8.1",
     "babel-polyfill": "^6.26.0",    
     "date-fns": "^1.29.0",
-    "graphql": "^14.0.2",
+    "graphql": "^0.13.2",
     "graphql-tag": "^2.10.0",
     "marked": "^0.5.1",
     "prop-types": "^15.6.2",
@@ -37,6 +37,9 @@
     "react-testing-library": "^5.2.3",
     "typescript": "^3.1.6",
     "whatwg-fetch": "^3.0.0"
+  },
+  "resolutions": {
+    "apollo/graphql": "0.13.2"
   },
   "lint-staged": {
     "{src,bin,server/src}/**/*.{js,json,css,ts,tsx,graphql,md}": [
@@ -59,10 +62,14 @@
     "gc:forceDeploy": "dotenv -e .env.local npm run _forceDeploy",
     "deployProdBackend": "cd ./server && graphcool deploy",
     "check-version": "node ./bin/checkVersion.js",
-    "download-schema": "dotenv -e ./.env.local node ./bin/download-schema.js"
+    "download-schema": "dotenv -e ./.env.local node ./bin/download-schema.js",
+    "gen-types": "apollo codegen:generate --queries=./src/**/*.{ts,tsx} --addTypename --target=typescript --mergeInFieldsFromFragmentSpreads",
+    "apollo": "apollo",
+    "schema": "dotenv -e ./.env.local apollo schema:download full-schema.json --endpoint=https://api.graph.cool/simple/v1/cjat2jtd40v4b0162qw31xmbz"
   },
   "homepage": "https://members.codefordenver.org",
   "devDependencies": {
+    "apollo": "1.9.2",
     "cpy-cli": "^2.0.0",
     "dotenv": "^6.1.0",
     "dotenv-cli": "^1.4.0",
