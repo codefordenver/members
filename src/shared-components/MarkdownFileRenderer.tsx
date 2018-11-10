@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import marked from 'marked';
 import LoadingIndicator from './LoadingIndicator';
 import './MarkdownFileRenderer.css';
@@ -9,18 +8,21 @@ marked.setOptions({
   sanitize: true // DO NOT CHANGE - helps avoid XSS attack possibility
 });
 
-async function getMarkdownHTML(fileName) {
+async function getMarkdownHTML(fileName: string) {
   const request = await fetch(`/markdown/${fileName}.md`);
   const markdown = await request.text();
   return marked(markdown);
 }
 
-class MarkdownFileRenderer extends React.Component {
-  static propTypes = {
-    fileName: PropTypes.string.isRequired
-  };
+interface Props {
+  fileName: string;
+}
+interface State {
+  html?: string;
+}
 
-  state = {
+class MarkdownFileRenderer extends React.Component<Props, State> {
+  state: State = {
     html: undefined
   };
 

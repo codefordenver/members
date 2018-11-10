@@ -2,7 +2,11 @@ import React from 'react';
 import Tooltip from '@material-ui/core/Tooltip';
 import './HelpUsImplementThis.css';
 
-const HelpUsImplementThis = ({
+interface Props {
+  featureDescriptionUrl: string;
+}
+
+const HelpUsImplementThis: React.SFC<Props> = ({
   children,
   featureDescriptionUrl = 'https://waffle.io/codefordenver/members'
 }) => {

@@ -3,7 +3,7 @@ import React from 'react';
 export default class ErrorBoundary extends React.Component {
   state = { hasError: false };
 
-  componentDidCatch(error, info) {
+  componentDidCatch(error: Error, info: { componentStack: string }) {
     this.setState({ hasError: true });
     console.log(error, info);
   }

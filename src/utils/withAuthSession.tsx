@@ -1,6 +1,6 @@
 import React from 'react';
-import { withApollo } from 'react-apollo';
-import { withRouter } from 'react-router-dom';
+import { withApollo, WithApolloClient } from 'react-apollo';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import getDisplayName from './getDisplayName';
 
 import {
@@ -10,8 +10,17 @@ import {
   EXPIRES_AT_KEY
 } from '../constants/storageKeys';
 
-function setAuthSession(authResult, userId, bearerToken) {
-  const localStorage = global.localStorage;
+interface AuthResult {
+  expiresIn: number;
+  accessToken: string;
+}
+
+function setAuthSession(
+  authResult: AuthResult,
+  userId: string,
+  bearerToken: string
+) {
+  const localStorage = window.localStorage;
   const expiresAt = JSON.stringify(authResult.expiresIn * 1000 + Date.now());
   localStorage.setItem(ACCESS_TOKEN_KEY, authResult.accessToken);
   localStorage.setItem(USER_ID, userId);
@@ -20,22 +29,22 @@ function setAuthSession(authResult, userId, bearerToken) {
 }
 
 function getAuthSession() {
-  const localStorage = global.localStorage;
+  const localStorage = window.localStorage;
   return {
     accessToken: localStorage.getItem(ACCESS_TOKEN_KEY),
     bearerToken: localStorage.getItem(BEARER_TOKEN),
     userId: localStorage.getItem(USER_ID),
-    expiresAt: localStorage.getItem(EXPIRES_AT_KEY)
+    expiresAt: JSON.parse(localStorage.getItem(EXPIRES_AT_KEY) || '0')
   };
 }
 
 export function getBearerTokenForAuthorization() {
-  const localStorage = global.localStorage;
+  const localStorage = window.localStorage;
   return localStorage.getItem(BEARER_TOKEN);
 }
 
 function logout() {
-  const localStorage = global.localStorage;
+  const localStorage = window.localStorage;
   localStorage.removeItem(ACCESS_TOKEN_KEY);
   localStorage.removeItem(USER_ID);
   localStorage.removeItem(EXPIRES_AT_KEY);
@@ -43,8 +52,8 @@ function logout() {
 }
 
 function isAuthenticated() {
-  const localStorage = global.localStorage;
-  const expiresAt = JSON.parse(localStorage.getItem(EXPIRES_AT_KEY));
+  const localStorage = window.localStorage;
+  const expiresAt = JSON.parse(localStorage.getItem(EXPIRES_AT_KEY) || '0');
   const userId = localStorage.getItem(USER_ID);
   const authenticated = Boolean(userId) && Date.now() < expiresAt;
   if (userId && !authenticated) {
@@ -60,7 +69,7 @@ function getUpdatedState() {
   };
 }
 
-const componentsWithAuth = [];
+const componentsWithAuth: React.Component[] = [];
 
 function handleChange() {
   componentsWithAuth.forEach(comp => comp.setState(getUpdatedState()));
@@ -73,11 +82,37 @@ window.addEventListener('storage', event => {
   handleChange();
 });
 
-export default function withAuthSession(WrappedComponent) {
-  class WithAuthSession extends React.PureComponent {
+interface AuthSession {
+  accessToken: string | null;
+  bearerToken: string | null;
+  userId: string | null;
+  expiresAt: number | null;
+}
+interface WithAuthSessionState {
+  authSession: AuthSession;
+  isAuthenticated: boolean;
+}
+type InjectedComponentProps = {
+  authSession: AuthSession;
+  isAuthenticated: boolean;
+  setAuthSession: (
+    authResult: AuthResult,
+    userId: string,
+    bearerToken: string
+  ) => void;
+  logout: () => void;
+};
+
+export default function withAuthSession<P extends InjectedComponentProps>(
+  WrappedComponent: React.ComponentType<P>
+) {
+  class WithAuthSession extends React.PureComponent<
+    WithApolloClient<RouteComponentProps>,
+    WithAuthSessionState
+  > {
     static displayName = `WithAuthSession(${getDisplayName(WrappedComponent)})`;
 
-    state = getUpdatedState();
+    state: WithAuthSessionState = getUpdatedState();
 
     componentWillMount() {
       componentsWithAuth.push(this);
@@ -89,7 +124,7 @@ export default function withAuthSession(WrappedComponent) {
     }
 
     render() {
-      const sessionProps = {
+      const sessionProps: InjectedComponentProps = {
         authSession: this.state.authSession,
         isAuthenticated: this.state.isAuthenticated,
         setAuthSession: this._setAuthSession,
@@ -98,7 +133,11 @@ export default function withAuthSession(WrappedComponent) {
       return <WrappedComponent {...sessionProps} {...this.props} />;
     }
 
-    _setAuthSession = (authResult, userId, bearerToken) => {
+    _setAuthSession = (
+      authResult: AuthResult,
+      userId: string,
+      bearerToken: string
+    ) => {
       setAuthSession(authResult, userId, bearerToken);
       handleChange();
       this.props.client.resetStore();

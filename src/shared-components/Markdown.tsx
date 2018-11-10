@@ -7,7 +7,11 @@ marked.setOptions({
   sanitize: true // DO NOT CHANGE - helps avoid XSS attack possibility
 });
 
-const Markdown = ({ text }) => {
+interface Props {
+  text: string;
+}
+
+const Markdown: React.SFC<Props> = ({ text }) => {
   if (typeof text !== 'string') {
     return <div />;
   }

@@ -5,13 +5,23 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 // See: https://material-ui-next.com/demos/progress/#delaying-appearance
 const PROGRESS_DELAY = 1000;
 
-class LoadingIndicator extends React.PureComponent {
-  constructor(props) {
+interface Props {
+  color?: 'primary' | 'secondary' | 'inherit';
+}
+
+interface State {
+  isShown: boolean;
+}
+
+class LoadingIndicator extends React.PureComponent<Props, State> {
+  timeoutId: number;
+
+  constructor(props: Props) {
     super(props);
     this.state = {
       isShown: false
     };
-    this.timeoutId = setTimeout(
+    this.timeoutId = window.setTimeout(
       () => this.setState({ isShown: true }),
       PROGRESS_DELAY
     );
