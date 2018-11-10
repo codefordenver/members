@@ -3,8 +3,14 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { format, subDays } from 'date-fns';
 import LoadingIndicator from '../../shared-components/LoadingIndicator';
+import { users, users_allUsers, usersVariables } from './__generated__/users';
 
-const EmailList = ({ users, loading }) => (
+type Props = {
+  users: users_allUsers[];
+  loading: boolean;
+};
+
+const EmailList: React.SFC<Props> = ({ users, loading }) => (
   <div>
     <h1>Users that signed up in the last week</h1>
     {loading ? (
@@ -30,13 +36,21 @@ const allUsersQuery = gql`
   }
 `;
 
-const EmailListPage = graphql(allUsersQuery, {
-  options: {
-    variables: {
-      date: format(subDays(new Date(), 7), 'YYYY-MM-DDTHH:mm:ss.SSSZ')
+type PageProps = {};
+
+const EmailListPage = graphql<PageProps, users, usersVariables, Props>(
+  allUsersQuery,
+  {
+    options: {
+      variables: {
+        date: format(subDays(new Date(), 7), 'YYYY-MM-DDTHH:mm:ss.SSSZ')
+      }
+    },
+    props: props => {
+      const { allUsers = [], loading = true } = props.data || {};
+      return { users: allUsers, loading };
     }
-  },
-  props: ({ data: { allUsers }, loading }) => ({ users: allUsers, loading })
-})(EmailList);
+  }
+)(EmailList);
 
 export default EmailListPage;

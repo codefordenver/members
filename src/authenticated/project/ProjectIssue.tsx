@@ -1,7 +1,12 @@
 import React from 'react';
 import './ProjectIssue.css';
+import { GitHubIssue } from '../../sharedTypes';
 
-const ProjectIssue = ({ issue }) => (
+interface Props {
+  issue: GitHubIssue;
+}
+
+const ProjectIssue: React.SFC<Props> = ({ issue }) => (
   <div className="ProjectIssue">
     <h2>
       <a href={issue.html_url}>{issue.title}</a>

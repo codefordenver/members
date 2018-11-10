@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import Grid from '@material-ui/core/Grid';
 import LoadingIndicator from '../../shared-components/LoadingIndicator';
-import ProjectCard from './ProjectCard';
+import ProjectCard, { ProjectCardFragments } from './ProjectCard';
 
 const ProjectsList = ({ projects, loading }) => {
   if (loading) {
@@ -34,7 +34,7 @@ const allProjectsQuery = gql`
       ...ProjectCardFields
     }
   }
-  ${ProjectCard.fragments.ProjectCardFields}
+  ${ProjectCardFragments.ProjectCardFields}
 `;
 
 const ProjectsListPage = graphql(allProjectsQuery, {

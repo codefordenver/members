@@ -1,6 +1,5 @@
 /* eslint-env node */
-
-console.log('in the apollo.config.js file')
+// TODO: clean up this mess
 module.exports = {
   // client: {
   //   name: 'Members client',

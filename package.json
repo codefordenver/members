@@ -35,7 +35,6 @@
     "react-scripts": "^2.1.1",
     "react-select": "^2.1.1",
     "react-testing-library": "^5.2.3",
-    "typescript": "^3.1.6",
     "whatwg-fetch": "^3.0.0"
   },
   "resolutions": {
@@ -65,7 +64,8 @@
     "download-schema": "dotenv -e ./.env.local node ./bin/download-schema.js",
     "gen-types": "apollo codegen:generate --queries=./src/**/*.{ts,tsx} --addTypename --target=typescript --mergeInFieldsFromFragmentSpreads",
     "apollo": "apollo",
-    "schema": "dotenv -e ./.env.local apollo schema:download full-schema.json --endpoint=https://api.graph.cool/simple/v1/cjat2jtd40v4b0162qw31xmbz"
+    "schema": "dotenv -e ./.env.local apollo schema:download full-schema.json --endpoint=https://api.graph.cool/simple/v1/cjat2jtd40v4b0162qw31xmbz",
+    "typecheck": "tsc --noEmit"
   },
   "homepage": "https://members.codefordenver.org",
   "devDependencies": {
@@ -81,7 +81,8 @@
     "prettier": "^1.14.3",
     "prompt": "^1.0.0",
     "request": "^2.88.0",
-    "request-promise-native": "^1.0.5"
+    "request-promise-native": "^1.0.5",
+    "typescript": "^3.1.6"
   },
   "browserslist": [
     ">0.2%",

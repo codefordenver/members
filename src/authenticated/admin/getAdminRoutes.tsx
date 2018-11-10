@@ -3,8 +3,9 @@ import { Route } from 'react-router-dom';
 import EmailListPage from './EmailListPage';
 import AdminPage from './AdminPage';
 import userIsAdmin from '../../utils/userIsAdmin';
+import { User } from '../../sharedTypes';
 
-function getAdminRoutes(user) {
+function getAdminRoutes(user: User) {
   return userIsAdmin(user)
     ? [
         <Route exact path="/admin" key="/admin" component={AdminPage} />,
