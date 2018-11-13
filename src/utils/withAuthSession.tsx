@@ -82,7 +82,7 @@ window.addEventListener('storage', event => {
   handleChange();
 });
 
-interface AuthSession {
+export interface AuthSession {
   accessToken: string | null;
   bearerToken: string | null;
   userId: string | null;

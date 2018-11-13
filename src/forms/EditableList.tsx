@@ -3,16 +3,38 @@ import Chip from '@material-ui/core/Chip';
 import AutocompleteChip from './AutocompleteChip';
 import './EditableList.css';
 
-const EditableList = ({
-  value,
+type Item = {
+  name: string;
+};
+type ItemComponentProps = {
+  item: Item;
+  editing: boolean;
+  onDelete?(): void;
+};
+type EditableListProps = {
+  value: Item[];
+  label: string;
+  name: string;
+  editing: boolean;
+  onChange(value: any): void;
+  allOptions?: Item[];
+  allOptionsLoading?: boolean;
+  createChip?(value: any): void;
+  ItemComponent?: React.ComponentType<ItemComponentProps>;
+};
+
+const EditableList: React.SFC<EditableListProps> = ({
+  value = [],
   label,
   name,
   editing,
   onChange,
-  allOptions,
+  allOptions = [],
   allOptionsLoading,
   createChip,
-  ItemComponent
+  ItemComponent = ({ item, onDelete }: ItemComponentProps) => (
+    <Chip className="EditableList-chip" label={item.name} onDelete={onDelete} />
+  )
 }) => {
   if (!editing) {
     return (
@@ -49,7 +71,7 @@ const EditableList = ({
         isLoading={allOptionsLoading}
         options={allOptions.filter(option => !optionSet.has(option.name))}
         placeholder={label}
-        onAdd={newValue => {
+        onAdd={(newValue: Item) => {
           const newChipsData = [...value, newValue];
           onChange({
             target: {
@@ -62,14 +84,6 @@ const EditableList = ({
       />
     </div>
   );
-};
-
-EditableList.defaultProps = {
-  value: [],
-  allOptions: [],
-  ItemComponent: ({ item, onDelete }) => (
-    <Chip className="EditableList-chip" label={item.name} onDelete={onDelete} />
-  )
 };
 
 export default EditableList;

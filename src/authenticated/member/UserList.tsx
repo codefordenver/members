@@ -4,7 +4,18 @@ import { Link } from 'react-router-dom';
 import LoadingIndicator from '../../shared-components/LoadingIndicator';
 import './UsersList.css';
 
-const UsersList = ({ users, loading }) => {
+interface UsersListProps {
+  users: Array<{
+    __typename: 'User';
+    id: string;
+    name: string | null;
+    picture: string | null;
+    [otherKeys: string]: any;
+  }>;
+  loading: boolean;
+}
+
+const UsersList: React.SFC<UsersListProps> = ({ users = [], loading }) => {
   if (loading) {
     return <LoadingIndicator />;
   }
@@ -18,7 +29,7 @@ const UsersList = ({ users, loading }) => {
         <li className="userid userTile" key={user.id}>
           <div className="userPic">
             <Link to={`/volunteers/${user.id}`}>
-              <Avatar src={user.picture} />
+              <Avatar src={user.picture || ''} />
             </Link>
           </div>
           <div className="userName">
@@ -28,10 +39,6 @@ const UsersList = ({ users, loading }) => {
       ))}
     </ul>
   );
-};
-
-UsersList.defaultProps = {
-  users: []
 };
 
 export default UsersList;

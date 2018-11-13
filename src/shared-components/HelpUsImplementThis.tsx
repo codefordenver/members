@@ -3,7 +3,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import './HelpUsImplementThis.css';
 
 interface Props {
-  featureDescriptionUrl: string;
+  featureDescriptionUrl?: string;
 }
 
 const HelpUsImplementThis: React.SFC<Props> = ({

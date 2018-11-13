@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
 import withEditPage from '../../utils/withEditPage';
-import MemberProfile from './MemberProfile';
+import MemberProfile, { MemberProfileFragment } from './MemberProfile';
 import { withLoggedInUser } from '../../utils';
 
 const updateUserQuery = gql`
@@ -21,22 +21,17 @@ const updateUserQuery = gql`
       description: $description
       skillsIds: $skillsIds
     ) {
-      id
-      name
-      picture
-      email
-      flowdockName
-      githubName
-      description
-      skills {
-        id
-        name
-      }
+      ...MemberProfileFragment
     }
   }
+  ${MemberProfileFragment}
 `;
 
-function prepUserForUpdate(updatedUser) {
+type User = {
+  skills: Array<{ id: string }>;
+};
+
+function prepUserForUpdate(updatedUser: User) {
   const skillsIds = updatedUser.skills.map(skill => skill.id);
   return {
     ...updatedUser,
@@ -48,8 +43,8 @@ export default compose(
   withLoggedInUser,
   graphql(updateUserQuery, {
     props: ({ mutate }) => ({
-      onEdit: updatedUser => {
-        return mutate({ variables: prepUserForUpdate(updatedUser) });
+      onEdit: (updatedUser: User) => {
+        return mutate && mutate({ variables: prepUserForUpdate(updatedUser) });
       }
     })
   }),

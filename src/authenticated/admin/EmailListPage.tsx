@@ -3,14 +3,18 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { format, subDays } from 'date-fns';
 import LoadingIndicator from '../../shared-components/LoadingIndicator';
-import { users, users_allUsers, usersVariables } from './__generated__/users';
+import {
+  userEmails,
+  userEmails_allUsers,
+  userEmailsVariables
+} from './__generated__/userEmails';
 
-type Props = {
-  users: users_allUsers[];
+interface EmailListProps {
+  users?: userEmails_allUsers[];
   loading: boolean;
-};
+}
 
-const EmailList: React.SFC<Props> = ({ users, loading }) => (
+const EmailList: React.SFC<EmailListProps> = ({ users = [], loading }) => (
   <div>
     <h1>Users that signed up in the last week</h1>
     {loading ? (
@@ -23,12 +27,8 @@ const EmailList: React.SFC<Props> = ({ users, loading }) => (
   </div>
 );
 
-EmailList.defaultProps = {
-  users: []
-};
-
 const allUsersQuery = gql`
-  query users($date: DateTime) {
+  query userEmails($date: DateTime) {
     allUsers(orderBy: email_ASC, filter: { createdAt_gt: $date }) {
       id
       email
@@ -36,21 +36,23 @@ const allUsersQuery = gql`
   }
 `;
 
-type PageProps = {};
+type EmailListPage = {};
 
-const EmailListPage = graphql<PageProps, users, usersVariables, Props>(
-  allUsersQuery,
-  {
-    options: {
-      variables: {
-        date: format(subDays(new Date(), 7), 'YYYY-MM-DDTHH:mm:ss.SSSZ')
-      }
-    },
-    props: props => {
-      const { allUsers = [], loading = true } = props.data || {};
-      return { users: allUsers, loading };
+const EmailListPage = graphql<
+  EmailListPage,
+  userEmails,
+  userEmailsVariables,
+  EmailListProps
+>(allUsersQuery, {
+  options: {
+    variables: {
+      date: format(subDays(new Date(), 7), 'YYYY-MM-DDTHH:mm:ss.SSSZ')
     }
+  },
+  props: props => {
+    const { allUsers = [], loading = true } = props.data || {};
+    return { users: allUsers, loading };
   }
-)(EmailList);
+})(EmailList);
 
 export default EmailListPage;

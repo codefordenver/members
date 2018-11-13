@@ -2,7 +2,20 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import './EditableImageLink.css';
 
-const EditableImageLink = ({
+interface Props {
+  alt: string;
+  defaultSrc: string;
+
+  value: string;
+  label: string;
+  name: string;
+  editing: boolean;
+  onChange: React.ChangeEventHandler<
+    HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
+  >;
+}
+
+const EditableImageLink: React.SFC<Props> = ({
   value,
   label,
   name,

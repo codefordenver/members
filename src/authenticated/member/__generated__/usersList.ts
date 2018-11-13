@@ -2,19 +2,16 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: users
+// GraphQL query operation: usersList
 // ====================================================
 
-export interface users_allUsers {
+export interface usersList_allUsers {
   __typename: 'User';
   id: string;
-  email: string;
+  name: string | null;
+  picture: string | null;
 }
 
-export interface users {
-  allUsers: users_allUsers[];
-}
-
-export interface usersVariables {
-  date?: any | null;
+export interface usersList {
+  allUsers: usersList_allUsers[];
 }

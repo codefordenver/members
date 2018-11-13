@@ -5,15 +5,29 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Markdown from '../shared-components/Markdown';
 
-class EditableMarkdown extends React.PureComponent {
-  state = {
+interface Props {
+  value: string | null;
+  label: string;
+  name: string;
+  editing: boolean;
+  onChange: React.ChangeEventHandler<
+    HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
+  >;
+}
+type TabViews = 'write' | 'preview';
+interface State {
+  tabView: TabViews;
+}
+
+class EditableMarkdown extends React.PureComponent<Props, State> {
+  state: State = {
     tabView: 'write'
   };
 
   render() {
     const { value, label, name, editing, onChange } = this.props;
     if (!editing) {
-      return <Markdown text={value} />;
+      return <Markdown text={value || ''} />;
     }
 
     return (
@@ -29,7 +43,7 @@ class EditableMarkdown extends React.PureComponent {
           </Tabs>
         </AppBar>
         {this.state.tabView === 'preview' ? (
-          <Markdown text={value} />
+          <Markdown text={value || ''} />
         ) : (
           <TextField
             name={name}
@@ -45,7 +59,7 @@ class EditableMarkdown extends React.PureComponent {
     );
   }
 
-  _changeTab = (event, tabView) => {
+  _changeTab = (event: React.ChangeEvent<{}>, tabView: TabViews) => {
     this.setState({ tabView });
   };
 }

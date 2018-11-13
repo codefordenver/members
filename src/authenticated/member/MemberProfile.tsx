@@ -8,8 +8,20 @@ import EditableList from '../../forms/EditableList';
 import EditableText from '../../forms/EditableText';
 import EditableMarkdown from '../../forms/EditableMarkdown';
 import './Member.css';
+import { MemberProfileFragment as MemberProfileFragmentType } from './__generated__/MemberProfileFragment';
 
-const MemberProfile = ({ user, onFormDataChange, editing }) => {
+export interface MemberProfileProps {
+  user?: MemberProfileFragmentType;
+  onFormDataChange: (value: any) => void;
+  editing: boolean;
+  match: any;
+}
+
+const MemberProfile: React.SFC<MemberProfileProps> = ({
+  user,
+  onFormDataChange,
+  editing
+}) => {
   if (!user) {
     return <LoadingIndicator />;
   }
@@ -31,7 +43,11 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
       <Card className="Member-card">
         <div className="Member-pic">
           <div className="Member-div">
-            <img className="rounded Member-photo" src={picture} alt="avatar" />
+            <img
+              className="rounded Member-photo"
+              src={picture || ''}
+              alt="avatar"
+            />
           </div>
         </div>
         <div className="Member-bio">
@@ -116,8 +132,11 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
         <HelpUsImplementThis>
           <div className="Member-skills-right">
             <EditableList
+              name="projects"
               value={[{ name: 'Members Project' }, { name: 'Owlet' }]}
               label="Add Project"
+              editing={false}
+              onChange={onFormDataChange}
             />
           </div>
         </HelpUsImplementThis>
@@ -125,15 +144,21 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
     </div>
   );
 };
-MemberProfile.fragments = {
-  skills: gql`
-    fragment Skills on User {
-      skills {
-        id
-        name
-      }
+
+export const MemberProfileFragment = gql`
+  fragment MemberProfileFragment on User {
+    id
+    picture
+    name
+    description
+    githubName
+    flowdockName
+    email
+    skills {
+      id
+      name
     }
-  `
-};
+  }
+`;
 
 export default MemberProfile;
