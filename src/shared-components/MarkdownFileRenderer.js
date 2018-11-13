@@ -10,8 +10,7 @@ marked.setOptions({
 });
 
 async function getMarkdownHTML(fileName) {
-  const markdownUrl = await import(`../markdown/${fileName}.md`);
-  const request = await fetch(markdownUrl);
+  const request = await fetch(`/markdown/${fileName}.md`);
   const markdown = await request.text();
   return marked(markdown);
 }
@@ -43,7 +42,7 @@ class MarkdownFileRenderer extends React.Component {
             <a
               key="markdown-edit-link"
               className="MarkdownFileRenderer-edit"
-              href={`https://github.com/codefordenver/members/edit/master/src/markdown/${
+              href={`https://github.com/codefordenver/members/edit/master/public/markdown/${
                 this.props.fileName
               }.md`}
             >

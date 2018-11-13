@@ -1,3 +1,7 @@
+html {
+  font-size: 18px;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -7,13 +11,13 @@ body {
 }
 
 h1 {
-  font-size: 48px;
+  font-size: 2.5rem;
   color: #858585;
   text-align: left;
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 1.5rem;
   color: #858585;
 }
 
@@ -23,21 +27,22 @@ h3 {
 }
 
 ul {
-  font-size: 18px;
+  font-size: 1rem;
   color: black;
 }
 
 ol {
-  font-size: 18px;
+  font-size: 1rem;
   color: black;
 }
 
 li {
-  font-size: 18px;
+  font-size: 1rem;
   color: black;
 }
 
 p {
-  font-size: 18px;
+  font-size: 1rem;
+  line-height: 1.3rem;
   color: black;
 }

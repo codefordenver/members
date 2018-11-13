@@ -18,6 +18,7 @@ const styles = theme => ({
   },
 
   navIconHide: {
+    height: '48px',
     [theme.breakpoints.up('md')]: {
       display: 'none'
     }
@@ -33,7 +34,7 @@ const styles = theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3
-  },
+  }
 });
 
 class ResponsiveDrawer extends React.Component {
@@ -86,9 +87,7 @@ class ResponsiveDrawer extends React.Component {
             {drawer}
           </Drawer>
         </Hidden>
-        <main className={classes.content}>
-          {children}
-        </main>
+        <main className={classes.content}>{children}</main>
       </div>
     );
   }
