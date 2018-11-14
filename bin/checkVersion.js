@@ -1,5 +1,6 @@
 /*To avoid dependencies, the compareVersions code below has been copied from: https://github.com/omichelsen/compare-versions*/
 /*eslint no-console: "off"*/
+/*eslint no-useless-escape: "off"*/
 const process = require('process');
 const config = require('../package.json');
 const version = process.version.match(/[0-9.]+/).toString();
@@ -7,17 +8,25 @@ const minVersion = config.engines.node.match(/[0-9.]+/).toString();
 const semver = /^v?(?:\d+)(\.(?:[x*]|\d+)(\.(?:[x*]|\d+)(\.(?:[x*]|\d+))?(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?)?)?$/i;
 
 const comparators = [
-  { val: '>', validate: (r) => r == 1 },
-  { val: '>=', validate: (r) => r == 0 || r == 1 },
+  { val: '>', validate: r => r == 1 },
+  { val: '>=', validate: r => r == 0 || r == 1 }
 ];
 
-const comparator = comparators.find(c => c.val == config.engines.node.match(/[^0-9.]+/).toString());
-const result = comparator && comparator.validate(compareVersions(version, minVersion));
+const comparator = comparators.find(
+  c => c.val == config.engines.node.match(/[^0-9.]+/).toString()
+);
+const result =
+  comparator && comparator.validate(compareVersions(version, minVersion));
 
-console.log(result === undefined ?
-  'Error: invalid Node version comparator, should contain ' + comparators.map(c => c.val).join(' || ')
-  : result ? `Notice: Node version check ${version} ${comparator.val} ${minVersion} good`
-    : `Error: Node version ${version} not ${comparator.val} ${minVersion}`
+console.log(
+  result === undefined
+    ? 'Error: invalid Node version comparator, should contain ' +
+      comparators.map(c => c.val).join(' || ')
+    : result
+      ? `Notice: Node version check ${version} ${
+          comparator.val
+        } ${minVersion} good`
+      : `Error: Node version ${version} not ${comparator.val} ${minVersion}`
 );
 
 process.exit(!result);
@@ -43,7 +52,9 @@ function validate(version) {
     throw new TypeError('Invalid argument expected string');
   }
   if (!semver.test(version)) {
-    throw new Error('Invalid argument not valid semver (\'' + version + '\' received)');
+    throw new Error(
+      "Invalid argument not valid semver ('" + version + "' received)"
+    );
   }
 }
 
@@ -68,8 +79,16 @@ function compareVersions(v1, v2) {
     var p2 = sp2.split('.').map(tryParse);
 
     for (i = 0; i < Math.max(p1.length, p2.length); i++) {
-      if (p1[i] === undefined || typeof p2[i] === 'string' && typeof p1[i] === 'number') return -1;
-      if (p2[i] === undefined || typeof p1[i] === 'string' && typeof p2[i] === 'number') return 1;
+      if (
+        p1[i] === undefined ||
+        (typeof p2[i] === 'string' && typeof p1[i] === 'number')
+      )
+        return -1;
+      if (
+        p2[i] === undefined ||
+        (typeof p1[i] === 'string' && typeof p2[i] === 'number')
+      )
+        return 1;
 
       if (p1[i] > p2[i]) return 1;
       if (p2[i] > p1[i]) return -1;
@@ -78,4 +97,4 @@ function compareVersions(v1, v2) {
     return sp1 ? -1 : 1;
   }
   return 0;
-};
+}
