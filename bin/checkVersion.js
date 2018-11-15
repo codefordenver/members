@@ -1,7 +1,6 @@
 /*To avoid dependencies, the compareVersions code below has been copied from: https://github.com/omichelsen/compare-versions*/
 /*eslint no-console: "off"*/
 /*eslint no-useless-escape: "off"*/
-/*eslint indent: "off"*/
 const process = require('process');
 const config = require('../package.json');
 const version = process.version.match(/[0-9.]+/).toString();
