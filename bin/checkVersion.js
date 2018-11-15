@@ -1,6 +1,7 @@
 /*To avoid dependencies, the compareVersions code below has been copied from: https://github.com/omichelsen/compare-versions*/
 /*eslint no-console: "off"*/
 /*eslint no-useless-escape: "off"*/
+/*eslint indent: "off"*/
 const process = require('process');
 const config = require('../package.json');
 const version = process.version.match(/[0-9.]+/).toString();
@@ -20,8 +21,9 @@ const result =
 
 console.log(
   result === undefined
-    ? 'Error: invalid Node version comparator, should contain ' +
-      comparators.map(c => c.val).join(' || ')
+    ? `Error: invalid Node version comparator, should contain ${comparators
+        .map(c => c.val)
+        .join(' || ')}`
     : result
       ? `Notice: Node version check ${version} ${
           comparator.val
@@ -52,9 +54,7 @@ function validate(version) {
     throw new TypeError('Invalid argument expected string');
   }
   if (!semver.test(version)) {
-    throw new Error(
-      "Invalid argument not valid semver ('" + version + "' received)"
-    );
+    throw new Error(`Invalid argument not valid semver (${version}) received)`);
   }
 }
 
