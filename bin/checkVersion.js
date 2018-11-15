@@ -1,41 +1,100 @@
+/*To avoid dependencies, the compareVersions code below has been copied from: https://github.com/omichelsen/compare-versions*/
 /*eslint no-console: "off"*/
+/*eslint no-useless-escape: "off"*/
+/*eslint indent: "off"*/
 const process = require('process');
 const config = require('../package.json');
-const comparator = config.engines.node.match(/[^0-9.]+/).toString();
-const minVersion = process.version.match(/[0-9.]+/).toString();
-const version = config.engines.node.match(/[0-9.]+/).toString();
+const version = process.version.match(/[0-9.]+/).toString();
+const minVersion = config.engines.node.match(/[0-9.]+/).toString();
+const semver = /^v?(?:\d+)(\.(?:[x*]|\d+)(\.(?:[x*]|\d+)(\.(?:[x*]|\d+))?(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?)?)?$/i;
 
-function compareVersions(left, right) {
-  if (left === right) return 0;
-  const a = left.split('.').map(Number);
-  const b = right.split('.').map(Number);
-  for (let i = 0; i < a.length; i++) {
-    if (a[i] > b[i]) {
-      return 1;
-    }
-    if (a[i] < b[i]) {
-      return -1;
-    }
+const comparators = [
+  { val: '>', validate: r => r == 1 },
+  { val: '>=', validate: r => r == 0 || r == 1 }
+];
+
+const comparator = comparators.find(
+  c => c.val == config.engines.node.match(/[^0-9.]+/).toString()
+);
+const result =
+  comparator && comparator.validate(compareVersions(version, minVersion));
+
+console.log(
+  result === undefined
+    ? `Error: invalid Node version comparator, should contain ${comparators
+        .map(c => c.val)
+        .join(' || ')}`
+    : result
+      ? `Notice: Node version check ${version} ${
+          comparator.val
+        } ${minVersion} good`
+      : `Error: Node version ${version} not ${comparator.val} ${minVersion}`
+);
+
+process.exit(!result);
+
+function indexOrEnd(str, q) {
+  return str.indexOf(q) === -1 ? str.length : str.indexOf(q);
+}
+
+function split(v) {
+  var c = v.replace(/^v/, '').replace(/\+.*$/, '');
+  var patchIndex = indexOrEnd(c, '-');
+  var arr = c.substring(0, patchIndex).split('.');
+  arr.push(c.substring(patchIndex + 1));
+  return arr;
+}
+
+function tryParse(v) {
+  return isNaN(Number(v)) ? v : Number(v);
+}
+
+function validate(version) {
+  if (typeof version !== 'string') {
+    throw new TypeError('Invalid argument expected string');
   }
-  return true;
+  if (!semver.test(version)) {
+    throw new Error(`Invalid argument not valid semver (${version}) received)`);
+  }
 }
 
-if (comparator !== '>' && comparator !== '>=') {
-  console.log('Error: invalid Node version comparator, should contain > || >=');
-  process.exit(1);
-}
+function compareVersions(v1, v2) {
+  [v1, v2].forEach(validate);
+  var s1 = split(v1);
+  var s2 = split(v2);
 
-const comparison = compareVersions(version, minVersion);
+  for (var i = 0; i < Math.max(s1.length - 1, s2.length - 1); i++) {
+    var n1 = parseInt(s1[i] || 0, 10);
+    var n2 = parseInt(s2[i] || 0, 10);
 
-const success =
-  comparator === '>=' ? comparison === 0 || comparison === 1 : comparison === 1;
+    if (n1 > n2) return 1;
+    if (n2 > n1) return -1;
+  }
 
-if (success) {
-  console.log(
-    `Notice: Node version check ${minVersion} ${comparator} ${version} good`
-  );
-  process.exit(0);
-} else {
-  console.log(`Error: Node version ${minVersion} not ${comparator} ${version}`);
-  process.exit(1);
+  var sp1 = s1[s1.length - 1];
+  var sp2 = s2[s2.length - 1];
+
+  if (sp1 && sp2) {
+    var p1 = sp1.split('.').map(tryParse);
+    var p2 = sp2.split('.').map(tryParse);
+
+    for (i = 0; i < Math.max(p1.length, p2.length); i++) {
+      if (
+        p1[i] === undefined ||
+        (typeof p2[i] === 'string' && typeof p1[i] === 'number')
+      )
+        return -1;
+      if (
+        p2[i] === undefined ||
+        (typeof p1[i] === 'string' && typeof p2[i] === 'number')
+      )
+        return 1;
+
+      if (p1[i] > p2[i]) return 1;
+      if (p2[i] > p1[i]) return -1;
+    }
+  } else if (sp1 || sp2) {
+    return sp1 ? -1 : 1;
+  }
+  return 0;
 }
