@@ -35,9 +35,7 @@ const ProjectCard = ({ id, name, skills, status, repoName, headerImage }) => {
       <CardActions>
         <Grid container spacing={16} alignItems="center">
           <EditableSkills value={skills} name="skills" />
-          <Link to={`https://github.com/codefordenver/${repoName}`}>
-            GitHub
-          </Link>
+          <a href={`https://github.com/codefordenver/${repoName}`}>GitHub</a>
           <Grid item>{status && <span> Status: {status}</span>}</Grid>
         </Grid>
       </CardActions>
