@@ -1,8 +1,9 @@
+import React, { Component } from 'react';
 import gql from 'graphql-tag';
-import { compose, graphql } from 'react-apollo';
+import { Query } from 'react-apollo';
 import withViewPage from '../../utils/withViewPage';
 import MemberProfile from './MemberProfile';
-import { withAuthSession } from '../../utils';
+import AuthenticationContext from '../../utils/authentication/authContext';
 
 const userQuery = gql`
   query getUser($id: ID) {
@@ -20,22 +21,20 @@ const userQuery = gql`
   ${MemberProfile.fragments.skills}
 `;
 
-export default compose(
-  withAuthSession,
-  graphql(userQuery, {
-    skip: ({ isAuthenticated, authSession }) => {
-      return !isAuthenticated || !authSession.userId;
-    },
-    options: props => {
-      return {
-        variables: { id: props.authSession && props.authSession.userId }
-      };
-    },
-    props: ({ data: { user } }) => ({ user })
-  }),
-  withViewPage({
-    renameProps: {
-      formData: 'user'
-    }
-  })
-)(MemberProfile);
+const MyProfilePage = () => (
+  <AuthenticationContext.Consumer>
+    {context => (
+      <Query
+        query={userQuery}
+        variables={{ id: context.authData.userId }}
+        skip={!context.isAuthenticated()}
+      >
+        {({ data: { user } }) => <MemberProfile user={user} />}
+      </Query>
+    )}
+  </AuthenticationContext.Consumer>
+);
+
+export default withViewPage({ renameProps: { formData: 'user' } })(
+  MyProfilePage
+);

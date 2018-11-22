@@ -8,6 +8,7 @@ import GoogleAnalyticsPageTracker from './shared-components/GoogleAnalyticsPageT
 import Header from './header/Header';
 import ErrorBoundary from './shared-components/ErrorBoundary';
 import AppBody from './AppBody';
+import AuthenticationContext from './utils/authentication/authContext';
 import './App.css';
 
 const theme = createMuiTheme({
@@ -35,21 +36,54 @@ const styles = theme => ({
 });
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      authContext: {
+        authData: {},
+        isAuthenticated: this.isAuthenticated,
+        setCurrentUser: this.setCurrentUser
+      }
+    };
+  }
+
+  isAuthenticated = () => {
+    const {
+      userId,
+      expiresAt,
+      accessToken,
+      bearerToken
+    } = this.state.authContext.authData;
+    return Date.now() < expiresAt && userId && accessToken && bearerToken;
+  };
+
+  setCurrentUser = authData => {
+    this.setState({
+      authContext: {
+        ...this.state.authContext,
+        authData
+      }
+    });
+  };
+
   render() {
     const { classes } = this.props;
     return (
-      <MuiThemeProvider theme={theme}>
-        <div className="App">
-          <GoogleAnalyticsPageTracker />
-          <ErrorBoundary>
-            <Header />
-          </ErrorBoundary>
-          <ErrorBoundary>
-            <div className={classes.toolbar} />
-            <AppBody />
-          </ErrorBoundary>
-        </div>
-      </MuiThemeProvider>
+      <AuthenticationContext.Provider value={this.state.authContext}>
+        <MuiThemeProvider theme={theme}>
+          <div className="App">
+            <GoogleAnalyticsPageTracker />
+            <ErrorBoundary>
+              <Header />
+            </ErrorBoundary>
+            <ErrorBoundary>
+              <div className={classes.toolbar} />
+              <AppBody />
+            </ErrorBoundary>
+          </div>
+        </MuiThemeProvider>
+      </AuthenticationContext.Provider>
     );
   }
 }

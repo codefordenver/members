@@ -4,8 +4,8 @@ import EmailListPage from './EmailListPage';
 import AdminPage from './AdminPage';
 import userIsAdmin from '../../utils/userIsAdmin';
 
-function getAdminRoutes(user) {
-  return userIsAdmin(user)
+function getAdminRoutes(role) {
+  return userIsAdmin(role)
     ? [
         <Route exact path="/admin" key="/admin" component={AdminPage} />,
         <Route

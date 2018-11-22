@@ -1,3 +1,3 @@
-export default function userIsAdmin(user) {
-  return user && user.role === 'ADMIN';
+export default function userIsAdmin(role) {
+  return role === 'ADMIN';
 }
