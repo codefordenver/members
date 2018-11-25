@@ -3,11 +3,19 @@ import gql from 'graphql-tag';
 import EditableText from '../../forms/EditableText';
 import EditableMarkdown from '../../forms/EditableMarkdown';
 import EditableSkills from '../../forms/EditableSkills';
+import EditableUsers from '../../forms/EditableUsers';
 import EditableImageLink from '../../forms/EditableImageLink';
 import ProjectIssues from './ProjectIssues';
 
 const ProjectSection = ({ project, editing, onFormDataChange }) => {
-  const { name, description, skills, repoName, headerImage } = project;
+  const {
+    name,
+    description,
+    skills,
+    champions,
+    repoName,
+    headerImage
+  } = project;
   const commonProps = {
     onChange: onFormDataChange,
     editing
@@ -28,6 +36,14 @@ const ProjectSection = ({ project, editing, onFormDataChange }) => {
         value={description}
         label="Description"
         name="description"
+        {...commonProps}
+      />
+
+      <h2>Project Champions</h2>
+      <EditableUsers
+        value={champions}
+        name="champions"
+        label="Add Champion"
         {...commonProps}
       />
 
@@ -62,6 +78,10 @@ ProjectSection.fragments = {
       description
       repoName
       skills {
+        id
+        name
+      }
+      champions {
         id
         name
       }

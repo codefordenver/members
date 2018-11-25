@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import HelpUsImplementThis from '../../shared-components/HelpUsImplementThis';
 import LoadingIndicator from '../../shared-components/LoadingIndicator';
 import EditableSkills from '../../forms/EditableSkills';
-import EditableList from '../../forms/EditableList';
+import EditableProjects from '../../forms/EditableProjects';
 import EditableText from '../../forms/EditableText';
 import EditableMarkdown from '../../forms/EditableMarkdown';
 import './Member.css';
@@ -20,7 +20,8 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
     githubName,
     flowdockName,
     email,
-    skills
+    skills,
+    projectsChampioned
   } = user;
   const commonProps = {
     onChange: onFormDataChange,
@@ -113,14 +114,14 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
         <div className="Member-skills-left">
           <h2>Projects</h2>
         </div>
-        <HelpUsImplementThis>
-          <div className="Member-skills-right">
-            <EditableList
-              value={[{ name: 'Members Project' }, { name: 'Owlet' }]}
-              label="Add Project"
-            />
-          </div>
-        </HelpUsImplementThis>
+        <div className="Member-skills-right">
+          <EditableProjects
+            value={projectsChampioned}
+            name="projectsChampioned"
+            label="Add Project"
+            {...commonProps}
+          />
+        </div>
       </Card>
     </div>
   );
@@ -129,6 +130,14 @@ MemberProfile.fragments = {
   skills: gql`
     fragment Skills on User {
       skills {
+        id
+        name
+      }
+    }
+  `,
+  projects: gql`
+    fragment Projects on User {
+      projectsChampioned {
         id
         name
       }

@@ -12,6 +12,7 @@ const updateUserQuery = gql`
     $flowdockName: String
     $description: String
     $skillsIds: [ID!]
+    $projectsChampionedIds: [ID!]
   ) {
     updateUser(
       id: $id
@@ -20,6 +21,7 @@ const updateUserQuery = gql`
       flowdockName: $flowdockName
       description: $description
       skillsIds: $skillsIds
+      projectsChampionedIds: $projectsChampionedIds
     ) {
       id
       name
@@ -32,15 +34,23 @@ const updateUserQuery = gql`
         id
         name
       }
+      projectsChampioned {
+        id
+        name
+      }
     }
   }
 `;
 
 function prepUserForUpdate(updatedUser) {
   const skillsIds = updatedUser.skills.map(skill => skill.id);
+  const projectsChampionedIds = updatedUser.projectsChampioned.map(
+    project => project.id
+  );
   return {
     ...updatedUser,
-    skillsIds
+    skillsIds,
+    projectsChampionedIds
   };
 }
 
