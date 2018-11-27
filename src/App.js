@@ -9,6 +9,7 @@ import Header from './header/Header';
 import ErrorBoundary from './shared-components/ErrorBoundary';
 import AppBody from './AppBody';
 import AuthenticationContext from './utils/authentication/authContext';
+import AuthService from './utils/authentication/authService';
 import './App.css';
 
 const theme = createMuiTheme({
@@ -48,14 +49,22 @@ class App extends Component {
     };
   }
 
+  componentDidMount = () => {
+    // Sync auth session stored in the localStorage with Context
+    // TBH, I'm not sure if we even need context
+    this.setCurrentUser(AuthService.getSessionAuthData());
+  };
+
   isAuthenticated = () => {
     const {
       userId,
       expiresAt,
-      accessToken,
-      bearerToken
+      auth0AccessToken,
+      graphcoolToken
     } = this.state.authContext.authData;
-    return Date.now() < expiresAt && userId && accessToken && bearerToken;
+    return (
+      Date.now() < expiresAt && userId && auth0AccessToken && graphcoolToken
+    );
   };
 
   setCurrentUser = authData => {

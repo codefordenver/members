@@ -1,30 +1,33 @@
 import auth0 from 'auth0-js';
-import { getEnvironmentVariables } from '../getEnvironmentVariables';
+import getEnvironmentVariables from '../getEnvironmentVariables';
 import {
   ACCESS_TOKEN_KEY,
   BEARER_TOKEN,
   EXPIRES_AT_KEY,
-  USER_ID
+  USER_ID,
+  USER_PROFILE
 } from '../../constants/storageKeys';
 
 const env = getEnvironmentVariables();
 
 class AuthService {
+  returnUrl = window.location.origin;
+
   webAuth = new auth0.WebAuth({
     domain: env.auth0Domain,
-    clientId: env.auth0ClientId,
+    clientID: env.auth0ClientId,
     audience: env.auth0ApiIdentifier,
-    redirectUri: window.location.origin,
+    redirectUri: `${window.location.origin}/callback`,
     responseType: 'token id_token',
     scope: 'openid email profile'
   });
 
   login = () => {
-    this.webAuth.authorize({ initialScreen: 'login' });
+    this.webAuth.authorize();
   };
 
   signUp = () => {
-    this.webAuth.authorize({ initialScreen: 'signUp' });
+    this.webAuth.authorize();
   };
 
   parseAuthenticationResult = () => {
@@ -66,10 +69,25 @@ class AuthService {
     localStorage.removeItem(USER_ID);
     localStorage.removeItem(EXPIRES_AT_KEY);
     localStorage.removeItem(BEARER_TOKEN);
+    localStorage.removeItem(USER_PROFILE);
   };
 
   getBearerToken = () => {
     localStorage.getItem(BEARER_TOKEN);
+  };
+
+  setAuthProfileSession = user => {
+    localStorage.setItem(USER_PROFILE, user);
+  };
+
+  getSessionAuthData = () => {
+    return {
+      auth0AccessToken: localStorage.getItem(ACCESS_TOKEN_KEY),
+      graphcoolToken: localStorage.getItem(BEARER_TOKEN),
+      userId: localStorage.getItem(USER_ID),
+      expiresAt: localStorage.getItem(EXPIRES_AT_KEY),
+      userProfile: localStorage.getItem(USER_PROFILE)
+    };
   };
 }
 

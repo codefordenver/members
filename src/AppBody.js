@@ -1,12 +1,18 @@
 import React from 'react';
 import LoggedInRoutes from './authenticated/LoggedInRoutes';
 import LoggedOutRoutes from './unauthenticated/LoggedOutRoutes';
-import withAuthSession from './utils/withAuthSession';
+import AuthenticationContext from './utils/authentication/authContext';
 
-const AppBody = ({ isAuthenticated }) => (
-  <div className="AppBody">
-    {isAuthenticated ? <LoggedInRoutes /> : <LoggedOutRoutes />}
-  </div>
+const AppBody = () => (
+  <AuthenticationContext.Consumer>
+    {context => {
+      return (
+        <div className="AppBody">
+          {context.isAuthenticated() ? <LoggedInRoutes /> : <LoggedOutRoutes />}
+        </div>
+      );
+    }}
+  </AuthenticationContext.Consumer>
 );
 
-export default withAuthSession(AppBody);
+export default AppBody;

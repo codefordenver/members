@@ -1,8 +1,9 @@
+import React, { Component } from 'react';
 import gql from 'graphql-tag';
-import { graphql, compose } from 'react-apollo';
+import { Mutation } from 'react-apollo';
 import withEditPage from '../../utils/withEditPage';
 import MemberProfile from './MemberProfile';
-import { withLoggedInUser } from '../../utils';
+import AuthenticationContext from '../../utils/authentication/authContext';
 
 const updateUserQuery = gql`
   mutation updateUser(
@@ -44,18 +45,34 @@ function prepUserForUpdate(updatedUser) {
   };
 }
 
-export default compose(
-  withLoggedInUser,
-  graphql(updateUserQuery, {
-    props: ({ mutate }) => ({
-      onEdit: updatedUser => {
-        return mutate({ variables: prepUserForUpdate(updatedUser) });
-      }
-    })
-  }),
-  withEditPage({
-    renameProps: {
-      formData: 'user'
-    }
-  })
-)(MemberProfile);
+class MemberProfileEditPage extends Component {
+  render() {
+    return (
+      <AuthenticationContext.Consumer>
+        {context => (
+          <Mutation
+            mutation={updateUserQuery}
+            onCompleted={({ data: { updateUser } }) =>
+              context.setCurrentProfile(updateUser)
+            }
+          >
+            {mutate => {
+              const onEdit = updatedUser =>
+                mutate({ variables: prepUserForUpdate(updatedUser) });
+
+              return withEditPage({})(
+                <MemberProfile
+                  onEdit={onEdit}
+                  formData={context.authData.userProfile}
+                />
+              );
+            }}
+            }
+          </Mutation>
+        )}
+      </AuthenticationContext.Consumer>
+    );
+  }
+}
+
+export default MemberProfileEditPage;

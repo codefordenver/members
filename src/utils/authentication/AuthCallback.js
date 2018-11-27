@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { graphql, compose } from 'react-apollo';
+import { withApollo } from 'react-apollo';
 import gql from 'graphql-tag';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import AuthService from './authService';
@@ -46,37 +46,55 @@ class AuthCallback extends Component {
   static contextType = AuthenticationContext;
 
   async componentDidMount() {
-    // Extract the id_token and access_token from the Auth0 federation
-    // Internally, the Auth0 librarysearch does another call to get the user profile info
-    // so "parseAuthenticationResult" is async
-    const authResult = await AuthService.parseAuthenticationResult();
+    try {
+      // Extract the id_token and access_token from the Auth0 federation
+      // Internally, the Auth0 library search does another call to get the user profile info
+      // so "parseAuthenticationResult" is async
+      const authResult = await AuthService.parseAuthenticationResult();
 
-    // Send a request to the backend to get the token used to authenticate with Graphcool
-    // and create the user in the database if necessary
-    const {
-      data: { id, token }
-    } = await this.props.authenticate({ variables: authResult });
+      // Send a request to the backend to get the token used to authenticate with Graphcool
+      // and create the user in the database if necessary
+      const {
+        data: {
+          authenticateUser: { id, token }
+        }
+      } = await this.props.client.mutate({
+        mutation: AUTHENTICATE_QUERY,
+        variables: authResult
+      });
 
-    // Persist auth0 access_token, the graphcool token, the userID, and the expiry time in localstorage
-    AuthService.setAuthSession(
-      authResult.accessToken,
-      token,
-      id,
-      authResult.expiresIn
-    );
+      // Persist auth0 access_token, the graphcool token, the userID, and the expiry time in localstorage
+      AuthService.setAuthSession(
+        authResult.accessToken,
+        token,
+        id,
+        authResult.expiresIn
+      );
 
-    // Query the backend for the remainder of the user profile data
-    const { data } = await this.props.userProfile({ variables: { id } });
+      // Query the backend for the remainder of the user profile data
+      const {
+        data: { user }
+      } = await this.props.client.query({
+        query: GET_USER_PROFILE_QUERY,
+        variables: { id }
+      });
 
-    // Commit the current user to the "AuthContext" so the auth data can be used in child components
-    const authData = {
-      auth0AccessToken: authResult.accessToken,
-      graphcoolToken: token,
-      userId: id,
-      expiresAt: JSON.stringify(authResult.expiresIn * 1000 + Date.now()),
-      userProfile: data
-    };
-    this.context.setCurrentUser(authData);
+      AuthService.setAuthProfileSession(user);
+
+      // Commit the current user to the "AuthContext" so the auth data can be used in child components
+      const authData = {
+        auth0AccessToken: authResult.accessToken,
+        graphcoolToken: token,
+        userId: id,
+        expiresAt: JSON.stringify(authResult.expiresIn * 1000 + Date.now()),
+        userProfile: user
+      };
+      this.context.setCurrentUser(authData);
+
+      this.props.history.replace('/');
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   render() {
@@ -84,7 +102,4 @@ class AuthCallback extends Component {
   }
 }
 
-export default compose(
-  graphql(AUTHENTICATE_QUERY, { name: 'authenticate' }),
-  graphql(GET_USER_PROFILE_QUERY, { name: 'userProfile' })
-)(AuthCallback);
+export default withApollo(AuthCallback);

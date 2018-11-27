@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { compose } from 'react-apollo';
-import Login from './Login';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import logo from '../images/cfd-circle-icon-white.png';
 import userIsAdmin from '../utils/userIsAdmin';
@@ -41,10 +40,13 @@ const Header = () => {
                 </Grid>
               ) : (
                 <Grid item>
-                  <Button color="secondary" onClick={AuthService.login()}>
+                  <Button color="secondary" onClick={() => AuthService.login()}>
                     Login
                   </Button>
-                  <Button color="secondary" onClick={AuthService.signUp()}>
+                  <Button
+                    color="secondary"
+                    onClick={() => AuthService.signUp()}
+                  >
                     Signup
                   </Button>
                 </Grid>

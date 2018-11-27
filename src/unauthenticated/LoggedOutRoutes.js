@@ -8,14 +8,7 @@ import AuthService from '../utils/authentication/authService';
 const LoggedOutRoutes = () => (
   <Switch>
     <Route exact path="/" component={LandingPage} />;
-    <Route
-      exact
-      path="/callback"
-      render={async props => {
-        const authData = await AuthService.parseAuthenticationResult();
-        return <AuthCallBack authData={authData} {...props} />;
-      }}
-    />
+    <Route exact path="/callback" component={AuthCallBack} />
     <Route component={NoMatchPage} />
   </Switch>
 );
