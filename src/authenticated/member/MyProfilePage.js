@@ -23,18 +23,24 @@ const userQuery = gql`
 
 const MyProfilePage = () => (
   <AuthenticationContext.Consumer>
-    {context => (
-      <Query
-        query={userQuery}
-        variables={{ id: context.authData.userId }}
-        skip={!context.isAuthenticated()}
-      >
-        {({ data: { user } }) => <MemberProfile user={user} />}
-      </Query>
-    )}
+    {context => {
+      console.log(context);
+      return (
+        <Query
+          query={userQuery}
+          variables={{ id: context.authData.userId }}
+          skip={!context.isAuthenticated()}
+        >
+          {({ data: { user } }) => {
+            const WrappedComponent = withViewPage({
+              renameProps: { formData: 'user' }
+            })(MemberProfile);
+            return <WrappedComponent user={user} />;
+          }}
+        </Query>
+      );
+    }}
   </AuthenticationContext.Consumer>
 );
 
-export default withViewPage({ renameProps: { formData: 'user' } })(
-  MyProfilePage
-);
+export default MyProfilePage;

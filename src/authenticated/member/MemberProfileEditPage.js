@@ -52,22 +52,29 @@ class MemberProfileEditPage extends Component {
         {context => (
           <Mutation
             mutation={updateUserQuery}
-            onCompleted={({ data: { updateUser } }) =>
-              context.setCurrentProfile(updateUser)
-            }
+            onCompleted={({ updateUser }) => {
+              context.setCurrentUserProfile(updateUser);
+            }}
           >
             {mutate => {
               const onEdit = updatedUser =>
-                mutate({ variables: prepUserForUpdate(updatedUser) });
+                mutate({
+                  variables: {
+                    ...prepUserForUpdate(updatedUser),
+                    id: context.authData.userId
+                  }
+                });
 
-              return withEditPage({})(
-                <MemberProfile
+              const WrappedComponent = withEditPage({
+                renameProps: { formData: 'user' }
+              })(MemberProfile);
+              return (
+                <WrappedComponent
                   onEdit={onEdit}
-                  formData={context.authData.userProfile}
+                  user={context.authData.userProfile}
                 />
               );
             }}
-            }
           </Mutation>
         )}
       </AuthenticationContext.Consumer>

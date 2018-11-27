@@ -44,7 +44,8 @@ class App extends Component {
       authContext: {
         authData: {},
         isAuthenticated: this.isAuthenticated,
-        setCurrentUser: this.setCurrentUser
+        setCurrentUser: this.setCurrentUser,
+        setCurrentUserProfile: this.setCurrentUserProfile
       }
     };
   }
@@ -72,6 +73,19 @@ class App extends Component {
       authContext: {
         ...this.state.authContext,
         authData
+      }
+    });
+  };
+
+  setCurrentUserProfile = userProfile => {
+    AuthService.setAuthProfileSession(userProfile); // I don't really like this side-effect being here
+    this.setState({
+      authContext: {
+        ...this.state.authContext,
+        authData: {
+          ...this.state.authContext.authData,
+          userProfile
+        }
       }
     });
   };
