@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import logo from '../images/cfd-circle-icon-white.png';
 import userIsAdmin from '../utils/userIsAdmin';
+import MenuList from './Menu';
 import AuthenticationContext from '../utils/authentication/authContext';
 import AuthService from '../utils/authentication/authService';
 import './Header.css';
@@ -25,19 +26,26 @@ const Header = () => {
             </Link>
             <Grid container justify="space-between" alignItems="center">
               {context.isAuthenticated() ? (
-                <Grid item>
-                  <Link className="Header-link" to="/volunteers">
-                    All Users
-                  </Link>
-                  <Link className="Header-link" to="/projects">
-                    All Projects
-                  </Link>
-                  {userIsAdmin(context.authData.role) && (
-                    <Link className="Header-link" to="/admin">
-                      Admin Resources
+                <React.Fragment>
+                  <Grid item>
+                    <Link className="Header-link" to="/volunteers">
+                      All Users
                     </Link>
-                  )}
-                </Grid>
+                    <Link className="Header-link" to="/projects">
+                      All Projects
+                    </Link>
+                    {userIsAdmin(context.authData.role) && (
+                      <Link className="Header-link" to="/admin">
+                        Admin Resources
+                      </Link>
+                    )}
+                  </Grid>
+                  <MenuList
+                    avatar={context.authData.userProfile.picture}
+                    username={context.authData.userProfile.name}
+                    logout={() => AuthService.logout()}
+                  />
+                </React.Fragment>
               ) : (
                 <Grid item>
                   <Button color="secondary" onClick={() => AuthService.login()}>
