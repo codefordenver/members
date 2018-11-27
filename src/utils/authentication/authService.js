@@ -77,16 +77,20 @@ class AuthService {
   };
 
   setAuthProfileSession = user => {
-    localStorage.setItem(USER_PROFILE, user);
+    localStorage.setItem(USER_PROFILE, JSON.stringify(user));
   };
 
   getSessionAuthData = () => {
+    const rawProfile = localStorage.getItem(USER_PROFILE);
+    const userProfile =
+      rawProfile === 'undefined' || !rawProfile ? null : JSON.parse(rawProfile);
+
     return {
       auth0AccessToken: localStorage.getItem(ACCESS_TOKEN_KEY),
       graphcoolToken: localStorage.getItem(BEARER_TOKEN),
       userId: localStorage.getItem(USER_ID),
       expiresAt: localStorage.getItem(EXPIRES_AT_KEY),
-      userProfile: localStorage.getItem(USER_PROFILE)
+      userProfile
     };
   };
 }
