@@ -30,7 +30,6 @@ const ProjectSection = ({ project, editing, onFormDataChange }) => {
         name="description"
         {...commonProps}
       />
-
       <h2>Skills Needed</h2>
       <EditableSkills
         value={skills}
@@ -38,7 +37,10 @@ const ProjectSection = ({ project, editing, onFormDataChange }) => {
         label="Add Skill"
         {...commonProps}
       />
-
+      <h2>Links</h2>
+      <a href={`https://github.com/codefordenver/${repoName}`}>GitHub</a>
+      &nbsp;
+      <a href={`https://waffle.io/codefordenver/${repoName}`}>Waffle</a>
       {editing ? (
         <EditableText
           value={repoName}
