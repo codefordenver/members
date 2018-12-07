@@ -112,7 +112,7 @@ const MemberProfile = ({ user, onFormDataChange, editing }) => {
 
       <Card className="Member-card">
         <div className="Member-skills-left">
-          <h2>Projects</h2>
+          <h2>Projects Championed</h2>
         </div>
         <div className="Member-skills-right">
           <EditableProjects

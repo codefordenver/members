@@ -15,15 +15,6 @@ const allProjectsQuery = gql`
   }
 `;
 
-const createProjectQuery = gql`
-  mutation createProject($name: String!) {
-    createProject(name: $name) {
-      id
-      name
-    }
-  }
-`;
-
 const ProjectChip = ({ item, onDelete, editing }) => {
   const chip = (
     <Chip
@@ -45,21 +36,12 @@ const ProjectChip = ({ item, onDelete, editing }) => {
 };
 
 export default compose(
-  graphql(createProjectQuery, {
-    refetchQueries: ['allProjects'],
-    props: ({ mutate }) => ({
-      createChip: async newProject => {
-        const mutateData = await mutate({ variables: newProject });
-        return mutateData.data.createProject;
-      },
-      ItemComponent: ProjectChip
-    })
-  }),
   graphql(allProjectsQuery, {
     skip: props => !props.editing,
     props: ({ data: { allProjects, loading } }) => ({
       allOptions: allProjects,
-      allOptionsLoading: loading
+      allOptionsLoading: loading,
+      ItemComponent: ProjectChip
     })
   })
 )(EditableList);

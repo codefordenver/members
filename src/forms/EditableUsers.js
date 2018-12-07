@@ -37,17 +37,11 @@ const UserChip = ({ item, onDelete, editing }) => {
 export default compose(
   graphql(allUsersQuery, {
     refetchQueries: ['allUsers'],
-    props: ({ mutate }) => ({
-      createChip: null,
-      ItemComponent: UserChip
-    })
-  }),
-  graphql(allUsersQuery, {
-    refetchQueries: ['allUsers'],
     skip: props => !props.editing,
     props: ({ data: { allUsers, loading } }) => ({
       allOptions: allUsers,
-      allOptionsLoading: loading
+      allOptionsLoading: loading,
+      ItemComponent: UserChip
     })
   })
 )(EditableList);
