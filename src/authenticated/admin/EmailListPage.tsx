@@ -1,20 +1,14 @@
 import React from 'react';
-import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
 import { format, subDays } from 'date-fns';
 import LoadingIndicator from '../../shared-components/LoadingIndicator';
-import {
-  userEmails,
-  userEmails_allUsers,
-  userEmailsVariables
-} from './__generated__/userEmails';
+import { UserEmailsHOC, UserEmailsAllUsers } from '../../generated-models';
 
 interface EmailListProps {
-  users?: userEmails_allUsers[];
+  users: UserEmailsAllUsers[];
   loading: boolean;
 }
 
-const EmailList: React.SFC<EmailListProps> = ({ users = [], loading }) => (
+const EmailList: React.SFC<EmailListProps> = ({ users, loading }) => (
   <div>
     <h1>Users that signed up in the last week</h1>
     {loading ? (
@@ -27,23 +21,7 @@ const EmailList: React.SFC<EmailListProps> = ({ users = [], loading }) => (
   </div>
 );
 
-const allUsersQuery = gql`
-  query userEmails($date: DateTime) {
-    allUsers(orderBy: email_ASC, filter: { createdAt_gt: $date }) {
-      id
-      email
-    }
-  }
-`;
-
-type EmailListPage = {};
-
-const EmailListPage = graphql<
-  EmailListPage,
-  userEmails,
-  userEmailsVariables,
-  EmailListProps
->(allUsersQuery, {
+const EmailListPage = UserEmailsHOC({
   options: {
     variables: {
       date: format(subDays(new Date(), 7), 'YYYY-MM-DDTHH:mm:ss.SSSZ')

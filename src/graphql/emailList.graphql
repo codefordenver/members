@@ -1,0 +1,6 @@
+query userEmails($date: DateTime) {
+  allUsers(orderBy: email_ASC, filter: { createdAt_gt: $date }) {
+    id
+    email
+  }
+}
