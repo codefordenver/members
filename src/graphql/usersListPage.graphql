@@ -1,0 +1,7 @@
+query usersList {
+  allUsers(orderBy: name_ASC) {
+    id
+    name
+    picture
+  }
+}

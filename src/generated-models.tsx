@@ -1623,10 +1623,88 @@ export type UserEmailsAllUsers = {
   email: string;
 };
 
+export type GetUserVariables = {
+  id?: string | null;
+};
+
+export type GetUserQuery = {
+  __typename?: 'Query';
+
+  user: GetUserUser | null;
+};
+
+export type GetUserUser = MemberProfileFragmentFragment;
+
+export type UsersListVariables = {};
+
+export type UsersListQuery = {
+  __typename?: 'Query';
+
+  allUsers: UsersListAllUsers[];
+};
+
+export type UsersListAllUsers = {
+  __typename?: 'User';
+
+  id: string;
+
+  name: string | null;
+
+  picture: string | null;
+};
+
+export type MemberProfileFragmentFragment = {
+  __typename?: 'User';
+
+  id: string;
+
+  picture: string | null;
+
+  name: string | null;
+
+  description: string | null;
+
+  githubName: string | null;
+
+  flowdockName: string | null;
+
+  email: string;
+
+  skills: MemberProfileFragmentSkills[] | null;
+};
+
+export type MemberProfileFragmentSkills = {
+  __typename?: 'Skill';
+
+  id: string;
+
+  name: string;
+};
+
 import * as ReactApollo from 'react-apollo';
 import * as React from 'react';
 
 import gql from 'graphql-tag';
+
+// ====================================================
+// Fragments
+// ====================================================
+
+export const MemberProfileFragmentFragmentDoc = gql`
+  fragment MemberProfileFragment on User {
+    id
+    picture
+    name
+    description
+    githubName
+    flowdockName
+    email
+    skills {
+      id
+      name
+    }
+  }
+`;
 
 // ====================================================
 // Components
@@ -1672,4 +1750,88 @@ export function UserEmailsHOC<TProps, TChildProps = any>(
     UserEmailsVariables,
     UserEmailsProps<TChildProps>
   >(UserEmailsDocument, operationOptions);
+}
+export const GetUserDocument = gql`
+  query getUser($id: ID) {
+    user: User(id: $id) {
+      ...MemberProfileFragment
+    }
+  }
+
+  ${MemberProfileFragmentFragmentDoc}
+`;
+export class GetUserComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<GetUserQuery, GetUserVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<GetUserQuery, GetUserVariables>
+        query={GetUserDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type GetUserProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<GetUserQuery, GetUserVariables>
+> &
+  TChildProps;
+export function GetUserHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        GetUserQuery,
+        GetUserVariables,
+        GetUserProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    GetUserQuery,
+    GetUserVariables,
+    GetUserProps<TChildProps>
+  >(GetUserDocument, operationOptions);
+}
+export const UsersListDocument = gql`
+  query usersList {
+    allUsers(orderBy: name_ASC) {
+      id
+      name
+      picture
+    }
+  }
+`;
+export class UsersListComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<UsersListQuery, UsersListVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<UsersListQuery, UsersListVariables>
+        query={UsersListDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type UsersListProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<UsersListQuery, UsersListVariables>
+> &
+  TChildProps;
+export function UsersListHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        UsersListQuery,
+        UsersListVariables,
+        UsersListProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    UsersListQuery,
+    UsersListVariables,
+    UsersListProps<TChildProps>
+  >(UsersListDocument, operationOptions);
 }

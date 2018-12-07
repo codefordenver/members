@@ -3,15 +3,10 @@ import Avatar from '@material-ui/core/Avatar';
 import { Link } from 'react-router-dom';
 import LoadingIndicator from '../../shared-components/LoadingIndicator';
 import './UsersList.css';
+import { UsersListAllUsers } from '../../generated-models';
 
 interface UsersListProps {
-  users: Array<{
-    __typename: 'User';
-    id: string;
-    name: string | null;
-    picture: string | null;
-    [otherKeys: string]: any;
-  }>;
+  users: UsersListAllUsers[];
   loading: boolean;
 }
 

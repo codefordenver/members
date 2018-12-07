@@ -50,6 +50,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start": "concurrently \"gql-gen\" \"react-scripts start\"",
+    "start:no-gql-gen": "react-scripts start",
     "build": "react-scripts build && cpy build/index.html build --rename 404.html",
     "lint": "eslint .",
     "postinstall": "cd ./server && npm install",

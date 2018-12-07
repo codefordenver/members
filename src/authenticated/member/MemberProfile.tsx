@@ -8,10 +8,10 @@ import EditableList from '../../forms/EditableList';
 import EditableText from '../../forms/EditableText';
 import EditableMarkdown from '../../forms/EditableMarkdown';
 import './Member.css';
-import { MemberProfileFragment as MemberProfileFragmentType } from './__generated__/MemberProfileFragment';
+import { GetUserUser } from '../../generated-models';
 
 export interface MemberProfileProps {
-  user?: MemberProfileFragmentType;
+  user?: GetUserUser;
   onFormDataChange: (value: any) => void;
   editing: boolean;
   match: any;
