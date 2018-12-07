@@ -42,12 +42,11 @@
   },
   "lint-staged": {
     "{src,bin,server/src}/**/*.{js,json,css,ts,tsx,graphql,md}": [
-      "prettier --single-quote --write",
+      "prettier --write",
       "git add"
     ]
   },
   "scripts": {
-    "precommit": "lint-staged",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start": "npm run check-version && react-scripts start",
@@ -83,6 +82,11 @@
     "request": "^2.88.0",
     "request-promise-native": "^1.0.5",
     "typescript": "^3.1.6"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "browserslist": [
     ">0.2%",
