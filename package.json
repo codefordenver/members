@@ -24,7 +24,7 @@
     "auth0-js": "^9.8.1",
     "babel-polyfill": "^6.26.0",    
     "date-fns": "^1.29.0",
-    "graphql": "^0.13.2",
+    "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
     "marked": "^0.5.1",
     "react": "^16.6.0",
@@ -36,9 +36,6 @@
     "react-select": "^2.1.1",
     "react-testing-library": "^5.2.3",
     "whatwg-fetch": "^3.0.0"
-  },
-  "resolutions": {
-    "apollo/graphql": "0.13.2"
   },
   "lint-staged": {
     "{src,bin,server/src}/**/*.{js,json,css,ts,tsx,graphql,md}": [
@@ -62,15 +59,12 @@
     "deployProdBackend": "cd ./server && graphcool deploy",
     "check-version": "node ./bin/checkVersion.js",
     "download-schema": "dotenv -e ./.env.local node ./bin/download-schema.js",
-    "gen-types": "apollo codegen:generate --queries=./src/**/*.{ts,tsx} --addTypename --target=typescript --mergeInFieldsFromFragmentSpreads",
-    "apollo": "apollo",
-    "schema": "dotenv -e ./.env.local apollo schema:download full-schema.json --endpoint=https://api.graph.cool/simple/v1/cjat2jtd40v4b0162qw31xmbz",
     "typecheck": "tsc --noEmit",
     "gql-gen": "gql-gen"
   },
   "homepage": "https://members.codefordenver.org",
   "devDependencies": {
-    "apollo": "1.9.2",
+    "concurrently": "^4.1.0",
     "cpy-cli": "^2.0.0",
     "dotenv": "^6.1.0",
     "dotenv-cli": "^1.4.0",
