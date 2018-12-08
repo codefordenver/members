@@ -57,6 +57,9 @@ function prepUserForUpdate(updatedUser) {
 export default compose(
   withLoggedInUser,
   graphql(updateUserQuery, {
+    options: {
+      refetchQueries: ['getProject']
+    },
     props: ({ mutate }) => ({
       onEdit: updatedUser => {
         return mutate({ variables: prepUserForUpdate(updatedUser) });
