@@ -11,6 +11,10 @@ const allProjectsQuery = gql`
     allProjects {
       id
       name
+      champions {
+        id
+        name
+      }
     }
   }
 `;
