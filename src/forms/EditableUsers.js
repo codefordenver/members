@@ -36,7 +36,6 @@ const UserChip = ({ item, onDelete, editing }) => {
 
 export default compose(
   graphql(allUsersQuery, {
-    refetchQueries: ['allUsers'],
     skip: props => !props.editing,
     props: ({ data: { allUsers, loading } }) => ({
       allOptions: allUsers,
