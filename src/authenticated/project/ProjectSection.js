@@ -38,7 +38,6 @@ const ProjectSection = ({ project, editing, onFormDataChange }) => {
         name="description"
         {...commonProps}
       />
-
       <h2>Project Champions</h2>
       <EditableUsers
         value={champions}
@@ -46,7 +45,6 @@ const ProjectSection = ({ project, editing, onFormDataChange }) => {
         label="Add Champion"
         {...commonProps}
       />
-    
       <h2>Skills Needed</h2>
       <EditableSkills
         value={skills}
