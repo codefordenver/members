@@ -45,6 +45,9 @@ const ProjectEditPage = compose(
     props: ({ data: { Project } }) => ({ project: Project })
   }),
   graphql(updateProjectQuery, {
+    options: {
+      refetchQueries: ['getUser']
+    },
     props: ({ mutate }) => ({
       onEdit: updatedProject =>
         mutate({
