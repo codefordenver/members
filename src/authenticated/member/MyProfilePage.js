@@ -15,9 +15,11 @@ const userQuery = gql`
       flowdockName
       email
       ...Skills
+      ...Projects
     }
   }
   ${MemberProfile.fragments.skills}
+  ${MemberProfile.fragments.projects}
 `;
 
 export default compose(

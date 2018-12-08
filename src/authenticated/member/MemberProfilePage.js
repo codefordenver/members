@@ -13,9 +13,11 @@ const userQuery = gql`
       flowdockName
       email
       ...Skills
+      ...Projects
     }
   }
   ${MemberProfile.fragments.skills}
+  ${MemberProfile.fragments.projects}
 `;
 
 const MemberProfilePage = graphql(userQuery, {

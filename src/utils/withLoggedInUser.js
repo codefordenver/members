@@ -17,6 +17,10 @@ export const getLoggedInUser = gql`
         id
         name
       }
+      projectsChampioned {
+        id
+        name
+      }
     }
   }
 `;

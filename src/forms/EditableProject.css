@@ -1,0 +1,16 @@
+/* Be advised! The !important tag is to be used to override the default styling from
+Material UI, without these !important tags, we won't be able to override Material UI's
+inline style */
+.EditableProject-chip {
+  color: #4ecae2 !important;
+  border: 2px solid #4ecae2 !important;
+  background-color: transparent !important;
+  margin: 3px;
+}
+
+.EditableProject-chip:hover {
+  color: #ffffff !important;
+  border: 2px solid #4ecae2 !important;
+  background-color: #4ecae2 !important;
+  margin: 3px;
+}
