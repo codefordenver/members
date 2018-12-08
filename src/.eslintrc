@@ -1,16 +1,30 @@
 {
   "extends": ["react-app"],
+
   "env": {
     "browser": true
   },
+
+  "plugins": ["graphql"],
+
   "rules": {
     "graphql/template-strings": [
       "error",
       {
         "env": "apollo",
         "schemaJsonFilepath": "./full-schema.json"
+      },
+      {
+        "env": "literal",
+        "schemaJsonFilepath": "./full-schema.json"
+      }
+    ],
+    "graphql/no-deprecated-fields": [
+      "error",
+      {
+        "env": "apollo",
+        "schemaJsonFilepath": "./full-schema.json"
       }
     ]
-  },
-  "plugins": ["graphql"]
+  }
 }
