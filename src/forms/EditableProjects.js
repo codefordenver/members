@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { graphql, compose } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import Chip from '@material-ui/core/Chip';
-import EditableList from './EditableList';
+import EditableList, { withItemComponent } from './EditableList';
 import './EditableProject.css';
 
 const allProjectsQuery = gql`
@@ -40,8 +40,8 @@ export default compose(
     skip: props => !props.editing,
     props: ({ data: { allProjects, loading } }) => ({
       allOptions: allProjects,
-      allOptionsLoading: loading,
-      ItemComponent: ProjectChip
+      allOptionsLoading: loading
     })
-  })
+  }),
+  withItemComponent(ProjectChip)
 )(EditableList);

@@ -73,3 +73,6 @@ EditableList.defaultProps = {
 };
 
 export default EditableList;
+export const withItemComponent = ItemComponent => WrappedComponent => props => (
+  <WrappedComponent {...props} ItemComponent={ItemComponent} />
+);
