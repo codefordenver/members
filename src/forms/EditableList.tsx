@@ -4,6 +4,7 @@ import AutocompleteChip from './AutocompleteChip';
 import './EditableList.css';
 
 type Item = {
+  id?: string;
   name: string;
 };
 type ItemComponentProps = {
@@ -11,7 +12,7 @@ type ItemComponentProps = {
   editing: boolean;
   onDelete?(): void;
 };
-type ItemComponent = React.ComponentType<ItemComponentProps>;
+export type ItemComponent = React.ComponentType<ItemComponentProps>;
 type EditableListProps = {
   value: Item[];
   label: string;
@@ -20,7 +21,7 @@ type EditableListProps = {
   onChange(value: any): void;
   allOptions?: Item[];
   allOptionsLoading?: boolean;
-  createChip?(value: any): void;
+  createChip?(value: any): Promise<Item>;
   ItemComponent?: ItemComponent;
 };
 

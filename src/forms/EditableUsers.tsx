@@ -1,25 +1,12 @@
 import React from 'react';
-import gql from 'graphql-tag';
-import { graphql, compose } from 'react-apollo';
+import { compose } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import Chip from '@material-ui/core/Chip';
-import EditableList, { withItemComponent } from './EditableList';
+import EditableList, { withItemComponent, ItemComponent } from './EditableList';
+import { EditableUsersListHOC } from '../generated-models';
 import './EditableProject.css';
 
-const allUsersQuery = gql`
-  query allUsers {
-    allUsers {
-      id
-      name
-      projectsChampioned {
-        id
-        name
-      }
-    }
-  }
-`;
-
-const UserChip = ({ item, onDelete, editing }) => {
+const UserChip: ItemComponent = ({ item, onDelete, editing }) => {
   const chip = (
     <Chip
       clickable={!editing}
@@ -38,10 +25,14 @@ const UserChip = ({ item, onDelete, editing }) => {
   );
 };
 
+interface EditableUsersProps {
+  editing: boolean;
+}
+
 export default compose(
-  graphql(allUsersQuery, {
+  EditableUsersListHOC<EditableUsersProps>({
     skip: props => !props.editing,
-    props: ({ data: { allUsers, loading } }) => ({
+    props: ({ data: { allUsers = [], loading = true } = {} }) => ({
       allOptions: allUsers,
       allOptionsLoading: loading
     })

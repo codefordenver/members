@@ -1,25 +1,12 @@
 import React from 'react';
-import gql from 'graphql-tag';
-import { graphql, compose } from 'react-apollo';
+import { compose } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import Chip from '@material-ui/core/Chip';
-import EditableList, { withItemComponent } from './EditableList';
+import EditableList, { withItemComponent, ItemComponent } from './EditableList';
+import { EditableProjectsListHOC } from '../generated-models';
 import './EditableProject.css';
 
-const allProjectsQuery = gql`
-  query allProjects {
-    allProjects {
-      id
-      name
-      champions {
-        id
-        name
-      }
-    }
-  }
-`;
-
-const ProjectChip = ({ item, onDelete, editing }) => {
+const ProjectChip: ItemComponent = ({ item, onDelete, editing }) => {
   const chip = (
     <Chip
       clickable={!editing}
@@ -39,10 +26,14 @@ const ProjectChip = ({ item, onDelete, editing }) => {
   );
 };
 
+interface EditableProjectsProps {
+  editing: boolean;
+}
+
 export default compose(
-  graphql(allProjectsQuery, {
+  EditableProjectsListHOC<EditableProjectsProps>({
     skip: props => !props.editing,
-    props: ({ data: { allProjects, loading } }) => ({
+    props: ({ data: { allProjects = [], loading = true } = {} }) => ({
       allOptions: allProjects,
       allOptionsLoading: loading
     })

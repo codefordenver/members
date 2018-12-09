@@ -9,7 +9,7 @@ import EditableMarkdown from '../../forms/EditableMarkdown';
 import './Member.css';
 import { GetUserUser } from '../../generated-models';
 
-export interface MemberProfileProps {
+interface MemberProfileProps {
   user?: GetUserUser;
   onFormDataChange: (value: any) => void;
   editing: boolean;

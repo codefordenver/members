@@ -26,7 +26,7 @@ export default compose(
       }
     }),
     options: {
-      refetchQueries: ['allProjects']
+      refetchQueries: ['editableProjectsList']
     }
   }),
   withEditPage({
