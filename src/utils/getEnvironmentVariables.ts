@@ -9,12 +9,14 @@ const envVars = {
 };
 
 function makeSureVarsAreDefined() {
-  const requiredEnvNameMapping = {
+  const requiredEnvNameMapping: Partial<typeof envVars> = {
     auth0ClientId: 'REACT_APP_AUTH0_CLIENT_ID',
     auth0Domain: 'REACT_APP_AUTH0_DOMAIN',
     graphcoolApi: 'REACT_APP_GRAPHCOOL_API'
   };
-  Object.keys(requiredEnvNameMapping).forEach(key => {
+  type Keys = Array<keyof typeof requiredEnvNameMapping>;
+  const keys = Object.keys(requiredEnvNameMapping) as Keys;
+  keys.forEach(key => {
     if (!envVars[key]) {
       let errorMessage = `You need to export a ${
         requiredEnvNameMapping[key]

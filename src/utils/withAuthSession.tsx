@@ -103,10 +103,10 @@ type InjectedComponentProps = {
   logout: () => void;
 };
 
-export default function withAuthSession<P extends InjectedComponentProps>(
-  WrappedComponent: React.ComponentType<P>
-) {
-  class WithAuthSession extends React.PureComponent<
+export default function withAuthSession<
+  P extends Partial<InjectedComponentProps>
+>(WrappedComponent: React.ComponentType<P>) {
+  class WithAuthSession extends React.Component<
     WithApolloClient<RouteComponentProps>,
     WithAuthSessionState
   > {
@@ -151,5 +151,5 @@ export default function withAuthSession<P extends InjectedComponentProps>(
     };
   }
 
-  return withApollo(withRouter(WithAuthSession));
+  return withRouter(withApollo(WithAuthSession));
 }

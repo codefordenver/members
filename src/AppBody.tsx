@@ -3,7 +3,11 @@ import LoggedInRoutes from './authenticated/LoggedInRoutes';
 import LoggedOutRoutes from './unauthenticated/LoggedOutRoutes';
 import withAuthSession from './utils/withAuthSession';
 
-const AppBody = ({ isAuthenticated }) => (
+interface AppBodyProps {
+  isAuthenticated: boolean;
+}
+
+const AppBody: React.SFC<AppBodyProps> = ({ isAuthenticated }) => (
   <div className="AppBody">
     {isAuthenticated ? <LoggedInRoutes /> : <LoggedOutRoutes />}
   </div>

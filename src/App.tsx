@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {
   MuiThemeProvider,
   createMuiTheme,
-  withStyles
+  withStyles,
+  Theme,
+  WithStyles
 } from '@material-ui/core/styles';
 import GoogleAnalyticsPageTracker from './shared-components/GoogleAnalyticsPageTracker';
 import Header from './header/Header';
@@ -30,11 +32,13 @@ const theme = createMuiTheme({
   }
 });
 
-const styles = theme => ({
+const styles = (theme: Theme) => ({
   toolbar: theme.mixins.toolbar
 });
 
-class App extends Component {
+interface AppProps extends WithStyles<typeof styles> {}
+
+class App extends Component<AppProps> {
   render() {
     const { classes } = this.props;
     return (
