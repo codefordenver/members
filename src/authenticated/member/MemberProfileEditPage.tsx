@@ -1,52 +1,33 @@
-import gql from 'graphql-tag';
-import { graphql, compose } from 'react-apollo';
+import { compose } from 'react-apollo';
 import withEditPage from '../../utils/withEditPage';
-import MemberProfile, { MemberProfileFragment } from './MemberProfile';
+import MemberProfile from './MemberProfile';
 import { withLoggedInUser } from '../../utils';
+import { UpdateUserHOC, GetUserUser } from '../../generated-models';
 
-const updateUserQuery = gql`
-  mutation updateUser(
-    $id: ID!
-    $name: String
-    $githubName: String
-    $flowdockName: String
-    $description: String
-    $skillsIds: [ID!]
-  ) {
-    updateUser(
-      id: $id
-      name: $name
-      githubName: $githubName
-      flowdockName: $flowdockName
-      description: $description
-      skillsIds: $skillsIds
-    ) {
-      ...MemberProfileFragment
-    }
-  }
-  ${MemberProfileFragment}
-`;
-
-type User = {
-  skills: Array<{ id: string }>;
-};
-
-function prepUserForUpdate(updatedUser: User) {
-  const skillsIds = updatedUser.skills.map(skill => skill.id);
+function prepUserForUpdate(updatedUser: GetUserUser) {
+  const skillsIds =
+    updatedUser.skills && updatedUser.skills.map(skill => skill.id);
+  const projectsChampionedIds =
+    updatedUser.projectsChampioned &&
+    updatedUser.projectsChampioned.map(project => project.id);
   return {
     ...updatedUser,
-    skillsIds
+    skillsIds,
+    projectsChampionedIds
   };
 }
 
 export default compose(
   withLoggedInUser,
-  graphql(updateUserQuery, {
+  UpdateUserHOC({
     props: ({ mutate }) => ({
-      onEdit: (updatedUser: User) => {
+      onEdit: (updatedUser: GetUserUser) => {
         return mutate && mutate({ variables: prepUserForUpdate(updatedUser) });
       }
-    })
+    }),
+    options: {
+      refetchQueries: ['allProjects']
+    }
   }),
   withEditPage({
     renameProps: {

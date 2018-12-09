@@ -11,6 +11,7 @@ type ItemComponentProps = {
   editing: boolean;
   onDelete?(): void;
 };
+type ItemComponent = React.ComponentType<ItemComponentProps>;
 type EditableListProps = {
   value: Item[];
   label: string;
@@ -20,7 +21,7 @@ type EditableListProps = {
   allOptions?: Item[];
   allOptionsLoading?: boolean;
   createChip?(value: any): void;
-  ItemComponent?: React.ComponentType<ItemComponentProps>;
+  ItemComponent?: ItemComponent;
 };
 
 const EditableList: React.SFC<EditableListProps> = ({
@@ -87,3 +88,15 @@ const EditableList: React.SFC<EditableListProps> = ({
 };
 
 export default EditableList;
+
+type InjectedComponentProps = {
+  ItemComponent?: ItemComponent;
+};
+
+export function withItemComponent<P extends InjectedComponentProps>(
+  ItemComponent: ItemComponent
+) {
+  return (WrappedComponent: React.ComponentType<P>) => (props: object) => (
+    <WrappedComponent {...props} ItemComponent={ItemComponent} />
+  );
+}

@@ -1605,6 +1605,36 @@ export type DateTime = any;
 // Documents
 // ====================================================
 
+export type GetUserVariables = {
+  id?: string | null;
+};
+
+export type GetUserQuery = {
+  __typename?: 'Query';
+
+  user: GetUserUser | null;
+};
+
+export type GetUserUser = MemberProfileFragmentFragment;
+
+export type UpdateUserVariables = {
+  id: string;
+  name?: string | null;
+  githubName?: string | null;
+  flowdockName?: string | null;
+  description?: string | null;
+  skillsIds?: string[] | null;
+  projectsChampionedIds?: string[] | null;
+};
+
+export type UpdateUserMutation = {
+  __typename?: 'Mutation';
+
+  updateUser: UpdateUserUpdateUser | null;
+};
+
+export type UpdateUserUpdateUser = MemberProfileFragmentFragment;
+
 export type UserEmailsVariables = {
   date?: DateTime | null;
 };
@@ -1622,18 +1652,6 @@ export type UserEmailsAllUsers = {
 
   email: string;
 };
-
-export type GetUserVariables = {
-  id?: string | null;
-};
-
-export type GetUserQuery = {
-  __typename?: 'Query';
-
-  user: GetUserUser | null;
-};
-
-export type GetUserUser = MemberProfileFragmentFragment;
 
 export type UsersListVariables = {};
 
@@ -1671,10 +1689,20 @@ export type MemberProfileFragmentFragment = {
   email: string;
 
   skills: MemberProfileFragmentSkills[] | null;
+
+  projectsChampioned: MemberProfileFragmentProjectsChampioned[] | null;
 };
 
 export type MemberProfileFragmentSkills = {
   __typename?: 'Skill';
+
+  id: string;
+
+  name: string;
+};
+
+export type MemberProfileFragmentProjectsChampioned = {
+  __typename?: 'Project';
 
   id: string;
 
@@ -1703,6 +1731,10 @@ export const MemberProfileFragmentFragmentDoc = gql`
       id
       name
     }
+    projectsChampioned {
+      id
+      name
+    }
   }
 `;
 
@@ -1710,47 +1742,6 @@ export const MemberProfileFragmentFragmentDoc = gql`
 // Components
 // ====================================================
 
-export const UserEmailsDocument = gql`
-  query userEmails($date: DateTime) {
-    allUsers(orderBy: email_ASC, filter: { createdAt_gt: $date }) {
-      id
-      email
-    }
-  }
-`;
-export class UserEmailsComponent extends React.Component<
-  Partial<ReactApollo.QueryProps<UserEmailsQuery, UserEmailsVariables>>
-> {
-  render() {
-    return (
-      <ReactApollo.Query<UserEmailsQuery, UserEmailsVariables>
-        query={UserEmailsDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type UserEmailsProps<TChildProps = any> = Partial<
-  ReactApollo.DataProps<UserEmailsQuery, UserEmailsVariables>
-> &
-  TChildProps;
-export function UserEmailsHOC<TProps, TChildProps = any>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        UserEmailsQuery,
-        UserEmailsVariables,
-        UserEmailsProps<TChildProps>
-      >
-    | undefined
-) {
-  return ReactApollo.graphql<
-    TProps,
-    UserEmailsQuery,
-    UserEmailsVariables,
-    UserEmailsProps<TChildProps>
-  >(UserEmailsDocument, operationOptions);
-}
 export const GetUserDocument = gql`
   query getUser($id: ID) {
     user: User(id: $id) {
@@ -1792,6 +1783,109 @@ export function GetUserHOC<TProps, TChildProps = any>(
     GetUserVariables,
     GetUserProps<TChildProps>
   >(GetUserDocument, operationOptions);
+}
+export const UpdateUserDocument = gql`
+  mutation updateUser(
+    $id: ID!
+    $name: String
+    $githubName: String
+    $flowdockName: String
+    $description: String
+    $skillsIds: [ID!]
+    $projectsChampionedIds: [ID!]
+  ) {
+    updateUser(
+      id: $id
+      name: $name
+      githubName: $githubName
+      flowdockName: $flowdockName
+      description: $description
+      skillsIds: $skillsIds
+      projectsChampionedIds: $projectsChampionedIds
+    ) {
+      ...MemberProfileFragment
+    }
+  }
+
+  ${MemberProfileFragmentFragmentDoc}
+`;
+export class UpdateUserComponent extends React.Component<
+  Partial<ReactApollo.MutationProps<UpdateUserMutation, UpdateUserVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<UpdateUserMutation, UpdateUserVariables>
+        mutation={UpdateUserDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type UpdateUserProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<UpdateUserMutation, UpdateUserVariables>
+> &
+  TChildProps;
+export type UpdateUserMutationFn = ReactApollo.MutationFn<
+  UpdateUserMutation,
+  UpdateUserVariables
+>;
+export function UpdateUserHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        UpdateUserMutation,
+        UpdateUserVariables,
+        UpdateUserProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    UpdateUserMutation,
+    UpdateUserVariables,
+    UpdateUserProps<TChildProps>
+  >(UpdateUserDocument, operationOptions);
+}
+export const UserEmailsDocument = gql`
+  query userEmails($date: DateTime) {
+    allUsers(orderBy: email_ASC, filter: { createdAt_gt: $date }) {
+      id
+      email
+    }
+  }
+`;
+export class UserEmailsComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<UserEmailsQuery, UserEmailsVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<UserEmailsQuery, UserEmailsVariables>
+        query={UserEmailsDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type UserEmailsProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<UserEmailsQuery, UserEmailsVariables>
+> &
+  TChildProps;
+export function UserEmailsHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        UserEmailsQuery,
+        UserEmailsVariables,
+        UserEmailsProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    UserEmailsQuery,
+    UserEmailsVariables,
+    UserEmailsProps<TChildProps>
+  >(UserEmailsDocument, operationOptions);
 }
 export const UsersListDocument = gql`
   query usersList {

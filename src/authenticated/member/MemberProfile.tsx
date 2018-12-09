@@ -1,10 +1,9 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
-import gql from 'graphql-tag';
 import HelpUsImplementThis from '../../shared-components/HelpUsImplementThis';
 import LoadingIndicator from '../../shared-components/LoadingIndicator';
 import EditableSkills from '../../forms/EditableSkills';
-import EditableList from '../../forms/EditableList';
+import EditableProjects from '../../forms/EditableProjects';
 import EditableText from '../../forms/EditableText';
 import EditableMarkdown from '../../forms/EditableMarkdown';
 import './Member.css';
@@ -32,7 +31,8 @@ const MemberProfile: React.SFC<MemberProfileProps> = ({
     githubName,
     flowdockName,
     email,
-    skills
+    skills,
+    projectsChampioned
   } = user;
   const commonProps = {
     onChange: onFormDataChange,
@@ -127,38 +127,19 @@ const MemberProfile: React.SFC<MemberProfileProps> = ({
 
       <Card className="Member-card">
         <div className="Member-skills-left">
-          <h2>Projects</h2>
+          <h2>Projects Championed</h2>
         </div>
-        <HelpUsImplementThis>
-          <div className="Member-skills-right">
-            <EditableList
-              name="projects"
-              value={[{ name: 'Members Project' }, { name: 'Owlet' }]}
-              label="Add Project"
-              editing={false}
-              onChange={onFormDataChange}
-            />
-          </div>
-        </HelpUsImplementThis>
+        <div className="Member-skills-right">
+          <EditableProjects
+            value={projectsChampioned}
+            name="projectsChampioned"
+            label="Add Project"
+            {...commonProps}
+          />
+        </div>
       </Card>
     </div>
   );
 };
-
-export const MemberProfileFragment = gql`
-  fragment MemberProfileFragment on User {
-    id
-    picture
-    name
-    description
-    githubName
-    flowdockName
-    email
-    skills {
-      id
-      name
-    }
-  }
-`;
 
 export default MemberProfile;

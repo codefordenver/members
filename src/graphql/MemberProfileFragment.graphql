@@ -10,4 +10,8 @@ fragment MemberProfileFragment on User {
     id
     name
   }
+  projectsChampioned {
+    id
+    name
+  }
 }
