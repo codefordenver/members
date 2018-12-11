@@ -34,11 +34,10 @@ const allProjectsQuery = gql`
       ...ProjectCardFields
     }
   }
-  ${ProjectCardFragments.ProjectCardFields}
+  ${ProjectCardFragments}
 `;
 
 const ProjectsListPage = graphql(allProjectsQuery, {
-  options: () => ({}),
   props: ({ data: { allProjects, loading } }) => ({
     projects: allProjects,
     loading

@@ -42,7 +42,9 @@ const ProjectCard: React.SFC<Props> = ({
         <Typography
           gutterBottom
           variant="h5"
-          component={() => <Link to={`/projects/${id}`} />}
+          component={({ children }) => (
+            <Link to={`/projects/${id}`}>{children}</Link>
+          )}
         >
           {name}
         </Typography>
@@ -60,20 +62,18 @@ const ProjectCard: React.SFC<Props> = ({
   );
 };
 
-export const ProjectCardFragments = {
-  ProjectCardFields: gql`
-    fragment ProjectCardFields on Project {
+export const ProjectCardFragments = gql`
+  fragment ProjectCardFields on Project {
+    id
+    name
+    headerImage
+    repoName
+    status
+    skills {
       id
       name
-      headerImage
-      repoName
-      status
-      skills {
-        id
-        name
-      }
     }
-  `
-};
+  }
+`;
 
 export default ProjectCard;
