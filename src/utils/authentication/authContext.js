@@ -3,7 +3,7 @@ import React from 'react';
 const AuthenticationContext = React.createContext({
   authData: {},
   isAuthenticated: () => {},
-  setCurrentUser: () => {}
+  setAuthData: () => {}
 });
 
 export default AuthenticationContext;

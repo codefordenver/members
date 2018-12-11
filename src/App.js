@@ -8,8 +8,7 @@ import GoogleAnalyticsPageTracker from './shared-components/GoogleAnalyticsPageT
 import Header from './header/Header';
 import ErrorBoundary from './shared-components/ErrorBoundary';
 import AppBody from './AppBody';
-import AuthenticationContext from './utils/authentication/authContext';
-import AuthService from './utils/authentication/authService';
+import AuthProvider from './utils/authentication/authProvider';
 import './App.css';
 
 const theme = createMuiTheme({
@@ -37,63 +36,10 @@ const styles = theme => ({
 });
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      authContext: {
-        authData: {},
-        isAuthenticated: this.isAuthenticated,
-        setCurrentUser: this.setCurrentUser,
-        setCurrentUserProfile: this.setCurrentUserProfile
-      }
-    };
-  }
-
-  componentDidMount = () => {
-    // Sync auth session stored in the localStorage with Context
-    // TBH, I'm not sure if we even need context
-    this.setCurrentUser(AuthService.getSessionAuthData());
-  };
-
-  isAuthenticated = () => {
-    const {
-      userId,
-      expiresAt,
-      auth0AccessToken,
-      graphcoolToken
-    } = this.state.authContext.authData;
-    return (
-      Date.now() < expiresAt && userId && auth0AccessToken && graphcoolToken
-    );
-  };
-
-  setCurrentUser = authData => {
-    this.setState({
-      authContext: {
-        ...this.state.authContext,
-        authData
-      }
-    });
-  };
-
-  setCurrentUserProfile = userProfile => {
-    AuthService.setAuthProfileSession(userProfile); // I don't really like this side-effect being here
-    this.setState({
-      authContext: {
-        ...this.state.authContext,
-        authData: {
-          ...this.state.authContext.authData,
-          userProfile
-        }
-      }
-    });
-  };
-
   render() {
     const { classes } = this.props;
     return (
-      <AuthenticationContext.Provider value={this.state.authContext}>
+      <AuthProvider>
         <MuiThemeProvider theme={theme}>
           <div className="App">
             <GoogleAnalyticsPageTracker />
@@ -106,7 +52,7 @@ class App extends Component {
             </ErrorBoundary>
           </div>
         </MuiThemeProvider>
-      </AuthenticationContext.Provider>
+      </AuthProvider>
     );
   }
 }

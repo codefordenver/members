@@ -17,7 +17,18 @@ import ProjectPage from './project/ProjectPage';
 import ProjectEditPage from './project/ProjectEditPage';
 import ProjectCreatePage from './project/ProjectCreatePage';
 import SkillPage from './skill/SkillPage';
-import AuthenticationContext from '../utils/authentication/authContext';
+import AuthContext from '../utils/authentication/authContext';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+
+export const getUserRole = gql`
+  query getUserProfile($id: ID) {
+    user: User(id: $id) {
+      id
+      role
+    }
+  }
+`;
 
 const LoggedInRoutes = () => (
   <DrawerLayout drawer={<DrawerContent />}>
@@ -35,9 +46,20 @@ const LoggedInRoutes = () => (
       {/* <Route path="/projects" component={GeneralProjectPage} /> */}
       <Route exact path="/styles" component={StyleReferencePage} />
       <Route exact path="/skills/:id" component={SkillPage} />
-      <AuthenticationContext.Consumer>
-        {context => getAdminRoutes(context.authData.role)}
-      </AuthenticationContext.Consumer>
+      <AuthContext.Consumer>
+        {context => (
+          <Query
+            query={getUserRole}
+            variables={{ id: context.authData.userId }}
+          >
+            {({ loading, data }) => {
+              if (loading) return null;
+
+              return getAdminRoutes('ADMIN');
+            }}
+          </Query>
+        )}
+      </AuthContext.Consumer>
       <Route component={NoMatchPage} />
     </Switch>
   </DrawerLayout>

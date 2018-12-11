@@ -1,9 +1,33 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
-import { Mutation } from 'react-apollo';
+import { Mutation, Query } from 'react-apollo';
 import withEditPage from '../../utils/withEditPage';
 import MemberProfile from './MemberProfile';
-import AuthenticationContext from '../../utils/authentication/authContext';
+import AuthContext from '../../utils/authentication/authContext';
+import CircularProgress from '@material-ui/core/CircularProgress/CircularProgress';
+
+export const getCompleteUserProfile = gql`
+  query getCompleteUserProfile($id: ID) {
+    user: User(id: $id) {
+      id
+      name
+      picture
+      email
+      flowdockName
+      githubName
+      description
+      role
+      skills {
+        id
+        name
+      }
+      projectsChampioned {
+        id
+        name
+      }
+    }
+  }
+`;
 
 const updateUserQuery = gql`
   mutation updateUser(
@@ -48,36 +72,40 @@ function prepUserForUpdate(updatedUser) {
 class MemberProfileEditPage extends Component {
   render() {
     return (
-      <AuthenticationContext.Consumer>
+      <AuthContext.Consumer>
         {context => (
-          <Mutation
-            mutation={updateUserQuery}
-            onCompleted={({ updateUser }) => {
-              context.setCurrentUserProfile(updateUser);
-            }}
+          <Query
+            query={getCompleteUserProfile}
+            variables={{ id: context.authData.userId }}
           >
-            {mutate => {
-              const onEdit = updatedUser =>
-                mutate({
-                  variables: {
-                    ...prepUserForUpdate(updatedUser),
-                    id: context.authData.userId
-                  }
-                });
+            {({ loading, data }) => {
+              if (loading) return <CircularProgress />;
 
-              const WrappedComponent = withEditPage({
-                renameProps: { formData: 'user' }
-              })(MemberProfile);
               return (
-                <WrappedComponent
-                  onEdit={onEdit}
-                  user={context.authData.userProfile}
-                />
+                <Mutation mutation={updateUserQuery}>
+                  {mutate => {
+                    console.log(context.authData);
+                    const onEdit = updatedUser =>
+                      mutate({
+                        variables: {
+                          ...prepUserForUpdate(updatedUser),
+                          id: context.authData.userId
+                        }
+                      });
+
+                    const WrappedComponent = withEditPage({
+                      renameProps: { formData: 'user' }
+                    })(MemberProfile);
+                    return (
+                      <WrappedComponent onEdit={onEdit} user={data.user} />
+                    );
+                  }}
+                </Mutation>
               );
             }}
-          </Mutation>
+          </Query>
         )}
-      </AuthenticationContext.Consumer>
+      </AuthContext.Consumer>
     );
   }
 }

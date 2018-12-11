@@ -68,28 +68,18 @@ class AuthCallback extends Component {
         authResult.accessToken,
         token,
         id,
-        authResult.expiresIn
+        authResult.expiresIn,
+        authResult.picture
       );
-
-      // Query the backend for the remainder of the user profile data
-      const {
-        data: { user }
-      } = await this.props.client.query({
-        query: GET_USER_PROFILE_QUERY,
-        variables: { id }
-      });
-
-      AuthService.setAuthProfileSession(user);
 
       // Commit the current user to the "AuthContext" so the auth data can be used in child components
       const authData = {
         auth0AccessToken: authResult.accessToken,
         graphcoolToken: token,
         userId: id,
-        expiresAt: JSON.stringify(authResult.expiresIn * 1000 + Date.now()),
-        userProfile: user
+        expiresAt: JSON.stringify(authResult.expiresIn * 1000 + Date.now())
       };
-      this.context.setCurrentUser(authData);
+      this.context.setAuthData(authData);
 
       this.props.history.replace('/');
     } catch (e) {

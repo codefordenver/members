@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import withViewPage from '../../utils/withViewPage';
 import MemberProfile from './MemberProfile';
-import AuthenticationContext from '../../utils/authentication/authContext';
+import AuthContext from '../../utils/authentication/authContext';
 
 const userQuery = gql`
   query getUser($id: ID) {
@@ -22,9 +22,8 @@ const userQuery = gql`
 `;
 
 const MyProfilePage = () => (
-  <AuthenticationContext.Consumer>
+  <AuthContext.Consumer>
     {context => {
-      console.log(context);
       return (
         <Query
           query={userQuery}
@@ -40,7 +39,7 @@ const MyProfilePage = () => (
         </Query>
       );
     }}
-  </AuthenticationContext.Consumer>
+  </AuthContext.Consumer>
 );
 
 export default MyProfilePage;
