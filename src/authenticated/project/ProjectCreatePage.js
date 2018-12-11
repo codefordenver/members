@@ -37,7 +37,7 @@ const ProjectCreatePage = compose(
         })
     }),
     options: {
-      refetchQueries: ['allProjects']
+      refetchQueries: ['projects']
     }
   }),
   withCreatePage({

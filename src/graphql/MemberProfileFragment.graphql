@@ -1,0 +1,17 @@
+fragment MemberProfileFragment on User {
+  id
+  picture
+  name
+  description
+  githubName
+  flowdockName
+  email
+  skills {
+    id
+    name
+  }
+  projectsChampioned {
+    id
+    name
+  }
+}

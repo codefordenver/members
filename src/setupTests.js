@@ -1,4 +1,3 @@
-import './testShims';
 import * as getEnvironmentVariableModule from './utils/getEnvironmentVariables';
 
 getEnvironmentVariableModule.default = jest.fn().mockReturnValue({

@@ -56,7 +56,7 @@ const ProjectEditPage = compose(
         })
     }),
     options: {
-      refetchQueries: ['allUsers']
+      refetchQueries: ['editableUsersList']
     }
   }),
   withEditPage({

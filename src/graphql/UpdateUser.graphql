@@ -1,0 +1,21 @@
+mutation updateUser(
+  $id: ID!
+  $name: String
+  $githubName: String
+  $flowdockName: String
+  $description: String
+  $skillsIds: [ID!]
+  $projectsChampionedIds: [ID!]
+) {
+  updateUser(
+    id: $id
+    name: $name
+    githubName: $githubName
+    flowdockName: $flowdockName
+    description: $description
+    skillsIds: $skillsIds
+    projectsChampionedIds: $projectsChampionedIds
+  ) {
+    ...MemberProfileFragment
+  }
+}
