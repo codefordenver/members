@@ -3,7 +3,6 @@ import { Route, Switch } from 'react-router-dom';
 import LandingPage from './LandingPage';
 import NoMatchPage from '../shared-components/NoMatchPage';
 import AuthCallBack from '../utils/authentication/AuthCallback';
-import AuthService from '../utils/authentication/authService';
 
 const LoggedOutRoutes = () => (
   <Switch>

@@ -53,6 +53,7 @@ class EditableMarkdown extends React.Component<Props, State> {
             multiline
             rowsMax={100}
             fullWidth
+            id="editable-markdown"
           />
         )}
       </div>

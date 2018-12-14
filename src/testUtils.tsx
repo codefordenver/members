@@ -1,14 +1,18 @@
 import React from 'react';
 import { render } from 'react-testing-library';
 import { MemoryRouter } from 'react-router-dom';
-import { MockedProvider } from 'react-apollo/test-utils';
+import { MockedProvider, MockedResponse } from 'react-apollo/test-utils';
 import { regularUserMockResponses } from './mocks/withLoggedInUserMock';
 import AuthProvider from './utils/authentication/authProvider';
 
-export function mountWithContext(cmp, { routes = ['/'] } = {}, mocks) {
+export function mountWithContext(
+  cmp: React.ReactElement<any>,
+  { routes = ['/'] } = {},
+  mocks?: ReadonlyArray<MockedResponse>
+) {
   return render(
     <AuthProvider>
-      <MockedProvider mocks={mocks} removeTypename addTypename={false}>
+      <MockedProvider mocks={mocks} addTypename={false}>
         <MemoryRouter initialEntries={routes}>{cmp}</MemoryRouter>
       </MockedProvider>
     </AuthProvider>
@@ -16,11 +20,11 @@ export function mountWithContext(cmp, { routes = ['/'] } = {}, mocks) {
 }
 
 export function mountWithAuth(
-  cmp,
+  cmp: React.ReactElement<any>,
   { routes = ['/'] } = {},
   additionalMocks = []
 ) {
-  return mountWithContext(cmp, routes, [
+  return mountWithContext(cmp, { routes }, [
     ...additionalMocks,
     ...regularUserMockResponses
   ]);

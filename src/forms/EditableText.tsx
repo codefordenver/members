@@ -28,6 +28,7 @@ const EditableText: React.SFC<Props> = ({
       value={value || ''}
       onChange={onChange}
       fullWidth
+      id="editable-text" // TODO: Make unique per component instance with a ref
     />
   );
 };

@@ -38,6 +38,7 @@ const EditableImageLink: React.SFC<Props> = ({
         value={value || ''}
         onChange={onChange}
         fullWidth
+        id="editable-image-link" // TODO: Make unique per component instance with a ref
       />
       {img}
     </div>

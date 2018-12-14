@@ -1,5 +1,5 @@
 import React from 'react';
-import { waitForElement, cleanup } from 'react-testing-library';
+import { waitForElement } from 'react-testing-library';
 
 import Header from '../Header';
 import { mountWithAuth, mountWithContext } from '../../testUtils';
@@ -9,8 +9,6 @@ import {
   mockUnauthenticated
 } from '../../mocks/localStorageMock';
 import { adminUserServerMockResponses } from '../../mocks/withLoggedInUserMock';
-
-afterEach(cleanup);
 
 describe('Header', () => {
   describe('if the user is logged in and is not an admin', () => {
