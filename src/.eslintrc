@@ -1,11 +1,17 @@
 {
-  "extends": ["react-app"],
+  "extends": ["react-app", "plugin:react/recommended"],
 
   "env": {
     "browser": true
   },
 
   "plugins": ["graphql"],
+
+  "settings": {
+    "react": {
+      "version": "16.6.0"
+    }
+  },
 
   "rules": {
     "graphql/template-strings": [
@@ -25,7 +31,9 @@
         "env": "apollo",
         "schemaJsonFilepath": "./full-schema.json"
       }
-    ]
+    ],
+
+    "react/prop-types": "off"
   },
 
   "overrides": [

@@ -112,9 +112,11 @@ export default function withAuthSession<
   > {
     static displayName = `WithAuthSession(${getDisplayName(WrappedComponent)})`;
 
-    state: WithAuthSessionState = getUpdatedState();
+    constructor(props: WithApolloClient<RouteComponentProps>) {
+      super(props);
 
-    componentWillMount() {
+      this.state = getUpdatedState();
+
       componentsWithAuth.push(this);
     }
 

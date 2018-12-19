@@ -14,20 +14,25 @@ async function getMarkdownHTML(fileName: string) {
   return marked(markdown);
 }
 
-interface Props {
+interface MarkdownFileRendererProps {
   fileName: string;
 }
-interface State {
+interface MarkdownFileRendererState {
   html?: string;
 }
 
-class MarkdownFileRenderer extends React.Component<Props, State> {
-  state: State = {
-    html: undefined
-  };
+class MarkdownFileRenderer extends React.Component<
+  MarkdownFileRendererProps,
+  MarkdownFileRendererState
+> {
+  constructor(props: MarkdownFileRendererProps) {
+    super(props);
 
-  componentWillMount() {
-    const { fileName } = this.props;
+    this.state = {
+      html: undefined
+    };
+
+    const { fileName } = props;
     if (!fileName) {
       throw new TypeError(
         'fileName must be specified for MarkdownFileRenderer'
