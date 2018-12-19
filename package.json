@@ -50,7 +50,7 @@
     "start": "concurrently \"gql-gen\" \"react-scripts start\"",
     "start:no-gql-gen": "react-scripts start",
     "build": "react-scripts build && cpy build/index.html build --rename 404.html",
-    "lint": "eslint . --ext .js --ext .graphql",
+    "lint": "eslint . --ext .js,.ts,.tsx,.graphql",
     "postinstall": "cd ./server && npm install",
     "preinstall": "npm run check-version",
     "setup": "node ./bin/auth0setup/promptUser.js",
@@ -71,6 +71,7 @@
     "dotenv-cli": "^1.4.0",
     "eslint": "5.6.0",
     "eslint-plugin-graphql": "^2.1.1",
+    "eslint-plugin-typescript": "^0.14.0",
     "graphcool": "^0.9.2",
     "graphql-code-generator": "^0.14.5",
     "graphql-codegen-typescript-client": "^0.14.5",
@@ -81,7 +82,8 @@
     "prompt": "^1.0.0",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.5",
-    "typescript": "^3.1.6"
+    "typescript": "^3.1.6",
+    "typescript-eslint-parser": "^21.0.2"
   },
   "husky": {
     "hooks": {

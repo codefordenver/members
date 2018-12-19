@@ -26,5 +26,19 @@
         "schemaJsonFilepath": "./full-schema.json"
       }
     ]
-  }
+  },
+
+  "overrides": [
+    {
+      "files": ["**/*.tsx", "**/*.ts"],
+
+      "parser": "typescript-eslint-parser",
+
+      "plugins": ["typescript"],
+
+      "rules": {
+        "typescript/no-unused-vars": "warn"
+      }
+    }
+  ]
 }

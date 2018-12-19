@@ -97,7 +97,7 @@ type InjectedComponentProps = {
 export function withItemComponent<P extends InjectedComponentProps>(
   ItemComponent: ItemComponent
 ) {
-  return (WrappedComponent: React.ComponentType<P>) => (props: object) => (
+  return (WrappedComponent: React.ComponentType<P>) => (props: any) => (
     <WrappedComponent {...props} ItemComponent={ItemComponent} />
   );
 }
