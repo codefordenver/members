@@ -2,9 +2,5 @@ query editableUsersList {
   allUsers {
     id
     name
-    projectsChampioned {
-      id
-      name
-    }
   }
 }

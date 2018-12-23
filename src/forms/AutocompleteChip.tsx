@@ -47,6 +47,7 @@ export default class AutocompleteChip extends React.Component<
 
   render() {
     const selectProps = {
+      'aria-label': this.props.placeholder, // TODO: Make this more accessible
       isLoading: this.props.isLoading,
       className: 'AutocompleteChip',
       options: this.props.options.map(option => ({

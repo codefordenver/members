@@ -1637,16 +1637,6 @@ export type EditableProjectsListAllProjects = {
   id: string;
 
   name: string;
-
-  champions: EditableProjectsListChampions[] | null;
-};
-
-export type EditableProjectsListChampions = {
-  __typename?: 'User';
-
-  id: string;
-
-  name: string | null;
 };
 
 export type EditableSkillsListVariables = {};
@@ -1679,16 +1669,6 @@ export type EditableUsersListAllUsers = {
   id: string;
 
   name: string | null;
-
-  projectsChampioned: EditableUsersListProjectsChampioned[] | null;
-};
-
-export type EditableUsersListProjectsChampioned = {
-  __typename?: 'Project';
-
-  id: string;
-
-  name: string;
 };
 
 export type GetUserVariables = {
@@ -1878,10 +1858,6 @@ export const EditableProjectsListDocument = gql`
     allProjects {
       id
       name
-      champions {
-        id
-        name
-      }
     }
   }
 `;
@@ -1977,10 +1953,6 @@ export const EditableUsersListDocument = gql`
     allUsers {
       id
       name
-      projectsChampioned {
-        id
-        name
-      }
     }
   }
 `;
