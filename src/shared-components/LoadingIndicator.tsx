@@ -13,7 +13,7 @@ interface State {
   isShown: boolean;
 }
 
-class LoadingIndicator extends React.PureComponent<Props, State> {
+class LoadingIndicator extends React.Component<Props, State> {
   timeoutId: number;
 
   constructor(props: Props) {

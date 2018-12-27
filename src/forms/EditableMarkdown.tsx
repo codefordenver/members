@@ -19,7 +19,7 @@ interface State {
   tabView: TabViews;
 }
 
-class EditableMarkdown extends React.PureComponent<Props, State> {
+class EditableMarkdown extends React.Component<Props, State> {
   state: State = {
     tabView: 'write'
   };

@@ -20,7 +20,7 @@ export default function withViewPage({ renameProps }) {
   };
 
   return WrappedComponent => {
-    class ViewPageWrapper extends React.PureComponent {
+    class ViewPageWrapper extends React.Component {
       static displayName = `WithViewPage(${getDisplayName(WrappedComponent)})`;
 
       render() {

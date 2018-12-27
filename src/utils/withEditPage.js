@@ -25,7 +25,7 @@ export default function withEditPage({ renameProps }) {
   };
 
   return WrappedComponent => {
-    class EditPageWrapper extends React.PureComponent {
+    class EditPageWrapper extends React.Component {
       static displayName = `WithEditPage(${getDisplayName(WrappedComponent)})`;
 
       state = {
