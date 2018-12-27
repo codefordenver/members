@@ -1,11 +1,18 @@
 import React from 'react';
-import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
 import Grid from '@material-ui/core/Grid';
 import LoadingIndicator from '../../shared-components/LoadingIndicator';
-import ProjectCard, { ProjectCardFragments } from './ProjectCard';
+import ProjectCard from './ProjectCard';
+import {
+  ProjectCardsHOC,
+  ProjectCardsAllProjects
+} from '../../generated-models';
 
-const ProjectsList = ({ projects, loading }) => {
+interface ProjectsListProps {
+  projects: ProjectCardsAllProjects[];
+  loading: boolean;
+}
+
+const ProjectsList: React.SFC<ProjectsListProps> = ({ projects, loading }) => {
   if (loading) {
     return <LoadingIndicator />;
   }
@@ -28,17 +35,8 @@ ProjectsList.defaultProps = {
   projects: []
 };
 
-const allProjectsQuery = gql`
-  query projects {
-    allProjects(orderBy: name_ASC) {
-      ...ProjectCardFields
-    }
-  }
-  ${ProjectCardFragments}
-`;
-
-const ProjectsListPage = graphql(allProjectsQuery, {
-  props: ({ data: { allProjects, loading } }) => ({
+const ProjectsListPage = ProjectCardsHOC({
+  props: ({ data: { allProjects = [], loading = true } = {} }) => ({
     projects: allProjects,
     loading
   })

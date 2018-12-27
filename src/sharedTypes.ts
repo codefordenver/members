@@ -3,6 +3,7 @@ export interface User {
 }
 
 export interface GitHubIssue {
+  id: string;
   html_url: string;
   title: string;
   body: string;

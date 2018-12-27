@@ -1605,6 +1605,23 @@ export type DateTime = any;
 // Documents
 // ====================================================
 
+export type CreateProjectVariables = {
+  name: string;
+  headerImage?: string | null;
+  description?: string | null;
+  repoName: string;
+  skillsIds?: string[] | null;
+  championsIds?: string[] | null;
+};
+
+export type CreateProjectMutation = {
+  __typename?: 'Mutation';
+
+  createProject: CreateProjectCreateProject | null;
+};
+
+export type CreateProjectCreateProject = ProjectSectionFieldsFragment;
+
 export type CreateSkillVariables = {
   name: string;
 };
@@ -1671,6 +1688,18 @@ export type EditableUsersListAllUsers = {
   name: string | null;
 };
 
+export type GetProjectVariables = {
+  id: string;
+};
+
+export type GetProjectQuery = {
+  __typename?: 'Query';
+
+  Project: GetProjectProject | null;
+};
+
+export type GetProjectProject = ProjectSectionFieldsFragment;
+
 export type GetUserVariables = {
   id?: string | null;
 };
@@ -1682,6 +1711,34 @@ export type GetUserQuery = {
 };
 
 export type GetUserUser = MemberProfileFragmentFragment;
+
+export type ProjectCardsVariables = {};
+
+export type ProjectCardsQuery = {
+  __typename?: 'Query';
+
+  allProjects: ProjectCardsAllProjects[];
+};
+
+export type ProjectCardsAllProjects = ProjectCardFieldsFragment;
+
+export type UpdateProjectVariables = {
+  id: string;
+  name: string;
+  headerImage?: string | null;
+  description?: string | null;
+  repoName?: string | null;
+  skillsIds?: string[] | null;
+  championsIds?: string[] | null;
+};
+
+export type UpdateProjectMutation = {
+  __typename?: 'Mutation';
+
+  updateProject: UpdateProjectUpdateProject | null;
+};
+
+export type UpdateProjectUpdateProject = ProjectSectionFieldsFragment;
 
 export type UpdateUserVariables = {
   id: string;
@@ -1775,6 +1832,64 @@ export type MemberProfileFragmentProjectsChampioned = {
   name: string;
 };
 
+export type ProjectCardFieldsFragment = {
+  __typename?: 'Project';
+
+  id: string;
+
+  name: string;
+
+  headerImage: string | null;
+
+  repoName: string | null;
+
+  status: ProjectStatus | null;
+
+  skills: ProjectCardFieldsSkills[] | null;
+};
+
+export type ProjectCardFieldsSkills = {
+  __typename?: 'Skill';
+
+  id: string;
+
+  name: string;
+};
+
+export type ProjectSectionFieldsFragment = {
+  __typename?: 'Project';
+
+  id: string;
+
+  name: string;
+
+  headerImage: string | null;
+
+  description: string | null;
+
+  repoName: string | null;
+
+  skills: ProjectSectionFieldsSkills[] | null;
+
+  champions: ProjectSectionFieldsChampions[] | null;
+};
+
+export type ProjectSectionFieldsSkills = {
+  __typename?: 'Skill';
+
+  id: string;
+
+  name: string;
+};
+
+export type ProjectSectionFieldsChampions = {
+  __typename?: 'User';
+
+  id: string;
+
+  name: string | null;
+};
+
 import * as ReactApollo from 'react-apollo';
 import * as React from 'react';
 
@@ -1804,10 +1919,104 @@ export const MemberProfileFragmentFragmentDoc = gql`
   }
 `;
 
+export const ProjectCardFieldsFragmentDoc = gql`
+  fragment ProjectCardFields on Project {
+    id
+    name
+    headerImage
+    repoName
+    status
+    skills {
+      id
+      name
+    }
+  }
+`;
+
+export const ProjectSectionFieldsFragmentDoc = gql`
+  fragment ProjectSectionFields on Project {
+    id
+    name
+    headerImage
+    description
+    repoName
+    skills {
+      id
+      name
+    }
+    champions {
+      id
+      name
+    }
+  }
+`;
+
 // ====================================================
 // Components
 // ====================================================
 
+export const CreateProjectDocument = gql`
+  mutation createProject(
+    $name: String!
+    $headerImage: String
+    $description: String
+    $repoName: String!
+    $skillsIds: [ID!]
+    $championsIds: [ID!]
+  ) {
+    createProject(
+      name: $name
+      headerImage: $headerImage
+      description: $description
+      repoName: $repoName
+      skillsIds: $skillsIds
+      championsIds: $championsIds
+    ) {
+      ...ProjectSectionFields
+    }
+  }
+
+  ${ProjectSectionFieldsFragmentDoc}
+`;
+export class CreateProjectComponent extends React.Component<
+  Partial<
+    ReactApollo.MutationProps<CreateProjectMutation, CreateProjectVariables>
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<CreateProjectMutation, CreateProjectVariables>
+        mutation={CreateProjectDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type CreateProjectProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<CreateProjectMutation, CreateProjectVariables>
+> &
+  TChildProps;
+export type CreateProjectMutationFn = ReactApollo.MutationFn<
+  CreateProjectMutation,
+  CreateProjectVariables
+>;
+export function CreateProjectHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        CreateProjectMutation,
+        CreateProjectVariables,
+        CreateProjectProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    CreateProjectMutation,
+    CreateProjectVariables,
+    CreateProjectProps<TChildProps>
+  >(CreateProjectDocument, operationOptions);
+}
 export const CreateSkillDocument = gql`
   mutation createSkill($name: String!) {
     createSkill(name: $name) {
@@ -1991,6 +2200,48 @@ export function EditableUsersListHOC<TProps, TChildProps = any>(
     EditableUsersListProps<TChildProps>
   >(EditableUsersListDocument, operationOptions);
 }
+export const GetProjectDocument = gql`
+  query getProject($id: ID!) {
+    Project(id: $id) {
+      ...ProjectSectionFields
+    }
+  }
+
+  ${ProjectSectionFieldsFragmentDoc}
+`;
+export class GetProjectComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<GetProjectQuery, GetProjectVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<GetProjectQuery, GetProjectVariables>
+        query={GetProjectDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type GetProjectProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<GetProjectQuery, GetProjectVariables>
+> &
+  TChildProps;
+export function GetProjectHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        GetProjectQuery,
+        GetProjectVariables,
+        GetProjectProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    GetProjectQuery,
+    GetProjectVariables,
+    GetProjectProps<TChildProps>
+  >(GetProjectDocument, operationOptions);
+}
 export const GetUserDocument = gql`
   query getUser($id: ID) {
     user: User(id: $id) {
@@ -2032,6 +2283,112 @@ export function GetUserHOC<TProps, TChildProps = any>(
     GetUserVariables,
     GetUserProps<TChildProps>
   >(GetUserDocument, operationOptions);
+}
+export const ProjectCardsDocument = gql`
+  query projectCards {
+    allProjects(orderBy: name_ASC) {
+      ...ProjectCardFields
+    }
+  }
+
+  ${ProjectCardFieldsFragmentDoc}
+`;
+export class ProjectCardsComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<ProjectCardsQuery, ProjectCardsVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<ProjectCardsQuery, ProjectCardsVariables>
+        query={ProjectCardsDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type ProjectCardsProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<ProjectCardsQuery, ProjectCardsVariables>
+> &
+  TChildProps;
+export function ProjectCardsHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        ProjectCardsQuery,
+        ProjectCardsVariables,
+        ProjectCardsProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    ProjectCardsQuery,
+    ProjectCardsVariables,
+    ProjectCardsProps<TChildProps>
+  >(ProjectCardsDocument, operationOptions);
+}
+export const UpdateProjectDocument = gql`
+  mutation updateProject(
+    $id: ID!
+    $name: String!
+    $headerImage: String
+    $description: String
+    $repoName: String
+    $skillsIds: [ID!]
+    $championsIds: [ID!]
+  ) {
+    updateProject(
+      id: $id
+      name: $name
+      headerImage: $headerImage
+      description: $description
+      repoName: $repoName
+      skillsIds: $skillsIds
+      championsIds: $championsIds
+    ) {
+      ...ProjectSectionFields
+    }
+  }
+
+  ${ProjectSectionFieldsFragmentDoc}
+`;
+export class UpdateProjectComponent extends React.Component<
+  Partial<
+    ReactApollo.MutationProps<UpdateProjectMutation, UpdateProjectVariables>
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<UpdateProjectMutation, UpdateProjectVariables>
+        mutation={UpdateProjectDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type UpdateProjectProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<UpdateProjectMutation, UpdateProjectVariables>
+> &
+  TChildProps;
+export type UpdateProjectMutationFn = ReactApollo.MutationFn<
+  UpdateProjectMutation,
+  UpdateProjectVariables
+>;
+export function UpdateProjectHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        UpdateProjectMutation,
+        UpdateProjectVariables,
+        UpdateProjectProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    UpdateProjectMutation,
+    UpdateProjectVariables,
+    UpdateProjectProps<TChildProps>
+  >(UpdateProjectDocument, operationOptions);
 }
 export const UpdateUserDocument = gql`
   mutation updateUser(

@@ -1,0 +1,11 @@
+fragment ProjectCardFields on Project {
+  id
+  name
+  headerImage
+  repoName
+  status
+  skills {
+    id
+    name
+  }
+}

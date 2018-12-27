@@ -4,7 +4,7 @@ import { Link, withRouter, Prompt } from 'react-router-dom';
 import getDisplayName from './getDisplayName';
 
 function getBaseUrl(props) {
-  return props.match.url.split('/create')[0];
+  return props.history.location.pathname.split('/create')[0];
 }
 
 /**
