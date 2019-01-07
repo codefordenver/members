@@ -34,7 +34,7 @@ export default function withEditPage({ renameProps }) {
         formIsDirty: false
       };
 
-      componentWillReceiveProps(nextProps) {
+      UNSAFE_componentWillReceiveProps(nextProps) {
         if (
           nextProps[propNameMapping.formData] !==
           this.props[propNameMapping.formData]
