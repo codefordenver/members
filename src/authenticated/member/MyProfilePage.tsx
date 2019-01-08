@@ -6,18 +6,18 @@ import { GetUserHOC, GetUserUser } from '../../generated-models';
 
 type AuthSessionProps = {
   isAuthenticated: boolean;
-  authSession: AuthSession;
+  userId: string;
 };
 
 export default compose(
   withAuthSession,
   GetUserHOC<AuthSessionProps>({
-    skip: ({ isAuthenticated, authSession }) => {
-      return !isAuthenticated || !authSession.userId;
+    skip: ({ isAuthenticated, userId }) => {
+      return !isAuthenticated || !userId;
     },
     options: props => {
       return {
-        variables: { id: props.authSession && props.authSession.userId }
+        variables: { id: props.userId }
       };
     },
     props: props => {
