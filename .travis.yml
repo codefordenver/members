@@ -8,7 +8,7 @@ cache:
 
 script:
   - npm run lint
-  - npm test
+  - npm test -- --coverage
   - npm run typecheck
 
 deploy:
@@ -17,3 +17,6 @@ deploy:
     script: bin/deploy_prod_backend.sh
     on:
       branch: master
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -e TRAVIS_NODE_VERSION
