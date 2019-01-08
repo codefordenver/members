@@ -21,6 +21,7 @@ const updateProjectQuery = gql`
     $description: String
     $repoName: String
     $skillsIds: [ID!]
+    $championsIds: [ID!]
   ) {
     updateProject(
       id: $id
@@ -29,6 +30,7 @@ const updateProjectQuery = gql`
       description: $description
       repoName: $repoName
       skillsIds: $skillsIds
+      championsIds: $championsIds
     ) {
       ...ProjectSectionFields
     }
@@ -48,10 +50,14 @@ const ProjectEditPage = compose(
         mutate({
           variables: {
             ...updatedProject,
-            skillsIds: updatedProject.skills.map(skill => skill.id)
+            skillsIds: updatedProject.skills.map(skill => skill.id),
+            championsIds: updatedProject.champions.map(champion => champion.id)
           }
         })
-    })
+    }),
+    options: {
+      refetchQueries: ['editableUsersList']
+    }
   }),
   withEditPage({
     renameProps: {

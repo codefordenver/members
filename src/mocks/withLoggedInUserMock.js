@@ -26,7 +26,8 @@ export const adminUserServerResponseMock = {
         githubName,
         description,
         role: 'ADMIN',
-        skills: []
+        skills: [],
+        projectsChampioned: []
       }
     }
   }
@@ -50,7 +51,8 @@ export const regularUserServerResponseMock = {
         githubName,
         description,
         role: 'USER',
-        skills: []
+        skills: [],
+        projectsChampioned: []
       }
     }
   }

@@ -7,7 +7,9 @@ const ProjectIssues = ({ issues }) => {
   return (
     <div>
       <h2>Issues ready to be worked on</h2>
-      {issues.map(issue => <ProjectIssue issue={issue} key={issue.id} />)}
+      {issues.map(issue => (
+        <ProjectIssue issue={issue} key={issue.id} />
+      ))}
     </div>
   );
 };
@@ -28,6 +30,7 @@ const issuesQuery = gql`
       id
       html_url
       title
+      body
     }
   }
 `;
