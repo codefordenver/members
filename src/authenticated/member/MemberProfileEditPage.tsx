@@ -1,8 +1,10 @@
+import React from 'react';
 import { compose } from 'react-apollo';
 import withEditPage from '../../utils/withEditPage';
 import MemberProfile from './MemberProfile';
-import { withLoggedInUser } from '../../utils';
+import AuthenticationContext from '../../utils/authentication/authContext';
 import { UpdateUserHOC, GetUserUser } from '../../generated-models';
+import { withProfilePageData } from './MyProfilePage';
 
 function prepUserForUpdate(updatedUser: GetUserUser) {
   const skillsIds =
@@ -17,8 +19,8 @@ function prepUserForUpdate(updatedUser: GetUserUser) {
   };
 }
 
-export default compose(
-  withLoggedInUser,
+const MemberProfileEdit = compose(
+  withProfilePageData,
   UpdateUserHOC({
     props: ({ mutate }) => ({
       onEdit: (updatedUser: GetUserUser) => {
@@ -35,3 +37,18 @@ export default compose(
     }
   })
 )(MemberProfile);
+
+const MemberProfileEditPage: React.SFC = () => {
+  return (
+    <AuthenticationContext.Consumer>
+      {context => (
+        <MemberProfileEdit
+          isAuthenticated={context.isAuthenticated()}
+          userId={context.authData && context.authData.userId}
+        />
+      )}
+    </AuthenticationContext.Consumer>
+  );
+};
+
+export default MemberProfileEditPage;

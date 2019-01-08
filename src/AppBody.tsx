@@ -1,16 +1,16 @@
 import React from 'react';
 import LoggedInRoutes from './authenticated/LoggedInRoutes';
 import LoggedOutRoutes from './unauthenticated/LoggedOutRoutes';
-import withAuthSession from './utils/withAuthSession';
+import AuthenticationContext from './utils/authentication/authContext';
 
-interface AppBodyProps {
-  isAuthenticated: boolean;
-}
-
-const AppBody: React.SFC<AppBodyProps> = ({ isAuthenticated }) => (
-  <div className="AppBody">
-    {isAuthenticated ? <LoggedInRoutes /> : <LoggedOutRoutes />}
-  </div>
+const AppBody: React.SFC = () => (
+  <AuthenticationContext.Consumer>
+    {context => (
+      <div className="AppBody">
+        {context.isAuthenticated() ? <LoggedInRoutes /> : <LoggedOutRoutes />}
+      </div>
+    )}
+  </AuthenticationContext.Consumer>
 );
 
-export default withAuthSession(AppBody);
+export default AppBody;
