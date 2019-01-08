@@ -23,7 +23,7 @@ export default function withCreatePage({ renameProps }) {
   };
 
   return WrappedComponent => {
-    class CreatePageWrapper extends React.PureComponent {
+    class CreatePageWrapper extends React.Component {
       static displayName = `WithCreatePage(${getDisplayName(
         WrappedComponent
       )})`;
