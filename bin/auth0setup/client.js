@@ -4,7 +4,7 @@ var client = {
   description: 'basic client for cfd project',
   app_type: 'spa',
   token_endpoint_auth_method: 'none',
-  callbacks: ['http://localhost:3000'],
+  callbacks: ['http://localhost:3000/callback'],
   jwt_configuration: {
     alg: 'RS256',
     lifetime_in_seconds: 36000,
