@@ -3,13 +3,15 @@ import LoggedInRoutes from './authenticated/LoggedInRoutes';
 import LoggedOutRoutes from './unauthenticated/LoggedOutRoutes';
 import AuthenticationContext from './utils/authentication/authContext';
 
-const AppBody: React.SFC = () => (
+const AppBody = () => (
   <AuthenticationContext.Consumer>
-    {context => (
-      <div className="AppBody">
-        {context.isAuthenticated() ? <LoggedInRoutes /> : <LoggedOutRoutes />}
-      </div>
-    )}
+    {context => {
+      return (
+        <div className="AppBody">
+          {context.isAuthenticated() ? <LoggedInRoutes /> : <LoggedOutRoutes />}
+        </div>
+      );
+    }}
   </AuthenticationContext.Consumer>
 );
 

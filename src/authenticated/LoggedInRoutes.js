@@ -11,15 +11,26 @@ import MemberResourcesPage from './member/MemberResourcesPage';
 import FlowdockLanding from './FlowdockLanding';
 import NoMatchPage from '../shared-components/NoMatchPage';
 import StyleReferencePage from './StyleReferencePage';
-import withLoggedInUser from '../utils/withLoggedInUser';
 import ProjectsListPage from './project/ProjectsListPage';
 import ProjectPage from './project/ProjectPage';
 // import GeneralProjectPage from './project/GeneralProjectPage';
 import ProjectEditPage from './project/ProjectEditPage';
 import ProjectCreatePage from './project/ProjectCreatePage';
 import SkillPage from './skill/SkillPage';
+import AuthContext from '../utils/authentication/authContext';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
-const LoggedInRoutes = ({ user }) => (
+export const getUserRole = gql`
+  query getUserProfile($id: ID) {
+    user: User(id: $id) {
+      id
+      role
+    }
+  }
+`;
+
+const LoggedInRoutes = () => (
   <DrawerLayout drawer={<DrawerContent />}>
     <Switch>
       <Route exact path="/" component={MemberResourcesPage} />
@@ -35,10 +46,23 @@ const LoggedInRoutes = ({ user }) => (
       {/* <Route path="/projects" component={GeneralProjectPage} /> */}
       <Route exact path="/styles" component={StyleReferencePage} />
       <Route exact path="/skills/:id" component={SkillPage} />
-      {getAdminRoutes(user)}
+      <AuthContext.Consumer>
+        {context => (
+          <Query
+            query={getUserRole}
+            variables={{ id: context.authData.userId }}
+          >
+            {({ loading, data }) => {
+              if (loading) return null;
+
+              return getAdminRoutes(data.user);
+            }}
+          </Query>
+        )}
+      </AuthContext.Consumer>
       <Route component={NoMatchPage} />
     </Switch>
   </DrawerLayout>
 );
 
-export default withLoggedInUser(LoggedInRoutes);
+export default LoggedInRoutes;

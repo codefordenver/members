@@ -8,7 +8,7 @@ import {
   mockRegularUser,
   mockUnauthenticated
 } from '../../mocks/localStorageMock';
-import { adminUserServerResponseMock } from '../../mocks/withLoggedInUserMock';
+import { adminUserServerMockResponses } from '../../mocks/withLoggedInUserMock';
 
 afterEach(cleanup);
 
@@ -41,7 +41,7 @@ describe('Header', () => {
         {
           routes: ['/']
         },
-        [adminUserServerResponseMock]
+        adminUserServerMockResponses
       );
 
       await waitForElement(() => getByText('Admin Resources'));

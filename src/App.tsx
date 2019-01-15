@@ -10,6 +10,7 @@ import GoogleAnalyticsPageTracker from './shared-components/GoogleAnalyticsPageT
 import Header from './header/Header';
 import ErrorBoundary from './shared-components/ErrorBoundary';
 import AppBody from './AppBody';
+import AuthProvider from './utils/authentication/authProvider';
 import './App.css';
 
 const theme = createMuiTheme({
@@ -42,18 +43,20 @@ class App extends Component<AppProps> {
   render() {
     const { classes } = this.props;
     return (
-      <MuiThemeProvider theme={theme}>
-        <div className="App">
-          <GoogleAnalyticsPageTracker />
-          <ErrorBoundary>
-            <Header />
-          </ErrorBoundary>
-          <ErrorBoundary>
-            <div className={classes.toolbar} />
-            <AppBody />
-          </ErrorBoundary>
-        </div>
-      </MuiThemeProvider>
+      <AuthProvider>
+        <MuiThemeProvider theme={theme}>
+          <div className="App">
+            <GoogleAnalyticsPageTracker />
+            <ErrorBoundary>
+              <Header />
+            </ErrorBoundary>
+            <ErrorBoundary>
+              <div className={classes.toolbar} />
+              <AppBody />
+            </ErrorBoundary>
+          </div>
+        </MuiThemeProvider>
+      </AuthProvider>
     );
   }
 }

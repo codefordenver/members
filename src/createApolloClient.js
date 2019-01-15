@@ -5,7 +5,7 @@ import { RestLink } from 'apollo-link-rest';
 import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { getEnvironmentVariables } from './utils';
-import { getBearerTokenForAuthorization } from './utils/withAuthSession';
+import AuthService from './utils/authentication/authService';
 
 const { graphcoolApi, devMode } = getEnvironmentVariables();
 if (process.env.NODE_ENV === 'development') {
@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === 'development') {
 const httpLink = createHttpLink({ uri: graphcoolApi });
 const middlewareLink = setContext(() => {
   let authHeader;
-  const bearerToken = getBearerTokenForAuthorization();
+  const bearerToken = AuthService.getBearerToken();
   if (bearerToken) {
     authHeader = `Bearer ${bearerToken}`;
   }

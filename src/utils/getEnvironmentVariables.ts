@@ -1,6 +1,6 @@
 const envVars = {
-  auth0ClientId: process.env.REACT_APP_AUTH0_CLIENT_ID,
-  auth0Domain: process.env.REACT_APP_AUTH0_DOMAIN,
+  auth0ClientId: process.env.REACT_APP_AUTH0_CLIENT_ID || '',
+  auth0Domain: process.env.REACT_APP_AUTH0_DOMAIN || '',
   auth0ApiIdentifier:
     process.env.REACT_APP_AUTH0_API_IDENTIFIER || 'http://localhost:3000',
   graphcoolApi: process.env.REACT_APP_GRAPHCOOL_API,
