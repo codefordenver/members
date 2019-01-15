@@ -56,7 +56,7 @@ const Header = () => {
                           <Link className="Header-link" to="/projects">
                             All Projects
                           </Link>
-                          {userIsAdmin(data.user.role) && (
+                          {userIsAdmin(data.user) && (
                             <Link className="Header-link" to="/admin">
                               Admin Resources
                             </Link>
@@ -72,15 +72,15 @@ const Header = () => {
                   }}
                 </Query>
               ) : (
-                <Grid item>
-                  <Button color="secondary" onClick={AuthService.login}>
-                    Login
+                  <Grid item>
+                    <Button color="secondary" onClick={AuthService.login}>
+                      Log In
                   </Button>
-                  <Button color="secondary" onClick={AuthService.signUp}>
-                    Signup
+                    <Button color="secondary" onClick={AuthService.signUp}>
+                      Signup
                   </Button>
-                </Grid>
-              )}
+                  </Grid>
+                )}
             </Grid>
           </Toolbar>
         </AppBar>
