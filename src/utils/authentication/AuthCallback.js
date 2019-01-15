@@ -64,7 +64,7 @@ class AuthCallback extends Component {
       this.context.setAuthData(authData);
 
       this.props.history.replace('/');
-    } catch (e) {
+    } catch (error) {
       this.props.history.replace('/');
 
       const alertMessage = error.message.includes(
@@ -74,7 +74,7 @@ class AuthCallback extends Component {
         : error;
       alert(alertMessage);
 
-      console.error(e);
+      console.error(error);
     }
   }
 

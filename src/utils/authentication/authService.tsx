@@ -23,11 +23,13 @@ class AuthService {
   });
 
   login = () => {
-    this.webAuth.authorize();
+    (this.webAuth as any).authorize({ initialScreen: 'login' });
   };
 
   signUp = () => {
-    this.webAuth.authorize();
+    // We use additional information in the auth0 custom login page to direct the user to sign up / login, but
+    // this isn't compatible with the typings for auth0.js 
+    (this.webAuth as any).authorize({ initialScreen: 'signUp' });
   };
 
   parseAuthenticationResult = () => {
