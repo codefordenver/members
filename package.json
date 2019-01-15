@@ -8,6 +8,7 @@
   "dependencies": {
     "@material-ui/core": "^3.4.0",
     "@material-ui/icons": "^3.0.1",
+    "@types/auth0-js": "^8.11.8",
     "@types/graphql": "14.0.1",
     "@types/jest": "^23.3.9",
     "@types/marked": "^0.4.2",
