@@ -65,6 +65,15 @@ class AuthCallback extends Component {
 
       this.props.history.replace('/');
     } catch (e) {
+      this.props.history.replace('/');
+
+      const alertMessage = error.message.includes(
+        'The user already exists'
+      )
+        ? 'A user already exists with the provided email. Trying signing in with a different provider.'
+        : error;
+      alert(alertMessage);
+
       console.error(e);
     }
   }
