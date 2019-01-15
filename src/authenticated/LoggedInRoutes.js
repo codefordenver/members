@@ -55,7 +55,7 @@ const LoggedInRoutes = () => (
             {({ loading, data }) => {
               if (loading) return null;
 
-              return getAdminRoutes('ADMIN');
+              return getAdminRoutes(data.user);
             }}
           </Query>
         )}
