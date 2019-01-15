@@ -36,7 +36,7 @@ let queryMocks = [
       data: {
         allUsers: [
           {
-            id: '1',
+            id: 'user-1',
             name: 'User 1'
           }
         ]
@@ -52,7 +52,7 @@ let queryMocks = [
       data: {
         allSkills: [
           {
-            id: '1',
+            id: 'skill-1',
             name: 'Skill 1'
           }
         ]
@@ -67,25 +67,26 @@ let queryMocks = [
         headerImage: 'https://some.image.url',
         description: 'The Description',
         repoName: 'gitrepo',
-        skillsIds: ['1'],
-        championsIds: ['1']
+        skillsIds: ['skill-1'],
+        championsIds: ['user-1']
       }
     },
     result: {
       data: {
+        id: 'project-1',
         name: 'Test Project Title',
         headerImage: 'https://some.image.url',
         description: 'The Description',
         repoName: 'gitrepo',
         skills: [
           {
-            id: '1',
+            id: 'skill-1',
             name: 'Skill 1'
           }
         ],
         champions: [
           {
-            id: '1',
+            id: 'user-1',
             name: 'User 1'
           }
         ]
