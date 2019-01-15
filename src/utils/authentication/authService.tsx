@@ -52,10 +52,10 @@ class AuthService {
   };
 
   setAuthSession = (
-    auth0AccessToken,
-    graphcoolAccessToken,
-    userId,
-    expiresIn
+    auth0AccessToken: string,
+    graphcoolAccessToken: string,
+    userId: string,
+    expiresIn: number
   ) => {
     const expiresAt = JSON.stringify(expiresIn * 1000 + Date.now());
     localStorage.setItem(ACCESS_TOKEN_KEY, auth0AccessToken);
@@ -70,6 +70,7 @@ class AuthService {
     localStorage.removeItem(EXPIRES_AT_KEY);
     localStorage.removeItem(BEARER_TOKEN);
     localStorage.removeItem(USER_PROFILE);
+    window.location.href = '/';
   };
 
   getBearerToken = () => {
@@ -85,7 +86,12 @@ class AuthService {
     };
   };
 
-  isAuthenticated = (userId, expiresAt, auth0AccessToken, graphcoolToken) => {
+  isAuthenticated = (
+    userId: string,
+    expiresAt: number,
+    auth0AccessToken: string,
+    graphcoolToken: string
+  ) => {
     return (
       Date.now() < expiresAt && userId && auth0AccessToken && graphcoolToken
     );

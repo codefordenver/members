@@ -24,24 +24,6 @@ const AUTHENTICATE_QUERY = gql`
   }
 `;
 
-const GET_USER_PROFILE_QUERY = gql`
-  query getLoggedInUser($id: ID) {
-    user: User(id: $id) {
-      name
-      picture
-      email
-      flowdockName
-      githubName
-      description
-      role
-      skills {
-        id
-        name
-      }
-    }
-  }
-`;
-
 class AuthCallback extends Component {
   static contextType = AuthenticationContext;
 
