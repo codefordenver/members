@@ -1,6 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import { graphql, ChildDataProps } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import ProjectIssue from './ProjectIssue';
 import { GitHubIssue } from '../../sharedTypes';
 

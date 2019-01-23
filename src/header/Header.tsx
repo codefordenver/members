@@ -10,20 +10,8 @@ import userIsAdmin from '../utils/userIsAdmin';
 import MenuList from './Menu';
 import AuthenticationContext from '../utils/authentication/authContext';
 import AuthService from '../utils/authentication/authService';
+import { GetHeaderUserComponent } from '../generated-models';
 import './Header.css';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
-
-export const getUserProfile = gql`
-  query getUserProfile($id: ID) {
-    user: User(id: $id) {
-      id
-      name
-      picture
-      role
-    }
-  }
-`;
 
 const Header = () => {
   return (
@@ -40,12 +28,12 @@ const Header = () => {
             </Link>
             <Grid container justify="space-between" alignItems="center">
               {context.isAuthenticated() ? (
-                <Query
-                  query={getUserProfile}
+                <GetHeaderUserComponent
                   variables={{ id: context.authData.userId }}
                 >
                   {({ loading, data }) => {
-                    if (loading) return <CircularProgress />;
+                    if (loading || !data || !data.user)
+                      return <CircularProgress />;
 
                     return (
                       <React.Fragment>
@@ -70,17 +58,17 @@ const Header = () => {
                       </React.Fragment>
                     );
                   }}
-                </Query>
+                </GetHeaderUserComponent>
               ) : (
-                  <Grid item>
-                    <Button color="secondary" onClick={AuthService.login}>
-                      Log In
+                <Grid item>
+                  <Button color="secondary" onClick={AuthService.login}>
+                    Log In
                   </Button>
-                    <Button color="secondary" onClick={AuthService.signUp}>
-                      Signup
+                  <Button color="secondary" onClick={AuthService.signUp}>
+                    Signup
                   </Button>
-                  </Grid>
-                )}
+                </Grid>
+              )}
             </Grid>
           </Toolbar>
         </AppBar>

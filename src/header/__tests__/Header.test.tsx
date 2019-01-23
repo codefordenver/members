@@ -8,7 +8,6 @@ import {
   mockRegularUser,
   mockUnauthenticated
 } from '../../mocks/localStorageMock';
-import { adminUserServerMockResponses } from '../../mocks/withLoggedInUserMock';
 
 describe('Header', () => {
   describe('if the user is logged in and is not an admin', () => {
@@ -34,13 +33,9 @@ describe('Header', () => {
     beforeAll(mockAdminUser);
 
     it('should show the admin resources link', async () => {
-      const { getByText } = mountWithAuth(
-        <Header />,
-        {
-          routes: ['/']
-        },
-        adminUserServerMockResponses
-      );
+      const { getByText } = mountWithAuth(<Header />, {
+        routes: ['/']
+      });
 
       await waitForElement(() => getByText('Admin Resources'));
 

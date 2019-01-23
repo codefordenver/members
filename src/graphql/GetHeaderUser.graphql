@@ -1,0 +1,8 @@
+query getHeaderUser($id: ID) {
+  user: User(id: $id) {
+    id
+    name
+    picture
+    role
+  }
+}

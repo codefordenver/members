@@ -1,5 +1,5 @@
 export interface User {
-  role?: 'REGULAR' | 'ADMIN';
+  role: 'REGULAR' | 'ADMIN' | null;
 }
 
 export interface GitHubIssue {
