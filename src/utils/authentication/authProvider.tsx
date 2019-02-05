@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import AuthService from './authService';
-import AuthContext from './authContext';
+import AuthContext, { AuthContextShape, AuthData } from './authContext';
 
-class AuthProvider extends Component {
-  constructor(props) {
+class AuthProvider extends Component<{}, AuthContextShape> {
+  constructor(props: {}) {
     super(props);
 
     this.state = {
       authData: AuthService.getSessionAuthData(),
       isAuthenticated: this.isAuthenticated,
-      setAuthData: this.setAuthData
+      setAuthData: this.setAuthData,
+      isLoggingIn: false,
+      setLoggingIn: this.setLoggingIn
     };
   }
 
@@ -29,8 +31,12 @@ class AuthProvider extends Component {
     );
   };
 
-  setAuthData = authData => {
+  setAuthData = (authData: AuthData) => {
     this.setState({ authData });
+  };
+
+  setLoggingIn = (isLoggingIn: boolean) => {
+    this.setState({ isLoggingIn });
   };
 
   render() {
