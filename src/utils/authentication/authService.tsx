@@ -28,12 +28,18 @@ class AuthService {
 
   signUp = () => {
     // We use additional information in the auth0 custom login page to direct the user to sign up / login, but
-    // this isn't compatible with the typings for auth0.js 
+    // this isn't compatible with the typings for auth0.js
     (this.webAuth as any).authorize({ initialScreen: 'signUp' });
   };
 
   parseAuthenticationResult = () => {
-    return new Promise((resolve, reject) => {
+    return new Promise<{
+      name: string;
+      email: string;
+      picture: string;
+      expiresIn: number;
+      accessToken: string;
+    }>((resolve, reject) => {
       this.webAuth.parseHash((err, authResult) => {
         // Hash is in window.location.hash
         if (err) {
@@ -45,7 +51,7 @@ class AuthService {
             name,
             email,
             picture,
-            expiresIn: authResult.expiresIn,
+            expiresIn: authResult.expiresIn || 1000, // hopefully this fallback number is never reached
             accessToken: authResult.accessToken
           });
         }
@@ -84,19 +90,23 @@ class AuthService {
       auth0AccessToken: localStorage.getItem(ACCESS_TOKEN_KEY),
       graphcoolToken: localStorage.getItem(BEARER_TOKEN),
       userId: localStorage.getItem(USER_ID),
-      expiresAt: localStorage.getItem(EXPIRES_AT_KEY)
+      expiresAt: Number(localStorage.getItem(EXPIRES_AT_KEY))
     };
   };
 
   isAuthenticated = (
-    userId: string,
-    expiresAt: number,
-    auth0AccessToken: string,
-    graphcoolToken: string
+    userId: string | null,
+    expiresAt: number | null,
+    auth0AccessToken: string | null,
+    graphcoolToken: string | null
   ) => {
-    return (
-      Date.now() < expiresAt && userId && auth0AccessToken && graphcoolToken
-    );
+    return expiresAt &&
+      Date.now() < expiresAt &&
+      userId &&
+      auth0AccessToken &&
+      graphcoolToken
+      ? true
+      : false;
   };
 }
 

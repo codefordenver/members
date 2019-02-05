@@ -1,16 +1,24 @@
 import React from 'react';
 
-type AuthData = {
-  userId?: string;
+export type AuthContextType = {
+  auth0AccessToken: string | null;
+  graphcoolToken: string | null;
+  userId: string | null;
+  expiresAt: number | null;
 };
 type AuthContextShape = {
-  authData: AuthData;
+  authData: AuthContextType;
   isAuthenticated: () => boolean;
-  setAuthData: () => void;
+  setAuthData: (authData: AuthContextType) => void;
 };
 
 const AuthenticationContext = React.createContext<AuthContextShape>({
-  authData: {},
+  authData: {
+    auth0AccessToken: null,
+    graphcoolToken: null,
+    userId: null,
+    expiresAt: null
+  },
   isAuthenticated: () => false,
   setAuthData: () => {}
 });

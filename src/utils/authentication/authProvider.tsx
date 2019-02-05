@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import AuthService from './authService';
-import AuthContext from './authContext';
+import AuthContext, { AuthContextType } from './authContext';
 
-class AuthProvider extends Component {
-  constructor(props) {
+type AuthProviderState = {
+  authData: AuthContextType;
+  isAuthenticated: () => boolean;
+  setAuthData: (authData: AuthContextType) => void;
+};
+
+class AuthProvider extends Component<{}, AuthProviderState> {
+  constructor(props: {}) {
     super(props);
 
     this.state = {
@@ -29,7 +35,7 @@ class AuthProvider extends Component {
     );
   };
 
-  setAuthData = authData => {
+  setAuthData = (authData: AuthContextType) => {
     this.setState({ authData });
   };
 
