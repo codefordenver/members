@@ -51,7 +51,7 @@ class FadeMenu extends React.Component<FadeMenuProps> {
         >
           <MenuItem
             onClick={this.handleClose}
-            component={() => <Link to="/me" />}
+            component={({ innerRef, ...props }) => <Link to="/me" {...props} />}
           >
             PROFILE
           </MenuItem>

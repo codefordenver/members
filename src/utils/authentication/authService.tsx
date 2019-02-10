@@ -82,7 +82,7 @@ class AuthService {
   };
 
   getBearerToken = () => {
-    localStorage.getItem(BEARER_TOKEN);
+    return localStorage.getItem(BEARER_TOKEN);
   };
 
   getSessionAuthData = () => {

@@ -33,8 +33,8 @@ const ProjectCard: React.SFC<ProjectCardFieldsFragment> = ({
         <Typography
           gutterBottom
           variant="h5"
-          component={({ children }) => (
-            <Link to={`/projects/${id}`}>{children}</Link>
+          component={({ innerRef, ...props }) => (
+            <Link to={`/projects/${id}`} {...props} />
           )}
         >
           {name}

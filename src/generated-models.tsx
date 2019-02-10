@@ -1744,6 +1744,22 @@ export type ProjectCardsQuery = {
 
 export type ProjectCardsAllProjects = ProjectCardFieldsFragment;
 
+export type ProjectsDrawerVariables = {};
+
+export type ProjectsDrawerQuery = {
+  __typename?: 'Query';
+
+  allProjects: ProjectsDrawerAllProjects[];
+};
+
+export type ProjectsDrawerAllProjects = {
+  __typename?: 'Project';
+
+  id: string;
+
+  name: string;
+};
+
 export type SkillPageVariables = {
   id?: string | null;
 };
@@ -2448,6 +2464,47 @@ export function ProjectCardsHOC<TProps, TChildProps = any>(
     ProjectCardsVariables,
     ProjectCardsProps<TChildProps>
   >(ProjectCardsDocument, operationOptions);
+}
+export const ProjectsDrawerDocument = gql`
+  query projectsDrawer {
+    allProjects(orderBy: name_ASC) {
+      id
+      name
+    }
+  }
+`;
+export class ProjectsDrawerComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<ProjectsDrawerQuery, ProjectsDrawerVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<ProjectsDrawerQuery, ProjectsDrawerVariables>
+        query={ProjectsDrawerDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type ProjectsDrawerProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<ProjectsDrawerQuery, ProjectsDrawerVariables>
+> &
+  TChildProps;
+export function ProjectsDrawerHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        ProjectsDrawerQuery,
+        ProjectsDrawerVariables,
+        ProjectsDrawerProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    ProjectsDrawerQuery,
+    ProjectsDrawerVariables,
+    ProjectsDrawerProps<TChildProps>
+  >(ProjectsDrawerDocument, operationOptions);
 }
 export const SkillPageDocument = gql`
   query skillPage($id: ID) {
