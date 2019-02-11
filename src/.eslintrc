@@ -5,7 +5,7 @@
     "browser": true
   },
 
-  "plugins": ["graphql"],
+  "plugins": ["graphql", "react-hooks"],
 
   "settings": {
     "react": {
@@ -33,7 +33,9 @@
       }
     ],
 
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+
+    "react-hooks/rules-of-hooks": "error"
   },
 
   "overrides": [
@@ -45,7 +47,12 @@
       "plugins": ["typescript"],
 
       "rules": {
-        "typescript/no-unused-vars": "warn"
+        // "typescript/no-unused-vars": "error"
+        "no-unused-vars": "off",
+        "typescript/no-unused-vars": [
+          "error",
+          { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+        ]
       }
     }
   ]
