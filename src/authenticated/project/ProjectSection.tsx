@@ -5,7 +5,7 @@ import EditableSkills from '../../forms/EditableSkills';
 import EditableUsers from '../../forms/EditableUsers';
 import EditableImageLink from '../../forms/EditableImageLink';
 import ProjectIssues from './ProjectIssues';
-import { getRepoPath } from '../../utils';
+import EditableWaffleAndGithubLinks from '../../forms/EditableWaffleAndGithubLinks';
 import { ProjectSectionFieldsFragment } from '../../generated-models';
 
 interface ProjectSectionProps {
@@ -63,24 +63,9 @@ const ProjectSection: React.SFC<ProjectSectionProps> = ({
         label="Add Skill"
         {...commonProps}
       />
-      {editing ? (
-        <EditableText
-          value={repoName}
-          label="GitHub Repository Name"
-          name="repoName"
-          {...commonProps}
-        />
-      ) : (
-        repoName && (
-          <div>
-            <h2>Links</h2>
-            <a href={`https://github.com/${getRepoPath(repoName)}`}>GitHub</a>
-            &nbsp;
-            <a href={`https://waffle.io/${getRepoPath(repoName)}`}>Waffle</a>
-            <ProjectIssues repoName={repoName} />
-          </div>
-        )
-      )}
+      {editing || (repoName && <h2>Links</h2>)}
+      <EditableWaffleAndGithubLinks value={repoName} {...commonProps} />
+      {!editing && repoName && <ProjectIssues repoName={repoName} />}
     </React.Fragment>
   );
 };

@@ -7,7 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import EditableSkills from '../../forms/EditableSkills';
-import { getRepoPath } from '../../utils';
+import EditableWaffleAndGithubLinks from '../../forms/EditableWaffleAndGithubLinks';
 import { ProjectCardFieldsFragment } from '../../generated-models';
 import './ProjectCard.css';
 
@@ -44,13 +44,7 @@ const ProjectCard: React.SFC<ProjectCardFieldsFragment> = ({
       <CardActions>
         <Grid container spacing={16} alignItems="center">
           <EditableSkills value={skills} name="skills" />
-          {repoName && (
-            <div>
-              <a href={`https://github.com/${getRepoPath(repoName)}`}>GitHub</a>
-              &nbsp;
-              <a href={`https://waffle.io/${getRepoPath(repoName)}`}>Waffle</a>
-            </div>
-          )}
+          <EditableWaffleAndGithubLinks value={repoName} />
           <Grid item>{status && <span> Status: {status}</span>}</Grid>
         </Grid>
       </CardActions>
