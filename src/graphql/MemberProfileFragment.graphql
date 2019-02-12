@@ -5,6 +5,7 @@ fragment MemberProfileFragment on User {
   description
   githubName
   flowdockName
+  role
   email
   skills {
     id

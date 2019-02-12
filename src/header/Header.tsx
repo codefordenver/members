@@ -11,19 +11,38 @@ import MenuList from './Menu';
 import AuthenticationContext from '../utils/authentication/authContext';
 import AuthService from '../utils/authentication/authService';
 import './Header.css';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
+import { User } from '../sharedTypes';
+import { GetUserComponent } from '../generated-models';
 
-export const getUserProfile = gql`
-  query getUserProfile($id: ID) {
-    user: User(id: $id) {
-      id
-      name
-      picture
-      role
-    }
-  }
-`;
+const AuthButtons = ({ isLoggingIn = false }) => {
+  if (isLoggingIn) return <CircularProgress />;
+  return (
+    <Grid item>
+      <Button color="secondary" onClick={AuthService.login}>
+        Log In
+      </Button>
+      <Button color="secondary" onClick={AuthService.signUp}>
+        Sign Up
+      </Button>
+    </Grid>
+  );
+};
+
+const UserLinks = ({ user }: { user: User | null }) => (
+  <Grid item>
+    <Link className="Header-link" to="/volunteers">
+      All Users
+    </Link>
+    <Link className="Header-link" to="/projects">
+      All Projects
+    </Link>
+    {userIsAdmin(user || undefined) && (
+      <Link className="Header-link" to="/admin">
+        Admin Resources
+      </Link>
+    )}
+  </Grid>
+);
 
 const Header = () => {
   return (
@@ -38,49 +57,33 @@ const Header = () => {
                 alt="code for denver logo"
               />
             </Link>
+
             <Grid container justify="space-between" alignItems="center">
               {context.isAuthenticated() ? (
-                <Query
-                  query={getUserProfile}
-                  variables={{ id: context.authData.userId }}
-                >
+                <GetUserComponent variables={{ id: context.authData.userId }}>
                   {({ loading, data }) => {
                     if (loading) return <CircularProgress />;
 
+                    if (!data || !data.user) {
+                      alert('Your profile appears to be missing!');
+                      return null;
+                    }
+
                     return (
                       <React.Fragment>
-                        <Grid item>
-                          <Link className="Header-link" to="/volunteers">
-                            All Users
-                          </Link>
-                          <Link className="Header-link" to="/projects">
-                            All Projects
-                          </Link>
-                          {userIsAdmin(data.user) && (
-                            <Link className="Header-link" to="/admin">
-                              Admin Resources
-                            </Link>
-                          )}
-                        </Grid>
+                        <UserLinks user={data.user} />
                         <MenuList
-                          avatar={data.user.picture}
-                          username={data.user.name}
+                          avatar={data.user.picture || ''}
+                          username={data.user.name || ''}
                           logout={AuthService.logout}
                         />
                       </React.Fragment>
                     );
                   }}
-                </Query>
+                </GetUserComponent>
               ) : (
-                  <Grid item>
-                    <Button color="secondary" onClick={AuthService.login}>
-                      Log In
-                  </Button>
-                    <Button color="secondary" onClick={AuthService.signUp}>
-                      Signup
-                  </Button>
-                  </Grid>
-                )}
+                <AuthButtons isLoggingIn={context.isLoggingIn} />
+              )}
             </Grid>
           </Toolbar>
         </AppBar>

@@ -28,7 +28,7 @@ class AuthService {
 
   signUp = () => {
     // We use additional information in the auth0 custom login page to direct the user to sign up / login, but
-    // this isn't compatible with the typings for auth0.js 
+    // this isn't compatible with the typings for auth0.js
     (this.webAuth as any).authorize({ initialScreen: 'signUp' });
   };
 
@@ -81,10 +81,10 @@ class AuthService {
 
   getSessionAuthData = () => {
     return {
-      auth0AccessToken: localStorage.getItem(ACCESS_TOKEN_KEY),
-      graphcoolToken: localStorage.getItem(BEARER_TOKEN),
-      userId: localStorage.getItem(USER_ID),
-      expiresAt: localStorage.getItem(EXPIRES_AT_KEY)
+      auth0AccessToken: localStorage.getItem(ACCESS_TOKEN_KEY) || '',
+      graphcoolToken: localStorage.getItem(BEARER_TOKEN) || '',
+      userId: localStorage.getItem(USER_ID) || '',
+      expiresAt: parseInt(localStorage.getItem(EXPIRES_AT_KEY) || '0')
     };
   };
 
@@ -93,9 +93,12 @@ class AuthService {
     expiresAt: number,
     auth0AccessToken: string,
     graphcoolToken: string
-  ) => {
+  ): boolean => {
     return (
-      Date.now() < expiresAt && userId && auth0AccessToken && graphcoolToken
+      Date.now() < expiresAt &&
+      !!userId &&
+      !!auth0AccessToken &&
+      !!graphcoolToken
     );
   };
 }
