@@ -1,25 +1,16 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import Grid from '@material-ui/core/Grid';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import EditableSkills from '../../forms/EditableSkills';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
+import EditableSkills from '../../forms/EditableSkills';
+import { ProjectCardFieldsFragment } from '../../generated-models';
 import './ProjectCard.css';
 
-interface Props {
-  name: string;
-  id: string;
-  skills: Array<object>;
-  status: string;
-  repoName: string;
-  headerImage: string;
-}
-
-const ProjectCard: React.SFC<Props> = ({
+const ProjectCard: React.SFC<ProjectCardFieldsFragment> = ({
   id,
   name,
   skills,
@@ -61,19 +52,5 @@ const ProjectCard: React.SFC<Props> = ({
     </Card>
   );
 };
-
-export const ProjectCardFragments = gql`
-  fragment ProjectCardFields on Project {
-    id
-    name
-    headerImage
-    repoName
-    status
-    skills {
-      id
-      name
-    }
-  }
-`;
 
 export default ProjectCard;

@@ -1,13 +1,23 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import EditableText from '../../forms/EditableText';
 import EditableMarkdown from '../../forms/EditableMarkdown';
 import EditableSkills from '../../forms/EditableSkills';
 import EditableUsers from '../../forms/EditableUsers';
 import EditableImageLink from '../../forms/EditableImageLink';
 import ProjectIssues from './ProjectIssues';
+import { ProjectSectionFieldsFragment } from '../../generated-models';
 
-const ProjectSection = ({ project, editing, onFormDataChange }) => {
+interface ProjectSectionProps {
+  project: ProjectSectionFieldsFragment;
+  editing: boolean;
+  onFormDataChange: (value: any) => void;
+}
+
+const ProjectSection: React.SFC<ProjectSectionProps> = ({
+  project,
+  editing,
+  onFormDataChange
+}) => {
   const {
     name,
     description,
@@ -68,26 +78,6 @@ const ProjectSection = ({ project, editing, onFormDataChange }) => {
       )}
     </React.Fragment>
   );
-};
-
-ProjectSection.fragments = {
-  ProjectSectionFields: gql`
-    fragment ProjectSectionFields on Project {
-      id
-      name
-      headerImage
-      description
-      repoName
-      skills {
-        id
-        name
-      }
-      champions {
-        id
-        name
-      }
-    }
-  `
 };
 
 export default ProjectSection;

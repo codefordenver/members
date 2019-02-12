@@ -1,5 +1,6 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
+import { getUniqueId } from '../utils';
 
 interface Props {
   value: string | null;
@@ -28,6 +29,7 @@ const EditableText: React.SFC<Props> = ({
       value={value || ''}
       onChange={onChange}
       fullWidth
+      id={`editable-text-${getUniqueId()}`} // TODO: Make unique per component instance
     />
   );
 };

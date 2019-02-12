@@ -1,0 +1,15 @@
+fragment ProjectSectionFields on Project {
+  id
+  name
+  headerImage
+  description
+  repoName
+  skills {
+    id
+    name
+  }
+  champions {
+    id
+    name
+  }
+}

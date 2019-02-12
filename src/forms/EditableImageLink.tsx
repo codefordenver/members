@@ -1,12 +1,13 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
+import { getUniqueId } from '../utils';
 import './EditableImageLink.css';
 
-interface Props {
+interface EditableImageLinkProps {
   alt: string;
-  defaultSrc: string;
+  defaultSrc?: string;
 
-  value: string;
+  value: string | null;
   label: string;
   name: string;
   editing: boolean;
@@ -15,7 +16,7 @@ interface Props {
   >;
 }
 
-const EditableImageLink: React.SFC<Props> = ({
+const EditableImageLink: React.SFC<EditableImageLinkProps> = ({
   value,
   label,
   name,
@@ -38,6 +39,7 @@ const EditableImageLink: React.SFC<Props> = ({
         value={value || ''}
         onChange={onChange}
         fullWidth
+        id={`editable-image-link-${getUniqueId()}`} // TODO: Memoize once per component
       />
       {img}
     </div>

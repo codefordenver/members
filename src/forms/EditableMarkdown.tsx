@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Markdown from '../shared-components/Markdown';
+import { getUniqueId } from '../utils';
 
 interface Props {
   value: string | null;
@@ -53,6 +54,7 @@ class EditableMarkdown extends React.Component<Props, State> {
             multiline
             rowsMax={100}
             fullWidth
+            id={`editable-markdown-${getUniqueId()}`} // TODO Make unique per component instance
           />
         )}
       </div>
