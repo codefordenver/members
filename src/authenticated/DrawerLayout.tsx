@@ -1,5 +1,11 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import {
+  withStyles,
+  WithStyles,
+  WithTheme,
+  Theme,
+  createStyles
+} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import Hidden from '@material-ui/core/Hidden';
@@ -7,37 +13,49 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 const drawerWidth = 300;
 
-const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    zIndex: 1,
-    overflow: 'hidden',
-    position: 'relative',
-    display: 'flex',
-    width: '100%'
-  },
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+      zIndex: 1,
+      overflow: 'hidden',
+      position: 'relative',
+      display: 'flex',
+      width: '100%'
+    },
 
-  navIconHide: {
-    height: '48px',
-    [theme.breakpoints.up('md')]: {
-      display: 'none'
+    navIconHide: {
+      height: '48px',
+      [theme.breakpoints.up('md')]: {
+        display: 'none'
+      }
+    },
+    toolbar: theme.mixins.toolbar,
+    drawerPaper: {
+      width: drawerWidth,
+      [theme.breakpoints.up('md')]: {
+        position: 'relative'
+      }
+    },
+    content: {
+      flexGrow: 1,
+      backgroundColor: theme.palette.background.default,
+      padding: theme.spacing.unit * 3,
+      width: '100%'
     }
-  },
-  toolbar: theme.mixins.toolbar,
-  drawerPaper: {
-    width: drawerWidth,
-    [theme.breakpoints.up('md')]: {
-      position: 'relative'
-    }
-  },
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: theme.spacing.unit * 3
-  }
-});
+  });
 
-class ResponsiveDrawer extends React.Component {
+interface ResponsiveDrawerProps extends WithStyles<typeof styles>, WithTheme {
+  drawer: JSX.Element;
+}
+interface ResponsiveDrawerState {
+  mobileOpen: boolean;
+}
+
+class ResponsiveDrawer extends React.Component<
+  ResponsiveDrawerProps,
+  ResponsiveDrawerState
+> {
   state = {
     mobileOpen: false
   };

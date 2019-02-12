@@ -7,12 +7,18 @@ import { Link } from 'react-router-dom';
 import Menu from '@material-ui/core/Menu';
 import './Menu.css';
 
-class FadeMenu extends React.Component {
+interface FadeMenuProps {
+  avatar: string | null;
+  username: string | null;
+  logout: () => void;
+}
+
+class FadeMenu extends React.Component<FadeMenuProps> {
   state = {
     anchorEl: null
   };
 
-  handleClick = event => {
+  handleClick = (event: React.MouseEvent<HTMLElement>) => {
     this.setState({ anchorEl: event.currentTarget });
   };
 
@@ -26,12 +32,14 @@ class FadeMenu extends React.Component {
     return (
       <div>
         <Button
-          aria-owns={anchorEl ? 'fade-menu' : null}
+          aria-owns={anchorEl ? 'fade-menu' : undefined}
           aria-haspopup="true"
           onClick={this.handleClick}
           color="secondary"
         >
-          <Avatar src={this.props.avatar} alt={this.props.username} />
+          {this.props.avatar && (
+            <Avatar src={this.props.avatar} alt={this.props.username || ''} />
+          )}
           <span className="Menu-username"> {this.props.username} </span>
           <ArrowDropDown />
         </Button>
@@ -41,7 +49,10 @@ class FadeMenu extends React.Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          <MenuItem onClick={this.handleClose} component={Link} to="/me">
+          <MenuItem
+            onClick={this.handleClose}
+            component={({ innerRef, ...props }) => <Link to="/me" {...props} />}
+          >
             PROFILE
           </MenuItem>
           <MenuItem onClick={this.props.logout}>LOG OUT</MenuItem>

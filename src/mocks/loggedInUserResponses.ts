@@ -1,6 +1,9 @@
-import { GetUserDocument } from '../generated-models';
+import {
+  GetUserDocument,
+  GetHeaderUserDocument,
+  UserRoleDocument
+} from '../generated-models';
 import { adminUserId, regularUserId } from '../testData';
-import { getUserProfile } from '../header/Header';
 
 const name = 'Test User',
   picture = '<empty>',
@@ -36,7 +39,7 @@ export const adminUserServerMockResponses = [
   },
   {
     request: {
-      query: getUserProfile,
+      query: GetHeaderUserDocument,
       variables: {
         id: adminUserId
       }
@@ -81,7 +84,7 @@ export const regularUserMockResponses = [
   },
   {
     request: {
-      query: getUserProfile,
+      query: GetHeaderUserDocument,
       variables: {
         id: regularUserId
       }
@@ -93,6 +96,37 @@ export const regularUserMockResponses = [
           name,
           picture,
           role: 'USER'
+        }
+      }
+    }
+  }
+];
+
+export const roleMockResponses = [
+  {
+    request: {
+      query: UserRoleDocument,
+      variables: { id: regularUserId }
+    },
+    result: {
+      data: {
+        user: {
+          id: regularUserId,
+          role: 'REGULAR'
+        }
+      }
+    }
+  },
+  {
+    request: {
+      query: UserRoleDocument,
+      variables: { id: adminUserId }
+    },
+    result: {
+      data: {
+        user: {
+          id: adminUserId,
+          role: 'ADMIN'
         }
       }
     }

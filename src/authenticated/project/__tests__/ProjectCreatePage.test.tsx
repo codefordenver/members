@@ -73,23 +73,26 @@ let queryMocks = [
     },
     result: {
       data: {
-        id: 'project-1',
-        name: 'Test Project Title',
-        headerImage: 'https://some.image.url',
-        description: 'The Description',
-        repoName: 'gitrepo',
-        skills: [
-          {
-            id: 'skill-1',
-            name: 'Skill 1'
-          }
-        ],
-        champions: [
-          {
-            id: 'user-1',
-            name: 'User 1'
-          }
-        ]
+        createProject: {
+          __typeName: 'Project',
+          id: 'project-1',
+          name: 'Test Project Title',
+          headerImage: 'https://some.image.url',
+          description: 'The Description',
+          repoName: 'gitrepo',
+          skills: [
+            {
+              id: 'skill-1',
+              name: 'Skill 1'
+            }
+          ],
+          champions: [
+            {
+              id: 'user-1',
+              name: 'User 1'
+            }
+          ]
+        }
       }
     }
   }

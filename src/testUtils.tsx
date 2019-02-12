@@ -11,7 +11,11 @@ import {
 import { Router } from 'react-router-dom';
 import { MockedProvider, MockedResponse } from 'react-apollo/test-utils';
 import { createMemoryHistory as createHistory } from 'history';
-import { regularUserMockResponses } from './mocks/withLoggedInUserMock';
+import {
+  regularUserMockResponses,
+  adminUserServerMockResponses,
+  roleMockResponses
+} from './mocks/loggedInUserResponses';
 import AuthProvider from './utils/authentication/authProvider';
 
 export function mountWithContext(
@@ -38,7 +42,9 @@ export function mountWithAuth(
 ) {
   return mountWithContext(cmp, { routes }, [
     ...additionalMocks,
-    ...regularUserMockResponses
+    ...regularUserMockResponses,
+    ...adminUserServerMockResponses,
+    ...roleMockResponses
   ]);
 }
 

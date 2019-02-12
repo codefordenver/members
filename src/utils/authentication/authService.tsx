@@ -33,7 +33,13 @@ class AuthService {
   };
 
   parseAuthenticationResult = () => {
-    return new Promise((resolve, reject) => {
+    return new Promise<{
+      name: string;
+      email: string;
+      picture: string;
+      expiresIn: number;
+      accessToken: string;
+    }>((resolve, reject) => {
       this.webAuth.parseHash((err, authResult) => {
         // Hash is in window.location.hash
         if (err) {
@@ -45,7 +51,7 @@ class AuthService {
             name,
             email,
             picture,
-            expiresIn: authResult.expiresIn,
+            expiresIn: authResult.expiresIn || 1000, // hopefully this fallback number is never reached
             accessToken: authResult.accessToken
           });
         }
@@ -76,7 +82,7 @@ class AuthService {
   };
 
   getBearerToken = () => {
-    localStorage.getItem(BEARER_TOKEN);
+    return localStorage.getItem(BEARER_TOKEN);
   };
 
   getSessionAuthData = () => {
@@ -94,11 +100,8 @@ class AuthService {
     auth0AccessToken: string,
     graphcoolToken: string
   ): boolean => {
-    return (
-      Date.now() < expiresAt &&
-      !!userId &&
-      !!auth0AccessToken &&
-      !!graphcoolToken
+    return Boolean(
+      Date.now() < expiresAt && userId && auth0AccessToken && graphcoolToken
     );
   };
 }

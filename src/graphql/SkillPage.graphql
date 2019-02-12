@@ -1,0 +1,15 @@
+query skillPage($id: ID) {
+  skill: Skill(id: $id) {
+    id
+    name
+    projectsWithSkill {
+      id
+      name
+    }
+    usersWithSkill {
+      id
+      name
+      picture
+    }
+  }
+}

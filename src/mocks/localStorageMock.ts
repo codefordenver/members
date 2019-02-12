@@ -14,35 +14,48 @@ export const unauthenticated = {
   clear: jest.fn()
 };
 
+interface ILocalStorageData {
+  [key: string]: string | void;
+}
+
+interface ILocalStorage {
+  getItem: () => string | void;
+  setItem: () => void;
+  removeItem: () => void;
+  clear: () => void;
+}
+
+const adminLocalStorageData: ILocalStorageData = {
+  [ACCESS_TOKEN_KEY]: 'accessToken',
+  [EXPIRES_AT_KEY]: '2535419869506',
+  [USER_ID]: adminUserId,
+  [BEARER_TOKEN]: 'bearerToken'
+};
+
 export const adminUser = {
   ...unauthenticated,
   getItem: jest.fn(key => {
-    const adminLocalStorageData = {
-      [ACCESS_TOKEN_KEY]: 'accessToken',
-      [EXPIRES_AT_KEY]: '2535419869506',
-      [USER_ID]: adminUserId,
-      [BEARER_TOKEN]: 'bearerToken'
-    };
     return adminLocalStorageData[key];
   })
+};
+
+const regularLocalStorageData: ILocalStorageData = {
+  [ACCESS_TOKEN_KEY]: 'accessToken',
+  [EXPIRES_AT_KEY]: '2535419869506',
+  [USER_ID]: regularUserId,
+  [BEARER_TOKEN]: 'bearerToken'
 };
 
 export const regularUser = {
   ...unauthenticated,
   getItem: jest.fn(key => {
-    const regularLocalStorageData = {
-      [ACCESS_TOKEN_KEY]: 'accessToken',
-      [EXPIRES_AT_KEY]: '2535419869506',
-      [USER_ID]: regularUserId,
-      [BEARER_TOKEN]: 'bearerToken'
-    };
     return regularLocalStorageData[key] || 'asdf';
   })
 };
 
-function mockLocalStorageWith(value) {
+function mockLocalStorageWith(fakeLocalStorage: ILocalStorage) {
   Object.defineProperty(window, 'localStorage', {
-    value,
+    value: fakeLocalStorage,
     configurable: true,
     writable: true
   });

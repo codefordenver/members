@@ -1,0 +1,7 @@
+query projectsDrawer {
+  allProjects(orderBy: name_ASC) {
+    # TODO: Only show active projects
+    id
+    name
+  }
+}

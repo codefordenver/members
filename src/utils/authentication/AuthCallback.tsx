@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withApollo } from 'react-apollo';
+import { withApollo, WithApolloClient } from 'react-apollo';
 import gql from 'graphql-tag';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import AuthService from './authService';
@@ -24,7 +24,13 @@ const AUTHENTICATE_QUERY = gql`
   }
 `;
 
-class AuthCallback extends Component {
+interface AuthCallbackProps {
+  history: {
+    replace: (route: string) => void;
+  };
+}
+
+class AuthCallback extends Component<WithApolloClient<AuthCallbackProps>> {
   static contextType = AuthenticationContext;
 
   async componentDidMount() {
@@ -38,22 +44,26 @@ class AuthCallback extends Component {
 
       // Send a request to the backend to get the token used to authenticate with Graphcool
       // and create the user in the database if necessary
+      const response = await this.props.client.mutate({
+        mutation: AUTHENTICATE_QUERY,
+        variables: authResult
+      });
+
+      if (!response.data || !response.data.authenticateUser) {
+        throw new Error('Failed to authenticate');
+      }
       const {
         data: {
           authenticateUser: { id, token }
         }
-      } = await this.props.client.mutate({
-        mutation: AUTHENTICATE_QUERY,
-        variables: authResult
-      });
+      } = response;
 
       // Persist auth0 access_token, the graphcool token, the userID, and the expiry time in localstorage
       AuthService.setAuthSession(
         authResult.accessToken,
         token,
         id,
-        authResult.expiresIn,
-        authResult.picture
+        authResult.expiresIn
       );
 
       // Commit the current user to the "AuthContext" so the auth data can be used in child components
