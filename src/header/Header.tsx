@@ -19,12 +19,10 @@ const AuthButtons = ({ isLoggingIn = false }) => {
   return (
     <Grid item>
       <Button color="secondary" onClick={AuthService.login}>
-        {' '}
-        Log In{' '}
+        Log In
       </Button>
       <Button color="secondary" onClick={AuthService.signUp}>
-        {' '}
-        Signup{' '}
+        Signup
       </Button>
     </Grid>
   );
@@ -33,12 +31,10 @@ const AuthButtons = ({ isLoggingIn = false }) => {
 const UserLinks = ({ user }: { user: User | null }) => (
   <Grid item>
     <Link className="Header-link" to="/volunteers">
-      {' '}
-      All Users{' '}
+      All Users
     </Link>
     <Link className="Header-link" to="/projects">
-      {' '}
-      All Projects{' '}
+      All Projects
     </Link>
     {userIsAdmin(user || undefined) && (
       <Link className="Header-link" to="/admin">
@@ -75,7 +71,7 @@ const Header = () => {
 
                     return (
                       <React.Fragment>
-                        <UserLinks user={data.user as User} />
+                        <UserLinks user={data.user} />
                         <MenuList
                           avatar={data.user.picture || ''}
                           username={data.user.name || ''}
