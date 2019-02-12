@@ -1,10 +1,7 @@
 import React from 'react';
-import { mountWithContext, mountWithAuth, wait } from '../testUtils';
+import { mountWithContext } from '../testUtils';
 import App from '../App';
-import {
-  mockUnauthenticated,
-  mockRegularUser
-} from '../mocks/localStorageMock';
+import { mockUnauthenticated } from '../mocks/localStorageMock';
 
 describe('when not logged in', () => {
   beforeEach(mockUnauthenticated);
@@ -16,20 +13,6 @@ describe('when not logged in', () => {
       });
 
       expect(getByText('404')).toBeInTheDocument();
-    });
-  });
-});
-
-describe('when logged in', () => {
-  beforeEach(mockRegularUser);
-
-  describe('when trying to navigate to /abcd', () => {
-    it('shows 404 page', async () => {
-      const { getByText } = mountWithAuth(<App />, {
-        routes: ['/abcd']
-      });
-
-      await wait(() => expect(getByText('404')).toBeInTheDocument());
     });
   });
 });

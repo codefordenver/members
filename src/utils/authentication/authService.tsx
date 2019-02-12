@@ -87,26 +87,22 @@ class AuthService {
 
   getSessionAuthData = () => {
     return {
-      auth0AccessToken: localStorage.getItem(ACCESS_TOKEN_KEY),
-      graphcoolToken: localStorage.getItem(BEARER_TOKEN),
-      userId: localStorage.getItem(USER_ID),
-      expiresAt: Number(localStorage.getItem(EXPIRES_AT_KEY))
+      auth0AccessToken: localStorage.getItem(ACCESS_TOKEN_KEY) || '',
+      graphcoolToken: localStorage.getItem(BEARER_TOKEN) || '',
+      userId: localStorage.getItem(USER_ID) || '',
+      expiresAt: parseInt(localStorage.getItem(EXPIRES_AT_KEY) || '0')
     };
   };
 
   isAuthenticated = (
-    userId: string | null,
-    expiresAt: number | null,
-    auth0AccessToken: string | null,
-    graphcoolToken: string | null
-  ) => {
-    return expiresAt &&
-      Date.now() < expiresAt &&
-      userId &&
-      auth0AccessToken &&
-      graphcoolToken
-      ? true
-      : false;
+    userId: string,
+    expiresAt: number,
+    auth0AccessToken: string,
+    graphcoolToken: string
+  ): boolean => {
+    return Boolean(
+      Date.now() < expiresAt && userId && auth0AccessToken && graphcoolToken
+    );
   };
 }
 

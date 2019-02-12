@@ -1,5 +1,12 @@
+import {
+  UserRole,
+  MemberProfileFragmentFragment,
+  MemberProfileFragmentFragmentDoc
+} from './generated-models';
+
 export interface User {
-  role: 'REGULAR' | 'ADMIN' | null;
+  role: UserRole | null;
+  [key: string]: any;
 }
 
 export interface GitHubIssue {

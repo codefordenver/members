@@ -35,6 +35,8 @@ class AuthCallback extends Component<WithApolloClient<AuthCallbackProps>> {
 
   async componentDidMount() {
     try {
+      this.context.setLoggingIn(true);
+
       // Extract the id_token and access_token from the Auth0 federation
       // Internally, the Auth0 library search does another call to get the user profile info
       // so "parseAuthenticationResult" is async
@@ -72,17 +74,16 @@ class AuthCallback extends Component<WithApolloClient<AuthCallbackProps>> {
         expiresAt: JSON.stringify(authResult.expiresIn * 1000 + Date.now())
       };
       this.context.setAuthData(authData);
-
-      this.props.history.replace('/');
     } catch (error) {
-      this.props.history.replace('/');
-
       const alertMessage = error.message.includes('The user already exists')
         ? 'A user already exists with the provided email. Trying signing in with a different provider.'
         : error;
       alert(alertMessage);
 
       console.error(error);
+    } finally {
+      this.props.history.replace('/');
+      this.context.setLoggingIn(false);
     }
   }
 

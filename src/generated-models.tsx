@@ -1905,6 +1905,8 @@ export type MemberProfileFragmentFragment = {
 
   flowdockName: string | null;
 
+  role: UserRole | null;
+
   email: string;
 
   skills: MemberProfileFragmentSkills[] | null;
@@ -2003,6 +2005,7 @@ export const MemberProfileFragmentFragmentDoc = gql`
     description
     githubName
     flowdockName
+    role
     email
     skills {
       id

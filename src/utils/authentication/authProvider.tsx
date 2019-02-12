@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
 import AuthService from './authService';
-import AuthContext, { AuthContextType } from './authContext';
+import AuthContext, { AuthContextShape, AuthData } from './authContext';
 
-type AuthProviderState = {
-  authData: AuthContextType;
-  isAuthenticated: () => boolean;
-  setAuthData: (authData: AuthContextType) => void;
-};
-
-class AuthProvider extends Component<{}, AuthProviderState> {
+class AuthProvider extends Component<{}, AuthContextShape> {
   constructor(props: {}) {
     super(props);
 
     this.state = {
       authData: AuthService.getSessionAuthData(),
       isAuthenticated: this.isAuthenticated,
-      setAuthData: this.setAuthData
+      setAuthData: this.setAuthData,
+      isLoggingIn: false,
+      setLoggingIn: this.setLoggingIn
     };
   }
 
@@ -35,8 +31,12 @@ class AuthProvider extends Component<{}, AuthProviderState> {
     );
   };
 
-  setAuthData = (authData: AuthContextType) => {
+  setAuthData = (authData: AuthData) => {
     this.setState({ authData });
+  };
+
+  setLoggingIn = (isLoggingIn: boolean) => {
+    this.setState({ isLoggingIn });
   };
 
   render() {
