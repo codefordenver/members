@@ -28,6 +28,11 @@
   margin: 20px;
 }
 
+.Member-since {
+  color: #999;
+  font-size: 0.8rem;
+}
+
 .Member-pic {
   justify-content: center;
   display: flex;
