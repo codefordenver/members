@@ -22,7 +22,7 @@ const AuthButtons = ({ isLoggingIn = false }) => {
         Log In
       </Button>
       <Button color="secondary" onClick={AuthService.signUp}>
-        Signup
+        Sign Up
       </Button>
     </Grid>
   );
