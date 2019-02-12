@@ -2,6 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import ProjectIssue from './ProjectIssue';
+import { getRepoPath } from '../../utils';
 import { GitHubIssue } from '../../sharedTypes';
 
 interface ProjectIssuesComponentProps {
@@ -25,12 +26,12 @@ ProjectIssues.defaultProps = {
 
 /* eslint-disable graphql/template-strings */
 const issuesQuery = gql`
-  query issues($repoName: String!) {
-    issues(repoName: $repoName)
+  query issues($repoPath: String!) {
+    issues(repoPath: $repoPath)
       @rest(
         type: "githubIssue"
-        path: "repos/codefordenver/:repoName/issues?labels=ready"
-        params: { repoName: $repoName }
+        path: "repos/:repoPath/issues?labels=ready"
+        params: { repoPath: $repoPath }
         endpoint: "github"
       ) {
       id
@@ -46,7 +47,7 @@ interface ProjectIssuesProps {
   repoName: string;
 }
 type Variables = {
-  repoName: string;
+  repoPath: string;
 };
 type ResponseData = { issues: GitHubIssue[] };
 type ChildProps = { issues: GitHubIssue[] }; //ChildDataProps<ProjectIssuesProps, Response, Variables>;
@@ -56,7 +57,7 @@ export default graphql<ProjectIssuesProps, ResponseData, Variables, ChildProps>(
   {
     options: (props: ProjectIssuesProps) => ({
       variables: {
-        repoName: props.repoName
+        repoPath: getRepoPath(props.repoName)
       }
     }),
     props: ({ data: { issues = [] } = {} }) => {

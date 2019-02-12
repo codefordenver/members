@@ -1907,7 +1907,7 @@ export type MemberProfileFragmentFragment = {
 
   flowdockName: Maybe<string>;
 
-  role: UserRole | null;
+  role: Maybe<UserRole>;
 
   email: string;
 
