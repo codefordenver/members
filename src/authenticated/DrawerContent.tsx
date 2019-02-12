@@ -18,6 +18,15 @@ import {
   ProjectsDrawerAllProjects
 } from '../generated-models';
 
+const styles = (theme: Theme) =>
+  createStyles({
+    navTitle: {
+      textAlign: 'center',
+      fontSize: '0.75em',
+      fontWeight: 'bold'
+    }
+  });
+
 interface DrawerContentProps extends WithStyles<typeof styles> {
   projects: ProjectsDrawerAllProjects[];
   loading: boolean;
@@ -60,15 +69,6 @@ const DrawerContent: React.SFC<DrawerContentProps> = ({
     </div>
   );
 };
-
-const styles = (theme: Theme) =>
-  createStyles({
-    navTitle: {
-      textAlign: 'center',
-      fontSize: '0.75em',
-      fontWeight: 'bold'
-    }
-  });
 
 const DrawerContentWithData = compose(
   withStyles(styles, { withTheme: true }),

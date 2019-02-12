@@ -5,7 +5,7 @@
     "browser": true
   },
 
-  "plugins": ["graphql"],
+  "plugins": ["graphql", "react-hooks"],
 
   "settings": {
     "react": {
@@ -33,19 +33,29 @@
       }
     ],
 
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+
+    "react-hooks/rules-of-hooks": "error"
   },
 
   "overrides": [
     {
       "files": ["**/*.tsx", "**/*.ts"],
 
-      "parser": "typescript-eslint-parser",
+      "parser": "@typescript-eslint/parser",
 
-      "plugins": ["typescript"],
+      "plugins": ["@typescript-eslint"],
 
       "rules": {
-        "typescript/no-unused-vars": "warn"
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            "vars": "all",
+            "args": "none",
+            "ignoreRestSiblings": true
+          }
+        ]
       }
     }
   ]

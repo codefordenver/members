@@ -1,8 +1,4 @@
-import {
-  UserRole,
-  MemberProfileFragmentFragment,
-  MemberProfileFragmentFragmentDoc
-} from './generated-models';
+import { UserRole } from './generated-models';
 
 export interface User {
   role: UserRole | null;

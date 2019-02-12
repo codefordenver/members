@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import TextField from '@material-ui/core/TextField';
 import AppBar from '@material-ui/core/AppBar';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import Markdown from '../shared-components/Markdown';
-import { getUniqueId } from '../utils';
+import { useUniqueId } from '../utils/hooks';
 
 interface Props {
   value: string | null;
@@ -16,53 +16,50 @@ interface Props {
   >;
 }
 type TabViews = 'write' | 'preview';
-interface State {
-  tabView: TabViews;
-}
 
-class EditableMarkdown extends React.Component<Props, State> {
-  state: State = {
-    tabView: 'write'
-  };
+const EditableMarkdown: React.SFC<Props> = ({
+  value,
+  label,
+  name,
+  editing,
+  onChange
+}) => {
+  const [tabView, setTab] = useState('write');
+  const changeTab = useCallback(
+    (event: React.ChangeEvent<{}>, tabView: TabViews) => {
+      setTab(tabView);
+    },
+    []
+  );
+  const textId = useUniqueId();
 
-  render() {
-    const { value, label, name, editing, onChange } = this.props;
-    if (!editing) {
-      return <Markdown text={value || ''} />;
-    }
-
-    return (
-      <div>
-        <AppBar position="static" color="default">
-          <Tabs
-            indicatorColor="primary"
-            value={this.state.tabView}
-            onChange={this._changeTab}
-          >
-            <Tab value="write" label="Write" />
-            <Tab value="preview" label="Preview" />
-          </Tabs>
-        </AppBar>
-        {this.state.tabView === 'preview' ? (
-          <Markdown text={value || ''} />
-        ) : (
-          <TextField
-            name={name}
-            label={label}
-            value={value || ''}
-            onChange={onChange}
-            multiline
-            rowsMax={100}
-            fullWidth
-            id={`editable-markdown-${getUniqueId()}`} // TODO Make unique per component instance
-          />
-        )}
-      </div>
-    );
+  if (!editing) {
+    return <Markdown text={value || ''} />;
   }
 
-  _changeTab = (event: React.ChangeEvent<{}>, tabView: TabViews) => {
-    this.setState({ tabView });
-  };
-}
+  return (
+    <div>
+      <AppBar position="static" color="default">
+        <Tabs indicatorColor="primary" value={tabView} onChange={changeTab}>
+          <Tab value="write" label="Write" />
+          <Tab value="preview" label="Preview" />
+        </Tabs>
+      </AppBar>
+      {tabView === 'preview' ? (
+        <Markdown text={value || ''} />
+      ) : (
+        <TextField
+          name={name}
+          label={label}
+          value={value || ''}
+          onChange={onChange}
+          multiline
+          rowsMax={100}
+          fullWidth
+          id={`editable-markdown-${textId}`}
+        />
+      )}
+    </div>
+  );
+};
 export default EditableMarkdown;
