@@ -26,6 +26,7 @@
     "auth0-js": "^9.8.1",
     "babel-polyfill": "^6.26.0",
     "date-fns": "^1.29.0",
+    "formik": "^2.0.0-gamma.1",
     "graphql": "^14.0.2",
     "graphql-tag": "^2.10.0",
     "marked": "^0.5.1",
