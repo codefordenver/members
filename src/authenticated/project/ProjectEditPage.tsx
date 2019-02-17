@@ -1,50 +1,68 @@
-import { compose } from 'react-apollo';
-import ProjectSection from './ProjectSection';
-import withEditPage from '../../utils/withEditPage';
+import React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
+import { History } from 'history';
+import ProjectForm from './ProjectForm';
+import LoadingIndicator from '../../shared-components/LoadingIndicator';
 import {
-  GetProjectHOC,
-  UpdateProjectHOC,
-  ProjectSectionFieldsFragment
+  GetProjectComponent,
+  ProjectSectionFieldsFragment,
+  UpdateProjectComponent
 } from '../../generated-models';
 
-type ProjectEditPageProps = {
-  match: {
-    params: {
-      id: string;
-    };
-  };
-};
+type ProjectEditPageProps = RouteComponentProps<{ id: string }>;
 
-const ProjectEditPage = compose(
-  GetProjectHOC<ProjectEditPageProps>({
-    options: props => ({ variables: { id: props.match.params.id } }),
-    props: ({ data: { Project = {} } = {} }) => ({ project: Project })
-  }),
-  UpdateProjectHOC({
-    props: ({ mutate }) => ({
-      onEdit: (updatedProject: ProjectSectionFieldsFragment) =>
-        mutate &&
-        mutate({
-          variables: {
-            ...updatedProject,
-            skillsIds:
-              updatedProject.skills &&
-              updatedProject.skills.map(skill => skill.id),
-            championsIds:
-              updatedProject.champions &&
-              updatedProject.champions.map(champion => champion.id)
-          }
-        })
-    }),
-    options: {
-      refetchQueries: ['editableUsersList']
-    }
-  }),
-  withEditPage({
-    renameProps: {
-      formData: 'project'
-    }
-  })
-)(ProjectSection);
+function formatProjectForMutation(
+  updatedProject: ProjectSectionFieldsFragment
+) {
+  return {
+    ...updatedProject,
+    skillsIds:
+      updatedProject.skills && updatedProject.skills.map(skill => skill.id),
+    championsIds:
+      updatedProject.champions &&
+      updatedProject.champions.map(champion => champion.id)
+  };
+}
+
+function getBaseUrl(history: History) {
+  return history.location.pathname.split('/edit')[0];
+}
+
+const ProjectEditPage: React.SFC<ProjectEditPageProps> = ({
+  history,
+  match
+}) => {
+  return (
+    <UpdateProjectComponent refetchQueries={['editableUsersList']}>
+      {updateProjectMutation => (
+        <GetProjectComponent variables={{ id: match.params.id }}>
+          {({ loading, error, data }) => {
+            if (error) return `Error! ${error.message}`;
+            if (loading || !data || !data.Project) return <LoadingIndicator />;
+
+            return (
+              <ProjectForm
+                initialValues={data.Project}
+                editing
+                onSubmit={async (updatedProject, actions) => {
+                  try {
+                    await updateProjectMutation({
+                      variables: formatProjectForMutation(updatedProject)
+                    });
+                    history.push(getBaseUrl(history));
+                  } catch (err) {
+                    console.error('submitting error', err);
+                    actions.setSubmitting(false);
+                    alert(err);
+                  }
+                }}
+              />
+            );
+          }}
+        </GetProjectComponent>
+      )}
+    </UpdateProjectComponent>
+  );
+};
 
 export default ProjectEditPage;

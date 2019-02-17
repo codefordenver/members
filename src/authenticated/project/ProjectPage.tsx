@@ -1,28 +1,22 @@
-import { compose } from 'react-apollo';
-import withViewPage from '../../utils/withViewPage';
-import ProjectSection from './ProjectSection';
-import { GetProjectHOC } from '../../generated-models';
+import React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
+import ProjectForm from './ProjectForm';
+import LoadingIndicator from '../../shared-components/LoadingIndicator';
+import { GetProjectComponent } from '../../generated-models';
 
-type ProjectPageProps = {
-  match: {
-    params: {
-      id: string;
-    };
-  };
+type ProjectPageProps = RouteComponentProps<{ id: string }>;
+
+const ProjectPage: React.SFC<ProjectPageProps> = ({ match }) => {
+  return (
+    <GetProjectComponent variables={{ id: match.params.id }}>
+      {({ loading, error, data }) => {
+        if (error) return `Error! ${error.message}`;
+        if (loading || !data || !data.Project) return <LoadingIndicator />;
+
+        return <ProjectForm initialValues={data.Project} />;
+      }}
+    </GetProjectComponent>
+  );
 };
-
-const ProjectPage = compose(
-  GetProjectHOC<ProjectPageProps>({
-    options: (props: ProjectPageProps) => ({
-      variables: { id: props.match.params.id }
-    }),
-    props: ({ data: { Project = {} } = {} }) => ({ project: Project })
-  }),
-  withViewPage({
-    renameProps: {
-      formData: 'project'
-    }
-  })
-)(ProjectSection);
 
 export default ProjectPage;
