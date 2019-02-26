@@ -1897,6 +1897,8 @@ export type MemberProfileFragmentFragment = {
 
   id: string;
 
+  createdAt: DateTime;
+
   picture: Maybe<string>;
 
   name: Maybe<string>;
@@ -1907,7 +1909,7 @@ export type MemberProfileFragmentFragment = {
 
   flowdockName: Maybe<string>;
 
-  role: UserRole | null;
+  role: Maybe<UserRole>;
 
   email: string;
 
@@ -2002,6 +2004,7 @@ import gql from 'graphql-tag';
 export const MemberProfileFragmentFragmentDoc = gql`
   fragment MemberProfileFragment on User {
     id
+    createdAt
     picture
     name
     description
