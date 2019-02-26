@@ -1,12 +1,18 @@
-import React from 'react';
-import { compose } from 'react-apollo';
-import withEditPage from '../../utils/withEditPage';
-import MemberProfile from './MemberProfile';
+import React, { useContext } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
+import { History } from 'history';
+import MemberForm from './MemberForm';
 import AuthenticationContext from '../../utils/authentication/authContext';
-import { UpdateUserHOC, GetUserUser } from '../../generated-models';
-import { withProfilePageData } from './MyProfilePage';
+import LoadingIndicator from '../../shared-components/LoadingIndicator';
+import {
+  GetUserComponent,
+  MemberProfileFragmentFragment,
+  UpdateUserComponent
+} from '../../generated-models';
 
-function prepUserForUpdate(updatedUser: GetUserUser) {
+type MemberEditPageProps = RouteComponentProps;
+
+function formatMemberForMutation(updatedUser: MemberProfileFragmentFragment) {
   const skillsIds =
     updatedUser.skills && updatedUser.skills.map(skill => skill.id);
   const projectsChampionedIds =
@@ -19,36 +25,44 @@ function prepUserForUpdate(updatedUser: GetUserUser) {
   };
 }
 
-const MemberProfileEdit = compose(
-  withProfilePageData,
-  UpdateUserHOC({
-    props: ({ mutate }) => ({
-      onEdit: (updatedUser: GetUserUser) => {
-        return mutate && mutate({ variables: prepUserForUpdate(updatedUser) });
-      }
-    }),
-    options: {
-      refetchQueries: ['editableProjectsList']
-    }
-  }),
-  withEditPage({
-    renameProps: {
-      formData: 'user'
-    }
-  })
-)(MemberProfile);
+function getBaseUrl(history: History) {
+  return history.location.pathname.split('/edit')[0];
+}
 
-const MemberProfileEditPage: React.SFC = () => {
+const MemberEditPage: React.SFC<MemberEditPageProps> = ({ history }) => {
+  const authContext = useContext(AuthenticationContext);
+
   return (
-    <AuthenticationContext.Consumer>
-      {context => (
-        <MemberProfileEdit
-          isAuthenticated={context.isAuthenticated()}
-          userId={context.authData && context.authData.userId}
-        />
+    <UpdateUserComponent refetchQueries={['editableUsersList']}>
+      {updateMemberMutation => (
+        <GetUserComponent variables={{ id: authContext.authData.userId }}>
+          {({ loading, error, data }) => {
+            if (error) return `Error! ${error.message}`;
+            if (loading || !data || !data.user) return <LoadingIndicator />;
+
+            return (
+              <MemberForm
+                initialValues={data.user}
+                editing
+                onSubmit={async (updatedMember, actions) => {
+                  try {
+                    await updateMemberMutation({
+                      variables: formatMemberForMutation(updatedMember)
+                    });
+                    history.push(getBaseUrl(history));
+                  } catch (err) {
+                    console.error('submitting error', err);
+                    actions.setSubmitting(false);
+                    alert(err);
+                  }
+                }}
+              />
+            );
+          }}
+        </GetUserComponent>
       )}
-    </AuthenticationContext.Consumer>
+    </UpdateUserComponent>
   );
 };
 
-export default MemberProfileEditPage;
+export default MemberEditPage;

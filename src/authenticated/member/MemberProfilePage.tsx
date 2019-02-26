@@ -1,28 +1,22 @@
-import MemberProfile from './MemberProfile';
-import { GetUserHOC, GetUserUser } from '../../generated-models';
+import React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
+import MemberForm from './MemberForm';
+import LoadingIndicator from '../../shared-components/LoadingIndicator';
+import { GetUserComponent } from '../../generated-models';
 
-type MemberProfilePageOuterProps = {
-  match: {
-    params: {
-      id: string;
-    };
-  };
+type MemberPageProps = RouteComponentProps<{ id: string }>;
+
+const MemberPage: React.SFC<MemberPageProps> = ({ match }) => {
+  return (
+    <GetUserComponent variables={{ id: match.params.id }}>
+      {({ loading, error, data }) => {
+        if (error) return `Error! ${error.message}`;
+        if (loading || !data || !data.user) return <LoadingIndicator />;
+
+        return <MemberForm initialValues={data.user} />;
+      }}
+    </GetUserComponent>
+  );
 };
 
-const MemberProfilePage = GetUserHOC<MemberProfilePageOuterProps>({
-  options: props => {
-    return { variables: { id: props.match.params.id } };
-  },
-  props: props => {
-    const user: GetUserUser | undefined =
-      (props.data && props.data.user) || undefined;
-
-    return {
-      user,
-      editing: false,
-      onFormDataChange: (value: any) => {}
-    };
-  }
-})(MemberProfile);
-
-export default MemberProfilePage;
+export default MemberPage;
