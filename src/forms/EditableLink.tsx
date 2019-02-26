@@ -1,6 +1,5 @@
 import React from 'react';
 import EditableText from './EditableText';
-import { getRepoPath } from '../utils';
 
 interface EditableLinkProps {
   value: string | null;
