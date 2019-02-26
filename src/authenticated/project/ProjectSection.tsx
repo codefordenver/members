@@ -5,8 +5,9 @@ import EditableSkills from '../../forms/EditableSkills';
 import EditableUsers from '../../forms/EditableUsers';
 import EditableImageLink from '../../forms/EditableImageLink';
 import ProjectIssues from './ProjectIssues';
-import EditableWaffleAndGithubLinks from '../../forms/EditableWaffleAndGithubLinks';
+import EditableLink from '../../forms/EditableLink';
 import { ProjectSectionFieldsFragment } from '../../generated-models';
+import { getRepoPath } from '../../utils';
 
 interface ProjectSectionProps {
   project: ProjectSectionFieldsFragment;
@@ -25,7 +26,8 @@ const ProjectSection: React.SFC<ProjectSectionProps> = ({
     skills,
     champions,
     repoName,
-    headerImage
+    headerImage,
+    boardUrl
   } = project;
   const commonProps = {
     onChange: onFormDataChange,
@@ -64,7 +66,22 @@ const ProjectSection: React.SFC<ProjectSectionProps> = ({
         {...commonProps}
       />
       {editing || (repoName && <h2>Links</h2>)}
-      <EditableWaffleAndGithubLinks value={repoName} {...commonProps} />
+      <EditableLink
+        value={repoName}
+        linkName="Github"
+        name="repoName"
+        label="Github Repository Name"
+        linkTarget={`https://github.com/${getRepoPath(repoName || '')}`}
+        {...commonProps}
+      />
+      <EditableLink
+        value={boardUrl}
+        linkName="Project Board"
+        name="boardUrl"
+        label="Project Board URL"
+        linkTarget={boardUrl || ''}
+        {...commonProps}
+      />
       {!editing && repoName && <ProjectIssues repoName={repoName} />}
     </React.Fragment>
   );

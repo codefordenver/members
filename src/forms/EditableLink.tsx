@@ -2,29 +2,29 @@ import React from 'react';
 import EditableText from './EditableText';
 import { getRepoPath } from '../utils';
 
-interface EditableWaffleAndGithubLinksProps {
+interface EditableLinkProps {
   value: string | null;
-  name?: string;
-  label?: string;
+  name: string;
+  label: string;
+  linkName?: string;
+  linkTarget?: string;
   editing?: boolean;
   onChange?: (value: any) => void;
 }
 
-const EditableWaffleAndGithubLinks: React.SFC<
-  EditableWaffleAndGithubLinksProps
-> = ({
+const EditableLink: React.FunctionComponent<EditableLinkProps> = ({
   value,
-  name = 'repoName',
-  label = 'GitHub Repository Name',
+  name,
+  label,
+  linkName,
+  linkTarget,
   editing,
   onChange = () => {}
 }) => {
   if (!editing) {
     return value ? (
       <div>
-        <a href={`https://github.com/${getRepoPath(value)}`}>GitHub</a>
-        &nbsp;
-        <a href={`https://waffle.io/${getRepoPath(value)}`}>Waffle</a>
+        <a href={linkTarget}>{linkName}</a>
       </div>
     ) : null;
   }
@@ -40,4 +40,4 @@ const EditableWaffleAndGithubLinks: React.SFC<
   );
 };
 
-export default EditableWaffleAndGithubLinks;
+export default EditableLink;
