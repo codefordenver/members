@@ -70,7 +70,7 @@ const ProjectSection: React.SFC<ProjectSectionProps> = ({
         value={repoName}
         linkName="Github"
         name="repoName"
-        label="Github Repository Name"
+        label="GitHub Repository Name"
         linkTarget={`https://github.com/${getRepoPath(repoName || '')}`}
         {...commonProps}
       />
