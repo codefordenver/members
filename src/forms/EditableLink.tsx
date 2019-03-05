@@ -21,11 +21,7 @@ const EditableLink: React.FunctionComponent<EditableLinkProps> = ({
   onChange = () => {}
 }) => {
   if (!editing) {
-    return value ? (
-      <div>
-        <a href={linkTarget}>{linkName}</a>
-      </div>
-    ) : null;
+    return value ? <a href={linkTarget}>{linkName}</a> : null;
   }
 
   return (
