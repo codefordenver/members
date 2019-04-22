@@ -1,288 +1,5 @@
 export type Maybe<T> = T | null;
 
-export interface UserFilter {
-  /** Logical AND on all given filters. */
-  AND?: Maybe<UserFilter[]>;
-  /** Logical OR on all given filters. */
-  OR?: Maybe<UserFilter[]>;
-
-  auth0UserId?: Maybe<string>;
-  /** All values that are not equal to given value. */
-  auth0UserId_not?: Maybe<string>;
-  /** All values that are contained in given list. */
-  auth0UserId_in?: Maybe<string[]>;
-  /** All values that are not contained in given list. */
-  auth0UserId_not_in?: Maybe<string[]>;
-  /** All values less than the given value. */
-  auth0UserId_lt?: Maybe<string>;
-  /** All values less than or equal the given value. */
-  auth0UserId_lte?: Maybe<string>;
-  /** All values greater than the given value. */
-  auth0UserId_gt?: Maybe<string>;
-  /** All values greater than or equal the given value. */
-  auth0UserId_gte?: Maybe<string>;
-  /** All values containing the given string. */
-  auth0UserId_contains?: Maybe<string>;
-  /** All values not containing the given string. */
-  auth0UserId_not_contains?: Maybe<string>;
-  /** All values starting with the given string. */
-  auth0UserId_starts_with?: Maybe<string>;
-  /** All values not starting with the given string. */
-  auth0UserId_not_starts_with?: Maybe<string>;
-  /** All values ending with the given string. */
-  auth0UserId_ends_with?: Maybe<string>;
-  /** All values not ending with the given string. */
-  auth0UserId_not_ends_with?: Maybe<string>;
-
-  createdAt?: Maybe<DateTime>;
-  /** All values that are not equal to given value. */
-  createdAt_not?: Maybe<DateTime>;
-  /** All values that are contained in given list. */
-  createdAt_in?: Maybe<DateTime[]>;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: Maybe<DateTime[]>;
-  /** All values less than the given value. */
-  createdAt_lt?: Maybe<DateTime>;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: Maybe<DateTime>;
-  /** All values greater than the given value. */
-  createdAt_gt?: Maybe<DateTime>;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: Maybe<DateTime>;
-
-  description?: Maybe<string>;
-  /** All values that are not equal to given value. */
-  description_not?: Maybe<string>;
-  /** All values that are contained in given list. */
-  description_in?: Maybe<string[]>;
-  /** All values that are not contained in given list. */
-  description_not_in?: Maybe<string[]>;
-  /** All values less than the given value. */
-  description_lt?: Maybe<string>;
-  /** All values less than or equal the given value. */
-  description_lte?: Maybe<string>;
-  /** All values greater than the given value. */
-  description_gt?: Maybe<string>;
-  /** All values greater than or equal the given value. */
-  description_gte?: Maybe<string>;
-  /** All values containing the given string. */
-  description_contains?: Maybe<string>;
-  /** All values not containing the given string. */
-  description_not_contains?: Maybe<string>;
-  /** All values starting with the given string. */
-  description_starts_with?: Maybe<string>;
-  /** All values not starting with the given string. */
-  description_not_starts_with?: Maybe<string>;
-  /** All values ending with the given string. */
-  description_ends_with?: Maybe<string>;
-  /** All values not ending with the given string. */
-  description_not_ends_with?: Maybe<string>;
-
-  email?: Maybe<string>;
-  /** All values that are not equal to given value. */
-  email_not?: Maybe<string>;
-  /** All values that are contained in given list. */
-  email_in?: Maybe<string[]>;
-  /** All values that are not contained in given list. */
-  email_not_in?: Maybe<string[]>;
-  /** All values less than the given value. */
-  email_lt?: Maybe<string>;
-  /** All values less than or equal the given value. */
-  email_lte?: Maybe<string>;
-  /** All values greater than the given value. */
-  email_gt?: Maybe<string>;
-  /** All values greater than or equal the given value. */
-  email_gte?: Maybe<string>;
-  /** All values containing the given string. */
-  email_contains?: Maybe<string>;
-  /** All values not containing the given string. */
-  email_not_contains?: Maybe<string>;
-  /** All values starting with the given string. */
-  email_starts_with?: Maybe<string>;
-  /** All values not starting with the given string. */
-  email_not_starts_with?: Maybe<string>;
-  /** All values ending with the given string. */
-  email_ends_with?: Maybe<string>;
-  /** All values not ending with the given string. */
-  email_not_ends_with?: Maybe<string>;
-
-  flowdockName?: Maybe<string>;
-  /** All values that are not equal to given value. */
-  flowdockName_not?: Maybe<string>;
-  /** All values that are contained in given list. */
-  flowdockName_in?: Maybe<string[]>;
-  /** All values that are not contained in given list. */
-  flowdockName_not_in?: Maybe<string[]>;
-  /** All values less than the given value. */
-  flowdockName_lt?: Maybe<string>;
-  /** All values less than or equal the given value. */
-  flowdockName_lte?: Maybe<string>;
-  /** All values greater than the given value. */
-  flowdockName_gt?: Maybe<string>;
-  /** All values greater than or equal the given value. */
-  flowdockName_gte?: Maybe<string>;
-  /** All values containing the given string. */
-  flowdockName_contains?: Maybe<string>;
-  /** All values not containing the given string. */
-  flowdockName_not_contains?: Maybe<string>;
-  /** All values starting with the given string. */
-  flowdockName_starts_with?: Maybe<string>;
-  /** All values not starting with the given string. */
-  flowdockName_not_starts_with?: Maybe<string>;
-  /** All values ending with the given string. */
-  flowdockName_ends_with?: Maybe<string>;
-  /** All values not ending with the given string. */
-  flowdockName_not_ends_with?: Maybe<string>;
-
-  githubName?: Maybe<string>;
-  /** All values that are not equal to given value. */
-  githubName_not?: Maybe<string>;
-  /** All values that are contained in given list. */
-  githubName_in?: Maybe<string[]>;
-  /** All values that are not contained in given list. */
-  githubName_not_in?: Maybe<string[]>;
-  /** All values less than the given value. */
-  githubName_lt?: Maybe<string>;
-  /** All values less than or equal the given value. */
-  githubName_lte?: Maybe<string>;
-  /** All values greater than the given value. */
-  githubName_gt?: Maybe<string>;
-  /** All values greater than or equal the given value. */
-  githubName_gte?: Maybe<string>;
-  /** All values containing the given string. */
-  githubName_contains?: Maybe<string>;
-  /** All values not containing the given string. */
-  githubName_not_contains?: Maybe<string>;
-  /** All values starting with the given string. */
-  githubName_starts_with?: Maybe<string>;
-  /** All values not starting with the given string. */
-  githubName_not_starts_with?: Maybe<string>;
-  /** All values ending with the given string. */
-  githubName_ends_with?: Maybe<string>;
-  /** All values not ending with the given string. */
-  githubName_not_ends_with?: Maybe<string>;
-
-  id?: Maybe<string>;
-  /** All values that are not equal to given value. */
-  id_not?: Maybe<string>;
-  /** All values that are contained in given list. */
-  id_in?: Maybe<string[]>;
-  /** All values that are not contained in given list. */
-  id_not_in?: Maybe<string[]>;
-  /** All values less than the given value. */
-  id_lt?: Maybe<string>;
-  /** All values less than or equal the given value. */
-  id_lte?: Maybe<string>;
-  /** All values greater than the given value. */
-  id_gt?: Maybe<string>;
-  /** All values greater than or equal the given value. */
-  id_gte?: Maybe<string>;
-  /** All values containing the given string. */
-  id_contains?: Maybe<string>;
-  /** All values not containing the given string. */
-  id_not_contains?: Maybe<string>;
-  /** All values starting with the given string. */
-  id_starts_with?: Maybe<string>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: Maybe<string>;
-  /** All values ending with the given string. */
-  id_ends_with?: Maybe<string>;
-  /** All values not ending with the given string. */
-  id_not_ends_with?: Maybe<string>;
-
-  name?: Maybe<string>;
-  /** All values that are not equal to given value. */
-  name_not?: Maybe<string>;
-  /** All values that are contained in given list. */
-  name_in?: Maybe<string[]>;
-  /** All values that are not contained in given list. */
-  name_not_in?: Maybe<string[]>;
-  /** All values less than the given value. */
-  name_lt?: Maybe<string>;
-  /** All values less than or equal the given value. */
-  name_lte?: Maybe<string>;
-  /** All values greater than the given value. */
-  name_gt?: Maybe<string>;
-  /** All values greater than or equal the given value. */
-  name_gte?: Maybe<string>;
-  /** All values containing the given string. */
-  name_contains?: Maybe<string>;
-  /** All values not containing the given string. */
-  name_not_contains?: Maybe<string>;
-  /** All values starting with the given string. */
-  name_starts_with?: Maybe<string>;
-  /** All values not starting with the given string. */
-  name_not_starts_with?: Maybe<string>;
-  /** All values ending with the given string. */
-  name_ends_with?: Maybe<string>;
-  /** All values not ending with the given string. */
-  name_not_ends_with?: Maybe<string>;
-
-  picture?: Maybe<string>;
-  /** All values that are not equal to given value. */
-  picture_not?: Maybe<string>;
-  /** All values that are contained in given list. */
-  picture_in?: Maybe<string[]>;
-  /** All values that are not contained in given list. */
-  picture_not_in?: Maybe<string[]>;
-  /** All values less than the given value. */
-  picture_lt?: Maybe<string>;
-  /** All values less than or equal the given value. */
-  picture_lte?: Maybe<string>;
-  /** All values greater than the given value. */
-  picture_gt?: Maybe<string>;
-  /** All values greater than or equal the given value. */
-  picture_gte?: Maybe<string>;
-  /** All values containing the given string. */
-  picture_contains?: Maybe<string>;
-  /** All values not containing the given string. */
-  picture_not_contains?: Maybe<string>;
-  /** All values starting with the given string. */
-  picture_starts_with?: Maybe<string>;
-  /** All values not starting with the given string. */
-  picture_not_starts_with?: Maybe<string>;
-  /** All values ending with the given string. */
-  picture_ends_with?: Maybe<string>;
-  /** All values not ending with the given string. */
-  picture_not_ends_with?: Maybe<string>;
-
-  role?: Maybe<UserRole>;
-  /** All values that are not equal to given value. */
-  role_not?: Maybe<UserRole>;
-  /** All values that are contained in given list. */
-  role_in?: Maybe<UserRole[]>;
-  /** All values that are not contained in given list. */
-  role_not_in?: Maybe<UserRole[]>;
-
-  updatedAt?: Maybe<DateTime>;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: Maybe<DateTime>;
-  /** All values that are contained in given list. */
-  updatedAt_in?: Maybe<DateTime[]>;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: Maybe<DateTime[]>;
-  /** All values less than the given value. */
-  updatedAt_lt?: Maybe<DateTime>;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: Maybe<DateTime>;
-  /** All values greater than the given value. */
-  updatedAt_gt?: Maybe<DateTime>;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: Maybe<DateTime>;
-
-  projectsChampioned_every?: Maybe<ProjectFilter>;
-
-  projectsChampioned_some?: Maybe<ProjectFilter>;
-
-  projectsChampioned_none?: Maybe<ProjectFilter>;
-
-  skills_every?: Maybe<SkillFilter>;
-
-  skills_some?: Maybe<SkillFilter>;
-
-  skills_none?: Maybe<SkillFilter>;
-}
-
 export interface ProjectFilter {
   /** Logical AND on all given filters. */
   AND?: Maybe<ProjectFilter[]>;
@@ -538,385 +255,12 @@ export interface ProjectFilter {
   skills_none?: Maybe<SkillFilter>;
 }
 
-export interface SkillFilter {
+export interface UserFilter {
   /** Logical AND on all given filters. */
-  AND?: Maybe<SkillFilter[]>;
+  AND?: Maybe<UserFilter[]>;
   /** Logical OR on all given filters. */
-  OR?: Maybe<SkillFilter[]>;
+  OR?: Maybe<UserFilter[]>;
 
-  createdAt?: Maybe<DateTime>;
-  /** All values that are not equal to given value. */
-  createdAt_not?: Maybe<DateTime>;
-  /** All values that are contained in given list. */
-  createdAt_in?: Maybe<DateTime[]>;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: Maybe<DateTime[]>;
-  /** All values less than the given value. */
-  createdAt_lt?: Maybe<DateTime>;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: Maybe<DateTime>;
-  /** All values greater than the given value. */
-  createdAt_gt?: Maybe<DateTime>;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: Maybe<DateTime>;
-
-  id?: Maybe<string>;
-  /** All values that are not equal to given value. */
-  id_not?: Maybe<string>;
-  /** All values that are contained in given list. */
-  id_in?: Maybe<string[]>;
-  /** All values that are not contained in given list. */
-  id_not_in?: Maybe<string[]>;
-  /** All values less than the given value. */
-  id_lt?: Maybe<string>;
-  /** All values less than or equal the given value. */
-  id_lte?: Maybe<string>;
-  /** All values greater than the given value. */
-  id_gt?: Maybe<string>;
-  /** All values greater than or equal the given value. */
-  id_gte?: Maybe<string>;
-  /** All values containing the given string. */
-  id_contains?: Maybe<string>;
-  /** All values not containing the given string. */
-  id_not_contains?: Maybe<string>;
-  /** All values starting with the given string. */
-  id_starts_with?: Maybe<string>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: Maybe<string>;
-  /** All values ending with the given string. */
-  id_ends_with?: Maybe<string>;
-  /** All values not ending with the given string. */
-  id_not_ends_with?: Maybe<string>;
-
-  name?: Maybe<string>;
-  /** All values that are not equal to given value. */
-  name_not?: Maybe<string>;
-  /** All values that are contained in given list. */
-  name_in?: Maybe<string[]>;
-  /** All values that are not contained in given list. */
-  name_not_in?: Maybe<string[]>;
-  /** All values less than the given value. */
-  name_lt?: Maybe<string>;
-  /** All values less than or equal the given value. */
-  name_lte?: Maybe<string>;
-  /** All values greater than the given value. */
-  name_gt?: Maybe<string>;
-  /** All values greater than or equal the given value. */
-  name_gte?: Maybe<string>;
-  /** All values containing the given string. */
-  name_contains?: Maybe<string>;
-  /** All values not containing the given string. */
-  name_not_contains?: Maybe<string>;
-  /** All values starting with the given string. */
-  name_starts_with?: Maybe<string>;
-  /** All values not starting with the given string. */
-  name_not_starts_with?: Maybe<string>;
-  /** All values ending with the given string. */
-  name_ends_with?: Maybe<string>;
-  /** All values not ending with the given string. */
-  name_not_ends_with?: Maybe<string>;
-
-  updatedAt?: Maybe<DateTime>;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: Maybe<DateTime>;
-  /** All values that are contained in given list. */
-  updatedAt_in?: Maybe<DateTime[]>;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: Maybe<DateTime[]>;
-  /** All values less than the given value. */
-  updatedAt_lt?: Maybe<DateTime>;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: Maybe<DateTime>;
-  /** All values greater than the given value. */
-  updatedAt_gt?: Maybe<DateTime>;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: Maybe<DateTime>;
-
-  projectsWithSkill_every?: Maybe<ProjectFilter>;
-
-  projectsWithSkill_some?: Maybe<ProjectFilter>;
-
-  projectsWithSkill_none?: Maybe<ProjectFilter>;
-
-  usersWithSkill_every?: Maybe<UserFilter>;
-
-  usersWithSkill_some?: Maybe<UserFilter>;
-
-  usersWithSkill_none?: Maybe<UserFilter>;
-}
-
-export interface ProjectchampionsUser {
-  auth0UserId: string;
-
-  description?: Maybe<string>;
-
-  email: string;
-
-  flowdockName?: Maybe<string>;
-
-  githubName?: Maybe<string>;
-
-  name?: Maybe<string>;
-
-  picture?: Maybe<string>;
-
-  role?: Maybe<UserRole>;
-
-  projectsChampionedIds?: Maybe<string[]>;
-
-  projectsChampioned?: Maybe<UserprojectsChampionedProject[]>;
-
-  skillsIds?: Maybe<string[]>;
-
-  skills?: Maybe<UserskillsSkill[]>;
-}
-
-export interface UserprojectsChampionedProject {
-  boardUrl?: Maybe<string>;
-
-  cfapiProjectId?: Maybe<string>;
-
-  description?: Maybe<string>;
-
-  headerImage?: Maybe<string>;
-
-  name: string;
-
-  repoName?: Maybe<string>;
-
-  status?: Maybe<ProjectStatus>;
-
-  championsIds?: Maybe<string[]>;
-
-  champions?: Maybe<ProjectchampionsUser[]>;
-
-  skillsIds?: Maybe<string[]>;
-
-  skills?: Maybe<ProjectskillsSkill[]>;
-}
-
-export interface ProjectskillsSkill {
-  name: string;
-
-  projectsWithSkillIds?: Maybe<string[]>;
-
-  projectsWithSkill?: Maybe<SkillprojectsWithSkillProject[]>;
-
-  usersWithSkillIds?: Maybe<string[]>;
-
-  usersWithSkill?: Maybe<SkillusersWithSkillUser[]>;
-}
-
-export interface SkillprojectsWithSkillProject {
-  boardUrl?: Maybe<string>;
-
-  cfapiProjectId?: Maybe<string>;
-
-  description?: Maybe<string>;
-
-  headerImage?: Maybe<string>;
-
-  name: string;
-
-  repoName?: Maybe<string>;
-
-  status?: Maybe<ProjectStatus>;
-
-  championsIds?: Maybe<string[]>;
-
-  champions?: Maybe<ProjectchampionsUser[]>;
-
-  skillsIds?: Maybe<string[]>;
-
-  skills?: Maybe<ProjectskillsSkill[]>;
-}
-
-export interface SkillusersWithSkillUser {
-  auth0UserId: string;
-
-  description?: Maybe<string>;
-
-  email: string;
-
-  flowdockName?: Maybe<string>;
-
-  githubName?: Maybe<string>;
-
-  name?: Maybe<string>;
-
-  picture?: Maybe<string>;
-
-  role?: Maybe<UserRole>;
-
-  projectsChampionedIds?: Maybe<string[]>;
-
-  projectsChampioned?: Maybe<UserprojectsChampionedProject[]>;
-
-  skillsIds?: Maybe<string[]>;
-
-  skills?: Maybe<UserskillsSkill[]>;
-}
-
-export interface UserskillsSkill {
-  name: string;
-
-  projectsWithSkillIds?: Maybe<string[]>;
-
-  projectsWithSkill?: Maybe<SkillprojectsWithSkillProject[]>;
-
-  usersWithSkillIds?: Maybe<string[]>;
-
-  usersWithSkill?: Maybe<SkillusersWithSkillUser[]>;
-}
-
-export interface UpdateUser {
-  auth0UserId?: Maybe<string>;
-
-  description?: Maybe<string>;
-
-  email?: Maybe<string>;
-
-  flowdockName?: Maybe<string>;
-
-  githubName?: Maybe<string>;
-
-  id: string;
-
-  name?: Maybe<string>;
-
-  picture?: Maybe<string>;
-
-  role?: Maybe<UserRole>;
-
-  projectsChampionedIds?: Maybe<string[]>;
-
-  projectsChampioned?: Maybe<UserprojectsChampionedProject[]>;
-
-  skillsIds?: Maybe<string[]>;
-
-  skills?: Maybe<UserskillsSkill[]>;
-}
-
-export interface CreateUser {
-  auth0UserId: string;
-
-  description?: Maybe<string>;
-
-  email: string;
-
-  flowdockName?: Maybe<string>;
-
-  githubName?: Maybe<string>;
-
-  name?: Maybe<string>;
-
-  picture?: Maybe<string>;
-
-  role?: Maybe<UserRole>;
-
-  projectsChampionedIds?: Maybe<string[]>;
-
-  projectsChampioned?: Maybe<UserprojectsChampionedProject[]>;
-
-  skillsIds?: Maybe<string[]>;
-
-  skills?: Maybe<UserskillsSkill[]>;
-}
-
-export interface UpdateProject {
-  boardUrl?: Maybe<string>;
-
-  cfapiProjectId?: Maybe<string>;
-
-  description?: Maybe<string>;
-
-  headerImage?: Maybe<string>;
-
-  id: string;
-
-  name?: Maybe<string>;
-
-  repoName?: Maybe<string>;
-
-  status?: Maybe<ProjectStatus>;
-
-  championsIds?: Maybe<string[]>;
-
-  champions?: Maybe<ProjectchampionsUser[]>;
-
-  skillsIds?: Maybe<string[]>;
-
-  skills?: Maybe<ProjectskillsSkill[]>;
-}
-
-export interface CreateProject {
-  boardUrl?: Maybe<string>;
-
-  cfapiProjectId?: Maybe<string>;
-
-  description?: Maybe<string>;
-
-  headerImage?: Maybe<string>;
-
-  name: string;
-
-  repoName?: Maybe<string>;
-
-  status?: Maybe<ProjectStatus>;
-
-  championsIds?: Maybe<string[]>;
-
-  champions?: Maybe<ProjectchampionsUser[]>;
-
-  skillsIds?: Maybe<string[]>;
-
-  skills?: Maybe<ProjectskillsSkill[]>;
-}
-
-export interface UpdateSkill {
-  id: string;
-
-  name?: Maybe<string>;
-
-  projectsWithSkillIds?: Maybe<string[]>;
-
-  projectsWithSkill?: Maybe<SkillprojectsWithSkillProject[]>;
-
-  usersWithSkillIds?: Maybe<string[]>;
-
-  usersWithSkill?: Maybe<SkillusersWithSkillUser[]>;
-}
-
-export interface CreateSkill {
-  name: string;
-
-  projectsWithSkillIds?: Maybe<string[]>;
-
-  projectsWithSkill?: Maybe<SkillprojectsWithSkillProject[]>;
-
-  usersWithSkillIds?: Maybe<string[]>;
-
-  usersWithSkill?: Maybe<SkillusersWithSkillUser[]>;
-}
-
-export interface UserSubscriptionFilter {
-  /** Logical AND on all given filters. */
-  AND?: Maybe<UserSubscriptionFilter[]>;
-  /** Logical OR on all given filters. */
-  OR?: Maybe<UserSubscriptionFilter[]>;
-  /** The subscription event gets dispatched when it's listed in mutation_in */
-  mutation_in?: Maybe<_ModelMutationType[]>;
-  /** The subscription event gets only dispatched when one of the updated fields names is included in this list */
-  updatedFields_contains?: Maybe<string>;
-  /** The subscription event gets only dispatched when all of the field names included in this list have been updated */
-  updatedFields_contains_every?: Maybe<string[]>;
-  /** The subscription event gets only dispatched when some of the field names included in this list have been updated */
-  updatedFields_contains_some?: Maybe<string[]>;
-
-  node?: Maybe<UserSubscriptionFilterNode>;
-}
-
-export interface UserSubscriptionFilterNode {
   auth0UserId?: Maybe<string>;
   /** All values that are not equal to given value. */
   auth0UserId_not?: Maybe<string>;
@@ -1073,6 +417,10 @@ export interface UserSubscriptionFilterNode {
   /** All values not ending with the given string. */
   githubName_not_ends_with?: Maybe<string>;
 
+  hasCompletedWizard?: Maybe<boolean>;
+  /** All values that are not equal to given value. */
+  hasCompletedWizard_not?: Maybe<boolean>;
+
   id?: Maybe<string>;
   /** All values that are not equal to given value. */
   id_not?: Maybe<string>;
@@ -1192,6 +540,383 @@ export interface UserSubscriptionFilterNode {
   skills_some?: Maybe<SkillFilter>;
 
   skills_none?: Maybe<SkillFilter>;
+}
+
+export interface SkillFilter {
+  /** Logical AND on all given filters. */
+  AND?: Maybe<SkillFilter[]>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<SkillFilter[]>;
+
+  createdAt?: Maybe<DateTime>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<DateTime>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<DateTime[]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<DateTime[]>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<DateTime>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<DateTime>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<DateTime>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<DateTime>;
+
+  id?: Maybe<string>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<string>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<string[]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<string[]>;
+  /** All values less than the given value. */
+  id_lt?: Maybe<string>;
+  /** All values less than or equal the given value. */
+  id_lte?: Maybe<string>;
+  /** All values greater than the given value. */
+  id_gt?: Maybe<string>;
+  /** All values greater than or equal the given value. */
+  id_gte?: Maybe<string>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<string>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<string>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<string>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<string>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<string>;
+  /** All values not ending with the given string. */
+  id_not_ends_with?: Maybe<string>;
+
+  name?: Maybe<string>;
+  /** All values that are not equal to given value. */
+  name_not?: Maybe<string>;
+  /** All values that are contained in given list. */
+  name_in?: Maybe<string[]>;
+  /** All values that are not contained in given list. */
+  name_not_in?: Maybe<string[]>;
+  /** All values less than the given value. */
+  name_lt?: Maybe<string>;
+  /** All values less than or equal the given value. */
+  name_lte?: Maybe<string>;
+  /** All values greater than the given value. */
+  name_gt?: Maybe<string>;
+  /** All values greater than or equal the given value. */
+  name_gte?: Maybe<string>;
+  /** All values containing the given string. */
+  name_contains?: Maybe<string>;
+  /** All values not containing the given string. */
+  name_not_contains?: Maybe<string>;
+  /** All values starting with the given string. */
+  name_starts_with?: Maybe<string>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: Maybe<string>;
+  /** All values ending with the given string. */
+  name_ends_with?: Maybe<string>;
+  /** All values not ending with the given string. */
+  name_not_ends_with?: Maybe<string>;
+
+  updatedAt?: Maybe<DateTime>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<DateTime>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<DateTime[]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<DateTime[]>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<DateTime>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<DateTime>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<DateTime>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<DateTime>;
+
+  projectsWithSkill_every?: Maybe<ProjectFilter>;
+
+  projectsWithSkill_some?: Maybe<ProjectFilter>;
+
+  projectsWithSkill_none?: Maybe<ProjectFilter>;
+
+  usersWithSkill_every?: Maybe<UserFilter>;
+
+  usersWithSkill_some?: Maybe<UserFilter>;
+
+  usersWithSkill_none?: Maybe<UserFilter>;
+}
+
+export interface ProjectchampionsUser {
+  auth0UserId: string;
+
+  description?: Maybe<string>;
+
+  email: string;
+
+  flowdockName?: Maybe<string>;
+
+  githubName?: Maybe<string>;
+
+  hasCompletedWizard?: Maybe<boolean>;
+
+  name?: Maybe<string>;
+
+  picture?: Maybe<string>;
+
+  role?: Maybe<UserRole>;
+
+  projectsChampionedIds?: Maybe<string[]>;
+
+  projectsChampioned?: Maybe<UserprojectsChampionedProject[]>;
+
+  skillsIds?: Maybe<string[]>;
+
+  skills?: Maybe<UserskillsSkill[]>;
+}
+
+export interface UserprojectsChampionedProject {
+  boardUrl?: Maybe<string>;
+
+  cfapiProjectId?: Maybe<string>;
+
+  description?: Maybe<string>;
+
+  headerImage?: Maybe<string>;
+
+  name: string;
+
+  repoName?: Maybe<string>;
+
+  status?: Maybe<ProjectStatus>;
+
+  championsIds?: Maybe<string[]>;
+
+  champions?: Maybe<ProjectchampionsUser[]>;
+
+  skillsIds?: Maybe<string[]>;
+
+  skills?: Maybe<ProjectskillsSkill[]>;
+}
+
+export interface ProjectskillsSkill {
+  name: string;
+
+  projectsWithSkillIds?: Maybe<string[]>;
+
+  projectsWithSkill?: Maybe<SkillprojectsWithSkillProject[]>;
+
+  usersWithSkillIds?: Maybe<string[]>;
+
+  usersWithSkill?: Maybe<SkillusersWithSkillUser[]>;
+}
+
+export interface SkillprojectsWithSkillProject {
+  boardUrl?: Maybe<string>;
+
+  cfapiProjectId?: Maybe<string>;
+
+  description?: Maybe<string>;
+
+  headerImage?: Maybe<string>;
+
+  name: string;
+
+  repoName?: Maybe<string>;
+
+  status?: Maybe<ProjectStatus>;
+
+  championsIds?: Maybe<string[]>;
+
+  champions?: Maybe<ProjectchampionsUser[]>;
+
+  skillsIds?: Maybe<string[]>;
+
+  skills?: Maybe<ProjectskillsSkill[]>;
+}
+
+export interface SkillusersWithSkillUser {
+  auth0UserId: string;
+
+  description?: Maybe<string>;
+
+  email: string;
+
+  flowdockName?: Maybe<string>;
+
+  githubName?: Maybe<string>;
+
+  hasCompletedWizard?: Maybe<boolean>;
+
+  name?: Maybe<string>;
+
+  picture?: Maybe<string>;
+
+  role?: Maybe<UserRole>;
+
+  projectsChampionedIds?: Maybe<string[]>;
+
+  projectsChampioned?: Maybe<UserprojectsChampionedProject[]>;
+
+  skillsIds?: Maybe<string[]>;
+
+  skills?: Maybe<UserskillsSkill[]>;
+}
+
+export interface UserskillsSkill {
+  name: string;
+
+  projectsWithSkillIds?: Maybe<string[]>;
+
+  projectsWithSkill?: Maybe<SkillprojectsWithSkillProject[]>;
+
+  usersWithSkillIds?: Maybe<string[]>;
+
+  usersWithSkill?: Maybe<SkillusersWithSkillUser[]>;
+}
+
+export interface UpdateProject {
+  boardUrl?: Maybe<string>;
+
+  cfapiProjectId?: Maybe<string>;
+
+  description?: Maybe<string>;
+
+  headerImage?: Maybe<string>;
+
+  id: string;
+
+  name?: Maybe<string>;
+
+  repoName?: Maybe<string>;
+
+  status?: Maybe<ProjectStatus>;
+
+  championsIds?: Maybe<string[]>;
+
+  champions?: Maybe<ProjectchampionsUser[]>;
+
+  skillsIds?: Maybe<string[]>;
+
+  skills?: Maybe<ProjectskillsSkill[]>;
+}
+
+export interface CreateProject {
+  boardUrl?: Maybe<string>;
+
+  cfapiProjectId?: Maybe<string>;
+
+  description?: Maybe<string>;
+
+  headerImage?: Maybe<string>;
+
+  name: string;
+
+  repoName?: Maybe<string>;
+
+  status?: Maybe<ProjectStatus>;
+
+  championsIds?: Maybe<string[]>;
+
+  champions?: Maybe<ProjectchampionsUser[]>;
+
+  skillsIds?: Maybe<string[]>;
+
+  skills?: Maybe<ProjectskillsSkill[]>;
+}
+
+export interface UpdateSkill {
+  id: string;
+
+  name?: Maybe<string>;
+
+  projectsWithSkillIds?: Maybe<string[]>;
+
+  projectsWithSkill?: Maybe<SkillprojectsWithSkillProject[]>;
+
+  usersWithSkillIds?: Maybe<string[]>;
+
+  usersWithSkill?: Maybe<SkillusersWithSkillUser[]>;
+}
+
+export interface CreateSkill {
+  name: string;
+
+  projectsWithSkillIds?: Maybe<string[]>;
+
+  projectsWithSkill?: Maybe<SkillprojectsWithSkillProject[]>;
+
+  usersWithSkillIds?: Maybe<string[]>;
+
+  usersWithSkill?: Maybe<SkillusersWithSkillUser[]>;
+}
+
+export interface UpdateUser {
+  auth0UserId?: Maybe<string>;
+
+  description?: Maybe<string>;
+
+  email?: Maybe<string>;
+
+  flowdockName?: Maybe<string>;
+
+  githubName?: Maybe<string>;
+
+  hasCompletedWizard?: Maybe<boolean>;
+
+  id: string;
+
+  name?: Maybe<string>;
+
+  picture?: Maybe<string>;
+
+  role?: Maybe<UserRole>;
+
+  projectsChampionedIds?: Maybe<string[]>;
+
+  projectsChampioned?: Maybe<UserprojectsChampionedProject[]>;
+
+  skillsIds?: Maybe<string[]>;
+
+  skills?: Maybe<UserskillsSkill[]>;
+}
+
+export interface CreateUser {
+  auth0UserId: string;
+
+  description?: Maybe<string>;
+
+  email: string;
+
+  flowdockName?: Maybe<string>;
+
+  githubName?: Maybe<string>;
+
+  hasCompletedWizard?: Maybe<boolean>;
+
+  name?: Maybe<string>;
+
+  picture?: Maybe<string>;
+
+  role?: Maybe<UserRole>;
+
+  projectsChampionedIds?: Maybe<string[]>;
+
+  projectsChampioned?: Maybe<UserprojectsChampionedProject[]>;
+
+  skillsIds?: Maybe<string[]>;
+
+  skills?: Maybe<UserskillsSkill[]>;
+}
+
+export interface InvokeFunctionInput {
+  name: string;
+
+  input: string;
+
+  clientMutationId?: Maybe<string>;
 }
 
 export interface ProjectSubscriptionFilter {
@@ -1580,9 +1305,303 @@ export interface SkillSubscriptionFilterNode {
   usersWithSkill_none?: Maybe<UserFilter>;
 }
 
-export enum UserRole {
-  Regular = 'REGULAR',
-  Admin = 'ADMIN'
+export interface UserSubscriptionFilter {
+  /** Logical AND on all given filters. */
+  AND?: Maybe<UserSubscriptionFilter[]>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<UserSubscriptionFilter[]>;
+  /** The subscription event gets dispatched when it's listed in mutation_in */
+  mutation_in?: Maybe<_ModelMutationType[]>;
+  /** The subscription event gets only dispatched when one of the updated fields names is included in this list */
+  updatedFields_contains?: Maybe<string>;
+  /** The subscription event gets only dispatched when all of the field names included in this list have been updated */
+  updatedFields_contains_every?: Maybe<string[]>;
+  /** The subscription event gets only dispatched when some of the field names included in this list have been updated */
+  updatedFields_contains_some?: Maybe<string[]>;
+
+  node?: Maybe<UserSubscriptionFilterNode>;
+}
+
+export interface UserSubscriptionFilterNode {
+  auth0UserId?: Maybe<string>;
+  /** All values that are not equal to given value. */
+  auth0UserId_not?: Maybe<string>;
+  /** All values that are contained in given list. */
+  auth0UserId_in?: Maybe<string[]>;
+  /** All values that are not contained in given list. */
+  auth0UserId_not_in?: Maybe<string[]>;
+  /** All values less than the given value. */
+  auth0UserId_lt?: Maybe<string>;
+  /** All values less than or equal the given value. */
+  auth0UserId_lte?: Maybe<string>;
+  /** All values greater than the given value. */
+  auth0UserId_gt?: Maybe<string>;
+  /** All values greater than or equal the given value. */
+  auth0UserId_gte?: Maybe<string>;
+  /** All values containing the given string. */
+  auth0UserId_contains?: Maybe<string>;
+  /** All values not containing the given string. */
+  auth0UserId_not_contains?: Maybe<string>;
+  /** All values starting with the given string. */
+  auth0UserId_starts_with?: Maybe<string>;
+  /** All values not starting with the given string. */
+  auth0UserId_not_starts_with?: Maybe<string>;
+  /** All values ending with the given string. */
+  auth0UserId_ends_with?: Maybe<string>;
+  /** All values not ending with the given string. */
+  auth0UserId_not_ends_with?: Maybe<string>;
+
+  createdAt?: Maybe<DateTime>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<DateTime>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<DateTime[]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<DateTime[]>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<DateTime>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<DateTime>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<DateTime>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<DateTime>;
+
+  description?: Maybe<string>;
+  /** All values that are not equal to given value. */
+  description_not?: Maybe<string>;
+  /** All values that are contained in given list. */
+  description_in?: Maybe<string[]>;
+  /** All values that are not contained in given list. */
+  description_not_in?: Maybe<string[]>;
+  /** All values less than the given value. */
+  description_lt?: Maybe<string>;
+  /** All values less than or equal the given value. */
+  description_lte?: Maybe<string>;
+  /** All values greater than the given value. */
+  description_gt?: Maybe<string>;
+  /** All values greater than or equal the given value. */
+  description_gte?: Maybe<string>;
+  /** All values containing the given string. */
+  description_contains?: Maybe<string>;
+  /** All values not containing the given string. */
+  description_not_contains?: Maybe<string>;
+  /** All values starting with the given string. */
+  description_starts_with?: Maybe<string>;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: Maybe<string>;
+  /** All values ending with the given string. */
+  description_ends_with?: Maybe<string>;
+  /** All values not ending with the given string. */
+  description_not_ends_with?: Maybe<string>;
+
+  email?: Maybe<string>;
+  /** All values that are not equal to given value. */
+  email_not?: Maybe<string>;
+  /** All values that are contained in given list. */
+  email_in?: Maybe<string[]>;
+  /** All values that are not contained in given list. */
+  email_not_in?: Maybe<string[]>;
+  /** All values less than the given value. */
+  email_lt?: Maybe<string>;
+  /** All values less than or equal the given value. */
+  email_lte?: Maybe<string>;
+  /** All values greater than the given value. */
+  email_gt?: Maybe<string>;
+  /** All values greater than or equal the given value. */
+  email_gte?: Maybe<string>;
+  /** All values containing the given string. */
+  email_contains?: Maybe<string>;
+  /** All values not containing the given string. */
+  email_not_contains?: Maybe<string>;
+  /** All values starting with the given string. */
+  email_starts_with?: Maybe<string>;
+  /** All values not starting with the given string. */
+  email_not_starts_with?: Maybe<string>;
+  /** All values ending with the given string. */
+  email_ends_with?: Maybe<string>;
+  /** All values not ending with the given string. */
+  email_not_ends_with?: Maybe<string>;
+
+  flowdockName?: Maybe<string>;
+  /** All values that are not equal to given value. */
+  flowdockName_not?: Maybe<string>;
+  /** All values that are contained in given list. */
+  flowdockName_in?: Maybe<string[]>;
+  /** All values that are not contained in given list. */
+  flowdockName_not_in?: Maybe<string[]>;
+  /** All values less than the given value. */
+  flowdockName_lt?: Maybe<string>;
+  /** All values less than or equal the given value. */
+  flowdockName_lte?: Maybe<string>;
+  /** All values greater than the given value. */
+  flowdockName_gt?: Maybe<string>;
+  /** All values greater than or equal the given value. */
+  flowdockName_gte?: Maybe<string>;
+  /** All values containing the given string. */
+  flowdockName_contains?: Maybe<string>;
+  /** All values not containing the given string. */
+  flowdockName_not_contains?: Maybe<string>;
+  /** All values starting with the given string. */
+  flowdockName_starts_with?: Maybe<string>;
+  /** All values not starting with the given string. */
+  flowdockName_not_starts_with?: Maybe<string>;
+  /** All values ending with the given string. */
+  flowdockName_ends_with?: Maybe<string>;
+  /** All values not ending with the given string. */
+  flowdockName_not_ends_with?: Maybe<string>;
+
+  githubName?: Maybe<string>;
+  /** All values that are not equal to given value. */
+  githubName_not?: Maybe<string>;
+  /** All values that are contained in given list. */
+  githubName_in?: Maybe<string[]>;
+  /** All values that are not contained in given list. */
+  githubName_not_in?: Maybe<string[]>;
+  /** All values less than the given value. */
+  githubName_lt?: Maybe<string>;
+  /** All values less than or equal the given value. */
+  githubName_lte?: Maybe<string>;
+  /** All values greater than the given value. */
+  githubName_gt?: Maybe<string>;
+  /** All values greater than or equal the given value. */
+  githubName_gte?: Maybe<string>;
+  /** All values containing the given string. */
+  githubName_contains?: Maybe<string>;
+  /** All values not containing the given string. */
+  githubName_not_contains?: Maybe<string>;
+  /** All values starting with the given string. */
+  githubName_starts_with?: Maybe<string>;
+  /** All values not starting with the given string. */
+  githubName_not_starts_with?: Maybe<string>;
+  /** All values ending with the given string. */
+  githubName_ends_with?: Maybe<string>;
+  /** All values not ending with the given string. */
+  githubName_not_ends_with?: Maybe<string>;
+
+  hasCompletedWizard?: Maybe<boolean>;
+  /** All values that are not equal to given value. */
+  hasCompletedWizard_not?: Maybe<boolean>;
+
+  id?: Maybe<string>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<string>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<string[]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<string[]>;
+  /** All values less than the given value. */
+  id_lt?: Maybe<string>;
+  /** All values less than or equal the given value. */
+  id_lte?: Maybe<string>;
+  /** All values greater than the given value. */
+  id_gt?: Maybe<string>;
+  /** All values greater than or equal the given value. */
+  id_gte?: Maybe<string>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<string>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<string>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<string>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<string>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<string>;
+  /** All values not ending with the given string. */
+  id_not_ends_with?: Maybe<string>;
+
+  name?: Maybe<string>;
+  /** All values that are not equal to given value. */
+  name_not?: Maybe<string>;
+  /** All values that are contained in given list. */
+  name_in?: Maybe<string[]>;
+  /** All values that are not contained in given list. */
+  name_not_in?: Maybe<string[]>;
+  /** All values less than the given value. */
+  name_lt?: Maybe<string>;
+  /** All values less than or equal the given value. */
+  name_lte?: Maybe<string>;
+  /** All values greater than the given value. */
+  name_gt?: Maybe<string>;
+  /** All values greater than or equal the given value. */
+  name_gte?: Maybe<string>;
+  /** All values containing the given string. */
+  name_contains?: Maybe<string>;
+  /** All values not containing the given string. */
+  name_not_contains?: Maybe<string>;
+  /** All values starting with the given string. */
+  name_starts_with?: Maybe<string>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: Maybe<string>;
+  /** All values ending with the given string. */
+  name_ends_with?: Maybe<string>;
+  /** All values not ending with the given string. */
+  name_not_ends_with?: Maybe<string>;
+
+  picture?: Maybe<string>;
+  /** All values that are not equal to given value. */
+  picture_not?: Maybe<string>;
+  /** All values that are contained in given list. */
+  picture_in?: Maybe<string[]>;
+  /** All values that are not contained in given list. */
+  picture_not_in?: Maybe<string[]>;
+  /** All values less than the given value. */
+  picture_lt?: Maybe<string>;
+  /** All values less than or equal the given value. */
+  picture_lte?: Maybe<string>;
+  /** All values greater than the given value. */
+  picture_gt?: Maybe<string>;
+  /** All values greater than or equal the given value. */
+  picture_gte?: Maybe<string>;
+  /** All values containing the given string. */
+  picture_contains?: Maybe<string>;
+  /** All values not containing the given string. */
+  picture_not_contains?: Maybe<string>;
+  /** All values starting with the given string. */
+  picture_starts_with?: Maybe<string>;
+  /** All values not starting with the given string. */
+  picture_not_starts_with?: Maybe<string>;
+  /** All values ending with the given string. */
+  picture_ends_with?: Maybe<string>;
+  /** All values not ending with the given string. */
+  picture_not_ends_with?: Maybe<string>;
+
+  role?: Maybe<UserRole>;
+  /** All values that are not equal to given value. */
+  role_not?: Maybe<UserRole>;
+  /** All values that are contained in given list. */
+  role_in?: Maybe<UserRole[]>;
+  /** All values that are not contained in given list. */
+  role_not_in?: Maybe<UserRole[]>;
+
+  updatedAt?: Maybe<DateTime>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<DateTime>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<DateTime[]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<DateTime[]>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<DateTime>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<DateTime>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<DateTime>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<DateTime>;
+
+  projectsChampioned_every?: Maybe<ProjectFilter>;
+
+  projectsChampioned_some?: Maybe<ProjectFilter>;
+
+  projectsChampioned_none?: Maybe<ProjectFilter>;
+
+  skills_every?: Maybe<SkillFilter>;
+
+  skills_some?: Maybe<SkillFilter>;
+
+  skills_none?: Maybe<SkillFilter>;
 }
 
 export enum ProjectStatus {
@@ -1594,29 +1613,9 @@ export enum ProjectStatus {
   Inactive = 'Inactive'
 }
 
-export enum UserOrderBy {
-  Auth0UserIdAsc = 'auth0UserId_ASC',
-  Auth0UserIdDesc = 'auth0UserId_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  DescriptionAsc = 'description_ASC',
-  DescriptionDesc = 'description_DESC',
-  EmailAsc = 'email_ASC',
-  EmailDesc = 'email_DESC',
-  FlowdockNameAsc = 'flowdockName_ASC',
-  FlowdockNameDesc = 'flowdockName_DESC',
-  GithubNameAsc = 'githubName_ASC',
-  GithubNameDesc = 'githubName_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  PictureAsc = 'picture_ASC',
-  PictureDesc = 'picture_DESC',
-  RoleAsc = 'role_ASC',
-  RoleDesc = 'role_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
+export enum UserRole {
+  Regular = 'REGULAR',
+  Admin = 'ADMIN'
 }
 
 export enum ProjectOrderBy {
@@ -1638,6 +1637,33 @@ export enum ProjectOrderBy {
   RepoNameDesc = 'repoName_DESC',
   StatusAsc = 'status_ASC',
   StatusDesc = 'status_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export enum UserOrderBy {
+  Auth0UserIdAsc = 'auth0UserId_ASC',
+  Auth0UserIdDesc = 'auth0UserId_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  EmailAsc = 'email_ASC',
+  EmailDesc = 'email_DESC',
+  FlowdockNameAsc = 'flowdockName_ASC',
+  FlowdockNameDesc = 'flowdockName_DESC',
+  GithubNameAsc = 'githubName_ASC',
+  GithubNameDesc = 'githubName_DESC',
+  HasCompletedWizardAsc = 'hasCompletedWizard_ASC',
+  HasCompletedWizardDesc = 'hasCompletedWizard_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  PictureAsc = 'picture_ASC',
+  PictureDesc = 'picture_DESC',
+  RoleAsc = 'role_ASC',
+  RoleDesc = 'role_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
   UpdatedAtDesc = 'updatedAt_DESC'
 }
@@ -1956,6 +1982,8 @@ export type MemberProfileFragmentFragment = {
 
   id: string;
 
+  createdAt: DateTime;
+
   picture: Maybe<string>;
 
   name: Maybe<string>;
@@ -2065,6 +2093,7 @@ import gql from 'graphql-tag';
 export const MemberProfileFragmentFragmentDoc = gql`
   fragment MemberProfileFragment on User {
     id
+    createdAt
     picture
     name
     description

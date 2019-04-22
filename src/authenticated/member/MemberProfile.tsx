@@ -25,6 +25,7 @@ const MemberProfile: React.SFC<MemberProfileProps> = ({
     return <LoadingIndicator />;
   }
   const {
+    createdAt,
     picture,
     name,
     description,
@@ -60,6 +61,9 @@ const MemberProfile: React.SFC<MemberProfileProps> = ({
                 {...commonProps}
               />
             </h2>
+            <div className="Member-since">
+              Member since: {new Date(createdAt).toLocaleDateString()}
+            </div>
             <EditableMarkdown
               value={description}
               label="Description"

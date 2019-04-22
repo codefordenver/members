@@ -16,6 +16,7 @@ type User @model {
   githubName: String
   flowdockName: String
   description: String
+  hasCompletedWizard: Boolean @defaultValue(value: "false")
   role: UserRole @defaultValue(value: REGULAR)
   projectsChampioned: [Project!]! @relation(name: "ProjectChampions")
   # Uncomment below - you can declare relations between models like this
