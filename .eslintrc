@@ -13,8 +13,6 @@
         "args": "none",
         "ignoreRestSiblings": true
       }
-    ],
-    "quotes": ["error", "single"],
-    "indent": ["error", 2]
+    ]
   }
 }

@@ -1,5 +1,7 @@
 # Specifies the HTTP endpoint of your Prisma API.
-endpoint: ''
+#endpoint: ''
+# TODO: Switch to either env variable or local docker container url
+endpoint: https://us1.prisma.sh/willygdouglas/members-spike/dev
 
 # Defines your models, each model is mapped to the database as a table.
 datamodel: datamodel.prisma

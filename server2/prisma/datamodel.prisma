@@ -1,17 +1,82 @@
-type Post {
-  id: ID! @unique
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  published: Boolean! @default(value: "false")
-  title: String!
-  content: String
-  author: User!
-}
+# Original reference
+
+# type Post {
+#   id: ID! @unique
+#   createdAt: DateTime!
+#   updatedAt: DateTime!
+#   published: Boolean! @default(value: "false")
+#   title: String!
+#   content: String
+#   author: User!
+# }
+
+# type User {
+#   id: ID! @unique
+#   email: String! @unique
+#   password: String!
+#   name: String
+#   posts: [Post!]!
+# }
+
+# Graphcool framework
 
 type User {
-  id: ID! @unique
+  # Required system field:
+  id: ID! @unique # read-only (managed by Graphcool)
+  # Optional system fields (remove if not needed):
+  createdAt: DateTime! # read-only (managed by Graphcool)
+  updatedAt: DateTime! # read-only (managed by Graphcool)
   email: String! @unique
-  password: String!
   name: String
-  posts: [Post!]!
+  auth0UserId: String! @unique
+  picture: String
+  githubName: String
+  flowdockName: String
+  description: String
+  hasCompletedWizard: Boolean @default(value: "false")
+  role: UserRole @default(value: REGULAR)
+  projectsChampioned: [Project!]! @relation(name: "ProjectChampions")
+  skills: [Skill!]! @relation(name: "UserSkills")
+}
+
+enum UserRole {
+  REGULAR
+  ADMIN
+}
+
+enum ProjectStatus {
+  Idea
+  Pitch
+  Exploration
+  ActiveDevelopment
+  Support
+  Inactive
+}
+
+type Project {
+  # Required system field:
+  id: ID! @unique # read-only (managed by Graphcool)
+  # Optional system fields (remove if not needed):
+  createdAt: DateTime! # read-only (managed by Graphcool)
+  updatedAt: DateTime! # read-only (managed by Graphcool)
+  name: String! @unique
+  headerImage: String
+  status: ProjectStatus @default(value: Idea)
+  description: String
+  cfapiProjectId: String @unique @depricated # Soon to be removed
+  repoName: String @unique # for linking to github repos and waffle boards
+  champions: [User!]! @relation(name: "ProjectChampions")
+  skills: [Skill!]! @relation(name: "ProjectSkills")
+}
+
+type Skill {
+  # Required system field:
+  id: ID! @unique # read-only (managed by Graphcool)
+  # Optional system fields (remove if not needed):
+  createdAt: DateTime! # read-only (managed by Graphcool)
+  updatedAt: DateTime! # read-only (managed by Graphcool)
+  name: String! @unique
+
+  usersWithSkill: [User!]! @relation(name: "UserSkills")
+  projectsWithSkill: [Project!]! @relation(name: "ProjectSkills")
 }
