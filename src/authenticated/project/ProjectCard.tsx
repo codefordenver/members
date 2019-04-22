@@ -7,8 +7,10 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import EditableSkills from '../../forms/EditableSkills';
+import EditableLink from '../../forms/EditableLink';
 import { ProjectCardFieldsFragment } from '../../generated-models';
 import './ProjectCard.css';
+import { getRepoPath } from '../../utils';
 
 const ProjectCard: React.SFC<ProjectCardFieldsFragment> = ({
   id,
@@ -16,6 +18,7 @@ const ProjectCard: React.SFC<ProjectCardFieldsFragment> = ({
   skills,
   status,
   repoName,
+  boardUrl,
   headerImage
 }) => {
   return (
@@ -43,9 +46,20 @@ const ProjectCard: React.SFC<ProjectCardFieldsFragment> = ({
       <CardActions>
         <Grid container spacing={16} alignItems="center">
           <EditableSkills value={skills} name="skills" />
-          <a href={`https://github.com/codefordenver/${repoName}`}>GitHub</a>
-          &nbsp;
-          <a href={`https://waffle.io/codefordenver/${repoName}`}>Waffle</a>
+          <EditableLink
+            value={repoName}
+            name="repoName"
+            label="Github Repository Name"
+            linkName="Github"
+            linkTarget={`https://github.com/${getRepoPath(repoName || '')}`}
+          />
+          <EditableLink
+            value={boardUrl}
+            name="boardUrl"
+            label="Project Board URL"
+            linkName="Project Board"
+            linkTarget={boardUrl || ''}
+          />
           <Grid item>{status && <span> Status: {status}</span>}</Grid>
         </Grid>
       </CardActions>

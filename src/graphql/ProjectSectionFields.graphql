@@ -4,6 +4,7 @@ fragment ProjectSectionFields on Project {
   headerImage
   description
   repoName
+  boardUrl
   skills {
     id
     name

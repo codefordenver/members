@@ -3,6 +3,7 @@ fragment ProjectCardFields on Project {
   name
   headerImage
   repoName
+  boardUrl
   status
   skills {
     id

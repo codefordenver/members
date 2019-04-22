@@ -61,6 +61,7 @@ type Project @model {
   headerImage: String
   status: ProjectStatus @defaultValue(value: Idea)
   description: String
+  boardUrl: String
   cfapiProjectId: String @isUnique @depricated # Soon to be removed
   repoName: String @isUnique # for linking to github repos and waffle boards
   champions: [User!]! @relation(name: "ProjectChampions")

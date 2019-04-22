@@ -6,6 +6,34 @@ export interface ProjectFilter {
   /** Logical OR on all given filters. */
   OR?: Maybe<ProjectFilter[]>;
 
+  boardUrl?: Maybe<string>;
+  /** All values that are not equal to given value. */
+  boardUrl_not?: Maybe<string>;
+  /** All values that are contained in given list. */
+  boardUrl_in?: Maybe<string[]>;
+  /** All values that are not contained in given list. */
+  boardUrl_not_in?: Maybe<string[]>;
+  /** All values less than the given value. */
+  boardUrl_lt?: Maybe<string>;
+  /** All values less than or equal the given value. */
+  boardUrl_lte?: Maybe<string>;
+  /** All values greater than the given value. */
+  boardUrl_gt?: Maybe<string>;
+  /** All values greater than or equal the given value. */
+  boardUrl_gte?: Maybe<string>;
+  /** All values containing the given string. */
+  boardUrl_contains?: Maybe<string>;
+  /** All values not containing the given string. */
+  boardUrl_not_contains?: Maybe<string>;
+  /** All values starting with the given string. */
+  boardUrl_starts_with?: Maybe<string>;
+  /** All values not starting with the given string. */
+  boardUrl_not_starts_with?: Maybe<string>;
+  /** All values ending with the given string. */
+  boardUrl_ends_with?: Maybe<string>;
+  /** All values not ending with the given string. */
+  boardUrl_not_ends_with?: Maybe<string>;
+
   cfapiProjectId?: Maybe<string>;
   /** All values that are not equal to given value. */
   cfapiProjectId_not?: Maybe<string>;
@@ -389,6 +417,10 @@ export interface UserFilter {
   /** All values not ending with the given string. */
   githubName_not_ends_with?: Maybe<string>;
 
+  hasCompletedWizard?: Maybe<boolean>;
+  /** All values that are not equal to given value. */
+  hasCompletedWizard_not?: Maybe<boolean>;
+
   id?: Maybe<string>;
   /** All values that are not equal to given value. */
   id_not?: Maybe<string>;
@@ -628,6 +660,8 @@ export interface ProjectchampionsUser {
 
   githubName?: Maybe<string>;
 
+  hasCompletedWizard?: Maybe<boolean>;
+
   name?: Maybe<string>;
 
   picture?: Maybe<string>;
@@ -644,6 +678,8 @@ export interface ProjectchampionsUser {
 }
 
 export interface UserprojectsChampionedProject {
+  boardUrl?: Maybe<string>;
+
   cfapiProjectId?: Maybe<string>;
 
   description?: Maybe<string>;
@@ -678,6 +714,8 @@ export interface ProjectskillsSkill {
 }
 
 export interface SkillprojectsWithSkillProject {
+  boardUrl?: Maybe<string>;
+
   cfapiProjectId?: Maybe<string>;
 
   description?: Maybe<string>;
@@ -710,6 +748,8 @@ export interface SkillusersWithSkillUser {
 
   githubName?: Maybe<string>;
 
+  hasCompletedWizard?: Maybe<boolean>;
+
   name?: Maybe<string>;
 
   picture?: Maybe<string>;
@@ -738,6 +778,8 @@ export interface UserskillsSkill {
 }
 
 export interface UpdateProject {
+  boardUrl?: Maybe<string>;
+
   cfapiProjectId?: Maybe<string>;
 
   description?: Maybe<string>;
@@ -762,6 +804,8 @@ export interface UpdateProject {
 }
 
 export interface CreateProject {
+  boardUrl?: Maybe<string>;
+
   cfapiProjectId?: Maybe<string>;
 
   description?: Maybe<string>;
@@ -820,6 +864,8 @@ export interface UpdateUser {
 
   githubName?: Maybe<string>;
 
+  hasCompletedWizard?: Maybe<boolean>;
+
   id: string;
 
   name?: Maybe<string>;
@@ -847,6 +893,8 @@ export interface CreateUser {
   flowdockName?: Maybe<string>;
 
   githubName?: Maybe<string>;
+
+  hasCompletedWizard?: Maybe<boolean>;
 
   name?: Maybe<string>;
 
@@ -889,6 +937,34 @@ export interface ProjectSubscriptionFilter {
 }
 
 export interface ProjectSubscriptionFilterNode {
+  boardUrl?: Maybe<string>;
+  /** All values that are not equal to given value. */
+  boardUrl_not?: Maybe<string>;
+  /** All values that are contained in given list. */
+  boardUrl_in?: Maybe<string[]>;
+  /** All values that are not contained in given list. */
+  boardUrl_not_in?: Maybe<string[]>;
+  /** All values less than the given value. */
+  boardUrl_lt?: Maybe<string>;
+  /** All values less than or equal the given value. */
+  boardUrl_lte?: Maybe<string>;
+  /** All values greater than the given value. */
+  boardUrl_gt?: Maybe<string>;
+  /** All values greater than or equal the given value. */
+  boardUrl_gte?: Maybe<string>;
+  /** All values containing the given string. */
+  boardUrl_contains?: Maybe<string>;
+  /** All values not containing the given string. */
+  boardUrl_not_contains?: Maybe<string>;
+  /** All values starting with the given string. */
+  boardUrl_starts_with?: Maybe<string>;
+  /** All values not starting with the given string. */
+  boardUrl_not_starts_with?: Maybe<string>;
+  /** All values ending with the given string. */
+  boardUrl_ends_with?: Maybe<string>;
+  /** All values not ending with the given string. */
+  boardUrl_not_ends_with?: Maybe<string>;
+
   cfapiProjectId?: Maybe<string>;
   /** All values that are not equal to given value. */
   cfapiProjectId_not?: Maybe<string>;
@@ -1403,6 +1479,10 @@ export interface UserSubscriptionFilterNode {
   /** All values not ending with the given string. */
   githubName_not_ends_with?: Maybe<string>;
 
+  hasCompletedWizard?: Maybe<boolean>;
+  /** All values that are not equal to given value. */
+  hasCompletedWizard_not?: Maybe<boolean>;
+
   id?: Maybe<string>;
   /** All values that are not equal to given value. */
   id_not?: Maybe<string>;
@@ -1539,6 +1619,8 @@ export enum UserRole {
 }
 
 export enum ProjectOrderBy {
+  BoardUrlAsc = 'boardUrl_ASC',
+  BoardUrlDesc = 'boardUrl_DESC',
   CfapiProjectIdAsc = 'cfapiProjectId_ASC',
   CfapiProjectIdDesc = 'cfapiProjectId_DESC',
   CreatedAtAsc = 'createdAt_ASC',
@@ -1572,6 +1654,8 @@ export enum UserOrderBy {
   FlowdockNameDesc = 'flowdockName_DESC',
   GithubNameAsc = 'githubName_ASC',
   GithubNameDesc = 'githubName_DESC',
+  HasCompletedWizardAsc = 'hasCompletedWizard_ASC',
+  HasCompletedWizardDesc = 'hasCompletedWizard_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   NameAsc = 'name_ASC',
@@ -1808,6 +1892,7 @@ export type UpdateProjectVariables = {
   headerImage?: Maybe<string>;
   description?: Maybe<string>;
   repoName?: Maybe<string>;
+  boardUrl?: Maybe<string>;
   skillsIds?: Maybe<string[]>;
   championsIds?: Maybe<string[]>;
 };
@@ -1945,6 +2030,8 @@ export type ProjectCardFieldsFragment = {
 
   repoName: Maybe<string>;
 
+  boardUrl: Maybe<string>;
+
   status: Maybe<ProjectStatus>;
 
   skills: Maybe<ProjectCardFieldsSkills[]>;
@@ -1970,6 +2057,8 @@ export type ProjectSectionFieldsFragment = {
   description: Maybe<string>;
 
   repoName: Maybe<string>;
+
+  boardUrl: Maybe<string>;
 
   skills: Maybe<ProjectSectionFieldsSkills[]>;
 
@@ -2029,6 +2118,7 @@ export const ProjectCardFieldsFragmentDoc = gql`
     name
     headerImage
     repoName
+    boardUrl
     status
     skills {
       id
@@ -2044,6 +2134,7 @@ export const ProjectSectionFieldsFragmentDoc = gql`
     headerImage
     description
     repoName
+    boardUrl
     skills {
       id
       name
@@ -2571,6 +2662,7 @@ export const UpdateProjectDocument = gql`
     $headerImage: String
     $description: String
     $repoName: String
+    $boardUrl: String
     $skillsIds: [ID!]
     $championsIds: [ID!]
   ) {
@@ -2580,6 +2672,7 @@ export const UpdateProjectDocument = gql`
       headerImage: $headerImage
       description: $description
       repoName: $repoName
+      boardUrl: $boardUrl
       skillsIds: $skillsIds
       championsIds: $championsIds
     ) {
