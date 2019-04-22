@@ -73,7 +73,7 @@ const ProjectSection: React.SFC<ProjectSectionProps> = ({
         label="GitHub Repository Name"
         linkTarget={`https://github.com/${getRepoPath(repoName || '')}`}
         {...commonProps}
-      />
+      />{' '}
       <EditableLink
         value={boardUrl}
         linkName="Project Board"
