@@ -52,7 +52,8 @@ const ProjectCard: React.SFC<ProjectCardFieldsFragment> = ({
             label="Github Repository Name"
             linkName="Github"
             linkTarget={`https://github.com/${getRepoPath(repoName || '')}`}
-          />{' '}
+          />
+          &nbsp;
           <EditableLink
             value={boardUrl}
             name="boardUrl"
