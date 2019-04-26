@@ -12,7 +12,7 @@ mutation createProject(
     headerImage: $headerImage
     description: $description
     repoName: $repoName
-    boardUrls: $boardUrl
+    boardUrl: $boardUrl
     skillsIds: $skillsIds
     championsIds: $championsIds
   ) {
