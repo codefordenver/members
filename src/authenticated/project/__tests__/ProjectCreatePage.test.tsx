@@ -67,6 +67,7 @@ let queryMocks = [
         headerImage: 'https://some.image.url',
         description: 'The Description',
         repoName: 'gitrepo',
+        boardUrl: 'exampleBoardUrl',
         skillsIds: ['skill-1'],
         championsIds: ['user-1']
       }
@@ -80,6 +81,7 @@ let queryMocks = [
           headerImage: 'https://some.image.url',
           description: 'The Description',
           repoName: 'gitrepo',
+          boardUrl: 'exampleBoardUrl',
           skills: [
             {
               id: 'skill-1',
@@ -180,6 +182,7 @@ describe('when creating a new project', () => {
     updateTextInput('Title', 'Test Project Title');
     updateTextInput('Description', 'The Description');
     updateTextInput('GitHub Repository Name', 'gitrepo');
+    updateTextInput('Project Board URL', 'exampleBoardUrl');
     await wait(() =>
       expect(queryByText(/loading\.\.\./i)).not.toBeInTheDocument()
     );

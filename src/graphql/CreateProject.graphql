@@ -3,6 +3,7 @@ mutation createProject(
   $headerImage: String
   $description: String
   $repoName: String!
+  $boardUrl: String
   $skillsIds: [ID!]
   $championsIds: [ID!]
 ) {
@@ -11,6 +12,7 @@ mutation createProject(
     headerImage: $headerImage
     description: $description
     repoName: $repoName
+    boardUrls: $boardUrl
     skillsIds: $skillsIds
     championsIds: $championsIds
   ) {
