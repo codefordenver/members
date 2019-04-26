@@ -41,6 +41,7 @@ const ProjectCreatePage: React.SFC<RouteComponentProps<{}>> = ({ history }) => {
             headerImage: '',
             description: '',
             repoName: '',
+            boardUrl: '',
             skills: [],
             champions: []
           }}
