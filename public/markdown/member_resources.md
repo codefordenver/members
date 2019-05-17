@@ -4,7 +4,7 @@ We're glad you're here! 😃
 
 Here are some getting started steps we'd love for you to follow:
 1. [Review the information on your profile](/me/edit) and make sure it is correct.
-2. Make sure you get invited to our Flowdock organization (you'll need to talk to someone who has access)
+2. Make sure you get invited and onboarded to our Discord server.
 3. Peruse the links we've provided below to learn about the organization and what tools we use
 4. Help us with a project (We're a very project-oriented group, so we'd like to direct you to working on one)
     - Look through the [projects we are currently working on](/projects) and see if you're interested in joining any of them
@@ -18,7 +18,6 @@ Here is some information we hope you'll find useful.
 - [What we do](https://www.codefordenver.org/work-with-us/)
 - [How to get involved in a project or pitch a new one](https://www.codefordenver.org/work-with-us/)
 - [Current Projects](https://www.codefordenver.org/current-projects/)
-  - NOTE: We also track our projects in a waffle board [here](https://waffle.io/codefordenver/projects)
 - [2015 Report](http://archive.codefordenver.org/2015/)
 - [2016 Report](http://www.codefordenver.org/2016-end-year-report/)
 - [2017 Report](http://2017.codefordenver.org)
@@ -31,16 +30,14 @@ These are the main tools we use (with links for our specific organization). You'
   - Collaborative document sharing
 - [GitHub](https://github.com/codefordenver)
   - Collaborative coding
-- [Waffle](https://waffle.io/codefordenver)
-  - Task management built on top of github issues
-- [Flowdock](/flowdock)
+- [GitHub Projects](https://github.com/orgs/codefordenver/projects)
+  - Task management built into github repos
+- [Discord](https://discord.gg/aKVgZSN)
   - Chat tool
-  - Requires an invite to join our flowdock organization
-  - Some flows of note:
-    - [Jobs flow](https://www.flowdock.com/app/cfa-brigades/jobs) - Job opportunities
-    - [Cool $&!†](https://www.flowdock.com/app/cfa-brigades/cool) - Miscellaneous links and interesting things
-    - [Diversity](https://www.flowdock.com/app/cfa-brigades/diversity) - Discussions around increasing diversity at Code for Denver and in technology in general
-    - [Design](https://www.flowdock.com/app/cfa-brigades/design) - General design discussions
+  - Some channels of note:
+    - [Intros](https://discord.gg/6SXpmr4) - Introduce yourself to the CfD community
+    - [Jobs](https://discord.gg/dwKWTDy) - Job opportunities
+    - [Cool $&!†](https://discord.gg/yV6ArnF) - Miscellaneous links and interesting things
 
 ## Other Links
 
