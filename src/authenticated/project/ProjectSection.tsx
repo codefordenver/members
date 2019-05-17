@@ -4,7 +4,6 @@ import EditableMarkdown from '../../forms/EditableMarkdown';
 import EditableSkills from '../../forms/EditableSkills';
 import EditableUsers from '../../forms/EditableUsers';
 import EditableImageLink from '../../forms/EditableImageLink';
-import ProjectIssues from './ProjectIssues';
 import EditableLink from '../../forms/EditableLink';
 import { ProjectSectionFieldsFragment } from '../../generated-models';
 import { getRepoPath } from '../../utils';
@@ -82,7 +81,6 @@ const ProjectSection: React.SFC<ProjectSectionProps> = ({
         linkTarget={boardUrl || ''}
         {...commonProps}
       />
-      {!editing && repoName && <ProjectIssues repoName={repoName} />}
     </React.Fragment>
   );
 };
