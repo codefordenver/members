@@ -13,7 +13,6 @@ interface MemberProfileProps {
   user?: GetUserUser;
   onFormDataChange: (value: any) => void;
   editing: boolean;
-  match: any;
 }
 
 const MemberProfile: React.SFC<MemberProfileProps> = ({

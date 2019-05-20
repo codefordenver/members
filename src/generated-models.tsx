@@ -1696,6 +1696,7 @@ export type CreateProjectVariables = {
   headerImage?: Maybe<string>;
   description?: Maybe<string>;
   repoName: string;
+  boardUrl?: Maybe<string>;
   skillsIds?: Maybe<string[]>;
   championsIds?: Maybe<string[]>;
 };
@@ -2156,6 +2157,7 @@ export const CreateProjectDocument = gql`
     $headerImage: String
     $description: String
     $repoName: String!
+    $boardUrl: String
     $skillsIds: [ID!]
     $championsIds: [ID!]
   ) {
@@ -2164,6 +2166,7 @@ export const CreateProjectDocument = gql`
       headerImage: $headerImage
       description: $description
       repoName: $repoName
+      boardUrl: $boardUrl
       skillsIds: $skillsIds
       championsIds: $championsIds
     ) {
