@@ -34,10 +34,6 @@ These are the main tools we use (with links for our specific organization). You'
   - Task management built into github repos
 - [Discord](https://discord.gg/aKVgZSN)
   - Chat tool
-  - Some channels of note:
-    - [Intros](https://discord.gg/6SXpmr4) - Introduce yourself to the CfD community
-    - [Jobs](https://discord.gg/dwKWTDy) - Job opportunities
-    - [Cool $&!†](https://discord.gg/yV6ArnF) - Miscellaneous links and interesting things
 
 ## Other Links
 
