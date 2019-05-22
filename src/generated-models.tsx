@@ -1699,6 +1699,7 @@ export type CreateProjectVariables = {
   boardUrl?: Maybe<string>;
   skillsIds?: Maybe<string[]>;
   championsIds?: Maybe<string[]>;
+  status?: Maybe<ProjectStatus>;
 };
 
 export type CreateProjectMutation = {
@@ -1896,6 +1897,7 @@ export type UpdateProjectVariables = {
   boardUrl?: Maybe<string>;
   skillsIds?: Maybe<string[]>;
   championsIds?: Maybe<string[]>;
+  status?: Maybe<ProjectStatus>;
 };
 
 export type UpdateProjectMutation = {
@@ -2061,6 +2063,8 @@ export type ProjectSectionFieldsFragment = {
 
   boardUrl: Maybe<string>;
 
+  status: Maybe<ProjectStatus>;
+
   skills: Maybe<ProjectSectionFieldsSkills[]>;
 
   champions: Maybe<ProjectSectionFieldsChampions[]>;
@@ -2136,6 +2140,7 @@ export const ProjectSectionFieldsFragmentDoc = gql`
     description
     repoName
     boardUrl
+    status
     skills {
       id
       name
@@ -2160,6 +2165,7 @@ export const CreateProjectDocument = gql`
     $boardUrl: String
     $skillsIds: [ID!]
     $championsIds: [ID!]
+    $status: ProjectStatus
   ) {
     createProject(
       name: $name
@@ -2169,6 +2175,7 @@ export const CreateProjectDocument = gql`
       boardUrl: $boardUrl
       skillsIds: $skillsIds
       championsIds: $championsIds
+      status: $status
     ) {
       ...ProjectSectionFields
     }
@@ -2668,6 +2675,7 @@ export const UpdateProjectDocument = gql`
     $boardUrl: String
     $skillsIds: [ID!]
     $championsIds: [ID!]
+    $status: ProjectStatus
   ) {
     updateProject(
       id: $id
@@ -2678,6 +2686,7 @@ export const UpdateProjectDocument = gql`
       boardUrl: $boardUrl
       skillsIds: $skillsIds
       championsIds: $championsIds
+      status: $status
     ) {
       ...ProjectSectionFields
     }

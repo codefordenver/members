@@ -6,6 +6,7 @@ mutation createProject(
   $boardUrl: String
   $skillsIds: [ID!]
   $championsIds: [ID!]
+  $status: ProjectStatus
 ) {
   createProject(
     name: $name
@@ -15,6 +16,7 @@ mutation createProject(
     boardUrl: $boardUrl
     skillsIds: $skillsIds
     championsIds: $championsIds
+    status: $status
   ) {
     ...ProjectSectionFields
   }
