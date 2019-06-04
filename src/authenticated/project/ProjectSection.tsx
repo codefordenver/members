@@ -1,6 +1,7 @@
 import React from 'react';
 import EditableText from '../../forms/EditableText';
 import EditableMarkdown from '../../forms/EditableMarkdown';
+import EditableStatus from '../../forms/EditableStatus';
 import EditableSkills from '../../forms/EditableSkills';
 import EditableUsers from '../../forms/EditableUsers';
 import EditableImageLink from '../../forms/EditableImageLink';
@@ -26,7 +27,8 @@ const ProjectSection: React.SFC<ProjectSectionProps> = ({
     champions,
     repoName,
     headerImage,
-    boardUrl
+    boardUrl,
+    status
   } = project;
   const commonProps = {
     onChange: onFormDataChange,
@@ -48,6 +50,13 @@ const ProjectSection: React.SFC<ProjectSectionProps> = ({
         value={description}
         label="Description"
         name="description"
+        {...commonProps}
+      />
+      <h2>Current Status</h2>
+      <EditableStatus
+        value={status}
+        label="Status"
+        name="status"
         {...commonProps}
       />
       <h2>Project Champions</h2>

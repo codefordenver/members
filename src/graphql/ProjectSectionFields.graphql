@@ -5,6 +5,7 @@ fragment ProjectSectionFields on Project {
   description
   repoName
   boardUrl
+  status
   skills {
     id
     name

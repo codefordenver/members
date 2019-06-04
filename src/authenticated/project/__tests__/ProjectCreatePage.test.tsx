@@ -69,7 +69,8 @@ let queryMocks = [
         repoName: 'gitrepo',
         boardUrl: 'exampleBoardUrl',
         skillsIds: ['skill-1'],
-        championsIds: ['user-1']
+        championsIds: ['user-1'],
+        status: 'Idea'
       }
     },
     result: {
@@ -82,6 +83,7 @@ let queryMocks = [
           description: 'The Description',
           repoName: 'gitrepo',
           boardUrl: 'exampleBoardUrl',
+          status: 'Idea',
           skills: [
             {
               id: 'skill-1',

@@ -4,7 +4,8 @@ import { History } from 'history';
 import ProjectForm from './ProjectForm';
 import {
   CreateProjectComponent,
-  ProjectSectionFieldsFragment
+  ProjectSectionFieldsFragment,
+  ProjectStatus
 } from '../../generated-models';
 
 function getBaseUrl(history: History) {
@@ -16,7 +17,6 @@ function formatNewProjectForMutation(newProject: ProjectSectionFieldsFragment) {
     throw new Error('Projects require a specified repo name');
   }
   const { id, skills, champions, ...newProjectSansUnusedFields } = newProject;
-
   return {
     ...newProjectSansUnusedFields,
     skillsIds: newProject.skills
@@ -43,7 +43,8 @@ const ProjectCreatePage: React.SFC<RouteComponentProps<{}>> = ({ history }) => {
             repoName: '',
             boardUrl: '',
             skills: [],
-            champions: []
+            champions: [],
+            status: ProjectStatus.Idea
           }}
           onSubmit={async (newProject, actions) => {
             try {
