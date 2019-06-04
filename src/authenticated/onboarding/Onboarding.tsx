@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import EditableSkills from '../../forms/EditableSkills';
 import { GetUserUser } from '../../generated-models';
 import LoadingIndicator from '../../shared-components/LoadingIndicator';
+import EditableText from '../../forms/EditableText';
 import './Onboarding.css';
 
 interface OnboardingProps {
@@ -37,7 +38,7 @@ const Onboarding: React.FC<OnboardingProps> = ({
     return <LoadingIndicator />;
   }
 
-  const { skills } = user;
+  const { skills, githubName } = user;
 
   return (
     <React.Fragment>
@@ -47,9 +48,11 @@ const Onboarding: React.FC<OnboardingProps> = ({
           Let's spend a few minutes to fill out your profile so you can connect
           to others and join a project.
         </p>
-        <Button variant="contained" color="primary">
+        {/* TODO: re-add this button to scroll to content 
+        once we have enough content to scroll */}
+        {/* <Button variant="contained" color="primary">
           OKAY!
-        </Button>{' '}
+        </Button>{' '} */}
         <Link to="/">Skip for now</Link>
       </Card>
 
@@ -79,6 +82,15 @@ const Onboarding: React.FC<OnboardingProps> = ({
             <Typography>
               Please connect these accounts if you have them.
             </Typography>
+            <EditableText
+              value={githubName}
+              label="GitHub username"
+              name="githubName"
+              editing
+              onChange={onChange}
+            />
+            <br />
+            <br />
             <div>
               <Button onClick={handleBack}>Back</Button>
               <Button variant="contained" color="primary" onClick={onSubmit}>

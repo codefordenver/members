@@ -42,7 +42,10 @@ const MemberEditPage: React.SFC<MemberEditPageProps> = ({ history }) => {
                 onSubmit={async (updatedMember, actions) => {
                   try {
                     await updateMemberMutation({
-                      variables: formatMemberForMutation(updatedMember)
+                      variables: formatMemberForMutation({
+                        ...updatedMember,
+                        hasCompletedWizard: true
+                      })
                     });
                     history.push('/');
                   } catch (err) {
