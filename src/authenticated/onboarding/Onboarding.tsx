@@ -45,8 +45,9 @@ const Onboarding: React.FC<OnboardingProps> = ({
       <Card className="Onboarding-header">
         <p>Welcome to Code for Denver!</p>
         <p>
-          Let's spend a few minutes to fill out your profile so you can connect
-          to others and join a project.
+          {
+            "Let's spend a few minutes to fill out your profile so you can connect to others and join a project."
+          }
         </p>
         {/* TODO: re-add this button to scroll to content 
         once we have enough content to scroll */}
