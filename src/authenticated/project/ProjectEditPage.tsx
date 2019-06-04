@@ -28,7 +28,7 @@ function getBaseUrl(history: History) {
   return history.location.pathname.split('/edit')[0];
 }
 
-const ProjectEditPage: React.SFC<ProjectEditPageProps> = ({
+const ProjectEditPage: React.FC<ProjectEditPageProps> = ({
   history,
   match
 }) => {

@@ -32,7 +32,7 @@ interface DrawerContentProps extends WithStyles<typeof styles> {
   loading: boolean;
 }
 
-const DrawerContent: React.SFC<DrawerContentProps> = ({
+const DrawerContent: React.FC<DrawerContentProps> = ({
   projects,
   loading,
   classes

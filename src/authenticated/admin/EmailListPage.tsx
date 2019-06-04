@@ -8,7 +8,7 @@ interface EmailListProps {
   loading: boolean;
 }
 
-const EmailList: React.SFC<EmailListProps> = ({ users, loading }) => (
+const EmailList: React.FC<EmailListProps> = ({ users, loading }) => (
   <div>
     <h1>Users that signed up in the last week</h1>
     {loading ? (

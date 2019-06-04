@@ -29,7 +29,7 @@ function getBaseUrl(history: History) {
   return history.location.pathname.split('/edit')[0];
 }
 
-const MemberEditPage: React.SFC<MemberEditPageProps> = ({ history }) => {
+const MemberEditPage: React.FC<MemberEditPageProps> = ({ history }) => {
   const authContext = useContext(AuthenticationContext);
 
   return (

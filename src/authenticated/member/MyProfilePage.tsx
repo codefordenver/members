@@ -4,7 +4,7 @@ import AuthenticationContext from '../../utils/authentication/authContext';
 import LoadingIndicator from '../../shared-components/LoadingIndicator';
 import { GetUserComponent } from '../../generated-models';
 
-const MemberPage: React.SFC = () => {
+const MemberPage: React.FC = () => {
   const authContext = useContext(AuthenticationContext);
 
   return (

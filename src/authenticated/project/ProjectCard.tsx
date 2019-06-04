@@ -12,7 +12,7 @@ import { ProjectCardFieldsFragment } from '../../generated-models';
 import './ProjectCard.css';
 import { getRepoPath } from '../../utils';
 
-const ProjectCard: React.SFC<ProjectCardFieldsFragment> = ({
+const ProjectCard: React.FC<ProjectCardFieldsFragment> = ({
   id,
   name,
   skills,

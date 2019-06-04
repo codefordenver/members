@@ -9,7 +9,7 @@ interface SkillDetailsProps {
   loading: boolean;
 }
 
-const SkillDetails: React.SFC<SkillDetailsProps> = ({ skill, loading }) => {
+const SkillDetails: React.FC<SkillDetailsProps> = ({ skill, loading }) => {
   if (loading) {
     return <LoadingIndicator />;
   }

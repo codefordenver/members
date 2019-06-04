@@ -17,7 +17,7 @@ interface Props {
 }
 type TabViews = 'write' | 'preview';
 
-const EditableMarkdown: React.SFC<Props> = ({
+const EditableMarkdown: React.FC<Props> = ({
   value,
   label,
   name,

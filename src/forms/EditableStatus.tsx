@@ -20,7 +20,7 @@ const options = [
   { value: 'Support', label: 'Support' },
   { value: 'Inactive', label: 'Inactive' }
 ];
-const EditableStatus: React.SFC<Props> = ({
+const EditableStatus: React.FC<Props> = ({
   value,
   name,
   editing,

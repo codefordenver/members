@@ -29,7 +29,7 @@ const DefaultItemComponent = ({ item, onDelete }: ItemComponentProps) => (
   <Chip className="EditableList-chip" label={item.name} onDelete={onDelete} />
 );
 
-const EditableList: React.SFC<EditableListProps> = ({
+const EditableList: React.FC<EditableListProps> = ({
   value = [],
   label,
   name,

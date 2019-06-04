@@ -12,7 +12,7 @@ interface ProjectsListProps {
   loading: boolean;
 }
 
-const ProjectsList: React.SFC<ProjectsListProps> = ({ projects, loading }) => {
+const ProjectsList: React.FC<ProjectsListProps> = ({ projects, loading }) => {
   if (loading) {
     return <LoadingIndicator />;
   }

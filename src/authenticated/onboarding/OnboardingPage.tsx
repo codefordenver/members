@@ -25,7 +25,7 @@ function formatMemberForMutation(updatedUser: MemberProfileFragmentFragment) {
   };
 }
 
-const MemberEditPage: React.SFC<MemberEditPageProps> = ({ history }) => {
+const MemberEditPage: React.FC<MemberEditPageProps> = ({ history }) => {
   const authContext = useContext(AuthenticationContext);
 
   return (

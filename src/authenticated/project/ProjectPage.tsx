@@ -6,7 +6,7 @@ import { GetProjectComponent } from '../../generated-models';
 
 type ProjectPageProps = RouteComponentProps<{ id: string }>;
 
-const ProjectPage: React.SFC<ProjectPageProps> = ({ match }) => {
+const ProjectPage: React.FC<ProjectPageProps> = ({ match }) => {
   return (
     <GetProjectComponent variables={{ id: match.params.id }}>
       {({ loading, error, data }) => {

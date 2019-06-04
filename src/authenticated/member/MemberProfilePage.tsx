@@ -6,7 +6,7 @@ import { GetUserComponent } from '../../generated-models';
 
 type MemberPageProps = RouteComponentProps<{ id: string }>;
 
-const MemberPage: React.SFC<MemberPageProps> = ({ match }) => {
+const MemberPage: React.FC<MemberPageProps> = ({ match }) => {
   return (
     <GetUserComponent variables={{ id: match.params.id }}>
       {({ loading, error, data }) => {

@@ -29,7 +29,7 @@ function formatNewProjectForMutation(newProject: ProjectSectionFieldsFragment) {
   };
 }
 
-const ProjectCreatePage: React.SFC<RouteComponentProps<{}>> = ({ history }) => {
+const ProjectCreatePage: React.FC<RouteComponentProps<{}>> = ({ history }) => {
   return (
     <CreateProjectComponent>
       {createProjectMutation => (

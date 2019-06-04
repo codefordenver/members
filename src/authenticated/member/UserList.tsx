@@ -10,7 +10,7 @@ interface UsersListProps {
   loading: boolean;
 }
 
-const UsersList: React.SFC<UsersListProps> = ({ users = [], loading }) => {
+const UsersList: React.FC<UsersListProps> = ({ users = [], loading }) => {
   if (loading) {
     return <LoadingIndicator />;
   }
