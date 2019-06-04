@@ -18,7 +18,7 @@ import ProjectCreatePage from './project/ProjectCreatePage';
 import SkillPage from './skill/SkillPage';
 import AuthContext from '../utils/authentication/authContext';
 import { UserRoleComponent } from '../generated-models';
-import OnboardingPage from './member/OnboardingPage';
+import OnboardingPage from './onboarding/OnboardingPage';
 
 const LoggedInRoutes = () => (
   <DrawerLayout drawer={<DrawerContent />}>

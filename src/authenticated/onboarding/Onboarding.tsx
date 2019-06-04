@@ -8,16 +8,40 @@ import StepLabel from '@material-ui/core/StepLabel';
 import StepContent from '@material-ui/core/StepContent';
 import Typography from '@material-ui/core/Typography';
 import EditableSkills from '../../forms/EditableSkills';
-import './OnboardingPage.css';
+import { GetUserUser } from '../../generated-models';
+import LoadingIndicator from '../../shared-components/LoadingIndicator';
+import './Onboarding.css';
 
-const OnboardingPage: React.FC = () => {
+interface OnboardingProps {
+  user?: GetUserUser;
+  onChange: (value: any) => void;
+  onSubmit: (value: any) => void;
+}
+
+const Onboarding: React.FC<OnboardingProps> = ({
+  user,
+  onChange,
+  onSubmit
+}) => {
   const [activeStep, setStep] = useState(0);
-  const handleBack = useCallback(() => setStep(step => step--), [setStep]);
-  const handleNext = useCallback(() => setStep(step => step++), [setStep]);
+  const handleBack = useCallback(() => setStep(activeStep - 1), [
+    setStep,
+    activeStep
+  ]);
+  const handleNext = useCallback(() => setStep(activeStep + 1), [
+    setStep,
+    activeStep
+  ]);
+
+  if (!user) {
+    return <LoadingIndicator />;
+  }
+
+  const { skills } = user;
 
   return (
     <React.Fragment>
-      <Card className="OnboardingPage-header">
+      <Card className="Onboarding-header">
         <p>Welcome to Code for Denver!</p>
         <p>
           Let's spend a few minutes to fill out your profile so you can connect
@@ -34,7 +58,13 @@ const OnboardingPage: React.FC = () => {
           <StepLabel>Skills</StepLabel>
           <StepContent>
             <Typography>What skills do you have?</Typography>
-            <EditableSkills />
+            <EditableSkills
+              value={skills}
+              name="skills"
+              label="Add Skill"
+              editing
+              onChange={onChange}
+            />
             <div>
               <Button variant="contained" color="primary" onClick={handleNext}>
                 Next
@@ -51,7 +81,7 @@ const OnboardingPage: React.FC = () => {
             </Typography>
             <div>
               <Button onClick={handleBack}>Back</Button>
-              <Button variant="contained" color="primary" onClick={handleNext}>
+              <Button variant="contained" color="primary" onClick={onSubmit}>
                 Finish
               </Button>
             </div>
@@ -62,4 +92,4 @@ const OnboardingPage: React.FC = () => {
   );
 };
 
-export default OnboardingPage;
+export default Onboarding;
