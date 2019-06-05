@@ -2,9 +2,11 @@ import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { History } from 'history';
 import ProjectForm from './ProjectForm';
+import { useMutation } from 'react-apollo-hooks';
 import {
-  CreateProjectComponent,
   ProjectSectionFieldsFragment,
+  CreateProjectMutation,
+  CreateProjectDocument,
   ProjectStatus
 } from '../../generated-models';
 
@@ -30,37 +32,41 @@ function formatNewProjectForMutation(newProject: ProjectSectionFieldsFragment) {
 }
 
 const ProjectCreatePage: React.FC<RouteComponentProps<{}>> = ({ history }) => {
+  const createProjectMutation = useMutation<CreateProjectMutation>(
+    CreateProjectDocument,
+    {
+      // TODO: These didn't exist before, check if they are actually needed
+      refetchQueries: ['projectCards', 'projectsDrawer', 'editableUsersList']
+    }
+  );
+
   return (
-    <CreateProjectComponent>
-      {createProjectMutation => (
-        <ProjectForm
-          creating
-          initialValues={{
-            id: '',
-            name: '',
-            headerImage: '',
-            description: '',
-            repoName: '',
-            boardUrl: '',
-            skills: [],
-            champions: [],
-            status: ProjectStatus.Idea
-          }}
-          onSubmit={async (newProject, actions) => {
-            try {
-              await createProjectMutation({
-                variables: formatNewProjectForMutation(newProject)
-              });
-              history.push(getBaseUrl(history));
-            } catch (err) {
-              console.error('submitting error', err);
-              actions.setSubmitting(false);
-              alert(err);
-            }
-          }}
-        />
-      )}
-    </CreateProjectComponent>
+    <ProjectForm
+      creating
+      initialValues={{
+        id: '',
+        name: '',
+        headerImage: '',
+        description: '',
+        repoName: '',
+        boardUrl: '',
+        skills: [],
+        champions: [],
+        status: ProjectStatus.Idea
+      }}
+      onSubmit={async (newProject, actions) => {
+        try {
+          await createProjectMutation({
+            variables: formatNewProjectForMutation(newProject)
+          });
+          history.push(getBaseUrl(history));
+        } catch (err) {
+          console.error('submitting error', err);
+          actions.setSubmitting(false);
+          alert(err);
+        }
+      }}
+    />
   );
 };
 

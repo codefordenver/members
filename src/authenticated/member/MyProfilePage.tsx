@@ -2,21 +2,18 @@ import React, { useContext } from 'react';
 import MemberForm from './MemberForm';
 import AuthenticationContext from '../../utils/authentication/authContext';
 import LoadingIndicator from '../../shared-components/LoadingIndicator';
-import { GetUserComponent } from '../../generated-models';
+import { useQuery } from 'react-apollo-hooks';
+import { GetUserQuery, GetUserDocument } from '../../generated-models';
 
 const MemberPage: React.FC = () => {
   const authContext = useContext(AuthenticationContext);
+  const { data, error, loading } = useQuery<GetUserQuery>(GetUserDocument, {
+    variables: { id: authContext.authData.userId }
+  });
+  if (loading || !data || !data.user) return <LoadingIndicator />;
+  if (error) return <div>Error! {error.message}</div>;
 
-  return (
-    <GetUserComponent variables={{ id: authContext.authData.userId }}>
-      {({ loading, error, data }) => {
-        if (error) return `Error! ${error.message}`;
-        if (loading || !data || !data.user) return <LoadingIndicator />;
-
-        return <MemberForm initialValues={data.user} canEdit />;
-      }}
-    </GetUserComponent>
-  );
+  return <MemberForm initialValues={data.user} canEdit />;
 };
 
 export default MemberPage;

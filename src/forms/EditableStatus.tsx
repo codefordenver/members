@@ -39,20 +39,20 @@ const EditableStatus: React.FC<Props> = ({
       target: { value: selectedOption.value, name }
     });
   };
+  const selectValue = options.find(option => option.value === value);
   const selectProps = {
     'aria-label': 'status',
     className: 'EditableStatus',
     options: options,
-    value: options.find(option => option.value === value),
-    label: options.find(option => option.value === value),
+    value: selectValue,
+    label: selectValue,
     onChange: _handleSelectionChange,
     placeholder: 'status',
     isSearchable: true,
     menuPortalTarget: document.body
   };
-  value = options.find(option => option.value === value);
   if (!editing) {
-    return <h3>{value.label || ''}</h3>;
+    return <h3>{(selectValue && selectValue.label) || ''}</h3>;
   }
 
   return (

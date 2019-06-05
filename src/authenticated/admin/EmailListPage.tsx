@@ -17,12 +17,8 @@ const EmailListPage: React.FC = () => {
       }
     }
   );
-  if (loading || !data || !data.allUsers) {
-    return <LoadingIndicator />;
-  }
-  if (error) {
-    return <div>Error! {error.message}</div>;
-  }
+  if (loading || !data || !data.allUsers) return <LoadingIndicator />;
+  if (error) return <div>Error! {error.message}</div>;
   const users = data.allUsers;
 
   return (

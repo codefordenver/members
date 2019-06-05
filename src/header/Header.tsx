@@ -4,18 +4,19 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import logo from '../images/cfd-circle-icon-white.png';
 import userIsAdmin from '../utils/userIsAdmin';
 import MenuList from './Menu';
 import AuthenticationContext from '../utils/authentication/authContext';
 import AuthService from '../utils/authentication/authService';
 import { User } from '../sharedTypes';
-import { GetUserComponent } from '../generated-models';
+import { useQuery } from 'react-apollo-hooks';
+import { GetUserDocument, GetUserQuery } from '../generated-models';
+import LoadingIndicator from '../shared-components/LoadingIndicator';
 import './Header.css';
 
 const AuthButtons = ({ isLoggingIn = false }) => {
-  if (isLoggingIn) return <CircularProgress />;
+  if (isLoggingIn) return <LoadingIndicator />;
   return (
     <Grid item>
       <Button color="secondary" onClick={AuthService.login}>
@@ -44,7 +45,26 @@ const UserLinks = ({ user }: { user: User | null }) => (
   </Grid>
 );
 
-const Header = () => {
+const LoggedInHeaderContent: React.FC<{ userId: string }> = ({ userId }) => {
+  const { data, error, loading } = useQuery<GetUserQuery>(GetUserDocument, {
+    variables: { id: userId }
+  });
+  if (error) return <div>Error! {error.message}</div>;
+  if (loading || !data || !data.user) return <LoadingIndicator />;
+
+  return (
+    <React.Fragment>
+      <UserLinks user={data.user} />
+      <MenuList
+        avatar={data.user.picture || ''}
+        username={data.user.name || ''}
+        logout={AuthService.logout}
+      />
+    </React.Fragment>
+  );
+};
+
+const Header: React.FC = () => {
   const authContext = useContext(AuthenticationContext);
   return (
     <AppBar position="fixed">
@@ -55,27 +75,7 @@ const Header = () => {
 
         <Grid container justify="space-between" alignItems="center">
           {authContext.isAuthenticated() ? (
-            <GetUserComponent variables={{ id: authContext.authData.userId }}>
-              {({ loading, data }) => {
-                if (loading) return <CircularProgress />;
-
-                if (!data || !data.user) {
-                  alert('Your profile appears to be missing!');
-                  return null;
-                }
-
-                return (
-                  <React.Fragment>
-                    <UserLinks user={data.user} />
-                    <MenuList
-                      avatar={data.user.picture || ''}
-                      username={data.user.name || ''}
-                      logout={AuthService.logout}
-                    />
-                  </React.Fragment>
-                );
-              }}
-            </GetUserComponent>
+            <LoggedInHeaderContent userId={authContext.authData.userId} />
           ) : (
             <AuthButtons isLoggingIn={authContext.isLoggingIn} />
           )}

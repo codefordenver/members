@@ -3,10 +3,13 @@ import { RouteComponentProps } from 'react-router-dom';
 import { History } from 'history';
 import ProjectForm from './ProjectForm';
 import LoadingIndicator from '../../shared-components/LoadingIndicator';
+import { useQuery, useMutation } from 'react-apollo-hooks';
 import {
-  GetProjectComponent,
+  GetProjectDocument,
+  GetProjectQuery,
   ProjectSectionFieldsFragment,
-  UpdateProjectComponent
+  UpdateProjectDocument,
+  UpdateProjectMutation
 } from '../../generated-models';
 
 type ProjectEditPageProps = RouteComponentProps<{ id: string }>;
@@ -32,36 +35,38 @@ const ProjectEditPage: React.FC<ProjectEditPageProps> = ({
   history,
   match
 }) => {
-  return (
-    <UpdateProjectComponent refetchQueries={['editableUsersList']}>
-      {updateProjectMutation => (
-        <GetProjectComponent variables={{ id: match.params.id }}>
-          {({ loading, error, data }) => {
-            if (error) return `Error! ${error.message}`;
-            if (loading || !data || !data.Project) return <LoadingIndicator />;
+  const updateProjectMutation = useMutation<UpdateProjectMutation>(
+    UpdateProjectDocument,
+    {
+      refetchQueries: ['editableUsersList']
+    }
+  );
+  const { data, error, loading } = useQuery<GetProjectQuery>(
+    GetProjectDocument,
+    {
+      variables: { id: match.params.id }
+    }
+  );
+  if (error) return <div>Error! {error.message}</div>;
+  if (loading || !data || !data.Project) return <LoadingIndicator />;
 
-            return (
-              <ProjectForm
-                initialValues={data.Project}
-                editing
-                onSubmit={async (updatedProject, actions) => {
-                  try {
-                    await updateProjectMutation({
-                      variables: formatProjectForMutation(updatedProject)
-                    });
-                    history.push(getBaseUrl(history));
-                  } catch (err) {
-                    console.error('submitting error', err);
-                    actions.setSubmitting(false);
-                    alert(err);
-                  }
-                }}
-              />
-            );
-          }}
-        </GetProjectComponent>
-      )}
-    </UpdateProjectComponent>
+  return (
+    <ProjectForm
+      initialValues={data.Project}
+      editing
+      onSubmit={async (updatedProject, actions) => {
+        try {
+          await updateProjectMutation({
+            variables: formatProjectForMutation(updatedProject)
+          });
+          history.push(getBaseUrl(history));
+        } catch (err) {
+          console.error('submitting error', err);
+          actions.setSubmitting(false);
+          alert(err);
+        }
+      }}
+    />
   );
 };
 

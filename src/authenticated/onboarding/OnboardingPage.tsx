@@ -4,10 +4,13 @@ import { Formik, Form } from 'formik';
 import Onboarding from './Onboarding';
 import AuthenticationContext from '../../utils/authentication/authContext';
 import LoadingIndicator from '../../shared-components/LoadingIndicator';
+import { useQuery, useMutation } from 'react-apollo-hooks';
 import {
-  GetUserComponent,
   MemberProfileFragmentFragment,
-  UpdateUserComponent
+  GetUserDocument,
+  GetUserQuery,
+  UpdateUserMutation,
+  UpdateUserDocument
 } from '../../generated-models';
 
 type MemberEditPageProps = RouteComponentProps;
@@ -27,54 +30,46 @@ function formatMemberForMutation(updatedUser: MemberProfileFragmentFragment) {
 
 const MemberEditPage: React.FC<MemberEditPageProps> = ({ history }) => {
   const authContext = useContext(AuthenticationContext);
+  const updateMemberMutation = useMutation<UpdateUserMutation>(
+    UpdateUserDocument,
+    {
+      refetchQueries: ['editableUsersList']
+    }
+  );
+  const { data, error, loading } = useQuery<GetUserQuery>(GetUserDocument, {
+    variables: { id: authContext.authData.userId }
+  });
+  if (error) return <div>Error! {error.message}</div>;
+  if (loading || !data || !data.user) return <LoadingIndicator />;
 
   return (
-    <UpdateUserComponent refetchQueries={['editableUsersList']}>
-      {updateMemberMutation => (
-        <GetUserComponent variables={{ id: authContext.authData.userId }}>
-          {({ loading, error, data }) => {
-            if (error) return `Error! ${error.message}`;
-            if (loading || !data || !data.user) return <LoadingIndicator />;
-
-            return (
-              <Formik
-                initialValues={data.user}
-                onSubmit={async (updatedMember, actions) => {
-                  try {
-                    await updateMemberMutation({
-                      variables: formatMemberForMutation({
-                        ...updatedMember,
-                        hasCompletedWizard: true
-                      })
-                    });
-                    history.push('/');
-                  } catch (err) {
-                    console.error('submitting error', err);
-                    actions.setSubmitting(false);
-                    alert(err);
-                  }
-                }}
-                render={({
-                  values,
-                  dirty,
-                  handleChange,
-                  handleSubmit,
-                  isSubmitting
-                }) => (
-                  <Form>
-                    <Onboarding
-                      user={values}
-                      onChange={handleChange}
-                      onSubmit={handleSubmit}
-                    />
-                  </Form>
-                )}
-              />
-            );
-          }}
-        </GetUserComponent>
+    <Formik
+      initialValues={data.user}
+      onSubmit={async (updatedMember, actions) => {
+        try {
+          await updateMemberMutation({
+            variables: formatMemberForMutation({
+              ...updatedMember,
+              hasCompletedWizard: true
+            })
+          });
+          history.push('/');
+        } catch (err) {
+          console.error('submitting error', err);
+          actions.setSubmitting(false);
+          alert(err);
+        }
+      }}
+      render={({ values, dirty, handleChange, handleSubmit, isSubmitting }) => (
+        <Form>
+          <Onboarding
+            user={values}
+            onChange={handleChange}
+            onSubmit={handleSubmit}
+          />
+        </Form>
       )}
-    </UpdateUserComponent>
+    />
   );
 };
 
