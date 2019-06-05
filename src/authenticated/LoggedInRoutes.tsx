@@ -17,44 +17,42 @@ import ProjectEditPage from './project/ProjectEditPage';
 import ProjectCreatePage from './project/ProjectCreatePage';
 import SkillPage from './skill/SkillPage';
 import AuthenticationContext from '../utils/authentication/authContext';
-import { UserRoleComponent } from '../generated-models';
+import { UserRoleQuery, UserRoleDocument } from '../generated-models';
 import OnboardingPage from './onboarding/OnboardingPage';
+import { useQuery } from 'react-apollo-hooks';
 
 const LoggedInRoutes = () => {
   const authContext = useContext(AuthenticationContext);
+  const { loading, data, error } = useQuery<UserRoleQuery>(UserRoleDocument, {
+    variables: { id: authContext.authData.userId }
+  });
+  if (error) {
+    return <div>Error! {error.message}</div>;
+  }
+
   return (
     <DrawerLayout drawer={<DrawerContent />}>
-      <UserRoleComponent variables={{ id: authContext.authData.userId }}>
-        {({ loading, data }) => {
-          if (loading || !data || !data.user) return null;
+      {loading || !data || !data.user ? null : (
+        <Switch>
+          <Route exact path="/" component={MemberResourcesPage} />
+          <Route exact path="/me" component={MyProfilePage} />
+          <Route exact path="/me/edit" component={MemberProfileEditPage} />
+          <Route exact path="/flowdock" component={FlowdockLanding} />
+          <Route exact path="/volunteers" component={UsersListPage} />
+          <Route exact path="/volunteers/:id" component={MemberProfilePage} />
+          <Route path="/projects/create" component={ProjectCreatePage} />
+          <Route path="/projects/:id/edit" component={ProjectEditPage} />
+          <Route path="/projects/:id" component={ProjectPage} />
+          <Route path="/projects" component={ProjectsListPage} />
+          {/* <Route path="/projects" component={GeneralProjectPage} /> */}
+          <Route exact path="/styles" component={StyleReferencePage} />
+          <Route exact path="/skills/:id" component={SkillPage} />
+          <Route exact path="/new" component={OnboardingPage} />
 
-          return (
-            <Switch>
-              <Route exact path="/" component={MemberResourcesPage} />
-              <Route exact path="/me" component={MyProfilePage} />
-              <Route exact path="/me/edit" component={MemberProfileEditPage} />
-              <Route exact path="/flowdock" component={FlowdockLanding} />
-              <Route exact path="/volunteers" component={UsersListPage} />
-              <Route
-                exact
-                path="/volunteers/:id"
-                component={MemberProfilePage}
-              />
-              <Route path="/projects/create" component={ProjectCreatePage} />
-              <Route path="/projects/:id/edit" component={ProjectEditPage} />
-              <Route path="/projects/:id" component={ProjectPage} />
-              <Route path="/projects" component={ProjectsListPage} />
-              {/* <Route path="/projects" component={GeneralProjectPage} /> */}
-              <Route exact path="/styles" component={StyleReferencePage} />
-              <Route exact path="/skills/:id" component={SkillPage} />
-              <Route exact path="/new" component={OnboardingPage} />
-
-              {getAdminRoutes(data.user)}
-              <Route component={NoMatchPage} />
-            </Switch>
-          );
-        }}
-      </UserRoleComponent>
+          {getAdminRoutes(data.user)}
+          <Route component={NoMatchPage} />
+        </Switch>
+      )}
     </DrawerLayout>
   );
 };
