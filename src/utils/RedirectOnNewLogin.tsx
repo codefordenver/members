@@ -10,17 +10,17 @@ const RedirectOnNewLogin: React.FC<RouteComponentProps> = ({
   location
 }) => {
   const authContext = useContext(AuthenticationContext);
-  const [haveCheckedIfNewUser, setHaveCheckedIfNewUser] = useState(false);
-
-  if (!authContext.isAuthenticated()) {
-    return null;
-  }
+  const [checkedIfNewUser, setCheckedIfNewUser] = useState(false);
 
   const { data } = useQuery<GetUserQuery>(GetUserDocument, {
     variables: { id: authContext.authData.userId }
   });
 
-  if (data && data.user && !haveCheckedIfNewUser) {
+  if (!authContext.isAuthenticated()) {
+    return null;
+  }
+
+  if (data && data.user && !checkedIfNewUser) {
     if (
       !data.user.hasCompletedWizard &&
       // Make sure we aren't already on the new page to avoid infinite redirects
@@ -28,7 +28,7 @@ const RedirectOnNewLogin: React.FC<RouteComponentProps> = ({
     ) {
       history.replace(PAGE_URLS.newUser);
     } else {
-      setHaveCheckedIfNewUser(true);
+      setCheckedIfNewUser(true);
     }
   }
   return null;

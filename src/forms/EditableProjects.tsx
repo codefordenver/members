@@ -1,10 +1,13 @@
 import React from 'react';
-import { compose } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import Chip from '@material-ui/core/Chip';
-import EditableList, { withItemComponent, ItemComponent } from './EditableList';
-import { EditableProjectsListHOC } from '../generated-models';
+import EditableList, { EditableListProps, ItemComponent } from './EditableList';
+import {
+  EditableProjectsListQuery,
+  EditableProjectsListDocument
+} from '../generated-models';
 import './EditableProject.css';
+import { useQuery } from 'react-apollo-hooks';
 
 const ProjectChip: ItemComponent = ({ item, onDelete, editing }) => {
   const chip = (
@@ -26,17 +29,23 @@ const ProjectChip: ItemComponent = ({ item, onDelete, editing }) => {
   );
 };
 
-interface EditableProjectsProps {
-  editing: boolean;
-}
+const EditableProjects: React.FC<EditableListProps> = props => {
+  const { data, error, loading } = useQuery<EditableProjectsListQuery>(
+    EditableProjectsListDocument,
+    {
+      skip: !props.editing
+    }
+  );
+  if (error) return <div>Error! {error.message}</div>;
 
-export default compose(
-  EditableProjectsListHOC<EditableProjectsProps>({
-    skip: props => !props.editing,
-    props: ({ data: { allProjects = [], loading = true } = {} }) => ({
-      allOptions: allProjects,
-      allOptionsLoading: loading
-    })
-  }),
-  withItemComponent(ProjectChip)
-)(EditableList);
+  return (
+    <EditableList
+      {...props}
+      ItemComponent={ProjectChip}
+      allOptions={(data && data.allProjects) || []}
+      allOptionsLoading={loading}
+    />
+  );
+};
+
+export default EditableProjects;

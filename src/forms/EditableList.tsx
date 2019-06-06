@@ -13,7 +13,7 @@ type ItemComponentProps = {
   onDelete?(): void;
 };
 export type ItemComponent = React.ComponentType<ItemComponentProps>;
-type EditableListProps = {
+export type EditableListProps = {
   value: Item[];
   label: string;
   name: string;
@@ -91,18 +91,3 @@ const EditableList: React.FC<EditableListProps> = ({
 };
 
 export default EditableList;
-
-type InjectedComponentProps = {
-  ItemComponent?: ItemComponent;
-};
-
-export function withItemComponent<P extends InjectedComponentProps>(
-  ItemComponent: ItemComponent
-) {
-  return (WrappedComponent: React.ComponentType<P>) => {
-    const WithItemComponent = (props: any) => (
-      <WrappedComponent {...props} ItemComponent={ItemComponent} />
-    );
-    return WithItemComponent;
-  };
-}
