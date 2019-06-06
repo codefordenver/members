@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Chip from '@material-ui/core/Chip';
 import EditableList, { EditableListProps, ItemComponent } from './EditableList';
+import { useCustomQuery } from '../utils/hooks';
 import {
   EditableUsersListDocument,
   EditableUsersListQuery
 } from '../generated-models';
 import './EditableProject.css';
-import { useQuery } from 'react-apollo-hooks';
 
 const UserChip: ItemComponent = ({ item, onDelete, editing }) => {
   const chip = (
@@ -29,13 +29,12 @@ const UserChip: ItemComponent = ({ item, onDelete, editing }) => {
 };
 
 const EditableUsers: React.FC<EditableListProps> = props => {
-  const { data, error, loading } = useQuery<EditableUsersListQuery>(
+  const { data, loading } = useCustomQuery<EditableUsersListQuery>(
     EditableUsersListDocument,
     {
       skip: !props.editing
     }
   );
-  if (error) return <div>Error! {error.message}</div>;
 
   const users = ((data && data.allUsers) || []).map(user => ({
     ...user,

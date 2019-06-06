@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import LoadingIndicator from '../../shared-components/LoadingIndicator';
 import ProjectCard from './ProjectCard';
-import { useQuery } from 'react-apollo-hooks';
+import { useCustomQuery } from '../../utils/hooks';
 import {
   ProjectCardsAllProjects,
   ProjectCardsQuery,
@@ -15,11 +15,8 @@ interface ProjectsListProps {
 }
 
 const ProjectsListPage: React.FC<ProjectsListProps> = () => {
-  const { data, error, loading } = useQuery<ProjectCardsQuery>(
-    ProjectCardsDocument
-  );
-  if (error) return <div>Error! {error.message}</div>;
-  if (loading || !data || !data.allProjects) return <LoadingIndicator />;
+  const { data } = useCustomQuery<ProjectCardsQuery>(ProjectCardsDocument);
+  if (!data || !data.allProjects) return <LoadingIndicator />;
 
   const projects = data.allProjects;
   if (!projects.length) {

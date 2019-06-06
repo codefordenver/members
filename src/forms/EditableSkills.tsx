@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Chip from '@material-ui/core/Chip';
 import EditableList, { ItemComponent, EditableListProps } from './EditableList';
-import { useQuery, useMutation } from 'react-apollo-hooks';
+import { useMutation } from 'react-apollo-hooks';
+import { useCustomQuery } from '../utils/hooks';
 import {
   EditableSkillsListQuery,
   EditableSkillsListDocument,
@@ -31,13 +32,13 @@ const EditableSkills: React.FC<EditableListProps> = props => {
   const createSkill = useMutation<CreateSkillMutation>(CreateSkillDocument, {
     refetchQueries: ['editableSkillsList']
   });
-  const { data, error, loading } = useQuery<EditableSkillsListQuery>(
+  const { data, loading } = useCustomQuery<EditableSkillsListQuery>(
     EditableSkillsListDocument,
     {
-      skip: !props.editing
+      skip: !props.editing,
+      suspend: false
     }
   );
-  if (error) return <div>Error! {error.message}</div>;
 
   return (
     <EditableList

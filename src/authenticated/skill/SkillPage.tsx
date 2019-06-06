@@ -1,8 +1,7 @@
 import React from 'react';
 import SkillDetails from './SkillDetails';
 import { SkillPageDocument, SkillPageQuery } from '../../generated-models';
-import { useQuery } from 'react-apollo-hooks';
-import LoadingIndicator from '../../shared-components/LoadingIndicator';
+import { useCustomQuery } from '../../utils/hooks';
 
 type SkillPageProps = {
   match: {
@@ -13,17 +12,13 @@ type SkillPageProps = {
 };
 
 const SkillPage: React.FC<SkillPageProps> = ({ match }) => {
-  const { loading, error, data, refetch } = useQuery<SkillPageQuery>(
-    SkillPageDocument,
-    {
-      variables: { id: match.params.id }
-    }
-  );
-  if (error) return <div>Error! {error.message}</div>;
-  if (loading || !data || !data.skill) return <LoadingIndicator />;
+  const { data, refetch } = useCustomQuery<SkillPageQuery>(SkillPageDocument, {
+    variables: { id: match.params.id }
+  });
+  if (!data || !data.skill) return null;
   refetch(); // Refresh on page render so the data isn't stale
 
-  return <SkillDetails skill={data.skill} loading={loading} />;
+  return <SkillDetails skill={data.skill} />;
 };
 
 export default SkillPage;

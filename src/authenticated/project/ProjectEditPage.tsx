@@ -2,8 +2,7 @@ import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { History } from 'history';
 import ProjectForm from './ProjectForm';
-import LoadingIndicator from '../../shared-components/LoadingIndicator';
-import { useQuery, useMutation } from 'react-apollo-hooks';
+import { useMutation } from 'react-apollo-hooks';
 import {
   GetProjectDocument,
   GetProjectQuery,
@@ -11,6 +10,7 @@ import {
   UpdateProjectDocument,
   UpdateProjectMutation
 } from '../../generated-models';
+import { useCustomQuery } from '../../utils/hooks';
 
 type ProjectEditPageProps = RouteComponentProps<{ id: string }>;
 
@@ -41,14 +41,10 @@ const ProjectEditPage: React.FC<ProjectEditPageProps> = ({
       refetchQueries: ['editableUsersList']
     }
   );
-  const { data, error, loading } = useQuery<GetProjectQuery>(
-    GetProjectDocument,
-    {
-      variables: { id: match.params.id }
-    }
-  );
-  if (error) return <div>Error! {error.message}</div>;
-  if (loading || !data || !data.Project) return <LoadingIndicator />;
+  const { data } = useCustomQuery<GetProjectQuery>(GetProjectDocument, {
+    variables: { id: match.params.id }
+  });
+  if (!data || !data.Project) return null;
 
   return (
     <ProjectForm

@@ -19,7 +19,7 @@ import SkillPage from './skill/SkillPage';
 import AuthenticationContext from '../utils/authentication/authContext';
 import { UserRoleQuery, UserRoleDocument } from '../generated-models';
 import OnboardingPage from './onboarding/OnboardingPage';
-import { useQuery } from 'react-apollo-hooks';
+import { useCustomQuery } from '../utils/hooks';
 
 export const PAGE_URLS = {
   newUser: '/new'
@@ -27,14 +27,13 @@ export const PAGE_URLS = {
 
 const LoggedInRoutes = () => {
   const authContext = useContext(AuthenticationContext);
-  const { loading, data, error } = useQuery<UserRoleQuery>(UserRoleDocument, {
+  const { data } = useCustomQuery<UserRoleQuery>(UserRoleDocument, {
     variables: { id: authContext.authData.userId }
   });
-  if (error) return <div>Error! {error.message}</div>;
 
   return (
     <DrawerLayout drawer={<DrawerContent />}>
-      {loading || !data || !data.user ? null : (
+      {!data || !data.user ? null : (
         <Switch>
           <Route exact path="/" component={MemberResourcesPage} />
           <Route exact path="/me" component={MyProfilePage} />

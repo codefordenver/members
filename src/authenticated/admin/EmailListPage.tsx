@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import { format, subDays } from 'date-fns';
-import LoadingIndicator from '../../shared-components/LoadingIndicator';
-import { useQuery } from 'react-apollo-hooks';
+import { useCustomQuery } from '../../utils/hooks';
 import { UserEmailsDocument, UserEmailsQuery } from '../../generated-models';
 
 const EmailListPage: React.FC = () => {
@@ -9,17 +8,12 @@ const EmailListPage: React.FC = () => {
     () => format(subDays(new Date(), 7), 'YYYY-MM-DDTHH:mm:ss.SSSZ'),
     []
   );
-  const { data, error, loading } = useQuery<UserEmailsQuery>(
-    UserEmailsDocument,
-    {
-      variables: {
-        date: date7DaysAgo
-      }
+  const { data } = useCustomQuery<UserEmailsQuery>(UserEmailsDocument, {
+    variables: {
+      date: date7DaysAgo
     }
-  );
-  if (loading || !data || !data.allUsers) return <LoadingIndicator />;
-  if (error) return <div>Error! {error.message}</div>;
-  const users = data.allUsers;
+  });
+  const users = (data && data.allUsers) || [];
 
   return (
     <div>

@@ -1,14 +1,13 @@
 import React from 'react';
 import UsersList from './UserList';
-import { useQuery } from 'react-apollo-hooks';
 import { UsersListDocument, UsersListQuery } from '../../generated-models';
+import { useCustomQuery } from '../../utils/hooks';
 
 const UsersListPage: React.FC = () => {
-  const { data, error, loading } = useQuery<UsersListQuery>(UsersListDocument);
-  if (error) return <div>Error! {error.message}</div>;
+  const { data } = useCustomQuery<UsersListQuery>(UsersListDocument);
 
   const users = (data && data.allUsers) || [];
-  return <UsersList users={users} loading={loading} />;
+  return <UsersList users={users} />;
 };
 
 export default UsersListPage;

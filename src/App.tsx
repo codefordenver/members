@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Suspense } from 'react';
 import {
   MuiThemeProvider,
   createMuiTheme,
@@ -12,6 +12,7 @@ import Header from './header/Header';
 import ErrorBoundary from './shared-components/ErrorBoundary';
 import AppBody from './AppBody';
 import AuthProvider from './utils/authentication/authProvider';
+import LoadingIndicator from './shared-components/LoadingIndicator';
 import './App.css';
 
 const theme = createMuiTheme({
@@ -40,27 +41,30 @@ const styles = (theme: Theme) => ({
 
 interface AppProps extends WithStyles<typeof styles> {}
 
-class App extends Component<AppProps> {
-  render() {
-    const { classes } = this.props;
-    return (
+const App: React.FC<AppProps> = ({ classes }) => {
+  return (
+    <ErrorBoundary>
       <AuthProvider>
         <MuiThemeProvider theme={theme}>
-          <div className="App">
-            <GoogleAnalyticsPageTracker />
-            <RedirectOnNewLogin />
-            <ErrorBoundary>
-              <Header />
-            </ErrorBoundary>
-            <ErrorBoundary>
-              <div className={classes.toolbar} />
-              <AppBody />
-            </ErrorBoundary>
-          </div>
+          <Suspense fallback={<LoadingIndicator />}>
+            <div className="App">
+              <GoogleAnalyticsPageTracker />
+              <RedirectOnNewLogin />
+              <ErrorBoundary>
+                <Header />
+              </ErrorBoundary>
+              <ErrorBoundary>
+                <div className={classes.toolbar} />
+                <Suspense fallback={<LoadingIndicator />}>
+                  <AppBody />
+                </Suspense>
+              </ErrorBoundary>
+            </div>
+          </Suspense>
         </MuiThemeProvider>
       </AuthProvider>
-    );
-  }
-}
+    </ErrorBoundary>
+  );
+};
 
 export default withStyles(styles, { withTheme: true })(App);

@@ -3,8 +3,8 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import Onboarding from './Onboarding';
 import AuthenticationContext from '../../utils/authentication/authContext';
-import LoadingIndicator from '../../shared-components/LoadingIndicator';
-import { useQuery, useMutation } from 'react-apollo-hooks';
+import { useMutation } from 'react-apollo-hooks';
+import { useCustomQuery } from '../../utils/hooks';
 import {
   MemberProfileFragmentFragment,
   GetUserDocument,
@@ -36,11 +36,10 @@ const MemberEditPage: React.FC<MemberEditPageProps> = ({ history }) => {
       refetchQueries: ['editableUsersList']
     }
   );
-  const { data, error, loading } = useQuery<GetUserQuery>(GetUserDocument, {
+  const { data } = useCustomQuery<GetUserQuery>(GetUserDocument, {
     variables: { id: authContext.authData.userId }
   });
-  if (error) return <div>Error! {error.message}</div>;
-  if (loading || !data || !data.user) return <LoadingIndicator />;
+  if (!data || !data.user) return null;
 
   return (
     <Formik
