@@ -45,7 +45,12 @@ const ProjectCard: React.FC<ProjectCardFieldsFragment> = ({
       </CardContent>
       <CardActions>
         <Grid container spacing={16} alignItems="center">
-          <EditableSkills value={skills} name="skills" />
+          <EditableSkills
+            value={skills}
+            name="skills"
+            label="skills"
+            onChange={() => {}}
+          />
           <EditableLink
             value={repoName}
             name="repoName"

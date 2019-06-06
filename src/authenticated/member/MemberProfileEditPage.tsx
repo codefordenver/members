@@ -3,7 +3,6 @@ import { RouteComponentProps } from 'react-router-dom';
 import { History } from 'history';
 import MemberForm from './MemberForm';
 import AuthenticationContext from '../../utils/authentication/authContext';
-import LoadingIndicator from '../../shared-components/LoadingIndicator';
 import { useMutation } from 'react-apollo-hooks';
 import { useCustomQuery } from '../../utils/hooks';
 import {

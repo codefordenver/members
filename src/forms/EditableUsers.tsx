@@ -36,10 +36,7 @@ const EditableUsers: React.FC<EditableListProps> = props => {
     }
   );
 
-  const users = ((data && data.allUsers) || []).map(user => ({
-    ...user,
-    name: user.name || '' // TODO: It seems like we should probably just require names on users
-  }));
+  const users = (data && data.allUsers) || [];
 
   return (
     <EditableList

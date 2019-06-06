@@ -10,7 +10,6 @@ import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import Hidden from '@material-ui/core/Hidden';
 import MenuIcon from '@material-ui/icons/Menu';
-import ErrorBoundary from '../shared-components/ErrorBoundary';
 
 const drawerWidth = 300;
 
@@ -80,22 +79,20 @@ class ResponsiveDrawer extends React.Component<
         </IconButton>
 
         <Hidden mdUp>
-          <ErrorBoundary>
-            <Drawer
-              variant="temporary"
-              anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-              open={this.state.mobileOpen}
-              onClose={this.handleDrawerToggle}
-              classes={{
-                paper: classes.drawerPaper
-              }}
-              ModalProps={{
-                keepMounted: true // Better open performance on mobile.
-              }}
-            >
-              {drawer}
-            </Drawer>
-          </ErrorBoundary>
+          <Drawer
+            variant="temporary"
+            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+            open={this.state.mobileOpen}
+            onClose={this.handleDrawerToggle}
+            classes={{
+              paper: classes.drawerPaper
+            }}
+            ModalProps={{
+              keepMounted: true // Better open performance on mobile.
+            }}
+          >
+            {drawer}
+          </Drawer>
         </Hidden>
         <Hidden smDown implementation="css">
           <Drawer
@@ -108,7 +105,6 @@ class ResponsiveDrawer extends React.Component<
             {drawer}
           </Drawer>
         </Hidden>
-
         <main className={classes.content}>{children}</main>
       </div>
     );

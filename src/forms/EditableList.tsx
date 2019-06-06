@@ -3,6 +3,10 @@ import Chip from '@material-ui/core/Chip';
 import AutocompleteChip from './AutocompleteChip';
 import './EditableList.css';
 
+type MaybeItem = {
+  id?: string;
+  name?: string | null;
+};
 type Item = {
   id?: string;
   name: string;
@@ -14,12 +18,12 @@ type ItemComponentProps = {
 };
 export type ItemComponent = React.ComponentType<ItemComponentProps>;
 export type EditableListProps = {
-  value: Item[];
+  value?: MaybeItem[] | null;
   label: string;
   name: string;
-  editing: boolean;
+  editing?: boolean;
   onChange(value: any): void;
-  allOptions?: Item[];
+  allOptions?: MaybeItem[];
   allOptionsLoading?: boolean;
   createChip?(value: any): Promise<Item>;
   ItemComponent?: ItemComponent;
@@ -29,22 +33,32 @@ const DefaultItemComponent = ({ item, onDelete }: ItemComponentProps) => (
   <Chip className="EditableList-chip" label={item.name} onDelete={onDelete} />
 );
 
+function filterOutNonNamed(items: MaybeItem[]) {
+  return items.filter(item => item.name) as Item[];
+}
+
 const EditableList: React.FC<EditableListProps> = ({
-  value = [],
+  value: maybeValue,
   label,
   name,
   editing,
   onChange,
-  allOptions = [],
+  allOptions: maybeAllOptions,
   allOptionsLoading,
   createChip,
   ItemComponent = DefaultItemComponent
 }) => {
+  const value = filterOutNonNamed(maybeValue || []);
+  const allOptions = filterOutNonNamed(maybeAllOptions || []);
   if (!editing) {
     return (
       <div className="EditableList">
         {value.map(item => (
-          <ItemComponent key={item.name} item={item} editing={editing} />
+          <ItemComponent
+            key={item.name}
+            item={item}
+            editing={editing || false}
+          />
         ))}
       </div>
     );

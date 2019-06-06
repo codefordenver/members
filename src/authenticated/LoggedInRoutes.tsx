@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import DrawerLayout from './DrawerLayout';
 import DrawerContent from './DrawerContent';
@@ -20,6 +20,7 @@ import AuthenticationContext from '../utils/authentication/authContext';
 import { UserRoleQuery, UserRoleDocument } from '../generated-models';
 import OnboardingPage from './onboarding/OnboardingPage';
 import { useCustomQuery } from '../utils/hooks';
+import LoadingIndicator from '../shared-components/LoadingIndicator';
 
 export const PAGE_URLS = {
   newUser: '/new'
@@ -34,25 +35,27 @@ const LoggedInRoutes = () => {
   return (
     <DrawerLayout drawer={<DrawerContent />}>
       {!data || !data.user ? null : (
-        <Switch>
-          <Route exact path="/" component={MemberResourcesPage} />
-          <Route exact path="/me" component={MyProfilePage} />
-          <Route exact path="/me/edit" component={MemberProfileEditPage} />
-          <Route exact path="/flowdock" component={FlowdockLanding} />
-          <Route exact path="/volunteers" component={UsersListPage} />
-          <Route exact path="/volunteers/:id" component={MemberProfilePage} />
-          <Route path="/projects/create" component={ProjectCreatePage} />
-          <Route path="/projects/:id/edit" component={ProjectEditPage} />
-          <Route path="/projects/:id" component={ProjectPage} />
-          <Route path="/projects" component={ProjectsListPage} />
-          {/* <Route path="/projects" component={GeneralProjectPage} /> */}
-          <Route exact path="/styles" component={StyleReferencePage} />
-          <Route exact path="/skills/:id" component={SkillPage} />
-          <Route exact path={PAGE_URLS.newUser} component={OnboardingPage} />
+        <Suspense fallback={<LoadingIndicator />}>
+          <Switch>
+            <Route exact path="/" component={MemberResourcesPage} />
+            <Route exact path="/me" component={MyProfilePage} />
+            <Route exact path="/me/edit" component={MemberProfileEditPage} />
+            <Route exact path="/flowdock" component={FlowdockLanding} />
+            <Route exact path="/volunteers" component={UsersListPage} />
+            <Route exact path="/volunteers/:id" component={MemberProfilePage} />
+            <Route path="/projects/create" component={ProjectCreatePage} />
+            <Route path="/projects/:id/edit" component={ProjectEditPage} />
+            <Route path="/projects/:id" component={ProjectPage} />
+            <Route path="/projects" component={ProjectsListPage} />
+            {/* <Route path="/projects" component={GeneralProjectPage} /> */}
+            <Route exact path="/styles" component={StyleReferencePage} />
+            <Route exact path="/skills/:id" component={SkillPage} />
+            <Route exact path={PAGE_URLS.newUser} component={OnboardingPage} />
 
-          {getAdminRoutes(data.user)}
-          <Route component={NoMatchPage} />
-        </Switch>
+            {getAdminRoutes(data.user)}
+            <Route component={NoMatchPage} />
+          </Switch>
+        </Suspense>
       )}
     </DrawerLayout>
   );
