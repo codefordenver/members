@@ -6,8 +6,9 @@ import {
   within,
   fireEvent,
   wait,
-  waitForElement
-} from 'react-testing-library';
+  waitForElement,
+  act
+} from '@testing-library/react';
 import { ApolloClient } from 'apollo-client';
 import { Router } from 'react-router-dom';
 import { MockLink, MockedResponse } from 'react-apollo/test-utils';
@@ -108,4 +109,4 @@ export function getQueries(container = document.body) {
   };
 }
 
-export { fireEvent, wait, waitForElement, createHistory };
+export { act, fireEvent, wait, waitForElement, createHistory };
