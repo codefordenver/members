@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import {
   render,
   getByText,
@@ -8,15 +8,40 @@ import {
   wait,
   waitForElement
 } from 'react-testing-library';
+import { ApolloClient } from 'apollo-client';
 import { Router } from 'react-router-dom';
-import { MockedProvider, MockedResponse } from 'react-apollo/test-utils';
+import { MockLink, MockedResponse } from 'react-apollo/test-utils';
 import { createMemoryHistory as createHistory } from 'history';
+import { ApolloLink } from 'apollo-link';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloProvider } from 'react-apollo-hooks';
 import {
   regularUserMockResponses,
   adminUserServerMockResponses,
   roleMockResponses
 } from './mocks/loggedInUserResponses';
 import AuthProvider from './utils/authentication/authProvider';
+import ErrorBoundary from './shared-components/ErrorBoundary';
+
+interface CreateClientOptions {
+  readonly addTypename?: boolean;
+
+  readonly link?: ApolloLink;
+  readonly mocks?: ReadonlyArray<MockedResponse>;
+}
+
+export function createClient({
+  link,
+  mocks = [],
+  addTypename = true
+}: CreateClientOptions = {}) {
+  return new ApolloClient({
+    cache: new InMemoryCache({ addTypename }),
+    link: link ? link : new MockLink(mocks)
+  });
+}
+
+export const suspenseFallbackText = 'Suspense Text';
 
 export function mountWithContext(
   cmp: React.ReactElement<any>,
@@ -24,14 +49,20 @@ export function mountWithContext(
   mocks?: ReadonlyArray<MockedResponse>,
   history = createHistory({ initialEntries: routes })
 ) {
+  const client = createClient({ mocks, addTypename: false });
+
   // Using Router instead of MemoryRouter so we can override `history`
   // see note: https://github.com/ReactTraining/react-router/blob/0853628daff26a809e5384f352fada57753fc1c3/packages/react-router/modules/MemoryRouter.js#L31-L32
   return render(
-    <AuthProvider>
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <Router history={history}>{cmp}</Router>
-      </MockedProvider>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <Suspense fallback={<div>{suspenseFallbackText}</div>}>
+          <ApolloProvider client={client}>
+            <Router history={history}>{cmp}</Router>
+          </ApolloProvider>
+        </Suspense>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import MemberForm from './MemberForm';
-import LoadingIndicator from '../../shared-components/LoadingIndicator';
 import { useCustomQuery } from '../../utils/hooks';
 import { GetUserQuery, GetUserDocument } from '../../generated-models';
 
