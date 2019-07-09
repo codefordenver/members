@@ -62,7 +62,7 @@
     "deployProdBackend": "cd ./server && graphcool deploy",
     "check-version": "node ./bin/checkVersion.js",
     "download-schema": "dotenv -e ./.env.local node ./bin/download-schema.js",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit --skipLibCheck",
     "gql-gen": "gql-gen"
   },
   "homepage": "https://members.codefordenver.org",
