@@ -1,14 +1,41 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { History } from 'history';
-import ProjectForm from './ProjectForm';
+import ProjectForm, { PROJECT_FORM_FRAGMENT } from './ProjectForm';
 import { useMutation } from 'react-apollo-hooks';
+import gql from 'graphql-tag';
 import {
   ProjectSectionFieldsFragment,
   CreateProjectMutation,
-  CreateProjectDocument,
   ProjectStatus
 } from '../../generated-models';
+
+const CREATE_PROJECT = gql`
+  mutation createProject(
+    $name: String!
+    $headerImage: String
+    $description: String
+    $repoName: String!
+    $boardUrl: String
+    $skillsIds: [ID!]
+    $championsIds: [ID!]
+    $status: ProjectStatus
+  ) {
+    createProject(
+      name: $name
+      headerImage: $headerImage
+      description: $description
+      repoName: $repoName
+      boardUrl: $boardUrl
+      skillsIds: $skillsIds
+      championsIds: $championsIds
+      status: $status
+    ) {
+      ...ProjectSectionFields
+    }
+  }
+  ${PROJECT_FORM_FRAGMENT}
+`;
 
 function getBaseUrl(history: History) {
   return history.location.pathname.split('/create')[0];
@@ -33,7 +60,7 @@ function formatNewProjectForMutation(newProject: ProjectSectionFieldsFragment) {
 
 const ProjectCreatePage: React.FC<RouteComponentProps<{}>> = ({ history }) => {
   const createProjectMutation = useMutation<CreateProjectMutation>(
-    CreateProjectDocument,
+    CREATE_PROJECT,
     {
       // TODO: These didn't exist before, check if they are actually needed
       refetchQueries: ['projectCards', 'projectsDrawer', 'editableUsersList']

@@ -10,6 +10,27 @@ import Button from '@material-ui/core/Button';
 import { History } from 'history';
 import ProjectSection from './ProjectSection';
 import { ProjectSectionFieldsFragment } from '../../generated-models';
+import gql from 'graphql-tag';
+
+export const PROJECT_FORM_FRAGMENT = gql`
+  fragment ProjectSectionFields on Project {
+    id
+    name
+    headerImage
+    description
+    repoName
+    boardUrl
+    status
+    skills {
+      id
+      name
+    }
+    champions {
+      id
+      name
+    }
+  }
+`;
 
 type ProjectFormProps = {
   initialValues: ProjectSectionFieldsFragment;

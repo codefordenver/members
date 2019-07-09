@@ -1691,25 +1691,6 @@ export type DateTime = any;
 // Documents
 // ====================================================
 
-export type CreateProjectVariables = {
-  name: string;
-  headerImage?: Maybe<string>;
-  description?: Maybe<string>;
-  repoName: string;
-  boardUrl?: Maybe<string>;
-  skillsIds?: Maybe<string[]>;
-  championsIds?: Maybe<string[]>;
-  status?: Maybe<ProjectStatus>;
-};
-
-export type CreateProjectMutation = {
-  __typename?: 'Mutation';
-
-  createProject: Maybe<CreateProjectCreateProject>;
-};
-
-export type CreateProjectCreateProject = ProjectSectionFieldsFragment;
-
 export type CreateSkillVariables = {
   name: string;
 };
@@ -2160,72 +2141,6 @@ export const ProjectSectionFieldsFragmentDoc = gql`
 // Components
 // ====================================================
 
-export const CreateProjectDocument = gql`
-  mutation createProject(
-    $name: String!
-    $headerImage: String
-    $description: String
-    $repoName: String!
-    $boardUrl: String
-    $skillsIds: [ID!]
-    $championsIds: [ID!]
-    $status: ProjectStatus
-  ) {
-    createProject(
-      name: $name
-      headerImage: $headerImage
-      description: $description
-      repoName: $repoName
-      boardUrl: $boardUrl
-      skillsIds: $skillsIds
-      championsIds: $championsIds
-      status: $status
-    ) {
-      ...ProjectSectionFields
-    }
-  }
-
-  ${ProjectSectionFieldsFragmentDoc}
-`;
-export class CreateProjectComponent extends React.Component<
-  Partial<
-    ReactApollo.MutationProps<CreateProjectMutation, CreateProjectVariables>
-  >
-> {
-  render() {
-    return (
-      <ReactApollo.Mutation<CreateProjectMutation, CreateProjectVariables>
-        mutation={CreateProjectDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type CreateProjectProps<TChildProps = any> = Partial<
-  ReactApollo.MutateProps<CreateProjectMutation, CreateProjectVariables>
-> &
-  TChildProps;
-export type CreateProjectMutationFn = ReactApollo.MutationFn<
-  CreateProjectMutation,
-  CreateProjectVariables
->;
-export function CreateProjectHOC<TProps, TChildProps = any>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        CreateProjectMutation,
-        CreateProjectVariables,
-        CreateProjectProps<TChildProps>
-      >
-    | undefined
-) {
-  return ReactApollo.graphql<
-    TProps,
-    CreateProjectMutation,
-    CreateProjectVariables,
-    CreateProjectProps<TChildProps>
-  >(CreateProjectDocument, operationOptions);
-}
 export const CreateSkillDocument = gql`
   mutation createSkill($name: String!) {
     createSkill(name: $name) {
