@@ -6,6 +6,7 @@ documents:
   - ./src/**/*.ts
   - ./src/authenticated/**/*.tsx
   - ./src/forms/**/*.tsx
+  - ./src/header/**/*.tsx
 generates:
   src/generated-models.tsx:
     plugins:

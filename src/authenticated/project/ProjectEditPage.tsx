@@ -30,6 +30,7 @@ function getBaseUrl(history: History) {
   return history.location.pathname.split('/edit')[0];
 }
 
+// TODO: Either documents or update names and make sure to refetch
 export const GET_PROJECT = gql`
   query projectEditPageGetProject($id: ID!) {
     Project(id: $id) {

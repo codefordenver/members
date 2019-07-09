@@ -1,7 +1,8 @@
 import React from 'react';
 import SkillDetails from './SkillDetails';
-import { SkillPageDocument, SkillPageQuery } from '../../generated-models';
+import { SkillPageQuery } from '../../generated-models';
 import { useCustomQuery } from '../../utils/hooks';
+import gql from 'graphql-tag';
 
 type SkillPageProps = {
   match: {
@@ -11,8 +12,26 @@ type SkillPageProps = {
   };
 };
 
+const SKILL_PAGE = gql`
+  query skillPage($id: ID) {
+    skill: Skill(id: $id) {
+      id
+      name
+      projectsWithSkill {
+        id
+        name
+      }
+      usersWithSkill {
+        id
+        name
+        picture
+      }
+    }
+  }
+`;
+
 const SkillPage: React.FC<SkillPageProps> = ({ match }) => {
-  const { data, refetch } = useCustomQuery<SkillPageQuery>(SkillPageDocument, {
+  const { data, refetch } = useCustomQuery<SkillPageQuery>(SKILL_PAGE, {
     variables: { id: match.params.id }
   });
   if (!data || !data.skill) return null;

@@ -9,11 +9,9 @@ import {
   createHistory
 } from '../../../testUtils';
 import ProjectCreatePage, { CREATE_PROJECT } from '../ProjectCreatePage';
+import { EDITABLE_USERS } from '../../../forms/EditableUsers';
+import { EDITABLE_SKILLS } from '../../../forms/EditableSkills';
 import { mockAdminUser } from '../../../mocks/localStorageMock';
-import {
-  EditableUsersListDocument,
-  EditableSkillsListDocument
-} from '../../../generated-models';
 
 const {
   updateTextInput,
@@ -28,7 +26,7 @@ beforeEach(mockAdminUser);
 let queryMocks = [
   {
     request: {
-      query: EditableUsersListDocument,
+      query: EDITABLE_USERS,
       variables: {}
     },
     result: {
@@ -44,7 +42,7 @@ let queryMocks = [
   },
   {
     request: {
-      query: EditableSkillsListDocument,
+      query: EDITABLE_SKILLS,
       variables: {}
     },
     result: {
@@ -102,7 +100,7 @@ let queryMocks = [
   // For refetched data
   {
     request: {
-      query: EditableUsersListDocument,
+      query: EDITABLE_USERS,
       variables: {}
     },
     result: {

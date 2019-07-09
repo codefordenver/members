@@ -1691,56 +1691,6 @@ export type DateTime = any;
 // Documents
 // ====================================================
 
-export type CreateSkillVariables = {
-  name: string;
-};
-
-export type CreateSkillMutation = {
-  __typename?: 'Mutation';
-
-  createSkill: Maybe<CreateSkillCreateSkill>;
-};
-
-export type CreateSkillCreateSkill = {
-  __typename?: 'Skill';
-
-  id: string;
-
-  name: string;
-};
-
-export type EditableSkillsListVariables = {};
-
-export type EditableSkillsListQuery = {
-  __typename?: 'Query';
-
-  allSkills: EditableSkillsListAllSkills[];
-};
-
-export type EditableSkillsListAllSkills = {
-  __typename?: 'Skill';
-
-  id: string;
-
-  name: string;
-};
-
-export type EditableUsersListVariables = {};
-
-export type EditableUsersListQuery = {
-  __typename?: 'Query';
-
-  allUsers: EditableUsersListAllUsers[];
-};
-
-export type EditableUsersListAllUsers = {
-  __typename?: 'User';
-
-  id: string;
-
-  name: Maybe<string>;
-};
-
 export type GetHeaderUserVariables = {
   id?: Maybe<string>;
 };
@@ -1774,46 +1724,6 @@ export type GetUserQuery = {
 };
 
 export type GetUserUser = MemberProfileFragmentFragment;
-
-export type SkillPageVariables = {
-  id?: Maybe<string>;
-};
-
-export type SkillPageQuery = {
-  __typename?: 'Query';
-
-  skill: Maybe<SkillPageSkill>;
-};
-
-export type SkillPageSkill = {
-  __typename?: 'Skill';
-
-  id: string;
-
-  name: string;
-
-  projectsWithSkill: Maybe<SkillPageProjectsWithSkill[]>;
-
-  usersWithSkill: Maybe<SkillPageUsersWithSkill[]>;
-};
-
-export type SkillPageProjectsWithSkill = {
-  __typename?: 'Project';
-
-  id: string;
-
-  name: string;
-};
-
-export type SkillPageUsersWithSkill = {
-  __typename?: 'User';
-
-  id: string;
-
-  name: Maybe<string>;
-
-  picture: Maybe<string>;
-};
 
 export type UpdateUserVariables = {
   id: string;
@@ -1977,6 +1887,46 @@ export type ProjectCardsQuery = {
 
 export type ProjectCardsAllProjects = ProjectCardFieldsFragment;
 
+export type SkillPageVariables = {
+  id?: Maybe<string>;
+};
+
+export type SkillPageQuery = {
+  __typename?: 'Query';
+
+  skill: Maybe<SkillPageSkill>;
+};
+
+export type SkillPageSkill = {
+  __typename?: 'Skill';
+
+  id: string;
+
+  name: string;
+
+  projectsWithSkill: Maybe<SkillPageProjectsWithSkill[]>;
+
+  usersWithSkill: Maybe<SkillPageUsersWithSkill[]>;
+};
+
+export type SkillPageProjectsWithSkill = {
+  __typename?: 'Project';
+
+  id: string;
+
+  name: string;
+};
+
+export type SkillPageUsersWithSkill = {
+  __typename?: 'User';
+
+  id: string;
+
+  name: Maybe<string>;
+
+  picture: Maybe<string>;
+};
+
 export type EditableProjectsListVariables = {};
 
 export type EditableProjectsListQuery = {
@@ -1991,6 +1941,56 @@ export type EditableProjectsListAllProjects = {
   id: string;
 
   name: string;
+};
+
+export type EditableSkillsListVariables = {};
+
+export type EditableSkillsListQuery = {
+  __typename?: 'Query';
+
+  allSkills: EditableSkillsListAllSkills[];
+};
+
+export type EditableSkillsListAllSkills = {
+  __typename?: 'Skill';
+
+  id: string;
+
+  name: string;
+};
+
+export type CreateSkillVariables = {
+  name: string;
+};
+
+export type CreateSkillMutation = {
+  __typename?: 'Mutation';
+
+  createSkill: Maybe<CreateSkillCreateSkill>;
+};
+
+export type CreateSkillCreateSkill = {
+  __typename?: 'Skill';
+
+  id: string;
+
+  name: string;
+};
+
+export type EditableUsersListVariables = {};
+
+export type EditableUsersListQuery = {
+  __typename?: 'Query';
+
+  allUsers: EditableUsersListAllUsers[];
+};
+
+export type EditableUsersListAllUsers = {
+  __typename?: 'User';
+
+  id: string;
+
+  name: Maybe<string>;
 };
 
 export type MemberProfileFragmentFragment = {
@@ -2172,137 +2172,6 @@ export const ProjectSectionFieldsFragmentDoc = gql`
 // Components
 // ====================================================
 
-export const CreateSkillDocument = gql`
-  mutation createSkill($name: String!) {
-    createSkill(name: $name) {
-      id
-      name
-    }
-  }
-`;
-export class CreateSkillComponent extends React.Component<
-  Partial<ReactApollo.MutationProps<CreateSkillMutation, CreateSkillVariables>>
-> {
-  render() {
-    return (
-      <ReactApollo.Mutation<CreateSkillMutation, CreateSkillVariables>
-        mutation={CreateSkillDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type CreateSkillProps<TChildProps = any> = Partial<
-  ReactApollo.MutateProps<CreateSkillMutation, CreateSkillVariables>
-> &
-  TChildProps;
-export type CreateSkillMutationFn = ReactApollo.MutationFn<
-  CreateSkillMutation,
-  CreateSkillVariables
->;
-export function CreateSkillHOC<TProps, TChildProps = any>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        CreateSkillMutation,
-        CreateSkillVariables,
-        CreateSkillProps<TChildProps>
-      >
-    | undefined
-) {
-  return ReactApollo.graphql<
-    TProps,
-    CreateSkillMutation,
-    CreateSkillVariables,
-    CreateSkillProps<TChildProps>
-  >(CreateSkillDocument, operationOptions);
-}
-export const EditableSkillsListDocument = gql`
-  query editableSkillsList {
-    allSkills {
-      id
-      name
-    }
-  }
-`;
-export class EditableSkillsListComponent extends React.Component<
-  Partial<
-    ReactApollo.QueryProps<EditableSkillsListQuery, EditableSkillsListVariables>
-  >
-> {
-  render() {
-    return (
-      <ReactApollo.Query<EditableSkillsListQuery, EditableSkillsListVariables>
-        query={EditableSkillsListDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type EditableSkillsListProps<TChildProps = any> = Partial<
-  ReactApollo.DataProps<EditableSkillsListQuery, EditableSkillsListVariables>
-> &
-  TChildProps;
-export function EditableSkillsListHOC<TProps, TChildProps = any>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        EditableSkillsListQuery,
-        EditableSkillsListVariables,
-        EditableSkillsListProps<TChildProps>
-      >
-    | undefined
-) {
-  return ReactApollo.graphql<
-    TProps,
-    EditableSkillsListQuery,
-    EditableSkillsListVariables,
-    EditableSkillsListProps<TChildProps>
-  >(EditableSkillsListDocument, operationOptions);
-}
-export const EditableUsersListDocument = gql`
-  query editableUsersList {
-    allUsers {
-      id
-      name
-    }
-  }
-`;
-export class EditableUsersListComponent extends React.Component<
-  Partial<
-    ReactApollo.QueryProps<EditableUsersListQuery, EditableUsersListVariables>
-  >
-> {
-  render() {
-    return (
-      <ReactApollo.Query<EditableUsersListQuery, EditableUsersListVariables>
-        query={EditableUsersListDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type EditableUsersListProps<TChildProps = any> = Partial<
-  ReactApollo.DataProps<EditableUsersListQuery, EditableUsersListVariables>
-> &
-  TChildProps;
-export function EditableUsersListHOC<TProps, TChildProps = any>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        EditableUsersListQuery,
-        EditableUsersListVariables,
-        EditableUsersListProps<TChildProps>
-      >
-    | undefined
-) {
-  return ReactApollo.graphql<
-    TProps,
-    EditableUsersListQuery,
-    EditableUsersListVariables,
-    EditableUsersListProps<TChildProps>
-  >(EditableUsersListDocument, operationOptions);
-}
 export const GetHeaderUserDocument = gql`
   query getHeaderUser($id: ID) {
     user: User(id: $id) {
@@ -2387,56 +2256,6 @@ export function GetUserHOC<TProps, TChildProps = any>(
     GetUserVariables,
     GetUserProps<TChildProps>
   >(GetUserDocument, operationOptions);
-}
-export const SkillPageDocument = gql`
-  query skillPage($id: ID) {
-    skill: Skill(id: $id) {
-      id
-      name
-      projectsWithSkill {
-        id
-        name
-      }
-      usersWithSkill {
-        id
-        name
-        picture
-      }
-    }
-  }
-`;
-export class SkillPageComponent extends React.Component<
-  Partial<ReactApollo.QueryProps<SkillPageQuery, SkillPageVariables>>
-> {
-  render() {
-    return (
-      <ReactApollo.Query<SkillPageQuery, SkillPageVariables>
-        query={SkillPageDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type SkillPageProps<TChildProps = any> = Partial<
-  ReactApollo.DataProps<SkillPageQuery, SkillPageVariables>
-> &
-  TChildProps;
-export function SkillPageHOC<TProps, TChildProps = any>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        SkillPageQuery,
-        SkillPageVariables,
-        SkillPageProps<TChildProps>
-      >
-    | undefined
-) {
-  return ReactApollo.graphql<
-    TProps,
-    SkillPageQuery,
-    SkillPageVariables,
-    SkillPageProps<TChildProps>
-  >(SkillPageDocument, operationOptions);
 }
 export const UpdateUserDocument = gql`
   mutation updateUser(
@@ -2956,6 +2775,56 @@ export function ProjectCardsHOC<TProps, TChildProps = any>(
     ProjectCardsProps<TChildProps>
   >(ProjectCardsDocument, operationOptions);
 }
+export const SkillPageDocument = gql`
+  query skillPage($id: ID) {
+    skill: Skill(id: $id) {
+      id
+      name
+      projectsWithSkill {
+        id
+        name
+      }
+      usersWithSkill {
+        id
+        name
+        picture
+      }
+    }
+  }
+`;
+export class SkillPageComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<SkillPageQuery, SkillPageVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<SkillPageQuery, SkillPageVariables>
+        query={SkillPageDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type SkillPageProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<SkillPageQuery, SkillPageVariables>
+> &
+  TChildProps;
+export function SkillPageHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        SkillPageQuery,
+        SkillPageVariables,
+        SkillPageProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    SkillPageQuery,
+    SkillPageVariables,
+    SkillPageProps<TChildProps>
+  >(SkillPageDocument, operationOptions);
+}
 export const EditableProjectsListDocument = gql`
   query editableProjectsList {
     allProjects {
@@ -3007,4 +2876,135 @@ export function EditableProjectsListHOC<TProps, TChildProps = any>(
     EditableProjectsListVariables,
     EditableProjectsListProps<TChildProps>
   >(EditableProjectsListDocument, operationOptions);
+}
+export const EditableSkillsListDocument = gql`
+  query editableSkillsList {
+    allSkills {
+      id
+      name
+    }
+  }
+`;
+export class EditableSkillsListComponent extends React.Component<
+  Partial<
+    ReactApollo.QueryProps<EditableSkillsListQuery, EditableSkillsListVariables>
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Query<EditableSkillsListQuery, EditableSkillsListVariables>
+        query={EditableSkillsListDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type EditableSkillsListProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<EditableSkillsListQuery, EditableSkillsListVariables>
+> &
+  TChildProps;
+export function EditableSkillsListHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        EditableSkillsListQuery,
+        EditableSkillsListVariables,
+        EditableSkillsListProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    EditableSkillsListQuery,
+    EditableSkillsListVariables,
+    EditableSkillsListProps<TChildProps>
+  >(EditableSkillsListDocument, operationOptions);
+}
+export const CreateSkillDocument = gql`
+  mutation createSkill($name: String!) {
+    createSkill(name: $name) {
+      id
+      name
+    }
+  }
+`;
+export class CreateSkillComponent extends React.Component<
+  Partial<ReactApollo.MutationProps<CreateSkillMutation, CreateSkillVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<CreateSkillMutation, CreateSkillVariables>
+        mutation={CreateSkillDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type CreateSkillProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<CreateSkillMutation, CreateSkillVariables>
+> &
+  TChildProps;
+export type CreateSkillMutationFn = ReactApollo.MutationFn<
+  CreateSkillMutation,
+  CreateSkillVariables
+>;
+export function CreateSkillHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        CreateSkillMutation,
+        CreateSkillVariables,
+        CreateSkillProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    CreateSkillMutation,
+    CreateSkillVariables,
+    CreateSkillProps<TChildProps>
+  >(CreateSkillDocument, operationOptions);
+}
+export const EditableUsersListDocument = gql`
+  query editableUsersList {
+    allUsers {
+      id
+      name
+    }
+  }
+`;
+export class EditableUsersListComponent extends React.Component<
+  Partial<
+    ReactApollo.QueryProps<EditableUsersListQuery, EditableUsersListVariables>
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Query<EditableUsersListQuery, EditableUsersListVariables>
+        query={EditableUsersListDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type EditableUsersListProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<EditableUsersListQuery, EditableUsersListVariables>
+> &
+  TChildProps;
+export function EditableUsersListHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        EditableUsersListQuery,
+        EditableUsersListVariables,
+        EditableUsersListProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    EditableUsersListQuery,
+    EditableUsersListVariables,
+    EditableUsersListProps<TChildProps>
+  >(EditableUsersListDocument, operationOptions);
 }
