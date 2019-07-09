@@ -1,11 +1,11 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import ProjectCard from './ProjectCard';
+import gql from 'graphql-tag';
+import ProjectCard, { PROJECT_CARD_FIELDS } from './ProjectCard';
 import { useCustomQuery } from '../../utils/hooks';
 import {
   ProjectCardsAllProjects,
-  ProjectCardsQuery,
-  ProjectCardsDocument
+  ProjectCardsQuery
 } from '../../generated-models';
 
 interface ProjectsListProps {
@@ -13,8 +13,17 @@ interface ProjectsListProps {
   loading: boolean;
 }
 
+const PROJECT_CARDS = gql`
+  query projectCards {
+    allProjects(orderBy: name_ASC) {
+      ...ProjectCardFields
+    }
+  }
+  ${PROJECT_CARD_FIELDS}
+`;
+
 const ProjectsListPage: React.FC<ProjectsListProps> = () => {
-  const { data } = useCustomQuery<ProjectCardsQuery>(ProjectCardsDocument);
+  const { data } = useCustomQuery<ProjectCardsQuery>(PROJECT_CARDS);
   if (!data || !data.allProjects) return null;
 
   const projects = data.allProjects;

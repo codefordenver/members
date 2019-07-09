@@ -1,16 +1,15 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { History } from 'history';
-import ProjectForm from './ProjectForm';
 import { useMutation } from 'react-apollo-hooks';
-import {
-  GetProjectDocument,
-  GetProjectQuery,
-  ProjectSectionFieldsFragment,
-  UpdateProjectDocument,
-  UpdateProjectMutation
-} from '../../generated-models';
+import gql from 'graphql-tag';
+import ProjectForm, { PROJECT_FORM_FRAGMENT } from './ProjectForm';
 import { useCustomQuery } from '../../utils/hooks';
+import {
+  ProjectEditPageGetProjectQuery,
+  ProjectSectionFieldsFragment,
+  ProjectEditPageUpdateProjectMutation
+} from '../../generated-models';
 
 type ProjectEditPageProps = RouteComponentProps<{ id: string }>;
 
@@ -31,17 +30,54 @@ function getBaseUrl(history: History) {
   return history.location.pathname.split('/edit')[0];
 }
 
+export const GET_PROJECT = gql`
+  query projectEditPageGetProject($id: ID!) {
+    Project(id: $id) {
+      ...ProjectSectionFields
+    }
+  }
+  ${PROJECT_FORM_FRAGMENT}
+`;
+
+export const UPDATE_PROJECT = gql`
+  mutation projectEditPageUpdateProject(
+    $id: ID!
+    $name: String!
+    $headerImage: String
+    $description: String
+    $repoName: String
+    $boardUrl: String
+    $skillsIds: [ID!]
+    $championsIds: [ID!]
+    $status: ProjectStatus
+  ) {
+    updateProject(
+      id: $id
+      name: $name
+      headerImage: $headerImage
+      description: $description
+      repoName: $repoName
+      boardUrl: $boardUrl
+      skillsIds: $skillsIds
+      championsIds: $championsIds
+      status: $status
+    ) {
+      ...ProjectSectionFields
+    }
+  }
+  ${PROJECT_FORM_FRAGMENT}
+`;
+
 const ProjectEditPage: React.FC<ProjectEditPageProps> = ({
   history,
   match
 }) => {
-  const updateProjectMutation = useMutation<UpdateProjectMutation>(
-    UpdateProjectDocument,
-    {
-      refetchQueries: ['editableUsersList']
-    }
-  );
-  const { data } = useCustomQuery<GetProjectQuery>(GetProjectDocument, {
+  const updateProjectMutation = useMutation<
+    ProjectEditPageUpdateProjectMutation
+  >(UPDATE_PROJECT, {
+    refetchQueries: ['editableUsersList']
+  });
+  const { data } = useCustomQuery<ProjectEditPageGetProjectQuery>(GET_PROJECT, {
     variables: { id: match.params.id }
   });
   if (!data || !data.Project) return null;

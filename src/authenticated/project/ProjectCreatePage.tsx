@@ -6,12 +6,12 @@ import { useMutation } from 'react-apollo-hooks';
 import gql from 'graphql-tag';
 import {
   ProjectSectionFieldsFragment,
-  CreateProjectMutation,
+  ProjectCreatePageCreateProjectMutation,
   ProjectStatus
 } from '../../generated-models';
 
-const CREATE_PROJECT = gql`
-  mutation createProject(
+export const CREATE_PROJECT = gql`
+  mutation projectCreatePageCreateProject(
     $name: String!
     $headerImage: String
     $description: String
@@ -59,13 +59,12 @@ function formatNewProjectForMutation(newProject: ProjectSectionFieldsFragment) {
 }
 
 const ProjectCreatePage: React.FC<RouteComponentProps<{}>> = ({ history }) => {
-  const createProjectMutation = useMutation<CreateProjectMutation>(
-    CREATE_PROJECT,
-    {
-      // TODO: These didn't exist before, check if they are actually needed
-      refetchQueries: ['projectCards', 'projectsDrawer', 'editableUsersList']
-    }
-  );
+  const createProjectMutation = useMutation<
+    ProjectCreatePageCreateProjectMutation
+  >(CREATE_PROJECT, {
+    // TODO: These didn't exist before, check if they are actually needed
+    refetchQueries: ['projectCards', 'projectsDrawer', 'editableUsersList']
+  });
 
   return (
     <ProjectForm

@@ -1,7 +1,11 @@
 overwrite: true
 watch: true
 schema: ./full-schema.json
-documents: ./src/**/*.graphql
+documents:
+  - ./src/**/*.graphql
+  - ./src/**/*.ts
+  - ./src/authenticated/**/*.tsx
+  - ./src/forms/**/*.tsx
 generates:
   src/generated-models.tsx:
     plugins:

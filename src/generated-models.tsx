@@ -1709,22 +1709,6 @@ export type CreateSkillCreateSkill = {
   name: string;
 };
 
-export type EditableProjectsListVariables = {};
-
-export type EditableProjectsListQuery = {
-  __typename?: 'Query';
-
-  allProjects: EditableProjectsListAllProjects[];
-};
-
-export type EditableProjectsListAllProjects = {
-  __typename?: 'Project';
-
-  id: string;
-
-  name: string;
-};
-
 export type EditableSkillsListVariables = {};
 
 export type EditableSkillsListQuery = {
@@ -1779,18 +1763,6 @@ export type GetHeaderUserUser = {
   role: Maybe<UserRole>;
 };
 
-export type GetProjectVariables = {
-  id: string;
-};
-
-export type GetProjectQuery = {
-  __typename?: 'Query';
-
-  Project: Maybe<GetProjectProject>;
-};
-
-export type GetProjectProject = ProjectSectionFieldsFragment;
-
 export type GetUserVariables = {
   id?: Maybe<string>;
 };
@@ -1802,32 +1774,6 @@ export type GetUserQuery = {
 };
 
 export type GetUserUser = MemberProfileFragmentFragment;
-
-export type ProjectCardsVariables = {};
-
-export type ProjectCardsQuery = {
-  __typename?: 'Query';
-
-  allProjects: ProjectCardsAllProjects[];
-};
-
-export type ProjectCardsAllProjects = ProjectCardFieldsFragment;
-
-export type ProjectsDrawerVariables = {};
-
-export type ProjectsDrawerQuery = {
-  __typename?: 'Query';
-
-  allProjects: ProjectsDrawerAllProjects[];
-};
-
-export type ProjectsDrawerAllProjects = {
-  __typename?: 'Project';
-
-  id: string;
-
-  name: string;
-};
 
 export type SkillPageVariables = {
   id?: Maybe<string>;
@@ -1868,26 +1814,6 @@ export type SkillPageUsersWithSkill = {
 
   picture: Maybe<string>;
 };
-
-export type UpdateProjectVariables = {
-  id: string;
-  name: string;
-  headerImage?: Maybe<string>;
-  description?: Maybe<string>;
-  repoName?: Maybe<string>;
-  boardUrl?: Maybe<string>;
-  skillsIds?: Maybe<string[]>;
-  championsIds?: Maybe<string[]>;
-  status?: Maybe<ProjectStatus>;
-};
-
-export type UpdateProjectMutation = {
-  __typename?: 'Mutation';
-
-  updateProject: Maybe<UpdateProjectUpdateProject>;
-};
-
-export type UpdateProjectUpdateProject = ProjectSectionFieldsFragment;
 
 export type UpdateUserVariables = {
   id: string;
@@ -1960,6 +1886,111 @@ export type UsersListAllUsers = {
   name: Maybe<string>;
 
   picture: Maybe<string>;
+};
+
+export type ProjectsDrawerVariables = {};
+
+export type ProjectsDrawerQuery = {
+  __typename?: 'Query';
+
+  allProjects: ProjectsDrawerAllProjects[];
+};
+
+export type ProjectsDrawerAllProjects = {
+  __typename?: 'Project';
+
+  id: string;
+
+  name: string;
+};
+
+export type ProjectCreatePageCreateProjectVariables = {
+  name: string;
+  headerImage?: Maybe<string>;
+  description?: Maybe<string>;
+  repoName: string;
+  boardUrl?: Maybe<string>;
+  skillsIds?: Maybe<string[]>;
+  championsIds?: Maybe<string[]>;
+  status?: Maybe<ProjectStatus>;
+};
+
+export type ProjectCreatePageCreateProjectMutation = {
+  __typename?: 'Mutation';
+
+  createProject: Maybe<ProjectCreatePageCreateProjectCreateProject>;
+};
+
+export type ProjectCreatePageCreateProjectCreateProject = ProjectSectionFieldsFragment;
+
+export type ProjectEditPageGetProjectVariables = {
+  id: string;
+};
+
+export type ProjectEditPageGetProjectQuery = {
+  __typename?: 'Query';
+
+  Project: Maybe<ProjectEditPageGetProjectProject>;
+};
+
+export type ProjectEditPageGetProjectProject = ProjectSectionFieldsFragment;
+
+export type ProjectEditPageUpdateProjectVariables = {
+  id: string;
+  name: string;
+  headerImage?: Maybe<string>;
+  description?: Maybe<string>;
+  repoName?: Maybe<string>;
+  boardUrl?: Maybe<string>;
+  skillsIds?: Maybe<string[]>;
+  championsIds?: Maybe<string[]>;
+  status?: Maybe<ProjectStatus>;
+};
+
+export type ProjectEditPageUpdateProjectMutation = {
+  __typename?: 'Mutation';
+
+  updateProject: Maybe<ProjectEditPageUpdateProjectUpdateProject>;
+};
+
+export type ProjectEditPageUpdateProjectUpdateProject = ProjectSectionFieldsFragment;
+
+export type GetProjectVariables = {
+  id: string;
+};
+
+export type GetProjectQuery = {
+  __typename?: 'Query';
+
+  Project: Maybe<GetProjectProject>;
+};
+
+export type GetProjectProject = ProjectSectionFieldsFragment;
+
+export type ProjectCardsVariables = {};
+
+export type ProjectCardsQuery = {
+  __typename?: 'Query';
+
+  allProjects: ProjectCardsAllProjects[];
+};
+
+export type ProjectCardsAllProjects = ProjectCardFieldsFragment;
+
+export type EditableProjectsListVariables = {};
+
+export type EditableProjectsListQuery = {
+  __typename?: 'Query';
+
+  allProjects: EditableProjectsListAllProjects[];
+};
+
+export type EditableProjectsListAllProjects = {
+  __typename?: 'Project';
+
+  id: string;
+
+  name: string;
 };
 
 export type MemberProfileFragmentFragment = {
@@ -2186,58 +2217,6 @@ export function CreateSkillHOC<TProps, TChildProps = any>(
     CreateSkillProps<TChildProps>
   >(CreateSkillDocument, operationOptions);
 }
-export const EditableProjectsListDocument = gql`
-  query editableProjectsList {
-    allProjects {
-      id
-      name
-    }
-  }
-`;
-export class EditableProjectsListComponent extends React.Component<
-  Partial<
-    ReactApollo.QueryProps<
-      EditableProjectsListQuery,
-      EditableProjectsListVariables
-    >
-  >
-> {
-  render() {
-    return (
-      <ReactApollo.Query<
-        EditableProjectsListQuery,
-        EditableProjectsListVariables
-      >
-        query={EditableProjectsListDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type EditableProjectsListProps<TChildProps = any> = Partial<
-  ReactApollo.DataProps<
-    EditableProjectsListQuery,
-    EditableProjectsListVariables
-  >
-> &
-  TChildProps;
-export function EditableProjectsListHOC<TProps, TChildProps = any>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        EditableProjectsListQuery,
-        EditableProjectsListVariables,
-        EditableProjectsListProps<TChildProps>
-      >
-    | undefined
-) {
-  return ReactApollo.graphql<
-    TProps,
-    EditableProjectsListQuery,
-    EditableProjectsListVariables,
-    EditableProjectsListProps<TChildProps>
-  >(EditableProjectsListDocument, operationOptions);
-}
 export const EditableSkillsListDocument = gql`
   query editableSkillsList {
     allSkills {
@@ -2367,48 +2346,6 @@ export function GetHeaderUserHOC<TProps, TChildProps = any>(
     GetHeaderUserProps<TChildProps>
   >(GetHeaderUserDocument, operationOptions);
 }
-export const GetProjectDocument = gql`
-  query getProject($id: ID!) {
-    Project(id: $id) {
-      ...ProjectSectionFields
-    }
-  }
-
-  ${ProjectSectionFieldsFragmentDoc}
-`;
-export class GetProjectComponent extends React.Component<
-  Partial<ReactApollo.QueryProps<GetProjectQuery, GetProjectVariables>>
-> {
-  render() {
-    return (
-      <ReactApollo.Query<GetProjectQuery, GetProjectVariables>
-        query={GetProjectDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type GetProjectProps<TChildProps = any> = Partial<
-  ReactApollo.DataProps<GetProjectQuery, GetProjectVariables>
-> &
-  TChildProps;
-export function GetProjectHOC<TProps, TChildProps = any>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        GetProjectQuery,
-        GetProjectVariables,
-        GetProjectProps<TChildProps>
-      >
-    | undefined
-) {
-  return ReactApollo.graphql<
-    TProps,
-    GetProjectQuery,
-    GetProjectVariables,
-    GetProjectProps<TChildProps>
-  >(GetProjectDocument, operationOptions);
-}
 export const GetUserDocument = gql`
   query getUser($id: ID) {
     user: User(id: $id) {
@@ -2450,89 +2387,6 @@ export function GetUserHOC<TProps, TChildProps = any>(
     GetUserVariables,
     GetUserProps<TChildProps>
   >(GetUserDocument, operationOptions);
-}
-export const ProjectCardsDocument = gql`
-  query projectCards {
-    allProjects(orderBy: name_ASC) {
-      ...ProjectCardFields
-    }
-  }
-
-  ${ProjectCardFieldsFragmentDoc}
-`;
-export class ProjectCardsComponent extends React.Component<
-  Partial<ReactApollo.QueryProps<ProjectCardsQuery, ProjectCardsVariables>>
-> {
-  render() {
-    return (
-      <ReactApollo.Query<ProjectCardsQuery, ProjectCardsVariables>
-        query={ProjectCardsDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type ProjectCardsProps<TChildProps = any> = Partial<
-  ReactApollo.DataProps<ProjectCardsQuery, ProjectCardsVariables>
-> &
-  TChildProps;
-export function ProjectCardsHOC<TProps, TChildProps = any>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        ProjectCardsQuery,
-        ProjectCardsVariables,
-        ProjectCardsProps<TChildProps>
-      >
-    | undefined
-) {
-  return ReactApollo.graphql<
-    TProps,
-    ProjectCardsQuery,
-    ProjectCardsVariables,
-    ProjectCardsProps<TChildProps>
-  >(ProjectCardsDocument, operationOptions);
-}
-export const ProjectsDrawerDocument = gql`
-  query projectsDrawer {
-    allProjects(orderBy: name_ASC) {
-      id
-      name
-    }
-  }
-`;
-export class ProjectsDrawerComponent extends React.Component<
-  Partial<ReactApollo.QueryProps<ProjectsDrawerQuery, ProjectsDrawerVariables>>
-> {
-  render() {
-    return (
-      <ReactApollo.Query<ProjectsDrawerQuery, ProjectsDrawerVariables>
-        query={ProjectsDrawerDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type ProjectsDrawerProps<TChildProps = any> = Partial<
-  ReactApollo.DataProps<ProjectsDrawerQuery, ProjectsDrawerVariables>
-> &
-  TChildProps;
-export function ProjectsDrawerHOC<TProps, TChildProps = any>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        ProjectsDrawerQuery,
-        ProjectsDrawerVariables,
-        ProjectsDrawerProps<TChildProps>
-      >
-    | undefined
-) {
-  return ReactApollo.graphql<
-    TProps,
-    ProjectsDrawerQuery,
-    ProjectsDrawerVariables,
-    ProjectsDrawerProps<TChildProps>
-  >(ProjectsDrawerDocument, operationOptions);
 }
 export const SkillPageDocument = gql`
   query skillPage($id: ID) {
@@ -2583,74 +2437,6 @@ export function SkillPageHOC<TProps, TChildProps = any>(
     SkillPageVariables,
     SkillPageProps<TChildProps>
   >(SkillPageDocument, operationOptions);
-}
-export const UpdateProjectDocument = gql`
-  mutation updateProject(
-    $id: ID!
-    $name: String!
-    $headerImage: String
-    $description: String
-    $repoName: String
-    $boardUrl: String
-    $skillsIds: [ID!]
-    $championsIds: [ID!]
-    $status: ProjectStatus
-  ) {
-    updateProject(
-      id: $id
-      name: $name
-      headerImage: $headerImage
-      description: $description
-      repoName: $repoName
-      boardUrl: $boardUrl
-      skillsIds: $skillsIds
-      championsIds: $championsIds
-      status: $status
-    ) {
-      ...ProjectSectionFields
-    }
-  }
-
-  ${ProjectSectionFieldsFragmentDoc}
-`;
-export class UpdateProjectComponent extends React.Component<
-  Partial<
-    ReactApollo.MutationProps<UpdateProjectMutation, UpdateProjectVariables>
-  >
-> {
-  render() {
-    return (
-      <ReactApollo.Mutation<UpdateProjectMutation, UpdateProjectVariables>
-        mutation={UpdateProjectDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type UpdateProjectProps<TChildProps = any> = Partial<
-  ReactApollo.MutateProps<UpdateProjectMutation, UpdateProjectVariables>
-> &
-  TChildProps;
-export type UpdateProjectMutationFn = ReactApollo.MutationFn<
-  UpdateProjectMutation,
-  UpdateProjectVariables
->;
-export function UpdateProjectHOC<TProps, TChildProps = any>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        UpdateProjectMutation,
-        UpdateProjectVariables,
-        UpdateProjectProps<TChildProps>
-      >
-    | undefined
-) {
-  return ReactApollo.graphql<
-    TProps,
-    UpdateProjectMutation,
-    UpdateProjectVariables,
-    UpdateProjectProps<TChildProps>
-  >(UpdateProjectDocument, operationOptions);
 }
 export const UpdateUserDocument = gql`
   mutation updateUser(
@@ -2839,4 +2625,386 @@ export function UsersListHOC<TProps, TChildProps = any>(
     UsersListVariables,
     UsersListProps<TChildProps>
   >(UsersListDocument, operationOptions);
+}
+export const ProjectsDrawerDocument = gql`
+  query projectsDrawer {
+    allProjects(orderBy: name_ASC) {
+      id
+      name
+    }
+  }
+`;
+export class ProjectsDrawerComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<ProjectsDrawerQuery, ProjectsDrawerVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<ProjectsDrawerQuery, ProjectsDrawerVariables>
+        query={ProjectsDrawerDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type ProjectsDrawerProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<ProjectsDrawerQuery, ProjectsDrawerVariables>
+> &
+  TChildProps;
+export function ProjectsDrawerHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        ProjectsDrawerQuery,
+        ProjectsDrawerVariables,
+        ProjectsDrawerProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    ProjectsDrawerQuery,
+    ProjectsDrawerVariables,
+    ProjectsDrawerProps<TChildProps>
+  >(ProjectsDrawerDocument, operationOptions);
+}
+export const ProjectCreatePageCreateProjectDocument = gql`
+  mutation projectCreatePageCreateProject(
+    $name: String!
+    $headerImage: String
+    $description: String
+    $repoName: String!
+    $boardUrl: String
+    $skillsIds: [ID!]
+    $championsIds: [ID!]
+    $status: ProjectStatus
+  ) {
+    createProject(
+      name: $name
+      headerImage: $headerImage
+      description: $description
+      repoName: $repoName
+      boardUrl: $boardUrl
+      skillsIds: $skillsIds
+      championsIds: $championsIds
+      status: $status
+    ) {
+      ...ProjectSectionFields
+    }
+  }
+
+  ${ProjectSectionFieldsFragmentDoc}
+`;
+export class ProjectCreatePageCreateProjectComponent extends React.Component<
+  Partial<
+    ReactApollo.MutationProps<
+      ProjectCreatePageCreateProjectMutation,
+      ProjectCreatePageCreateProjectVariables
+    >
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<
+        ProjectCreatePageCreateProjectMutation,
+        ProjectCreatePageCreateProjectVariables
+      >
+        mutation={ProjectCreatePageCreateProjectDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type ProjectCreatePageCreateProjectProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<
+    ProjectCreatePageCreateProjectMutation,
+    ProjectCreatePageCreateProjectVariables
+  >
+> &
+  TChildProps;
+export type ProjectCreatePageCreateProjectMutationFn = ReactApollo.MutationFn<
+  ProjectCreatePageCreateProjectMutation,
+  ProjectCreatePageCreateProjectVariables
+>;
+export function ProjectCreatePageCreateProjectHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        ProjectCreatePageCreateProjectMutation,
+        ProjectCreatePageCreateProjectVariables,
+        ProjectCreatePageCreateProjectProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    ProjectCreatePageCreateProjectMutation,
+    ProjectCreatePageCreateProjectVariables,
+    ProjectCreatePageCreateProjectProps<TChildProps>
+  >(ProjectCreatePageCreateProjectDocument, operationOptions);
+}
+export const ProjectEditPageGetProjectDocument = gql`
+  query projectEditPageGetProject($id: ID!) {
+    Project(id: $id) {
+      ...ProjectSectionFields
+    }
+  }
+
+  ${ProjectSectionFieldsFragmentDoc}
+`;
+export class ProjectEditPageGetProjectComponent extends React.Component<
+  Partial<
+    ReactApollo.QueryProps<
+      ProjectEditPageGetProjectQuery,
+      ProjectEditPageGetProjectVariables
+    >
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Query<
+        ProjectEditPageGetProjectQuery,
+        ProjectEditPageGetProjectVariables
+      >
+        query={ProjectEditPageGetProjectDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type ProjectEditPageGetProjectProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<
+    ProjectEditPageGetProjectQuery,
+    ProjectEditPageGetProjectVariables
+  >
+> &
+  TChildProps;
+export function ProjectEditPageGetProjectHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        ProjectEditPageGetProjectQuery,
+        ProjectEditPageGetProjectVariables,
+        ProjectEditPageGetProjectProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    ProjectEditPageGetProjectQuery,
+    ProjectEditPageGetProjectVariables,
+    ProjectEditPageGetProjectProps<TChildProps>
+  >(ProjectEditPageGetProjectDocument, operationOptions);
+}
+export const ProjectEditPageUpdateProjectDocument = gql`
+  mutation projectEditPageUpdateProject(
+    $id: ID!
+    $name: String!
+    $headerImage: String
+    $description: String
+    $repoName: String
+    $boardUrl: String
+    $skillsIds: [ID!]
+    $championsIds: [ID!]
+    $status: ProjectStatus
+  ) {
+    updateProject(
+      id: $id
+      name: $name
+      headerImage: $headerImage
+      description: $description
+      repoName: $repoName
+      boardUrl: $boardUrl
+      skillsIds: $skillsIds
+      championsIds: $championsIds
+      status: $status
+    ) {
+      ...ProjectSectionFields
+    }
+  }
+
+  ${ProjectSectionFieldsFragmentDoc}
+`;
+export class ProjectEditPageUpdateProjectComponent extends React.Component<
+  Partial<
+    ReactApollo.MutationProps<
+      ProjectEditPageUpdateProjectMutation,
+      ProjectEditPageUpdateProjectVariables
+    >
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<
+        ProjectEditPageUpdateProjectMutation,
+        ProjectEditPageUpdateProjectVariables
+      >
+        mutation={ProjectEditPageUpdateProjectDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type ProjectEditPageUpdateProjectProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<
+    ProjectEditPageUpdateProjectMutation,
+    ProjectEditPageUpdateProjectVariables
+  >
+> &
+  TChildProps;
+export type ProjectEditPageUpdateProjectMutationFn = ReactApollo.MutationFn<
+  ProjectEditPageUpdateProjectMutation,
+  ProjectEditPageUpdateProjectVariables
+>;
+export function ProjectEditPageUpdateProjectHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        ProjectEditPageUpdateProjectMutation,
+        ProjectEditPageUpdateProjectVariables,
+        ProjectEditPageUpdateProjectProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    ProjectEditPageUpdateProjectMutation,
+    ProjectEditPageUpdateProjectVariables,
+    ProjectEditPageUpdateProjectProps<TChildProps>
+  >(ProjectEditPageUpdateProjectDocument, operationOptions);
+}
+export const GetProjectDocument = gql`
+  query getProject($id: ID!) {
+    Project(id: $id) {
+      ...ProjectSectionFields
+    }
+  }
+
+  ${ProjectSectionFieldsFragmentDoc}
+`;
+export class GetProjectComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<GetProjectQuery, GetProjectVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<GetProjectQuery, GetProjectVariables>
+        query={GetProjectDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type GetProjectProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<GetProjectQuery, GetProjectVariables>
+> &
+  TChildProps;
+export function GetProjectHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        GetProjectQuery,
+        GetProjectVariables,
+        GetProjectProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    GetProjectQuery,
+    GetProjectVariables,
+    GetProjectProps<TChildProps>
+  >(GetProjectDocument, operationOptions);
+}
+export const ProjectCardsDocument = gql`
+  query projectCards {
+    allProjects(orderBy: name_ASC) {
+      ...ProjectCardFields
+    }
+  }
+
+  ${ProjectCardFieldsFragmentDoc}
+`;
+export class ProjectCardsComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<ProjectCardsQuery, ProjectCardsVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<ProjectCardsQuery, ProjectCardsVariables>
+        query={ProjectCardsDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type ProjectCardsProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<ProjectCardsQuery, ProjectCardsVariables>
+> &
+  TChildProps;
+export function ProjectCardsHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        ProjectCardsQuery,
+        ProjectCardsVariables,
+        ProjectCardsProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    ProjectCardsQuery,
+    ProjectCardsVariables,
+    ProjectCardsProps<TChildProps>
+  >(ProjectCardsDocument, operationOptions);
+}
+export const EditableProjectsListDocument = gql`
+  query editableProjectsList {
+    allProjects {
+      id
+      name
+    }
+  }
+`;
+export class EditableProjectsListComponent extends React.Component<
+  Partial<
+    ReactApollo.QueryProps<
+      EditableProjectsListQuery,
+      EditableProjectsListVariables
+    >
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Query<
+        EditableProjectsListQuery,
+        EditableProjectsListVariables
+      >
+        query={EditableProjectsListDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type EditableProjectsListProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<
+    EditableProjectsListQuery,
+    EditableProjectsListVariables
+  >
+> &
+  TChildProps;
+export function EditableProjectsListHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        EditableProjectsListQuery,
+        EditableProjectsListVariables,
+        EditableProjectsListProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    EditableProjectsListQuery,
+    EditableProjectsListVariables,
+    EditableProjectsListProps<TChildProps>
+  >(EditableProjectsListDocument, operationOptions);
 }

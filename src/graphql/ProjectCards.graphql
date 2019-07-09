@@ -1,5 +1,0 @@
-query projectCards {
-  allProjects(orderBy: name_ASC) {
-    ...ProjectCardFields
-  }
-}

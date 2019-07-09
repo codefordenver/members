@@ -8,12 +8,11 @@ import {
   getQueries,
   createHistory
 } from '../../../testUtils';
-import ProjectCreatePage from '../ProjectCreatePage';
+import ProjectCreatePage, { CREATE_PROJECT } from '../ProjectCreatePage';
 import { mockAdminUser } from '../../../mocks/localStorageMock';
 import {
   EditableUsersListDocument,
-  EditableSkillsListDocument,
-  CreateProjectDocument
+  EditableSkillsListDocument
 } from '../../../generated-models';
 
 const {
@@ -61,7 +60,7 @@ let queryMocks = [
   },
   {
     request: {
-      query: CreateProjectDocument,
+      query: CREATE_PROJECT,
       variables: {
         name: 'Test Project Title',
         headerImage: 'https://some.image.url',
