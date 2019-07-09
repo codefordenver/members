@@ -7,6 +7,7 @@ import {
   WithStyles
 } from '@material-ui/core/styles';
 import GoogleAnalyticsPageTracker from './shared-components/GoogleAnalyticsPageTracker';
+import RedirectOnNewLogin from './utils/RedirectOnNewLogin';
 import Header from './header/Header';
 import ErrorBoundary from './shared-components/ErrorBoundary';
 import AppBody from './AppBody';
@@ -47,6 +48,7 @@ class App extends Component<AppProps> {
         <MuiThemeProvider theme={theme}>
           <div className="App">
             <GoogleAnalyticsPageTracker />
+            <RedirectOnNewLogin />
             <ErrorBoundary>
               <Header />
             </ErrorBoundary>

@@ -1914,6 +1914,7 @@ export type UpdateUserVariables = {
   githubName?: Maybe<string>;
   flowdockName?: Maybe<string>;
   description?: Maybe<string>;
+  hasCompletedWizard?: Maybe<boolean>;
   skillsIds?: Maybe<string[]>;
   projectsChampionedIds?: Maybe<string[]>;
 };
@@ -2000,6 +2001,8 @@ export type MemberProfileFragmentFragment = {
   role: Maybe<UserRole>;
 
   email: string;
+
+  hasCompletedWizard: Maybe<boolean>;
 
   skills: Maybe<MemberProfileFragmentSkills[]>;
 
@@ -2106,6 +2109,7 @@ export const MemberProfileFragmentFragmentDoc = gql`
     flowdockName
     role
     email
+    hasCompletedWizard
     skills {
       id
       name
@@ -2740,6 +2744,7 @@ export const UpdateUserDocument = gql`
     $githubName: String
     $flowdockName: String
     $description: String
+    $hasCompletedWizard: Boolean
     $skillsIds: [ID!]
     $projectsChampionedIds: [ID!]
   ) {
@@ -2749,6 +2754,7 @@ export const UpdateUserDocument = gql`
       githubName: $githubName
       flowdockName: $flowdockName
       description: $description
+      hasCompletedWizard: $hasCompletedWizard
       skillsIds: $skillsIds
       projectsChampionedIds: $projectsChampionedIds
     ) {

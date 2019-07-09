@@ -18,6 +18,7 @@ import ProjectCreatePage from './project/ProjectCreatePage';
 import SkillPage from './skill/SkillPage';
 import AuthContext from '../utils/authentication/authContext';
 import { UserRoleComponent } from '../generated-models';
+import OnboardingPage from './onboarding/OnboardingPage';
 
 const LoggedInRoutes = () => (
   <DrawerLayout drawer={<DrawerContent />}>
@@ -50,6 +51,7 @@ const LoggedInRoutes = () => (
                 {/* <Route path="/projects" component={GeneralProjectPage} /> */}
                 <Route exact path="/styles" component={StyleReferencePage} />
                 <Route exact path="/skills/:id" component={SkillPage} />
+                <Route exact path="/new" component={OnboardingPage} />
 
                 {getAdminRoutes(data.user)}
                 <Route component={NoMatchPage} />
