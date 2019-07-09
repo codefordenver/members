@@ -6,7 +6,7 @@ interface Props {
   featureDescriptionUrl?: string;
 }
 
-const HelpUsImplementThis: React.SFC<Props> = ({
+const HelpUsImplementThis: React.FC<Props> = ({
   children,
   featureDescriptionUrl = 'https://waffle.io/codefordenver/members'
 }) => {

@@ -1,22 +1,18 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import ProjectForm from './ProjectForm';
-import LoadingIndicator from '../../shared-components/LoadingIndicator';
-import { GetProjectComponent } from '../../generated-models';
+import { GetProjectDocument, GetProjectQuery } from '../../generated-models';
+import { useCustomQuery } from '../../utils/hooks';
 
 type ProjectPageProps = RouteComponentProps<{ id: string }>;
 
-const ProjectPage: React.SFC<ProjectPageProps> = ({ match }) => {
-  return (
-    <GetProjectComponent variables={{ id: match.params.id }}>
-      {({ loading, error, data }) => {
-        if (error) return `Error! ${error.message}`;
-        if (loading || !data || !data.Project) return <LoadingIndicator />;
+const ProjectPage: React.FC<ProjectPageProps> = ({ match }) => {
+  const { data } = useCustomQuery<GetProjectQuery>(GetProjectDocument, {
+    variables: { id: match.params.id }
+  });
+  if (!data || !data.Project) return null;
 
-        return <ProjectForm initialValues={data.Project} />;
-      }}
-    </GetProjectComponent>
-  );
+  return <ProjectForm initialValues={data.Project} />;
 };
 
 export default ProjectPage;

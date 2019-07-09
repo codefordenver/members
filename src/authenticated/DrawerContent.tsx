@@ -1,5 +1,4 @@
 import React from 'react';
-import { compose } from 'react-apollo';
 import {
   withStyles,
   Theme,
@@ -13,9 +12,10 @@ import Divider from '@material-ui/core/Divider';
 import { Link } from 'react-router-dom';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import LoadingIndicator from '../shared-components/LoadingIndicator';
+import { useQuery } from 'react-apollo-hooks';
 import {
-  ProjectsDrawerHOC,
-  ProjectsDrawerAllProjects
+  ProjectsDrawerQuery,
+  ProjectsDrawerDocument
 } from '../generated-models';
 
 const styles = (theme: Theme) =>
@@ -27,19 +27,16 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface DrawerContentProps extends WithStyles<typeof styles> {
-  projects: ProjectsDrawerAllProjects[];
-  loading: boolean;
-}
+type DrawerContentProps = WithStyles<typeof styles>;
 
-const DrawerContent: React.SFC<DrawerContentProps> = ({
-  projects,
-  loading,
-  classes
-}) => {
-  if (loading) {
-    return <LoadingIndicator />;
-  }
+const DrawerContent: React.FC<DrawerContentProps> = ({ classes }) => {
+  const { data, error, loading } = useQuery<ProjectsDrawerQuery>(
+    ProjectsDrawerDocument
+  );
+  if (error) return <div>Error! {error.message}</div>;
+  if (loading || !data || !data.allProjects) return <LoadingIndicator />;
+  const projects = data.allProjects;
+
   return (
     <div>
       <List
@@ -70,15 +67,4 @@ const DrawerContent: React.SFC<DrawerContentProps> = ({
   );
 };
 
-const DrawerContentWithData = compose(
-  withStyles(styles, { withTheme: true }),
-  ProjectsDrawerHOC({
-    options: () => ({}),
-    props: ({ data: { allProjects = [], loading = true } = {} }) => ({
-      projects: allProjects,
-      loading
-    })
-  })
-)(DrawerContent);
-
-export default DrawerContentWithData;
+export default withStyles(styles, { withTheme: true })(DrawerContent);

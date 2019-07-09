@@ -1,19 +1,14 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import { Link } from 'react-router-dom';
-import LoadingIndicator from '../../shared-components/LoadingIndicator';
-import './UsersList.css';
 import { UsersListAllUsers } from '../../generated-models';
+import './UsersList.css';
 
 interface UsersListProps {
   users: UsersListAllUsers[];
-  loading: boolean;
 }
 
-const UsersList: React.SFC<UsersListProps> = ({ users = [], loading }) => {
-  if (loading) {
-    return <LoadingIndicator />;
-  }
+const UsersList: React.FC<UsersListProps> = ({ users = [] }) => {
   if (!users.length) {
     return <p>No users yet</p>;
   }

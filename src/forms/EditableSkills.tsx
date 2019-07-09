@@ -1,12 +1,15 @@
 import React from 'react';
-import { compose } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import Chip from '@material-ui/core/Chip';
-import EditableList, { ItemComponent } from './EditableList';
+import EditableList, { ItemComponent, EditableListProps } from './EditableList';
+import { useMutation } from 'react-apollo-hooks';
+import { useCustomQuery } from '../utils/hooks';
 import {
-  EditableSkillsListHOC,
-  CreateSkillHOC,
-  CreateSkillVariables
+  EditableSkillsListQuery,
+  EditableSkillsListDocument,
+  CreateSkillVariables,
+  CreateSkillDocument,
+  CreateSkillMutation
 } from '../generated-models';
 
 const SkillChip: ItemComponent = ({ item, onDelete, editing }) => {
@@ -25,31 +28,30 @@ const SkillChip: ItemComponent = ({ item, onDelete, editing }) => {
   return <Link to={`/skills/${item.id}`}>{chip}</Link>;
 };
 
-interface EditableSkillsProps {
-  editing: boolean;
-}
+const EditableSkills: React.FC<EditableListProps> = props => {
+  const createSkill = useMutation<CreateSkillMutation>(CreateSkillDocument, {
+    refetchQueries: ['editableSkillsList']
+  });
+  const { data, loading } = useCustomQuery<EditableSkillsListQuery>(
+    EditableSkillsListDocument,
+    {
+      skip: !props.editing,
+      suspend: false
+    }
+  );
 
-export default compose(
-  CreateSkillHOC({
-    options: {
-      refetchQueries: ['editableSkillsList']
-    },
-    props: ({ mutate }) => ({
-      createChip: async (newSkill: CreateSkillVariables) => {
-        if (!mutate) {
-          throw new Error('mutate not defined');
-        }
-        const mutateData = await mutate({ variables: newSkill });
-        return mutateData && mutateData.data && mutateData.data.createSkill;
-      },
-      ItemComponent: SkillChip
-    })
-  }),
-  EditableSkillsListHOC<EditableSkillsProps>({
-    skip: props => !props.editing,
-    props: ({ data: { allSkills = [], loading = true } = {} }) => ({
-      allOptions: allSkills,
-      allOptionsLoading: loading
-    })
-  })
-)(EditableList);
+  return (
+    <EditableList
+      {...props}
+      ItemComponent={SkillChip}
+      allOptions={(data && data.allSkills) || []}
+      allOptionsLoading={loading}
+      createChip={async (newSkill: CreateSkillVariables) => {
+        const response = await createSkill({ variables: newSkill });
+        return response.data && response.data.createSkill;
+      }}
+    />
+  );
+};
+
+export default EditableSkills;

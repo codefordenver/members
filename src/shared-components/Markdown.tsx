@@ -11,7 +11,7 @@ interface Props {
   text: string;
 }
 
-const Markdown: React.SFC<Props> = ({ text }) => {
+const Markdown: React.FC<Props> = ({ text }) => {
   if (typeof text !== 'string') {
     return <div />;
   }

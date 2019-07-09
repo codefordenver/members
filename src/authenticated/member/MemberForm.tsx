@@ -29,7 +29,7 @@ function getBaseUrl(history: History, creating?: boolean, editing?: boolean) {
   return history.location.pathname.split('/edit')[0];
 }
 
-const MemberForm: React.SFC<MemberFormProps> = ({
+const MemberForm: React.FC<MemberFormProps> = ({
   initialValues,
   onSubmit,
   history,

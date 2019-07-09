@@ -1,17 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MockedProvider } from 'react-apollo/test-utils';
+import { ApolloProvider } from 'react-apollo-hooks';
 import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
+import { createClient } from '../testUtils';
 
 it('renders without crashing', () => {
+  const client = createClient();
   const div = document.createElement('div');
   ReactDOM.render(
-    <MockedProvider>
+    <ApolloProvider client={client}>
       <MemoryRouter>
         <App />
       </MemoryRouter>
-    </MockedProvider>,
+    </ApolloProvider>,
     div
   );
+  ReactDOM.unmountComponentAtNode(div);
 });

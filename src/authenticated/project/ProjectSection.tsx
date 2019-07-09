@@ -15,7 +15,7 @@ interface ProjectSectionProps {
   onFormDataChange: (value: any) => void;
 }
 
-const ProjectSection: React.SFC<ProjectSectionProps> = ({
+const ProjectSection: React.FC<ProjectSectionProps> = ({
   project,
   editing,
   onFormDataChange

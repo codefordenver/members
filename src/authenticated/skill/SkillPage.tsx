@@ -1,5 +1,7 @@
+import React from 'react';
 import SkillDetails from './SkillDetails';
-import { SkillPageHOC } from '../../generated-models';
+import { SkillPageDocument, SkillPageQuery } from '../../generated-models';
+import { useCustomQuery } from '../../utils/hooks';
 
 type SkillPageProps = {
   match: {
@@ -9,16 +11,14 @@ type SkillPageProps = {
   };
 };
 
-const SkillPage = SkillPageHOC<SkillPageProps>({
-  options: props => {
-    return { variables: { id: props.match.params.id } };
-  },
-  props: ({
-    data: { skill = null, loading = true, refetch = () => undefined } = {}
-  }) => {
-    refetch(); // Refresh on page render so the data isn't stale
-    return { skill, loading };
-  }
-})(SkillDetails);
+const SkillPage: React.FC<SkillPageProps> = ({ match }) => {
+  const { data, refetch } = useCustomQuery<SkillPageQuery>(SkillPageDocument, {
+    variables: { id: match.params.id }
+  });
+  if (!data || !data.skill) return null;
+  refetch(); // Refresh on page render so the data isn't stale
+
+  return <SkillDetails skill={data.skill} />;
+};
 
 export default SkillPage;

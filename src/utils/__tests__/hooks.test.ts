@@ -1,14 +1,14 @@
-import { testHook } from 'react-testing-library';
+import { renderHook } from '@testing-library/react-hooks';
 import { useUniqueId } from '../hooks';
 
 describe('useUniqueId', () => {
   it('creates a unique id for each time it is called', () => {
     let a, b, c;
-    testHook(() => {
+    renderHook(() => {
       a = useUniqueId();
       b = useUniqueId();
     });
-    testHook(() => {
+    renderHook(() => {
       c = useUniqueId();
     });
     expect(a).not.toEqual(b);
@@ -18,7 +18,7 @@ describe('useUniqueId', () => {
   it('does not create a new id on rerender', () => {
     let a;
 
-    const { rerender } = testHook(() => {
+    const { rerender } = renderHook(() => {
       a = useUniqueId();
     });
     const firstId = a;

@@ -3,11 +3,14 @@ import { RouteComponentProps } from 'react-router-dom';
 import { History } from 'history';
 import MemberForm from './MemberForm';
 import AuthenticationContext from '../../utils/authentication/authContext';
-import LoadingIndicator from '../../shared-components/LoadingIndicator';
+import { useMutation } from 'react-apollo-hooks';
+import { useCustomQuery } from '../../utils/hooks';
 import {
-  GetUserComponent,
   MemberProfileFragmentFragment,
-  UpdateUserComponent
+  GetUserDocument,
+  GetUserQuery,
+  UpdateUserMutation,
+  UpdateUserDocument
 } from '../../generated-models';
 
 type MemberEditPageProps = RouteComponentProps;
@@ -29,39 +32,36 @@ function getBaseUrl(history: History) {
   return history.location.pathname.split('/edit')[0];
 }
 
-const MemberEditPage: React.SFC<MemberEditPageProps> = ({ history }) => {
+const MemberEditPage: React.FC<MemberEditPageProps> = ({ history }) => {
   const authContext = useContext(AuthenticationContext);
+  const updateMemberMutation = useMutation<UpdateUserMutation>(
+    UpdateUserDocument,
+    {
+      refetchQueries: ['editableUsersList']
+    }
+  );
+  const { data } = useCustomQuery<GetUserQuery>(GetUserDocument, {
+    variables: { id: authContext.authData.userId }
+  });
+  if (!data || !data.user) return null;
 
   return (
-    <UpdateUserComponent refetchQueries={['editableUsersList']}>
-      {updateMemberMutation => (
-        <GetUserComponent variables={{ id: authContext.authData.userId }}>
-          {({ loading, error, data }) => {
-            if (error) return `Error! ${error.message}`;
-            if (loading || !data || !data.user) return <LoadingIndicator />;
-
-            return (
-              <MemberForm
-                initialValues={data.user}
-                editing
-                onSubmit={async (updatedMember, actions) => {
-                  try {
-                    await updateMemberMutation({
-                      variables: formatMemberForMutation(updatedMember)
-                    });
-                    history.push(getBaseUrl(history));
-                  } catch (err) {
-                    console.error('submitting error', err);
-                    actions.setSubmitting(false);
-                    alert(err);
-                  }
-                }}
-              />
-            );
-          }}
-        </GetUserComponent>
-      )}
-    </UpdateUserComponent>
+    <MemberForm
+      initialValues={data.user}
+      editing
+      onSubmit={async (updatedMember, actions) => {
+        try {
+          await updateMemberMutation({
+            variables: formatMemberForMutation(updatedMember)
+          });
+          history.push(getBaseUrl(history));
+        } catch (err) {
+          console.error('submitting error', err);
+          actions.setSubmitting(false);
+          alert(err);
+        }
+      }}
+    />
   );
 };
 

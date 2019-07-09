@@ -99,6 +99,23 @@ let queryMocks = [
         }
       }
     }
+  },
+  // For refetched data
+  {
+    request: {
+      query: EditableUsersListDocument,
+      variables: {}
+    },
+    result: {
+      data: {
+        allUsers: [
+          {
+            id: 'user-1',
+            name: 'User 1'
+          }
+        ]
+      }
+    }
   }
 ];
 

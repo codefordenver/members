@@ -16,7 +16,7 @@ interface EditableImageLinkProps {
   >;
 }
 
-const EditableImageLink: React.SFC<EditableImageLinkProps> = ({
+const EditableImageLink: React.FC<EditableImageLinkProps> = ({
   value,
   label,
   name,

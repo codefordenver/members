@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import DrawerLayout from './DrawerLayout';
 import DrawerContent from './DrawerContent';
@@ -16,52 +16,48 @@ import ProjectPage from './project/ProjectPage';
 import ProjectEditPage from './project/ProjectEditPage';
 import ProjectCreatePage from './project/ProjectCreatePage';
 import SkillPage from './skill/SkillPage';
-import AuthContext from '../utils/authentication/authContext';
-import { UserRoleComponent } from '../generated-models';
+import AuthenticationContext from '../utils/authentication/authContext';
+import { UserRoleQuery, UserRoleDocument } from '../generated-models';
 import OnboardingPage from './onboarding/OnboardingPage';
+import { useCustomQuery } from '../utils/hooks';
+import LoadingIndicator from '../shared-components/LoadingIndicator';
 
-const LoggedInRoutes = () => (
-  <DrawerLayout drawer={<DrawerContent />}>
-    <AuthContext.Consumer>
-      {context => (
-        <UserRoleComponent variables={{ id: context.authData.userId }}>
-          {({ loading, data }) => {
-            if (loading || !data || !data.user) return null;
+export const PAGE_URLS = {
+  newUser: '/new'
+};
 
-            return (
-              <Switch>
-                <Route exact path="/" component={MemberResourcesPage} />
-                <Route exact path="/me" component={MyProfilePage} />
-                <Route
-                  exact
-                  path="/me/edit"
-                  component={MemberProfileEditPage}
-                />
-                <Route exact path="/flowdock" component={FlowdockLanding} />
-                <Route exact path="/volunteers" component={UsersListPage} />
-                <Route
-                  exact
-                  path="/volunteers/:id"
-                  component={MemberProfilePage}
-                />
-                <Route path="/projects/create" component={ProjectCreatePage} />
-                <Route path="/projects/:id/edit" component={ProjectEditPage} />
-                <Route path="/projects/:id" component={ProjectPage} />
-                <Route path="/projects" component={ProjectsListPage} />
-                {/* <Route path="/projects" component={GeneralProjectPage} /> */}
-                <Route exact path="/styles" component={StyleReferencePage} />
-                <Route exact path="/skills/:id" component={SkillPage} />
-                <Route exact path="/new" component={OnboardingPage} />
+const LoggedInRoutes = () => {
+  const authContext = useContext(AuthenticationContext);
+  const { data } = useCustomQuery<UserRoleQuery>(UserRoleDocument, {
+    variables: { id: authContext.authData.userId }
+  });
 
-                {getAdminRoutes(data.user)}
-                <Route component={NoMatchPage} />
-              </Switch>
-            );
-          }}
-        </UserRoleComponent>
+  return (
+    <DrawerLayout drawer={<DrawerContent />}>
+      {!data || !data.user ? null : (
+        <Suspense fallback={<LoadingIndicator />}>
+          <Switch>
+            <Route exact path="/" component={MemberResourcesPage} />
+            <Route exact path="/me" component={MyProfilePage} />
+            <Route exact path="/me/edit" component={MemberProfileEditPage} />
+            <Route exact path="/flowdock" component={FlowdockLanding} />
+            <Route exact path="/volunteers" component={UsersListPage} />
+            <Route exact path="/volunteers/:id" component={MemberProfilePage} />
+            <Route path="/projects/create" component={ProjectCreatePage} />
+            <Route path="/projects/:id/edit" component={ProjectEditPage} />
+            <Route path="/projects/:id" component={ProjectPage} />
+            <Route path="/projects" component={ProjectsListPage} />
+            <Route exact path="/styles" component={StyleReferencePage} />
+            <Route exact path="/skills/:id" component={SkillPage} />
+            <Route exact path={PAGE_URLS.newUser} component={OnboardingPage} />
+
+            {getAdminRoutes(data.user)}
+            <Route component={NoMatchPage} />
+          </Switch>
+        </Suspense>
       )}
-    </AuthContext.Consumer>
-  </DrawerLayout>
-);
+    </DrawerLayout>
+  );
+};
 
 export default LoggedInRoutes;

@@ -12,7 +12,7 @@ interface Props {
   >;
 }
 
-const EditableText: React.SFC<Props> = ({
+const EditableText: React.FC<Props> = ({
   value,
   label,
   name,

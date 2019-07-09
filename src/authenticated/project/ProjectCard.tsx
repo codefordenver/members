@@ -12,7 +12,7 @@ import { ProjectCardFieldsFragment } from '../../generated-models';
 import './ProjectCard.css';
 import { getRepoPath } from '../../utils';
 
-const ProjectCard: React.SFC<ProjectCardFieldsFragment> = ({
+const ProjectCard: React.FC<ProjectCardFieldsFragment> = ({
   id,
   name,
   skills,
@@ -45,7 +45,12 @@ const ProjectCard: React.SFC<ProjectCardFieldsFragment> = ({
       </CardContent>
       <CardActions>
         <Grid container spacing={16} alignItems="center">
-          <EditableSkills value={skills} name="skills" />
+          <EditableSkills
+            value={skills}
+            name="skills"
+            label="skills"
+            onChange={() => {}}
+          />
           <EditableLink
             value={repoName}
             name="repoName"

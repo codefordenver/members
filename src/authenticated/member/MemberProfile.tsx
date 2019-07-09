@@ -15,7 +15,7 @@ interface MemberProfileProps {
   editing: boolean;
 }
 
-const MemberProfile: React.SFC<MemberProfileProps> = ({
+const MemberProfile: React.FC<MemberProfileProps> = ({
   user,
   onFormDataChange,
   editing

@@ -1,10 +1,11 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import LoadingIndicator from '../../shared-components/LoadingIndicator';
 import ProjectCard from './ProjectCard';
+import { useCustomQuery } from '../../utils/hooks';
 import {
-  ProjectCardsHOC,
-  ProjectCardsAllProjects
+  ProjectCardsAllProjects,
+  ProjectCardsQuery,
+  ProjectCardsDocument
 } from '../../generated-models';
 
 interface ProjectsListProps {
@@ -12,10 +13,11 @@ interface ProjectsListProps {
   loading: boolean;
 }
 
-const ProjectsList: React.SFC<ProjectsListProps> = ({ projects, loading }) => {
-  if (loading) {
-    return <LoadingIndicator />;
-  }
+const ProjectsListPage: React.FC<ProjectsListProps> = () => {
+  const { data } = useCustomQuery<ProjectCardsQuery>(ProjectCardsDocument);
+  if (!data || !data.allProjects) return null;
+
+  const projects = data.allProjects;
   if (!projects.length) {
     return <p>No projects yet</p>;
   }
@@ -30,16 +32,5 @@ const ProjectsList: React.SFC<ProjectsListProps> = ({ projects, loading }) => {
     </Grid>
   );
 };
-
-ProjectsList.defaultProps = {
-  projects: []
-};
-
-const ProjectsListPage = ProjectCardsHOC({
-  props: ({ data: { allProjects = [], loading = true } = {} }) => ({
-    projects: allProjects,
-    loading
-  })
-})(ProjectsList);
 
 export default ProjectsListPage;
