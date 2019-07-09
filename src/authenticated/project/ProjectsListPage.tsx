@@ -1,6 +1,5 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import LoadingIndicator from '../../shared-components/LoadingIndicator';
 import ProjectCard from './ProjectCard';
 import { useCustomQuery } from '../../utils/hooks';
 import {
@@ -16,7 +15,7 @@ interface ProjectsListProps {
 
 const ProjectsListPage: React.FC<ProjectsListProps> = () => {
   const { data } = useCustomQuery<ProjectCardsQuery>(ProjectCardsDocument);
-  if (!data || !data.allProjects) return <LoadingIndicator />;
+  if (!data || !data.allProjects) return null;
 
   const projects = data.allProjects;
   if (!projects.length) {

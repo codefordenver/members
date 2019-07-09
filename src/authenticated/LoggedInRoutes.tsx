@@ -47,7 +47,6 @@ const LoggedInRoutes = () => {
             <Route path="/projects/:id/edit" component={ProjectEditPage} />
             <Route path="/projects/:id" component={ProjectPage} />
             <Route path="/projects" component={ProjectsListPage} />
-            {/* <Route path="/projects" component={GeneralProjectPage} /> */}
             <Route exact path="/styles" component={StyleReferencePage} />
             <Route exact path="/skills/:id" component={SkillPage} />
             <Route exact path={PAGE_URLS.newUser} component={OnboardingPage} />
