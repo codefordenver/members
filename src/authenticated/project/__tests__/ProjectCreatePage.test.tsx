@@ -33,6 +33,7 @@ let queryMocks = [
       data: {
         allUsers: [
           {
+            __typename: 'USER',
             id: 'user-1',
             name: 'User 1'
           }
@@ -49,6 +50,7 @@ let queryMocks = [
       data: {
         allSkills: [
           {
+            __typename: 'SKILL',
             id: 'skill-1',
             name: 'Skill 1'
           }
@@ -73,7 +75,7 @@ let queryMocks = [
     result: {
       data: {
         createProject: {
-          __typeName: 'Project',
+          __typename: 'PROJECT',
           id: 'project-1',
           name: 'Test Project Title',
           headerImage: 'https://some.image.url',
@@ -83,12 +85,14 @@ let queryMocks = [
           status: 'Idea',
           skills: [
             {
+              __typename: 'SKILL',
               id: 'skill-1',
               name: 'Skill 1'
             }
           ],
           champions: [
             {
+              __typename: 'USER',
               id: 'user-1',
               name: 'User 1'
             }
@@ -107,6 +111,7 @@ let queryMocks = [
       data: {
         allUsers: [
           {
+            __typename: 'USER',
             id: 'user-1',
             name: 'User 1'
           }

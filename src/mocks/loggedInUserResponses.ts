@@ -7,7 +7,8 @@ const name = 'Test User',
   email = 'test-user@nonexistent.com',
   flowdockName = 'TestUser',
   githubName = '@testUser',
-  description = 'Test User';
+  description = 'Test User',
+  createdAt = 'Sat Jul 13 2019 11:31:23 GMT-0600 (Mountain Daylight Time)';
 
 export const adminUserServerMockResponses = [
   {
@@ -20,11 +21,14 @@ export const adminUserServerMockResponses = [
     result: {
       data: {
         user: {
+          __typename: 'USER',
           id: adminUserId,
+          createdAt,
           name,
           picture,
           email,
           flowdockName,
+          hasCompletedWizard: true,
           githubName,
           description,
           role: 'ADMIN',
@@ -47,11 +51,14 @@ export const regularUserMockResponses = [
     result: {
       data: {
         user: {
+          __typename: 'USER',
           id: regularUserId,
+          createdAt,
           name,
           picture,
           email,
           flowdockName,
+          hasCompletedWizard: true,
           githubName,
           description,
           role: 'USER',
@@ -72,6 +79,7 @@ export const roleMockResponses = [
     result: {
       data: {
         user: {
+          __typename: 'USER',
           id: regularUserId,
           role: 'REGULAR'
         }
@@ -86,6 +94,7 @@ export const roleMockResponses = [
     result: {
       data: {
         user: {
+          __typename: 'USER',
           id: adminUserId,
           role: 'ADMIN'
         }
