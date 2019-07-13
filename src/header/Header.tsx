@@ -4,14 +4,15 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import { useQuery } from 'react-apollo-hooks';
 import logo from '../images/cfd-circle-icon-white.png';
 import userIsAdmin from '../utils/userIsAdmin';
 import MenuList from './Menu';
 import AuthenticationContext from '../utils/authentication/authContext';
 import AuthService from '../utils/authentication/authService';
 import { User } from '../sharedTypes';
-import { useQuery } from 'react-apollo-hooks';
-import { GetUserDocument, GetUserQuery } from '../generated-models';
+import { GetUserQuery } from '../generated-models';
+import { GET_USER } from '../authenticated/member/MyProfilePage';
 import LoadingIndicator from '../shared-components/LoadingIndicator';
 import './Header.css';
 
@@ -46,7 +47,7 @@ const UserLinks = ({ user }: { user: User | null }) => (
 );
 
 const LoggedInHeaderContent: React.FC<{ userId: string }> = ({ userId }) => {
-  const { data, error, loading } = useQuery<GetUserQuery>(GetUserDocument, {
+  const { data, error, loading } = useQuery<GetUserQuery>(GET_USER, {
     variables: { id: userId }
   });
   if (error) return <div>Error! {error.message}</div>;

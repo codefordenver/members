@@ -5,9 +5,9 @@ import Onboarding from './Onboarding';
 import AuthenticationContext from '../../utils/authentication/authContext';
 import { useMutation } from 'react-apollo-hooks';
 import { useCustomQuery } from '../../utils/hooks';
+import { GET_USER } from '../member/MyProfilePage';
 import {
   MemberProfileFragmentFragment,
-  GetUserDocument,
   GetUserQuery,
   UpdateUserMutation,
   UpdateUserDocument
@@ -36,7 +36,7 @@ const MemberEditPage: React.FC<MemberEditPageProps> = ({ history }) => {
       refetchQueries: ['editableUsersList']
     }
   );
-  const { data } = useCustomQuery<GetUserQuery>(GetUserDocument, {
+  const { data } = useCustomQuery<GetUserQuery>(GET_USER, {
     variables: { id: authContext.authData.userId }
   });
   if (!data || !data.user) return null;

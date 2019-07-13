@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { useQuery } from 'react-apollo-hooks';
 import AuthenticationContext from './authentication/authContext';
-import { GetUserDocument, GetUserQuery } from '../generated-models';
+import { GET_USER_ROLE } from '../authenticated/loggedInRoutes';
+import { GetUserQuery } from '../generated-models';
 import { PAGE_URLS } from '../authenticated/LoggedInRoutes';
 
 const RedirectOnNewLogin: React.FC<RouteComponentProps> = ({
@@ -12,7 +13,7 @@ const RedirectOnNewLogin: React.FC<RouteComponentProps> = ({
   const authContext = useContext(AuthenticationContext);
   const [checkedIfNewUser, setCheckedIfNewUser] = useState(false);
 
-  const { data } = useQuery<GetUserQuery>(GetUserDocument, {
+  const { data } = useQuery<GetUserQuery>(GET_USER_ROLE, {
     variables: { id: authContext.authData.userId }
   });
 

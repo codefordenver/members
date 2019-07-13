@@ -1,8 +1,5 @@
-import {
-  GetUserDocument,
-  GetHeaderUserDocument,
-  UserRoleDocument
-} from '../generated-models';
+import { GET_USER } from '../authenticated/member/MyProfilePage';
+import { GET_USER_ROLE } from '../authenticated/loggedInRoutes';
 import { adminUserId, regularUserId } from '../testData';
 
 const name = 'Test User',
@@ -15,7 +12,7 @@ const name = 'Test User',
 export const adminUserServerMockResponses = [
   {
     request: {
-      query: GetUserDocument,
+      query: GET_USER,
       variables: {
         id: adminUserId
       }
@@ -36,31 +33,13 @@ export const adminUserServerMockResponses = [
         }
       }
     }
-  },
-  {
-    request: {
-      query: GetHeaderUserDocument,
-      variables: {
-        id: adminUserId
-      }
-    },
-    result: {
-      data: {
-        user: {
-          id: adminUserId,
-          name,
-          picture,
-          role: 'ADMIN'
-        }
-      }
-    }
   }
 ];
 
 export const regularUserMockResponses = [
   {
     request: {
-      query: GetUserDocument,
+      query: GET_USER,
       variables: {
         id: regularUserId
       }
@@ -81,31 +60,13 @@ export const regularUserMockResponses = [
         }
       }
     }
-  },
-  {
-    request: {
-      query: GetHeaderUserDocument,
-      variables: {
-        id: regularUserId
-      }
-    },
-    result: {
-      data: {
-        user: {
-          id: regularUserId,
-          name,
-          picture,
-          role: 'USER'
-        }
-      }
-    }
   }
 ];
 
 export const roleMockResponses = [
   {
     request: {
-      query: UserRoleDocument,
+      query: GET_USER_ROLE,
       variables: { id: regularUserId }
     },
     result: {
@@ -119,7 +80,7 @@ export const roleMockResponses = [
   },
   {
     request: {
-      query: UserRoleDocument,
+      query: GET_USER_ROLE,
       variables: { id: adminUserId }
     },
     result: {

@@ -1,17 +1,44 @@
 import React, { useContext } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { History } from 'history';
-import MemberForm from './MemberForm';
+import gql from 'graphql-tag';
+import { GET_USER } from './MyProfilePage';
 import AuthenticationContext from '../../utils/authentication/authContext';
 import { useMutation } from 'react-apollo-hooks';
 import { useCustomQuery } from '../../utils/hooks';
+import MemberForm, { MEMBER_FORM_FRAGMENT } from './MemberForm';
 import {
   MemberProfileFragmentFragment,
-  GetUserDocument,
   GetUserQuery,
-  UpdateUserMutation,
-  UpdateUserDocument
+  UpdateUserMutation
 } from '../../generated-models';
+
+export const UPDATE_USER = gql`
+  mutation updateUser(
+    $id: ID!
+    $name: String
+    $githubName: String
+    $flowdockName: String
+    $description: String
+    $hasCompletedWizard: Boolean
+    $skillsIds: [ID!]
+    $projectsChampionedIds: [ID!]
+  ) {
+    updateUser(
+      id: $id
+      name: $name
+      githubName: $githubName
+      flowdockName: $flowdockName
+      description: $description
+      hasCompletedWizard: $hasCompletedWizard
+      skillsIds: $skillsIds
+      projectsChampionedIds: $projectsChampionedIds
+    ) {
+      ...MemberProfileFragment
+    }
+  }
+  ${MEMBER_FORM_FRAGMENT}
+`;
 
 type MemberEditPageProps = RouteComponentProps;
 
@@ -34,13 +61,10 @@ function getBaseUrl(history: History) {
 
 const MemberEditPage: React.FC<MemberEditPageProps> = ({ history }) => {
   const authContext = useContext(AuthenticationContext);
-  const updateMemberMutation = useMutation<UpdateUserMutation>(
-    UpdateUserDocument,
-    {
-      refetchQueries: ['editableUsersList']
-    }
-  );
-  const { data } = useCustomQuery<GetUserQuery>(GetUserDocument, {
+  const updateMemberMutation = useMutation<UpdateUserMutation>(UPDATE_USER, {
+    refetchQueries: ['editableUsersList']
+  });
+  const { data } = useCustomQuery<GetUserQuery>(GET_USER, {
     variables: { id: authContext.authData.userId }
   });
   if (!data || !data.user) return null;

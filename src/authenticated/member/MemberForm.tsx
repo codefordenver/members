@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { History } from 'history';
+import gql from 'graphql-tag';
 import MemberProfile from './MemberProfile';
 import { MemberProfileFragmentFragment } from '../../generated-models';
 
@@ -28,6 +29,29 @@ function getBaseUrl(history: History, creating?: boolean, editing?: boolean) {
   }
   return history.location.pathname.split('/edit')[0];
 }
+
+export const MEMBER_FORM_FRAGMENT = gql`
+  fragment MemberProfileFragment on User {
+    id
+    createdAt
+    picture
+    name
+    description
+    githubName
+    flowdockName
+    role
+    email
+    hasCompletedWizard
+    skills {
+      id
+      name
+    }
+    projectsChampioned {
+      id
+      name
+    }
+  }
+`;
 
 const MemberForm: React.FC<MemberFormProps> = ({
   initialValues,

@@ -1691,59 +1691,6 @@ export type DateTime = any;
 // Documents
 // ====================================================
 
-export type GetHeaderUserVariables = {
-  id?: Maybe<string>;
-};
-
-export type GetHeaderUserQuery = {
-  __typename?: 'Query';
-
-  user: Maybe<GetHeaderUserUser>;
-};
-
-export type GetHeaderUserUser = {
-  __typename?: 'User';
-
-  id: string;
-
-  name: Maybe<string>;
-
-  picture: Maybe<string>;
-
-  role: Maybe<UserRole>;
-};
-
-export type GetUserVariables = {
-  id?: Maybe<string>;
-};
-
-export type GetUserQuery = {
-  __typename?: 'Query';
-
-  user: Maybe<GetUserUser>;
-};
-
-export type GetUserUser = MemberProfileFragmentFragment;
-
-export type UpdateUserVariables = {
-  id: string;
-  name?: Maybe<string>;
-  githubName?: Maybe<string>;
-  flowdockName?: Maybe<string>;
-  description?: Maybe<string>;
-  hasCompletedWizard?: Maybe<boolean>;
-  skillsIds?: Maybe<string[]>;
-  projectsChampionedIds?: Maybe<string[]>;
-};
-
-export type UpdateUserMutation = {
-  __typename?: 'Mutation';
-
-  updateUser: Maybe<UpdateUserUpdateUser>;
-};
-
-export type UpdateUserUpdateUser = MemberProfileFragmentFragment;
-
 export type UserEmailsVariables = {
   date?: Maybe<DateTime>;
 };
@@ -1760,6 +1707,22 @@ export type UserEmailsAllUsers = {
   id: string;
 
   email: string;
+};
+
+export type ProjectsDrawerVariables = {};
+
+export type ProjectsDrawerQuery = {
+  __typename?: 'Query';
+
+  allProjects: ProjectsDrawerAllProjects[];
+};
+
+export type ProjectsDrawerAllProjects = {
+  __typename?: 'Project';
+
+  id: string;
+
+  name: string;
 };
 
 export type UserRoleVariables = {
@@ -1780,6 +1743,37 @@ export type UserRoleUser = {
   role: Maybe<UserRole>;
 };
 
+export type UpdateUserVariables = {
+  id: string;
+  name?: Maybe<string>;
+  githubName?: Maybe<string>;
+  flowdockName?: Maybe<string>;
+  description?: Maybe<string>;
+  hasCompletedWizard?: Maybe<boolean>;
+  skillsIds?: Maybe<string[]>;
+  projectsChampionedIds?: Maybe<string[]>;
+};
+
+export type UpdateUserMutation = {
+  __typename?: 'Mutation';
+
+  updateUser: Maybe<UpdateUserUpdateUser>;
+};
+
+export type UpdateUserUpdateUser = MemberProfileFragmentFragment;
+
+export type GetUserVariables = {
+  id?: Maybe<string>;
+};
+
+export type GetUserQuery = {
+  __typename?: 'Query';
+
+  user: Maybe<GetUserUser>;
+};
+
+export type GetUserUser = MemberProfileFragmentFragment;
+
 export type UsersListVariables = {};
 
 export type UsersListQuery = {
@@ -1796,22 +1790,6 @@ export type UsersListAllUsers = {
   name: Maybe<string>;
 
   picture: Maybe<string>;
-};
-
-export type ProjectsDrawerVariables = {};
-
-export type ProjectsDrawerQuery = {
-  __typename?: 'Query';
-
-  allProjects: ProjectsDrawerAllProjects[];
-};
-
-export type ProjectsDrawerAllProjects = {
-  __typename?: 'Project';
-
-  id: string;
-
-  name: string;
 };
 
 export type ProjectCreatePageCreateProjectVariables = {
@@ -2172,90 +2150,128 @@ export const ProjectSectionFieldsFragmentDoc = gql`
 // Components
 // ====================================================
 
-export const GetHeaderUserDocument = gql`
-  query getHeaderUser($id: ID) {
-    user: User(id: $id) {
+export const UserEmailsDocument = gql`
+  query userEmails($date: DateTime) {
+    allUsers(orderBy: email_ASC, filter: { createdAt_gt: $date }) {
+      id
+      email
+    }
+  }
+`;
+export class UserEmailsComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<UserEmailsQuery, UserEmailsVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<UserEmailsQuery, UserEmailsVariables>
+        query={UserEmailsDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type UserEmailsProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<UserEmailsQuery, UserEmailsVariables>
+> &
+  TChildProps;
+export function UserEmailsHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        UserEmailsQuery,
+        UserEmailsVariables,
+        UserEmailsProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    UserEmailsQuery,
+    UserEmailsVariables,
+    UserEmailsProps<TChildProps>
+  >(UserEmailsDocument, operationOptions);
+}
+export const ProjectsDrawerDocument = gql`
+  query projectsDrawer {
+    allProjects(orderBy: name_ASC) {
       id
       name
-      picture
+    }
+  }
+`;
+export class ProjectsDrawerComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<ProjectsDrawerQuery, ProjectsDrawerVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Query<ProjectsDrawerQuery, ProjectsDrawerVariables>
+        query={ProjectsDrawerDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type ProjectsDrawerProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<ProjectsDrawerQuery, ProjectsDrawerVariables>
+> &
+  TChildProps;
+export function ProjectsDrawerHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        ProjectsDrawerQuery,
+        ProjectsDrawerVariables,
+        ProjectsDrawerProps<TChildProps>
+      >
+    | undefined
+) {
+  return ReactApollo.graphql<
+    TProps,
+    ProjectsDrawerQuery,
+    ProjectsDrawerVariables,
+    ProjectsDrawerProps<TChildProps>
+  >(ProjectsDrawerDocument, operationOptions);
+}
+export const UserRoleDocument = gql`
+  query userRole($id: ID) {
+    user: User(id: $id) {
+      id
       role
     }
   }
 `;
-export class GetHeaderUserComponent extends React.Component<
-  Partial<ReactApollo.QueryProps<GetHeaderUserQuery, GetHeaderUserVariables>>
+export class UserRoleComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<UserRoleQuery, UserRoleVariables>>
 > {
   render() {
     return (
-      <ReactApollo.Query<GetHeaderUserQuery, GetHeaderUserVariables>
-        query={GetHeaderUserDocument}
+      <ReactApollo.Query<UserRoleQuery, UserRoleVariables>
+        query={UserRoleDocument}
         {...(this as any)['props'] as any}
       />
     );
   }
 }
-export type GetHeaderUserProps<TChildProps = any> = Partial<
-  ReactApollo.DataProps<GetHeaderUserQuery, GetHeaderUserVariables>
+export type UserRoleProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<UserRoleQuery, UserRoleVariables>
 > &
   TChildProps;
-export function GetHeaderUserHOC<TProps, TChildProps = any>(
+export function UserRoleHOC<TProps, TChildProps = any>(
   operationOptions:
     | ReactApollo.OperationOption<
         TProps,
-        GetHeaderUserQuery,
-        GetHeaderUserVariables,
-        GetHeaderUserProps<TChildProps>
+        UserRoleQuery,
+        UserRoleVariables,
+        UserRoleProps<TChildProps>
       >
     | undefined
 ) {
   return ReactApollo.graphql<
     TProps,
-    GetHeaderUserQuery,
-    GetHeaderUserVariables,
-    GetHeaderUserProps<TChildProps>
-  >(GetHeaderUserDocument, operationOptions);
-}
-export const GetUserDocument = gql`
-  query getUser($id: ID) {
-    user: User(id: $id) {
-      ...MemberProfileFragment
-    }
-  }
-
-  ${MemberProfileFragmentFragmentDoc}
-`;
-export class GetUserComponent extends React.Component<
-  Partial<ReactApollo.QueryProps<GetUserQuery, GetUserVariables>>
-> {
-  render() {
-    return (
-      <ReactApollo.Query<GetUserQuery, GetUserVariables>
-        query={GetUserDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type GetUserProps<TChildProps = any> = Partial<
-  ReactApollo.DataProps<GetUserQuery, GetUserVariables>
-> &
-  TChildProps;
-export function GetUserHOC<TProps, TChildProps = any>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        GetUserQuery,
-        GetUserVariables,
-        GetUserProps<TChildProps>
-      >
-    | undefined
-) {
-  return ReactApollo.graphql<
-    TProps,
-    GetUserQuery,
-    GetUserVariables,
-    GetUserProps<TChildProps>
-  >(GetUserDocument, operationOptions);
+    UserRoleQuery,
+    UserRoleVariables,
+    UserRoleProps<TChildProps>
+  >(UserRoleDocument, operationOptions);
 }
 export const UpdateUserDocument = gql`
   mutation updateUser(
@@ -2321,87 +2337,47 @@ export function UpdateUserHOC<TProps, TChildProps = any>(
     UpdateUserProps<TChildProps>
   >(UpdateUserDocument, operationOptions);
 }
-export const UserEmailsDocument = gql`
-  query userEmails($date: DateTime) {
-    allUsers(orderBy: email_ASC, filter: { createdAt_gt: $date }) {
-      id
-      email
-    }
-  }
-`;
-export class UserEmailsComponent extends React.Component<
-  Partial<ReactApollo.QueryProps<UserEmailsQuery, UserEmailsVariables>>
-> {
-  render() {
-    return (
-      <ReactApollo.Query<UserEmailsQuery, UserEmailsVariables>
-        query={UserEmailsDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type UserEmailsProps<TChildProps = any> = Partial<
-  ReactApollo.DataProps<UserEmailsQuery, UserEmailsVariables>
-> &
-  TChildProps;
-export function UserEmailsHOC<TProps, TChildProps = any>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        UserEmailsQuery,
-        UserEmailsVariables,
-        UserEmailsProps<TChildProps>
-      >
-    | undefined
-) {
-  return ReactApollo.graphql<
-    TProps,
-    UserEmailsQuery,
-    UserEmailsVariables,
-    UserEmailsProps<TChildProps>
-  >(UserEmailsDocument, operationOptions);
-}
-export const UserRoleDocument = gql`
-  query userRole($id: ID) {
+export const GetUserDocument = gql`
+  query getUser($id: ID) {
     user: User(id: $id) {
-      id
-      role
+      ...MemberProfileFragment
     }
   }
+
+  ${MemberProfileFragmentFragmentDoc}
 `;
-export class UserRoleComponent extends React.Component<
-  Partial<ReactApollo.QueryProps<UserRoleQuery, UserRoleVariables>>
+export class GetUserComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<GetUserQuery, GetUserVariables>>
 > {
   render() {
     return (
-      <ReactApollo.Query<UserRoleQuery, UserRoleVariables>
-        query={UserRoleDocument}
+      <ReactApollo.Query<GetUserQuery, GetUserVariables>
+        query={GetUserDocument}
         {...(this as any)['props'] as any}
       />
     );
   }
 }
-export type UserRoleProps<TChildProps = any> = Partial<
-  ReactApollo.DataProps<UserRoleQuery, UserRoleVariables>
+export type GetUserProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<GetUserQuery, GetUserVariables>
 > &
   TChildProps;
-export function UserRoleHOC<TProps, TChildProps = any>(
+export function GetUserHOC<TProps, TChildProps = any>(
   operationOptions:
     | ReactApollo.OperationOption<
         TProps,
-        UserRoleQuery,
-        UserRoleVariables,
-        UserRoleProps<TChildProps>
+        GetUserQuery,
+        GetUserVariables,
+        GetUserProps<TChildProps>
       >
     | undefined
 ) {
   return ReactApollo.graphql<
     TProps,
-    UserRoleQuery,
-    UserRoleVariables,
-    UserRoleProps<TChildProps>
-  >(UserRoleDocument, operationOptions);
+    GetUserQuery,
+    GetUserVariables,
+    GetUserProps<TChildProps>
+  >(GetUserDocument, operationOptions);
 }
 export const UsersListDocument = gql`
   query usersList {
@@ -2444,47 +2420,6 @@ export function UsersListHOC<TProps, TChildProps = any>(
     UsersListVariables,
     UsersListProps<TChildProps>
   >(UsersListDocument, operationOptions);
-}
-export const ProjectsDrawerDocument = gql`
-  query projectsDrawer {
-    allProjects(orderBy: name_ASC) {
-      id
-      name
-    }
-  }
-`;
-export class ProjectsDrawerComponent extends React.Component<
-  Partial<ReactApollo.QueryProps<ProjectsDrawerQuery, ProjectsDrawerVariables>>
-> {
-  render() {
-    return (
-      <ReactApollo.Query<ProjectsDrawerQuery, ProjectsDrawerVariables>
-        query={ProjectsDrawerDocument}
-        {...(this as any)['props'] as any}
-      />
-    );
-  }
-}
-export type ProjectsDrawerProps<TChildProps = any> = Partial<
-  ReactApollo.DataProps<ProjectsDrawerQuery, ProjectsDrawerVariables>
-> &
-  TChildProps;
-export function ProjectsDrawerHOC<TProps, TChildProps = any>(
-  operationOptions:
-    | ReactApollo.OperationOption<
-        TProps,
-        ProjectsDrawerQuery,
-        ProjectsDrawerVariables,
-        ProjectsDrawerProps<TChildProps>
-      >
-    | undefined
-) {
-  return ReactApollo.graphql<
-    TProps,
-    ProjectsDrawerQuery,
-    ProjectsDrawerVariables,
-    ProjectsDrawerProps<TChildProps>
-  >(ProjectsDrawerDocument, operationOptions);
 }
 export const ProjectCreatePageCreateProjectDocument = gql`
   mutation projectCreatePageCreateProject(
