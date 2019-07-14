@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
 import Button from '@material-ui/core/Button';
@@ -13,53 +13,48 @@ interface FadeMenuProps {
   logout: () => void;
 }
 
-class FadeMenu extends React.Component<FadeMenuProps> {
-  state = {
-    anchorEl: null
+const FadeMenu: React.FC<FadeMenuProps> = props => {
+  // Should this be useRef instead?
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    this.setState({ anchorEl: event.currentTarget });
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
-
-  render() {
-    const { anchorEl } = this.state;
-
-    return (
-      <div>
-        <Button
-          aria-owns={anchorEl ? 'fade-menu' : undefined}
-          aria-haspopup="true"
-          onClick={this.handleClick}
-          color="secondary"
+  return (
+    <div>
+      <Button
+        aria-owns={anchorEl ? 'fade-menu' : undefined}
+        aria-haspopup="true"
+        onClick={handleClick}
+        color="secondary"
+      >
+        {props.avatar && (
+          <Avatar src={props.avatar} alt={props.username || ''} />
+        )}
+        <span className="Menu-username"> {props.username} </span>
+        <ArrowDropDown />
+      </Button>
+      <Menu
+        id="fade-menu"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem
+          onClick={handleClose}
+          component={({ innerRef, ...props }) => <Link to="/me" {...props} />}
         >
-          {this.props.avatar && (
-            <Avatar src={this.props.avatar} alt={this.props.username || ''} />
-          )}
-          <span className="Menu-username"> {this.props.username} </span>
-          <ArrowDropDown />
-        </Button>
-        <Menu
-          id="fade-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={this.handleClose}
-        >
-          <MenuItem
-            onClick={this.handleClose}
-            component={({ innerRef, ...props }) => <Link to="/me" {...props} />}
-          >
-            PROFILE
-          </MenuItem>
-          <MenuItem onClick={this.props.logout}>LOG OUT</MenuItem>
-        </Menu>
-      </div>
-    );
-  }
-}
+          PROFILE
+        </MenuItem>
+        <MenuItem onClick={props.logout}>LOG OUT</MenuItem>
+      </Menu>
+    </div>
+  );
+};
 
 export default FadeMenu;

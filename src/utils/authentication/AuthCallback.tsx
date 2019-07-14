@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { withApollo, WithApolloClient } from 'react-apollo';
 import gql from 'graphql-tag';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -30,12 +30,12 @@ interface AuthCallbackProps {
   };
 }
 
-class AuthCallback extends Component<WithApolloClient<AuthCallbackProps>> {
-  static contextType = AuthenticationContext;
+const AuthCallback: React.FC<WithApolloClient<AuthCallbackProps>> = props => {
+  const authContext = useContext(AuthenticationContext);
 
-  async componentDidMount() {
+  async function tryToAuthenticate() {
     try {
-      this.context.setLoggingIn(true);
+      authContext.setLoggingIn(true);
 
       // Extract the id_token and access_token from the Auth0 federation
       // Internally, the Auth0 library search does another call to get the user profile info
@@ -44,7 +44,7 @@ class AuthCallback extends Component<WithApolloClient<AuthCallbackProps>> {
 
       // Send a request to the backend to get the token used to authenticate with Graphcool
       // and create the user in the database if necessary
-      const response = await this.props.client.mutate({
+      const response = await props.client.mutate({
         mutation: AUTHENTICATE_QUERY,
         variables: authResult
       });
@@ -71,9 +71,9 @@ class AuthCallback extends Component<WithApolloClient<AuthCallbackProps>> {
         auth0AccessToken: authResult.accessToken,
         graphcoolToken: token,
         userId: id,
-        expiresAt: JSON.stringify(authResult.expiresIn * 1000 + Date.now())
+        expiresAt: authResult.expiresIn * 1000 + Date.now()
       };
-      this.context.setAuthData(authData);
+      authContext.setAuthData(authData);
     } catch (error) {
       const alertMessage = error.message.includes('The user already exists')
         ? 'A user already exists with the provided email. Trying signing in with a different provider.'
@@ -82,14 +82,16 @@ class AuthCallback extends Component<WithApolloClient<AuthCallbackProps>> {
 
       console.error(error);
     } finally {
-      this.props.history.replace('/');
-      this.context.setLoggingIn(false);
+      props.history.replace('/');
+      authContext.setLoggingIn(false);
     }
   }
 
-  render() {
-    return <CircularProgress size={25} />;
-  }
-}
+  useEffect(() => {
+    tryToAuthenticate();
+  }, []);
+
+  return <CircularProgress size={25} />;
+};
 
 export default withApollo(AuthCallback);
