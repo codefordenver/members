@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { useQuery } from 'react-apollo-hooks';
 import AuthenticationContext from './authentication/authContext';
-import { GET_USER_ROLE } from '../authenticated/loggedInRoutes';
+import { GET_USER_ROLE } from '../authenticated/LoggedInRoutes';
 import { GetUserQuery } from '../generated-models';
 import { PAGE_URLS } from '../authenticated/LoggedInRoutes';
 

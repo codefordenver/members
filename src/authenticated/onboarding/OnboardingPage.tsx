@@ -6,11 +6,11 @@ import AuthenticationContext from '../../utils/authentication/authContext';
 import { useMutation } from 'react-apollo-hooks';
 import { useCustomQuery } from '../../utils/hooks';
 import { GET_USER } from '../member/MyProfilePage';
+import { UPDATE_USER } from '../member/MemberProfileEditPage';
 import {
   MemberProfileFragmentFragment,
   GetUserQuery,
-  UpdateUserMutation,
-  UpdateUserDocument
+  UpdateUserMutation
 } from '../../generated-models';
 
 type MemberEditPageProps = RouteComponentProps;
@@ -30,12 +30,9 @@ function formatMemberForMutation(updatedUser: MemberProfileFragmentFragment) {
 
 const MemberEditPage: React.FC<MemberEditPageProps> = ({ history }) => {
   const authContext = useContext(AuthenticationContext);
-  const updateMemberMutation = useMutation<UpdateUserMutation>(
-    UpdateUserDocument,
-    {
-      refetchQueries: ['editableUsersList']
-    }
-  );
+  const updateMemberMutation = useMutation<UpdateUserMutation>(UPDATE_USER, {
+    refetchQueries: ['editableUsersList']
+  });
   const { data } = useCustomQuery<GetUserQuery>(GET_USER, {
     variables: { id: authContext.authData.userId }
   });

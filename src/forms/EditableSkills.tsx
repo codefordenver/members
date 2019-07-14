@@ -7,7 +7,6 @@ import { useCustomQuery } from '../utils/hooks';
 import gql from 'graphql-tag';
 import {
   EditableSkillsListQuery,
-  CreateSkillVariables,
   CreateSkillMutation
 } from '../generated-models';
 
@@ -63,7 +62,7 @@ const EditableSkills: React.FC<EditableListProps> = props => {
       ItemComponent={SkillChip}
       allOptions={(data && data.allSkills) || []}
       allOptionsLoading={loading}
-      createChip={async (newSkill: CreateSkillVariables) => {
+      createChip={async newSkill => {
         const response = await createSkill({ variables: newSkill });
         return response.data && response.data.createSkill;
       }}

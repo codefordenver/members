@@ -9,8 +9,7 @@ documents:
 generates:
   src/generated-models.tsx:
     plugins:
-      - typescript-common
-      - typescript-client
-      - typescript-react-apollo
+      - 'typescript'
+      - 'typescript-operations'
     config:
       noNamespaces: true

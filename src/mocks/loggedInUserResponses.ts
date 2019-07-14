@@ -1,5 +1,5 @@
 import { GET_USER } from '../authenticated/member/MyProfilePage';
-import { GET_USER_ROLE } from '../authenticated/loggedInRoutes';
+import { GET_USER_ROLE } from '../authenticated/LoggedInRoutes';
 import { adminUserId, regularUserId } from '../testData';
 
 const name = 'Test User',

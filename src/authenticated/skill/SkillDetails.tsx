@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import UserList from '../member/UserList';
-import { SkillPageSkill } from '../../generated-models';
+import { Skill } from '../../generated-models';
 
 interface SkillDetailsProps {
-  skill: SkillPageSkill;
+  skill: Pick<Skill, 'id' | 'name' | 'projectsWithSkill' | 'usersWithSkill'>;
 }
 
 const SkillDetails: React.FC<SkillDetailsProps> = ({ skill }) => {

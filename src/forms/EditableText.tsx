@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import { useUniqueId } from '../utils/hooks';
 
 interface Props {
-  value: string | null;
+  value: string | null | undefined;
   label: string;
   name: string;
   editing: boolean;

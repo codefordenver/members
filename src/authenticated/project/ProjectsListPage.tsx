@@ -4,12 +4,12 @@ import gql from 'graphql-tag';
 import ProjectCard, { PROJECT_CARD_FIELDS } from './ProjectCard';
 import { useCustomQuery } from '../../utils/hooks';
 import {
-  ProjectCardsAllProjects,
+  ProjectCardFieldsFragment,
   ProjectCardsQuery
 } from '../../generated-models';
 
 interface ProjectsListProps {
-  projects: ProjectCardsAllProjects[];
+  projects: ProjectCardFieldsFragment[];
   loading: boolean;
 }
 
