@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { History } from 'history';
 import AuthenticationContext from '../../utils/authentication/authContext';
-import { useUser, useUpdateUser } from '../../utils/commonGraphql';
+import { useUserCommon, useUpdateUserCommon } from '../../utils/commonGraphql';
 import MemberForm from './MemberForm';
 
 type MemberEditPageProps = RouteComponentProps;
@@ -13,8 +13,8 @@ function getBaseUrl(history: History) {
 
 const MemberEditPage: React.FC<MemberEditPageProps> = ({ history }) => {
   const authContext = useContext(AuthenticationContext);
-  const updateMemberMutation = useUpdateUser();
-  const { data } = useUser(authContext.authData.userId);
+  const updateMemberMutation = useUpdateUserCommon();
+  const { data } = useUserCommon(authContext.authData.userId);
   if (!data || !data.user) return null;
 
   return (

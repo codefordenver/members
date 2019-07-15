@@ -8,10 +8,11 @@ import {
   getQueries,
   createHistory
 } from '../../../testUtils';
-import ProjectCreatePage, { CREATE_PROJECT } from '../ProjectCreatePage';
+import ProjectCreatePage from '../ProjectCreatePage';
 import { EDITABLE_USERS } from '../../../forms/EditableUsers';
 import { EDITABLE_SKILLS } from '../../../forms/EditableSkills';
 import { mockAdminUser } from '../../../mocks/localStorageMock';
+import { CREATE_PROJECT_COMMON } from '../../../utils/commonGraphql';
 
 const {
   updateTextInput,
@@ -60,7 +61,7 @@ let queryMocks = [
   },
   {
     request: {
-      query: CREATE_PROJECT,
+      query: CREATE_PROJECT_COMMON,
       variables: {
         name: 'Test Project Title',
         headerImage: 'https://some.image.url',

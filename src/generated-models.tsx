@@ -2113,77 +2113,6 @@ export type ProjectCardFieldsFragment = { __typename?: 'Project' } & Pick<
     skills: Maybe<Array<{ __typename?: 'Skill' } & Pick<Skill, 'id' | 'name'>>>;
   };
 
-export type ProjectCreatePageCreateProjectMutationVariables = {
-  name: Scalars['String'];
-  headerImage?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  repoName: Scalars['String'];
-  boardUrl?: Maybe<Scalars['String']>;
-  skillsIds?: Maybe<Array<Scalars['ID']>>;
-  championsIds?: Maybe<Array<Scalars['ID']>>;
-  status?: Maybe<ProjectStatus>;
-};
-
-export type ProjectCreatePageCreateProjectMutation = {
-  __typename?: 'Mutation';
-} & {
-  createProject: Maybe<
-    { __typename?: 'Project' } & ProjectSectionFieldsFragment
-  >;
-};
-
-export type ProjectEditPageGetProjectQueryVariables = {
-  id: Scalars['ID'];
-};
-
-export type ProjectEditPageGetProjectQuery = { __typename?: 'Query' } & {
-  Project: Maybe<{ __typename?: 'Project' } & ProjectSectionFieldsFragment>;
-};
-
-export type ProjectEditPageUpdateProjectMutationVariables = {
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  headerImage?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  repoName?: Maybe<Scalars['String']>;
-  boardUrl?: Maybe<Scalars['String']>;
-  skillsIds?: Maybe<Array<Scalars['ID']>>;
-  championsIds?: Maybe<Array<Scalars['ID']>>;
-  status?: Maybe<ProjectStatus>;
-};
-
-export type ProjectEditPageUpdateProjectMutation = {
-  __typename?: 'Mutation';
-} & {
-  updateProject: Maybe<
-    { __typename?: 'Project' } & ProjectSectionFieldsFragment
-  >;
-};
-
-export type ProjectSectionFieldsFragment = { __typename?: 'Project' } & Pick<
-  Project,
-  | 'id'
-  | 'name'
-  | 'headerImage'
-  | 'description'
-  | 'repoName'
-  | 'boardUrl'
-  | 'status'
-> & {
-    skills: Maybe<Array<{ __typename?: 'Skill' } & Pick<Skill, 'id' | 'name'>>>;
-    champions: Maybe<
-      Array<{ __typename?: 'User' } & Pick<User, 'id' | 'name'>>
-    >;
-  };
-
-export type GetProjectQueryVariables = {
-  id: Scalars['ID'];
-};
-
-export type GetProjectQuery = { __typename?: 'Query' } & {
-  Project: Maybe<{ __typename?: 'Project' } & ProjectSectionFieldsFragment>;
-};
-
 export type ProjectCardsQueryVariables = {};
 
 export type ProjectCardsQuery = { __typename?: 'Query' } & {
@@ -2266,11 +2195,11 @@ export type UserCommonFragment = { __typename?: 'User' } & Pick<
     >;
   };
 
-export type GetUserQueryVariables = {
+export type GetUserCommonQueryVariables = {
   id?: Maybe<Scalars['ID']>;
 };
 
-export type GetUserQuery = { __typename?: 'Query' } & {
+export type GetUserCommonQuery = { __typename?: 'Query' } & {
   user: Maybe<{ __typename?: 'User' } & UserCommonFragment>;
 };
 
@@ -2287,4 +2216,59 @@ export type UpdateUserCommonMutationVariables = {
 
 export type UpdateUserCommonMutation = { __typename?: 'Mutation' } & {
   updateUser: Maybe<{ __typename?: 'User' } & UserCommonFragment>;
+};
+
+export type ProjectCommonFragment = { __typename?: 'Project' } & Pick<
+  Project,
+  | 'id'
+  | 'name'
+  | 'headerImage'
+  | 'description'
+  | 'repoName'
+  | 'boardUrl'
+  | 'status'
+> & {
+    skills: Maybe<Array<{ __typename?: 'Skill' } & Pick<Skill, 'id' | 'name'>>>;
+    champions: Maybe<
+      Array<{ __typename?: 'User' } & Pick<User, 'id' | 'name'>>
+    >;
+  };
+
+export type GetProjectCommonQueryVariables = {
+  id: Scalars['ID'];
+};
+
+export type GetProjectCommonQuery = { __typename?: 'Query' } & {
+  Project: Maybe<{ __typename?: 'Project' } & ProjectCommonFragment>;
+};
+
+export type UpdateProjectCommonMutationVariables = {
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  headerImage?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  repoName?: Maybe<Scalars['String']>;
+  boardUrl?: Maybe<Scalars['String']>;
+  skillsIds?: Maybe<Array<Scalars['ID']>>;
+  championsIds?: Maybe<Array<Scalars['ID']>>;
+  status?: Maybe<ProjectStatus>;
+};
+
+export type UpdateProjectCommonMutation = { __typename?: 'Mutation' } & {
+  updateProject: Maybe<{ __typename?: 'Project' } & ProjectCommonFragment>;
+};
+
+export type CreateProjectCommonMutationVariables = {
+  name: Scalars['String'];
+  headerImage?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  repoName: Scalars['String'];
+  boardUrl?: Maybe<Scalars['String']>;
+  skillsIds?: Maybe<Array<Scalars['ID']>>;
+  championsIds?: Maybe<Array<Scalars['ID']>>;
+  status?: Maybe<ProjectStatus>;
+};
+
+export type CreateProjectCommonMutation = { __typename?: 'Mutation' } & {
+  createProject: Maybe<{ __typename?: 'Project' } & ProjectCommonFragment>;
 };

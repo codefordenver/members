@@ -11,7 +11,7 @@ import AuthenticationContext from '../utils/authentication/authContext';
 import AuthService from '../utils/authentication/authService';
 import { User } from '../sharedTypes';
 import LoadingIndicator from '../shared-components/LoadingIndicator';
-import { useUser } from '../utils/commonGraphql';
+import { useUserCommon } from '../utils/commonGraphql';
 import './Header.css';
 
 const AuthButtons = ({ isLoggingIn = false }) => {
@@ -45,7 +45,7 @@ const UserLinks = ({ user }: { user: User | null }) => (
 );
 
 const LoggedInHeaderContent: React.FC<{ userId: string }> = ({ userId }) => {
-  const { data } = useUser(userId);
+  const { data } = useUserCommon(userId);
   if (!data || !data.user) return null;
 
   return (

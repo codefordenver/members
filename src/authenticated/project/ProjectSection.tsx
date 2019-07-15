@@ -6,11 +6,11 @@ import EditableSkills from '../../forms/EditableSkills';
 import EditableUsers from '../../forms/EditableUsers';
 import EditableImageLink from '../../forms/EditableImageLink';
 import EditableLink from '../../forms/EditableLink';
-import { ProjectSectionFieldsFragment } from '../../generated-models';
+import { ProjectCommonFragment } from '../../generated-models';
 import { getRepoPath } from '../../utils';
 
 interface ProjectSectionProps {
-  project: ProjectSectionFieldsFragment;
+  project: ProjectCommonFragment;
   editing: boolean;
   onFormDataChange: (value: any) => void;
 }

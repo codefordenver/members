@@ -19,7 +19,7 @@ import SkillPage from './skill/SkillPage';
 import AuthenticationContext from '../utils/authentication/authContext';
 import OnboardingPage from './onboarding/OnboardingPage';
 import LoadingIndicator from '../shared-components/LoadingIndicator';
-import { useUser } from '../utils/commonGraphql';
+import { useUserCommon } from '../utils/commonGraphql';
 
 export const PAGE_URLS = {
   newUser: '/new'
@@ -27,7 +27,7 @@ export const PAGE_URLS = {
 
 const LoggedInRoutes = () => {
   const authContext = useContext(AuthenticationContext);
-  const { data } = useUser(authContext.authData.userId);
+  const { data } = useUserCommon(authContext.authData.userId);
 
   return (
     <DrawerLayout drawer={<DrawerContent />}>

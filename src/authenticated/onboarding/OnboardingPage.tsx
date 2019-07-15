@@ -3,14 +3,14 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import Onboarding from './Onboarding';
 import AuthenticationContext from '../../utils/authentication/authContext';
-import { useUpdateUser, useUser } from '../../utils/commonGraphql';
+import { useUpdateUserCommon, useUserCommon } from '../../utils/commonGraphql';
 
 type MemberEditPageProps = RouteComponentProps;
 
 const MemberEditPage: React.FC<MemberEditPageProps> = ({ history }) => {
   const authContext = useContext(AuthenticationContext);
-  const updateMemberMutation = useUpdateUser();
-  const { data } = useUser(authContext.authData.userId);
+  const updateMemberMutation = useUpdateUserCommon();
+  const { data } = useUserCommon(authContext.authData.userId);
   if (!data || !data.user) return null;
 
   return (
