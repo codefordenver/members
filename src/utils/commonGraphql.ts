@@ -49,7 +49,8 @@ export const GET_USER_COMMON = gql`
 
 export function useUserCommon(id: string) {
   return useCustomQuery<GetUserCommonQuery>(GET_USER_COMMON, {
-    variables: { id }
+    variables: { id },
+    skip: !id
   });
 }
 
