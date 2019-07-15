@@ -2,10 +2,10 @@ import React, { useMemo } from 'react';
 import gql from 'graphql-tag';
 import { format, subDays } from 'date-fns';
 import { useCustomQuery } from '../../utils/hooks';
-import { UserEmailsQuery } from '../../generated-models';
+import { EmailListPageQuery } from '../../generated-models';
 
 const GET_USER_EMAILS = gql`
-  query userEmails($date: DateTime) {
+  query EmailListPage($date: DateTime) {
     allUsers(orderBy: email_ASC, filter: { createdAt_gt: $date }) {
       id
       email
@@ -18,7 +18,7 @@ const EmailListPage: React.FC = () => {
     () => format(subDays(new Date(), 7), 'YYYY-MM-DDTHH:mm:ss.SSSZ'),
     []
   );
-  const { data } = useCustomQuery<UserEmailsQuery>(GET_USER_EMAILS, {
+  const { data } = useCustomQuery<EmailListPageQuery>(GET_USER_EMAILS, {
     variables: {
       date: date7DaysAgo
     }

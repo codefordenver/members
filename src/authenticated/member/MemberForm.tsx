@@ -8,20 +8,8 @@ import {
 } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { History } from 'history';
-import gql from 'graphql-tag';
 import MemberProfile from './MemberProfile';
-import { MemberProfileFragmentFragment } from '../../generated-models';
-
-type MemberFormProps = {
-  initialValues: MemberProfileFragmentFragment;
-  onSubmit?(
-    newMember: MemberProfileFragmentFragment,
-    actions: FormikActions<MemberProfileFragmentFragment>
-  ): Promise<any>;
-  editing?: true;
-  creating?: true; // TODO type not both true
-  canEdit?: true;
-} & RouteComponentProps;
+import { UserCommonFragment } from '../../generated-models';
 
 function getBaseUrl(history: History, creating?: boolean, editing?: boolean) {
   if (creating) {
@@ -30,28 +18,16 @@ function getBaseUrl(history: History, creating?: boolean, editing?: boolean) {
   return history.location.pathname.split('/edit')[0];
 }
 
-export const MEMBER_FORM_FRAGMENT = gql`
-  fragment MemberProfileFragment on User {
-    id
-    createdAt
-    picture
-    name
-    description
-    githubName
-    flowdockName
-    role
-    email
-    hasCompletedWizard
-    skills {
-      id
-      name
-    }
-    projectsChampioned {
-      id
-      name
-    }
-  }
-`;
+type MemberFormProps = {
+  initialValues: UserCommonFragment;
+  onSubmit?(
+    newMember: UserCommonFragment,
+    actions: FormikActions<UserCommonFragment>
+  ): Promise<any>;
+  editing?: true;
+  creating?: true; // TODO type not both true
+  canEdit?: true;
+} & RouteComponentProps;
 
 const MemberForm: React.FC<MemberFormProps> = ({
   initialValues,

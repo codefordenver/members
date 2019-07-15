@@ -16,8 +16,8 @@ export const GET_USERS_LIST = gql`
 
 const UsersListPage: React.FC = () => {
   const { data } = useCustomQuery<UsersListQuery>(GET_USERS_LIST);
-
   const users = (data && data.allUsers) || [];
+
   return <UsersList users={users} />;
 };
 

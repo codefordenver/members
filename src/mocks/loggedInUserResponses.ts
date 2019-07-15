@@ -1,5 +1,4 @@
-import { GET_USER } from '../authenticated/member/MyProfilePage';
-import { GET_USER_ROLE } from '../authenticated/LoggedInRoutes';
+import { GET_USER_COMMON } from '../utils/commonGraphql';
 import { adminUserId, regularUserId } from '../testData';
 
 const name = 'Test User',
@@ -13,7 +12,7 @@ const name = 'Test User',
 export const adminUserServerMockResponses = [
   {
     request: {
-      query: GET_USER,
+      query: GET_USER_COMMON,
       variables: {
         id: adminUserId
       }
@@ -43,7 +42,7 @@ export const adminUserServerMockResponses = [
 export const regularUserMockResponses = [
   {
     request: {
-      query: GET_USER,
+      query: GET_USER_COMMON,
       variables: {
         id: regularUserId
       }
@@ -64,39 +63,6 @@ export const regularUserMockResponses = [
           role: 'USER',
           skills: [],
           projectsChampioned: []
-        }
-      }
-    }
-  }
-];
-
-export const roleMockResponses = [
-  {
-    request: {
-      query: GET_USER_ROLE,
-      variables: { id: regularUserId }
-    },
-    result: {
-      data: {
-        user: {
-          __typename: 'USER',
-          id: regularUserId,
-          role: 'REGULAR'
-        }
-      }
-    }
-  },
-  {
-    request: {
-      query: GET_USER_ROLE,
-      variables: { id: adminUserId }
-    },
-    result: {
-      data: {
-        user: {
-          __typename: 'USER',
-          id: adminUserId,
-          role: 'ADMIN'
         }
       }
     }

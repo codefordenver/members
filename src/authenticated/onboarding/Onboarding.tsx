@@ -8,13 +8,13 @@ import StepLabel from '@material-ui/core/StepLabel';
 import StepContent from '@material-ui/core/StepContent';
 import Typography from '@material-ui/core/Typography';
 import EditableSkills from '../../forms/EditableSkills';
-import { MemberProfileFragmentFragment } from '../../generated-models';
+import { UserCommonFragment } from '../../generated-models';
 import LoadingIndicator from '../../shared-components/LoadingIndicator';
 import EditableText from '../../forms/EditableText';
 import './Onboarding.css';
 
 interface OnboardingProps {
-  user?: MemberProfileFragmentFragment;
+  user?: UserCommonFragment;
   onChange: (value: any) => void;
   onSubmit: (value: any) => void;
 }

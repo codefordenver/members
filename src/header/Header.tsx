@@ -1,19 +1,17 @@
-import React, { useContext } from 'react';
+import React, { Suspense, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import { useQuery } from 'react-apollo-hooks';
 import logo from '../images/cfd-circle-icon-white.png';
 import userIsAdmin from '../utils/userIsAdmin';
 import MenuList from './Menu';
 import AuthenticationContext from '../utils/authentication/authContext';
 import AuthService from '../utils/authentication/authService';
 import { User } from '../sharedTypes';
-import { GetUserQuery } from '../generated-models';
-import { GET_USER } from '../authenticated/member/MyProfilePage';
 import LoadingIndicator from '../shared-components/LoadingIndicator';
+import { useUser } from '../utils/commonGraphql';
 import './Header.css';
 
 const AuthButtons = ({ isLoggingIn = false }) => {
@@ -47,11 +45,8 @@ const UserLinks = ({ user }: { user: User | null }) => (
 );
 
 const LoggedInHeaderContent: React.FC<{ userId: string }> = ({ userId }) => {
-  const { data, error, loading } = useQuery<GetUserQuery>(GET_USER, {
-    variables: { id: userId }
-  });
-  if (error) return <div>Error! {error.message}</div>;
-  if (loading || !data || !data.user) return <LoadingIndicator />;
+  const { data } = useUser(userId);
+  if (!data || !data.user) return null;
 
   return (
     <React.Fragment>
@@ -75,11 +70,13 @@ const Header: React.FC = () => {
         </Link>
 
         <Grid container justify="space-between" alignItems="center">
-          {authContext.isAuthenticated() ? (
-            <LoggedInHeaderContent userId={authContext.authData.userId} />
-          ) : (
-            <AuthButtons isLoggingIn={authContext.isLoggingIn} />
-          )}
+          <Suspense fallback={<LoadingIndicator />}>
+            {authContext.isAuthenticated() ? (
+              <LoggedInHeaderContent userId={authContext.authData.userId} />
+            ) : (
+              <AuthButtons isLoggingIn={authContext.isLoggingIn} />
+            )}
+          </Suspense>
         </Grid>
       </Toolbar>
     </AppBar>

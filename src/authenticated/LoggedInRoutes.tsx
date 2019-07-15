@@ -1,11 +1,10 @@
 import React, { useContext, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import gql from 'graphql-tag';
 import DrawerLayout from './DrawerLayout';
 import DrawerContent from './DrawerContent';
 import getAdminRoutes from './admin/getAdminRoutes';
 import MyProfilePage from './member/MyProfilePage';
-import MemberProfileEditPage from './member/MemberProfileEditPage';
+import MemberProfileEditPage from './member/MemberEditPage';
 import UsersListPage from './member/UsersListPage';
 import MemberProfilePage from './member/MemberProfilePage';
 import MemberResourcesPage from './member/MemberResourcesPage';
@@ -18,29 +17,17 @@ import ProjectEditPage from './project/ProjectEditPage';
 import ProjectCreatePage from './project/ProjectCreatePage';
 import SkillPage from './skill/SkillPage';
 import AuthenticationContext from '../utils/authentication/authContext';
-import { UserRoleQuery } from '../generated-models';
 import OnboardingPage from './onboarding/OnboardingPage';
-import { useCustomQuery } from '../utils/hooks';
 import LoadingIndicator from '../shared-components/LoadingIndicator';
+import { useUser } from '../utils/commonGraphql';
 
 export const PAGE_URLS = {
   newUser: '/new'
 };
 
-export const GET_USER_ROLE = gql`
-  query userRole($id: ID) {
-    user: User(id: $id) {
-      id
-      role
-    }
-  }
-`;
-
 const LoggedInRoutes = () => {
   const authContext = useContext(AuthenticationContext);
-  const { data } = useCustomQuery<UserRoleQuery>(GET_USER_ROLE, {
-    variables: { id: authContext.authData.userId }
-  });
+  const { data } = useUser(authContext.authData.userId);
 
   return (
     <DrawerLayout drawer={<DrawerContent />}>

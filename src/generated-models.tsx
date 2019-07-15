@@ -2084,11 +2084,11 @@ export type UserSubscriptionPayload = {
   updatedFields?: Maybe<Array<Scalars['String']>>;
   previousValues?: Maybe<UserPreviousValues>;
 };
-export type UserEmailsQueryVariables = {
+export type EmailListPageQueryVariables = {
   date?: Maybe<Scalars['DateTime']>;
 };
 
-export type UserEmailsQuery = { __typename?: 'Query' } & {
+export type EmailListPageQuery = { __typename?: 'Query' } & {
   allUsers: Array<{ __typename?: 'User' } & Pick<User, 'id' | 'email'>>;
 };
 
@@ -2096,56 +2096,6 @@ export type ProjectsDrawerQueryVariables = {};
 
 export type ProjectsDrawerQuery = { __typename?: 'Query' } & {
   allProjects: Array<{ __typename?: 'Project' } & Pick<Project, 'id' | 'name'>>;
-};
-
-export type UserRoleQueryVariables = {
-  id?: Maybe<Scalars['ID']>;
-};
-
-export type UserRoleQuery = { __typename?: 'Query' } & {
-  user: Maybe<{ __typename?: 'User' } & Pick<User, 'id' | 'role'>>;
-};
-
-export type MemberProfileFragmentFragment = { __typename?: 'User' } & Pick<
-  User,
-  | 'id'
-  | 'createdAt'
-  | 'picture'
-  | 'name'
-  | 'description'
-  | 'githubName'
-  | 'flowdockName'
-  | 'role'
-  | 'email'
-  | 'hasCompletedWizard'
-> & {
-    skills: Maybe<Array<{ __typename?: 'Skill' } & Pick<Skill, 'id' | 'name'>>>;
-    projectsChampioned: Maybe<
-      Array<{ __typename?: 'Project' } & Pick<Project, 'id' | 'name'>>
-    >;
-  };
-
-export type UpdateUserMutationVariables = {
-  id: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
-  githubName?: Maybe<Scalars['String']>;
-  flowdockName?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  hasCompletedWizard?: Maybe<Scalars['Boolean']>;
-  skillsIds?: Maybe<Array<Scalars['ID']>>;
-  projectsChampionedIds?: Maybe<Array<Scalars['ID']>>;
-};
-
-export type UpdateUserMutation = { __typename?: 'Mutation' } & {
-  updateUser: Maybe<{ __typename?: 'User' } & MemberProfileFragmentFragment>;
-};
-
-export type GetUserQueryVariables = {
-  id?: Maybe<Scalars['ID']>;
-};
-
-export type GetUserQuery = { __typename?: 'Query' } & {
-  user: Maybe<{ __typename?: 'User' } & MemberProfileFragmentFragment>;
 };
 
 export type UsersListQueryVariables = {};
@@ -2281,4 +2231,60 @@ export type EditableUsersListQueryVariables = {};
 
 export type EditableUsersListQuery = { __typename?: 'Query' } & {
   allUsers: Array<{ __typename?: 'User' } & Pick<User, 'id' | 'name'>>;
+};
+
+export type AuthenticateMutationVariables = {
+  accessToken: Scalars['String'];
+  email: Scalars['String'];
+  name: Scalars['String'];
+  picture: Scalars['String'];
+};
+
+export type AuthenticateMutation = { __typename?: 'Mutation' } & {
+  authenticateUser: { __typename?: 'AuthenticateUserPayload' } & Pick<
+    AuthenticateUserPayload,
+    'id' | 'token'
+  >;
+};
+
+export type UserCommonFragment = { __typename?: 'User' } & Pick<
+  User,
+  | 'id'
+  | 'createdAt'
+  | 'picture'
+  | 'name'
+  | 'description'
+  | 'githubName'
+  | 'flowdockName'
+  | 'role'
+  | 'email'
+  | 'hasCompletedWizard'
+> & {
+    skills: Maybe<Array<{ __typename?: 'Skill' } & Pick<Skill, 'id' | 'name'>>>;
+    projectsChampioned: Maybe<
+      Array<{ __typename?: 'Project' } & Pick<Project, 'id' | 'name'>>
+    >;
+  };
+
+export type GetUserQueryVariables = {
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type GetUserQuery = { __typename?: 'Query' } & {
+  user: Maybe<{ __typename?: 'User' } & UserCommonFragment>;
+};
+
+export type UpdateUserCommonMutationVariables = {
+  id: Scalars['ID'];
+  name?: Maybe<Scalars['String']>;
+  githubName?: Maybe<Scalars['String']>;
+  flowdockName?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  hasCompletedWizard?: Maybe<Scalars['Boolean']>;
+  skillsIds?: Maybe<Array<Scalars['ID']>>;
+  projectsChampionedIds?: Maybe<Array<Scalars['ID']>>;
+};
+
+export type UpdateUserCommonMutation = { __typename?: 'Mutation' } & {
+  updateUser: Maybe<{ __typename?: 'User' } & UserCommonFragment>;
 };

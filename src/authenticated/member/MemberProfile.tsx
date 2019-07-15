@@ -6,11 +6,11 @@ import EditableSkills from '../../forms/EditableSkills';
 import EditableProjects from '../../forms/EditableProjects';
 import EditableText from '../../forms/EditableText';
 import EditableMarkdown from '../../forms/EditableMarkdown';
-import { MemberProfileFragmentFragment } from '../../generated-models';
+import { UserCommonFragment } from '../../generated-models';
 import './Member.css';
 
 interface MemberProfileProps {
-  user?: MemberProfileFragmentFragment;
+  user?: UserCommonFragment;
   onFormDataChange: (value: any) => void;
   editing: boolean;
 }
