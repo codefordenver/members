@@ -27,8 +27,7 @@ const styles = (theme: Theme) =>
 
 const DRAWER_PROJECTS = gql`
   query projectsDrawer {
-    allProjects(orderBy: name_ASC) {
-      # TODO: Only show active projects
+    allProjects(orderBy: name_ASC, filter: { status: ActiveDevelopment }) {
       id
       name
     }
