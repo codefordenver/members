@@ -49,8 +49,8 @@
   "scripts": {
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start": "concurrently \"gql-gen\" \"react-scripts start\"",
-    "start:no-gql-gen": "react-scripts start",
+    "start": "concurrently \"graphql-codegen\" \"react-scripts start\"",
+    "start:no-graphql-codegen": "react-scripts start",
     "build": "react-scripts build && cpy build/index.html build --rename 404.html",
     "lint": "eslint . --ext .js,.ts,.tsx,.graphql",
     "postinstall": "cd ./server && npm install",
@@ -63,7 +63,7 @@
     "check-version": "node ./bin/checkVersion.js",
     "download-schema": "dotenv -e ./.env.local node ./bin/download-schema.js",
     "typecheck": "tsc --noEmit",
-    "gql-gen": "gql-gen"
+    "graphql-codegen": "graphql-codegen --config codegen.yml"
   },
   "homepage": "https://members.codefordenver.org",
   "devDependencies": {

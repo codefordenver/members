@@ -2,8 +2,8 @@ overwrite: true
 watch: true
 schema: ./full-schema.json
 documents:
-  - './src/**/*.tsx'
-  - './src/**/*.ts'
+  - 'src/**/*.tsx'
+  - 'src/**/*.ts'
 generates:
   src/generated-models.tsx:
     plugins:

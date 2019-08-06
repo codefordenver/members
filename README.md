@@ -66,7 +66,7 @@ This project uses [graphql](https://graphql.org/) for the API layer (see [the se
 
 This project uses [graphql-code-generator](https://graphql-code-generator.com/) to generate code based on graphql files. When you start the app with `npm start` it will also start `graphql-code-generator` in watch mode so the generated files will automatically get updated. These generated files are based on a local json version of the schema (updated with `npm run download-schema`).
 
-With this tool, the names of graphql queries and mutations will have associated TypeScript types defined in [./src/generated-models.tsx](./src/generated-models.tsx). Do not update this file manually. Instead, either run `npm start` or `npm run gql-gen` and the types will be updated.
+With this tool, the names of graphql queries and mutations will have associated TypeScript types defined in [./src/generated-models.tsx](./src/generated-models.tsx). Do not update this file manually. Instead, either run `npm start` or `npm run graphql-codegen` and the types will be updated.
 
 ### Apollo
 
