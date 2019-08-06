@@ -14,7 +14,6 @@ interface FadeMenuProps {
 }
 
 const FadeMenu: React.FC<FadeMenuProps> = props => {
-  // Should this be useRef instead?
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
