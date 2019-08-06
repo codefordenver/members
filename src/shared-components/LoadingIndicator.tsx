@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 // The presentation of the indicator is delayed to improve perceived performance
@@ -9,34 +9,19 @@ interface Props {
   color?: 'primary' | 'secondary' | 'inherit';
 }
 
-interface State {
-  isShown: boolean;
-}
+const LoadingIndicator: React.FC<Props> = ({ color }) => {
+  const [isShown, setIsShown] = useState(false);
 
-class LoadingIndicator extends React.Component<Props, State> {
-  timeoutId: number;
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => setIsShown(true), PROGRESS_DELAY);
 
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      isShown: false
-    };
-    this.timeoutId = window.setTimeout(
-      () => this.setState({ isShown: true }),
-      PROGRESS_DELAY
-    );
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  if (isShown) {
+    return <CircularProgress color={color} />;
   }
-
-  componentWillUnmount() {
-    clearTimeout(this.timeoutId);
-  }
-
-  render() {
-    if (this.state.isShown) {
-      return <CircularProgress color={this.props.color} />;
-    }
-    return null;
-  }
-}
+  return null;
+};
 
 export default LoadingIndicator;

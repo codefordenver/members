@@ -1,51 +1,37 @@
-import React, { Component } from 'react';
+import React, { useState, useCallback } from 'react';
 import AuthService from './authService';
-import AuthContext, { AuthContextShape, AuthData } from './authContext';
+import AuthContext, { AuthData } from './authContext';
 
-class AuthProvider extends Component<{}, AuthContextShape> {
-  constructor(props: {}) {
-    super(props);
+const AuthProvider: React.FC = ({ children }) => {
+  const [authData, setAuthData] = useState<AuthData>(
+    AuthService.getSessionAuthData()
+  );
+  const [isLoggingIn, setLoggingIn] = useState(false);
 
-    this.state = {
-      authData: AuthService.getSessionAuthData(),
-      isAuthenticated: this.isAuthenticated,
-      setAuthData: this.setAuthData,
-      isLoggingIn: false,
-      setLoggingIn: this.setLoggingIn
-    };
-  }
+  const isAuthenticated = useCallback(
+    () => {
+      const { userId, expiresAt, auth0AccessToken, graphcoolToken } = authData;
 
-  isAuthenticated = () => {
-    const {
-      userId,
-      expiresAt,
-      auth0AccessToken,
-      graphcoolToken
-    } = this.state.authData;
+      return AuthService.isAuthenticated(
+        userId,
+        expiresAt,
+        auth0AccessToken,
+        graphcoolToken
+      );
+    },
+    [authData]
+  );
 
-    return AuthService.isAuthenticated(
-      userId,
-      expiresAt,
-      auth0AccessToken,
-      graphcoolToken
-    );
+  const authContext = {
+    authData: AuthService.getSessionAuthData(),
+    isAuthenticated,
+    setAuthData,
+    isLoggingIn,
+    setLoggingIn
   };
-
-  setAuthData = (authData: AuthData) => {
-    this.setState({ authData });
-  };
-
-  setLoggingIn = (isLoggingIn: boolean) => {
-    this.setState({ isLoggingIn });
-  };
-
-  render() {
-    return (
-      <AuthContext.Provider value={this.state}>
-        {this.props.children}
-      </AuthContext.Provider>
-    );
-  }
-}
+  return (
+    <AuthContext.Provider value={authContext}>{children}</AuthContext.Provider>
+  );
+};
 
 export default AuthProvider;

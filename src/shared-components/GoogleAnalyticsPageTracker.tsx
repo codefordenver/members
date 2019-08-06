@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactGA from 'react-ga';
 import { Route } from 'react-router-dom';
 
@@ -22,28 +22,22 @@ interface Props {
 }
 
 // NOTE: Originally copied and modified from https://github.com/react-ga/react-ga/issues/122#issuecomment-353101102
-class Analytics extends React.Component<Props> {
-  componentDidMount() {
+const Analytics: React.FC<Props> = ({ location }) => {
+  useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
       ReactGA.initialize(googleAnalyticsTrackingId);
     }
-    sendPageChange(this.props.location.pathname, this.props.location.search);
-  }
+  }, []);
 
-  componentDidUpdate(prevProps: Props) {
-    const { pathname, search } = this.props.location;
-    if (
-      pathname !== prevProps.location.pathname ||
-      search !== prevProps.location.search
-    ) {
-      sendPageChange(pathname, search);
-    }
-  }
+  useEffect(
+    () => {
+      sendPageChange(location.pathname, location.search);
+    },
+    [location.pathname, location.search]
+  );
 
-  render() {
-    return null;
-  }
-}
+  return null;
+};
 
 const GoogleAnalyticsPageTracker = () => {
   return <Route component={Analytics} />;

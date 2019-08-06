@@ -21,10 +21,14 @@ interface AutocompleteChipProps {
   placeholder: string;
 }
 
-export default class AutocompleteChip extends React.Component<
-  AutocompleteChipProps
-> {
-  _handleSelectionChange = (
+const AutocompleteChip: React.FC<AutocompleteChipProps> = ({
+  onAdd,
+  placeholder,
+  isLoading,
+  options,
+  onCreate
+}) => {
+  const _handleSelectionChange = (
     selectedOption?: SelectOption | SelectOption[] | null
   ) => {
     if (!selectedOption) {
@@ -33,40 +37,39 @@ export default class AutocompleteChip extends React.Component<
     if (selectedOption instanceof Array) {
       selectedOption = selectedOption[0];
     }
-    this.props.onAdd(selectedOption.originalOption);
+    onAdd(selectedOption.originalOption);
   };
 
-  _handleCreate = async (inputValue: string) => {
-    const { onCreate } = this.props;
+  const _handleCreate = async (inputValue: string) => {
     if (!onCreate) {
       throw new Error('No onCreate provided');
     }
     const newValue = await onCreate({ name: inputValue });
-    this.props.onAdd(newValue);
+    onAdd(newValue);
   };
 
-  render() {
-    const selectProps = {
-      'aria-label': this.props.placeholder, // TODO: Make this more accessible
-      isLoading: this.props.isLoading,
-      className: 'AutocompleteChip',
-      options: this.props.options.map(option => ({
-        value: option.name,
-        label: option.name,
-        originalOption: option
-      })),
-      value: null,
-      onChange: this._handleSelectionChange,
-      onCreateOption: this._handleCreate,
-      placeholder: this.props.placeholder,
-      isSearchable: true,
-      menuPortalTarget: document.body
-    };
+  const selectProps = {
+    'aria-label': placeholder, // TODO: Make this more accessible
+    isLoading: isLoading,
+    className: 'AutocompleteChip',
+    options: options.map(option => ({
+      value: option.name,
+      label: option.name,
+      originalOption: option
+    })),
+    value: null,
+    onChange: _handleSelectionChange,
+    onCreateOption: _handleCreate,
+    placeholder: placeholder,
+    isSearchable: true,
+    menuPortalTarget: document.body
+  };
 
-    return this.props.onCreate ? (
-      <CreatableSelect {...selectProps} />
-    ) : (
-      <Select {...selectProps} />
-    );
-  }
-}
+  return onCreate ? (
+    <CreatableSelect {...selectProps} />
+  ) : (
+    <Select {...selectProps} />
+  );
+};
+
+export default AutocompleteChip;
