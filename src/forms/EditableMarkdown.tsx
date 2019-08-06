@@ -7,7 +7,7 @@ import Markdown from '../shared-components/Markdown';
 import { useUniqueId } from '../utils/hooks';
 
 interface Props {
-  value: string | null;
+  value: string | null | undefined;
   label: string;
   name: string;
   editing: boolean;

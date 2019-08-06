@@ -9,18 +9,7 @@ import {
 import Button from '@material-ui/core/Button';
 import { History } from 'history';
 import MemberProfile from './MemberProfile';
-import { MemberProfileFragmentFragment } from '../../generated-models';
-
-type MemberFormProps = {
-  initialValues: MemberProfileFragmentFragment;
-  onSubmit?(
-    newMember: MemberProfileFragmentFragment,
-    actions: FormikActions<MemberProfileFragmentFragment>
-  ): Promise<any>;
-  editing?: true;
-  creating?: true; // TODO type not both true
-  canEdit?: true;
-} & RouteComponentProps;
+import { UserCommonFragment } from '../../generated-models';
 
 function getBaseUrl(history: History, creating?: boolean, editing?: boolean) {
   if (creating) {
@@ -28,6 +17,17 @@ function getBaseUrl(history: History, creating?: boolean, editing?: boolean) {
   }
   return history.location.pathname.split('/edit')[0];
 }
+
+type MemberFormProps = {
+  initialValues: UserCommonFragment;
+  onSubmit?(
+    newMember: UserCommonFragment,
+    actions: FormikActions<UserCommonFragment>
+  ): Promise<any>;
+  editing?: true;
+  creating?: true; // TODO type not both true
+  canEdit?: true;
+} & RouteComponentProps;
 
 const MemberForm: React.FC<MemberFormProps> = ({
   initialValues,

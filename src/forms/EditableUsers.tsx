@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 import Chip from '@material-ui/core/Chip';
 import EditableList, { EditableListProps, ItemComponent } from './EditableList';
 import { useCustomQuery } from '../utils/hooks';
-import {
-  EditableUsersListDocument,
-  EditableUsersListQuery
-} from '../generated-models';
+import { EditableUsersListQuery } from '../generated-models';
 import './EditableProject.css';
+import gql from 'graphql-tag';
 
 const UserChip: ItemComponent = ({ item, onDelete, editing }) => {
   const chip = (
@@ -28,9 +26,18 @@ const UserChip: ItemComponent = ({ item, onDelete, editing }) => {
   );
 };
 
+export const EDITABLE_USERS = gql`
+  query editableUsersList {
+    allUsers {
+      id
+      name
+    }
+  }
+`;
+
 const EditableUsers: React.FC<EditableListProps> = props => {
   const { data, loading } = useCustomQuery<EditableUsersListQuery>(
-    EditableUsersListDocument,
+    EDITABLE_USERS,
     {
       skip: !props.editing
     }

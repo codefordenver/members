@@ -7,7 +7,7 @@ interface EditableImageLinkProps {
   alt: string;
   defaultSrc?: string;
 
-  value: string | null;
+  value: string | null | undefined;
   label: string;
   name: string;
   editing: boolean;

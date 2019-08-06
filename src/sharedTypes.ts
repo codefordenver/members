@@ -1,7 +1,7 @@
 import { UserRole } from './generated-models';
 
 export interface User {
-  role: UserRole | null;
+  role?: UserRole | null;
   [key: string]: any;
 }
 

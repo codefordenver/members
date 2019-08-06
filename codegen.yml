@@ -1,12 +1,13 @@
 overwrite: true
 watch: true
 schema: ./full-schema.json
-documents: ./src/**/*.graphql
+documents:
+  - 'src/**/*.tsx'
+  - 'src/**/*.ts'
 generates:
   src/generated-models.tsx:
     plugins:
-      - typescript-common
-      - typescript-client
-      - typescript-react-apollo
+      - 'typescript'
+      - 'typescript-operations'
     config:
       noNamespaces: true

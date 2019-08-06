@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { Suspense, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,9 +10,8 @@ import MenuList from './Menu';
 import AuthenticationContext from '../utils/authentication/authContext';
 import AuthService from '../utils/authentication/authService';
 import { User } from '../sharedTypes';
-import { useQuery } from 'react-apollo-hooks';
-import { GetUserDocument, GetUserQuery } from '../generated-models';
 import LoadingIndicator from '../shared-components/LoadingIndicator';
+import { useUserCommon } from '../utils/commonGraphql';
 import './Header.css';
 
 const AuthButtons = ({ isLoggingIn = false }) => {
@@ -46,11 +45,8 @@ const UserLinks = ({ user }: { user: User | null }) => (
 );
 
 const LoggedInHeaderContent: React.FC<{ userId: string }> = ({ userId }) => {
-  const { data, error, loading } = useQuery<GetUserQuery>(GetUserDocument, {
-    variables: { id: userId }
-  });
-  if (error) return <div>Error! {error.message}</div>;
-  if (loading || !data || !data.user) return <LoadingIndicator />;
+  const { data } = useUserCommon(userId);
+  if (!data || !data.user) return null;
 
   return (
     <React.Fragment>
@@ -74,11 +70,13 @@ const Header: React.FC = () => {
         </Link>
 
         <Grid container justify="space-between" alignItems="center">
-          {authContext.isAuthenticated() ? (
-            <LoggedInHeaderContent userId={authContext.authData.userId} />
-          ) : (
-            <AuthButtons isLoggingIn={authContext.isLoggingIn} />
-          )}
+          <Suspense fallback={<LoadingIndicator />}>
+            {authContext.isAuthenticated() ? (
+              <LoggedInHeaderContent userId={authContext.authData.userId} />
+            ) : (
+              <AuthButtons isLoggingIn={authContext.isLoggingIn} />
+            )}
+          </Suspense>
         </Grid>
       </Toolbar>
     </AppBar>

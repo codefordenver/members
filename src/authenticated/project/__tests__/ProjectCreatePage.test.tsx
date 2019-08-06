@@ -9,12 +9,10 @@ import {
   createHistory
 } from '../../../testUtils';
 import ProjectCreatePage from '../ProjectCreatePage';
+import { EDITABLE_USERS } from '../../../forms/EditableUsers';
+import { EDITABLE_SKILLS } from '../../../forms/EditableSkills';
 import { mockAdminUser } from '../../../mocks/localStorageMock';
-import {
-  EditableUsersListDocument,
-  EditableSkillsListDocument,
-  CreateProjectDocument
-} from '../../../generated-models';
+import { CREATE_PROJECT_COMMON } from '../../../utils/commonGraphql';
 
 const {
   updateTextInput,
@@ -29,13 +27,14 @@ beforeEach(mockAdminUser);
 let queryMocks = [
   {
     request: {
-      query: EditableUsersListDocument,
+      query: EDITABLE_USERS,
       variables: {}
     },
     result: {
       data: {
         allUsers: [
           {
+            __typename: 'USER',
             id: 'user-1',
             name: 'User 1'
           }
@@ -45,13 +44,14 @@ let queryMocks = [
   },
   {
     request: {
-      query: EditableSkillsListDocument,
+      query: EDITABLE_SKILLS,
       variables: {}
     },
     result: {
       data: {
         allSkills: [
           {
+            __typename: 'SKILL',
             id: 'skill-1',
             name: 'Skill 1'
           }
@@ -61,7 +61,7 @@ let queryMocks = [
   },
   {
     request: {
-      query: CreateProjectDocument,
+      query: CREATE_PROJECT_COMMON,
       variables: {
         name: 'Test Project Title',
         headerImage: 'https://some.image.url',
@@ -76,7 +76,7 @@ let queryMocks = [
     result: {
       data: {
         createProject: {
-          __typeName: 'Project',
+          __typename: 'PROJECT',
           id: 'project-1',
           name: 'Test Project Title',
           headerImage: 'https://some.image.url',
@@ -86,12 +86,14 @@ let queryMocks = [
           status: 'Idea',
           skills: [
             {
+              __typename: 'SKILL',
               id: 'skill-1',
               name: 'Skill 1'
             }
           ],
           champions: [
             {
+              __typename: 'USER',
               id: 'user-1',
               name: 'User 1'
             }
@@ -103,13 +105,14 @@ let queryMocks = [
   // For refetched data
   {
     request: {
-      query: EditableUsersListDocument,
+      query: EDITABLE_USERS,
       variables: {}
     },
     result: {
       data: {
         allUsers: [
           {
+            __typename: 'USER',
             id: 'user-1',
             name: 'User 1'
           }

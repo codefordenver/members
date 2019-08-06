@@ -4,11 +4,9 @@ import Chip from '@material-ui/core/Chip';
 import EditableList, { ItemComponent, EditableListProps } from './EditableList';
 import { useMutation } from 'react-apollo-hooks';
 import { useCustomQuery } from '../utils/hooks';
+import gql from 'graphql-tag';
 import {
   EditableSkillsListQuery,
-  EditableSkillsListDocument,
-  CreateSkillVariables,
-  CreateSkillDocument,
   CreateSkillMutation
 } from '../generated-models';
 
@@ -28,12 +26,30 @@ const SkillChip: ItemComponent = ({ item, onDelete, editing }) => {
   return <Link to={`/skills/${item.id}`}>{chip}</Link>;
 };
 
+export const EDITABLE_SKILLS = gql`
+  query editableSkillsList {
+    allSkills {
+      id
+      name
+    }
+  }
+`;
+
+const CREATE_SKILL = gql`
+  mutation createSkill($name: String!) {
+    createSkill(name: $name) {
+      id
+      name
+    }
+  }
+`;
+
 const EditableSkills: React.FC<EditableListProps> = props => {
-  const createSkill = useMutation<CreateSkillMutation>(CreateSkillDocument, {
+  const createSkill = useMutation<CreateSkillMutation>(CREATE_SKILL, {
     refetchQueries: ['editableSkillsList']
   });
   const { data, loading } = useCustomQuery<EditableSkillsListQuery>(
-    EditableSkillsListDocument,
+    EDITABLE_SKILLS,
     {
       skip: !props.editing,
       suspend: false
@@ -46,7 +62,7 @@ const EditableSkills: React.FC<EditableListProps> = props => {
       ItemComponent={SkillChip}
       allOptions={(data && data.allSkills) || []}
       allOptionsLoading={loading}
-      createChip={async (newSkill: CreateSkillVariables) => {
+      createChip={async newSkill => {
         const response = await createSkill({ variables: newSkill });
         return response.data && response.data.createSkill;
       }}

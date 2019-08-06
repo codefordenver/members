@@ -9,13 +9,13 @@ import {
 import Button from '@material-ui/core/Button';
 import { History } from 'history';
 import ProjectSection from './ProjectSection';
-import { ProjectSectionFieldsFragment } from '../../generated-models';
+import { ProjectCommonFragment } from '../../generated-models';
 
 type ProjectFormProps = {
-  initialValues: ProjectSectionFieldsFragment;
+  initialValues: ProjectCommonFragment;
   onSubmit?(
-    newProject: ProjectSectionFieldsFragment,
-    actions: FormikActions<ProjectSectionFieldsFragment>
+    newProject: ProjectCommonFragment,
+    actions: FormikActions<ProjectCommonFragment>
   ): Promise<any>;
   editing?: true;
   creating?: true; // TODO type not both true

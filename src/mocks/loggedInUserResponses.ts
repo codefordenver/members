@@ -1,134 +1,68 @@
-import {
-  GetUserDocument,
-  GetHeaderUserDocument,
-  UserRoleDocument
-} from '../generated-models';
+import { GET_USER_COMMON } from '../utils/commonGraphql';
 import { adminUserId, regularUserId } from '../testData';
+import {
+  GetUserCommonQueryVariables,
+  UserCommonFragment,
+  UserRole
+} from '../generated-models';
 
 const name = 'Test User',
   picture = '<empty>',
   email = 'test-user@nonexistent.com',
   flowdockName = 'TestUser',
   githubName = '@testUser',
-  description = 'Test User';
+  description = 'Test User',
+  createdAt = 'Sat Jul 13 2019 11:31:23 GMT-0600 (Mountain Daylight Time)';
 
-export const adminUserServerMockResponses = [
-  {
+function getUserCommonResponse(
+  userOverrides?: Partial<UserCommonFragment>,
+  variableOverrides?: Partial<GetUserCommonQueryVariables>
+) {
+  return {
     request: {
-      query: GetUserDocument,
+      query: GET_USER_COMMON,
       variables: {
-        id: adminUserId
+        id: adminUserId,
+        ...variableOverrides
       }
     },
     result: {
       data: {
         user: {
+          __typename: 'USER',
           id: adminUserId,
+          createdAt,
           name,
           picture,
           email,
           flowdockName,
+          hasCompletedWizard: true,
           githubName,
           description,
-          role: 'ADMIN',
+          role: UserRole.Admin,
           skills: [],
-          projectsChampioned: []
+          projectsChampioned: [],
+          ...userOverrides
         }
       }
     }
-  },
-  {
-    request: {
-      query: GetHeaderUserDocument,
-      variables: {
-        id: adminUserId
-      }
-    },
-    result: {
-      data: {
-        user: {
-          id: adminUserId,
-          name,
-          picture,
-          role: 'ADMIN'
-        }
-      }
+  };
+}
+
+export const adminUserServerMockResponses = [
+  getUserCommonResponse(
+    { role: UserRole.Admin, id: adminUserId },
+    {
+      id: adminUserId
     }
-  }
+  )
 ];
 
 export const regularUserMockResponses = [
-  {
-    request: {
-      query: GetUserDocument,
-      variables: {
-        id: regularUserId
-      }
-    },
-    result: {
-      data: {
-        user: {
-          id: regularUserId,
-          name,
-          picture,
-          email,
-          flowdockName,
-          githubName,
-          description,
-          role: 'USER',
-          skills: [],
-          projectsChampioned: []
-        }
-      }
+  getUserCommonResponse(
+    { role: UserRole.Regular, id: regularUserId },
+    {
+      id: regularUserId
     }
-  },
-  {
-    request: {
-      query: GetHeaderUserDocument,
-      variables: {
-        id: regularUserId
-      }
-    },
-    result: {
-      data: {
-        user: {
-          id: regularUserId,
-          name,
-          picture,
-          role: 'USER'
-        }
-      }
-    }
-  }
-];
-
-export const roleMockResponses = [
-  {
-    request: {
-      query: UserRoleDocument,
-      variables: { id: regularUserId }
-    },
-    result: {
-      data: {
-        user: {
-          id: regularUserId,
-          role: 'REGULAR'
-        }
-      }
-    }
-  },
-  {
-    request: {
-      query: UserRoleDocument,
-      variables: { id: adminUserId }
-    },
-    result: {
-      data: {
-        user: {
-          id: adminUserId,
-          role: 'ADMIN'
-        }
-      }
-    }
-  }
+  )
 ];

@@ -1,6 +1,0 @@
-mutation createSkill($name: String!) {
-  createSkill(name: $name) {
-    id
-    name
-  }
-}

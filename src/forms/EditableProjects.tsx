@@ -1,12 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Chip from '@material-ui/core/Chip';
+import gql from 'graphql-tag';
 import EditableList, { EditableListProps, ItemComponent } from './EditableList';
 import { useCustomQuery } from '../utils/hooks';
-import {
-  EditableProjectsListQuery,
-  EditableProjectsListDocument
-} from '../generated-models';
+import { EditableProjectsListQuery } from '../generated-models';
 import './EditableProject.css';
 
 const ProjectChip: ItemComponent = ({ item, onDelete, editing }) => {
@@ -29,9 +27,18 @@ const ProjectChip: ItemComponent = ({ item, onDelete, editing }) => {
   );
 };
 
+const EDITABLE_PROJECTS = gql`
+  query editableProjectsList {
+    allProjects {
+      id
+      name
+    }
+  }
+`;
+
 const EditableProjects: React.FC<EditableListProps> = props => {
   const { data, loading } = useCustomQuery<EditableProjectsListQuery>(
-    EditableProjectsListDocument,
+    EDITABLE_PROJECTS,
     {
       skip: !props.editing,
       suspend: false

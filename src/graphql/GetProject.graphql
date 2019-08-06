@@ -1,5 +1,0 @@
-query getProject($id: ID!) {
-  Project(id: $id) {
-    ...ProjectSectionFields
-  }
-}

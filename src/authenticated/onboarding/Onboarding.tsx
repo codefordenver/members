@@ -8,13 +8,13 @@ import StepLabel from '@material-ui/core/StepLabel';
 import StepContent from '@material-ui/core/StepContent';
 import Typography from '@material-ui/core/Typography';
 import EditableSkills from '../../forms/EditableSkills';
-import { GetUserUser } from '../../generated-models';
+import { UserCommonFragment } from '../../generated-models';
 import LoadingIndicator from '../../shared-components/LoadingIndicator';
 import EditableText from '../../forms/EditableText';
 import './Onboarding.css';
 
 interface OnboardingProps {
-  user?: GetUserUser;
+  user?: UserCommonFragment;
   onChange: (value: any) => void;
   onSubmit: (value: any) => void;
 }
@@ -49,7 +49,7 @@ const Onboarding: React.FC<OnboardingProps> = ({
             "Let's spend a few minutes to fill out your profile so you can connect to others and join a project."
           }
         </p>
-        {/* TODO: re-add this button to scroll to content 
+        {/* TODO: re-add this button to scroll to content
         once we have enough content to scroll */}
         {/* <Button variant="contained" color="primary">
           OKAY!

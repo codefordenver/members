@@ -2,7 +2,7 @@ import React from 'react';
 import EditableText from './EditableText';
 
 interface EditableLinkProps {
-  value: string | null;
+  value: string | null | undefined;
   name: string;
   label: string;
   linkName?: string;

@@ -6,11 +6,27 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
+import gql from 'graphql-tag';
 import EditableSkills from '../../forms/EditableSkills';
 import EditableLink from '../../forms/EditableLink';
 import { ProjectCardFieldsFragment } from '../../generated-models';
-import './ProjectCard.css';
 import { getRepoPath } from '../../utils';
+import './ProjectCard.css';
+
+export const PROJECT_CARD_FIELDS = gql`
+  fragment ProjectCardFields on Project {
+    id
+    name
+    headerImage
+    repoName
+    boardUrl
+    status
+    skills {
+      id
+      name
+    }
+  }
+`;
 
 const ProjectCard: React.FC<ProjectCardFieldsFragment> = ({
   id,

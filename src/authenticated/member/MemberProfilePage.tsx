@@ -1,15 +1,12 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import MemberForm from './MemberForm';
-import { useCustomQuery } from '../../utils/hooks';
-import { GetUserQuery, GetUserDocument } from '../../generated-models';
+import { useUserCommon } from '../../utils/commonGraphql';
 
 type MemberPageProps = RouteComponentProps<{ id: string }>;
 
 const MemberPage: React.FC<MemberPageProps> = ({ match }) => {
-  const { data } = useCustomQuery<GetUserQuery>(GetUserDocument, {
-    variables: { id: match.params.id }
-  });
+  const { data } = useUserCommon(match.params.id);
   if (!data || !data.user) return null;
 
   return <MemberForm initialValues={data.user} />;

@@ -1,6 +1,0 @@
-query editableSkillsList {
-  allSkills {
-    id
-    name
-  }
-}

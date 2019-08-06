@@ -1,6 +1,0 @@
-query editableUsersList {
-  allUsers {
-    id
-    name
-  }
-}

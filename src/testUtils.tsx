@@ -18,8 +18,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo-hooks';
 import {
   regularUserMockResponses,
-  adminUserServerMockResponses,
-  roleMockResponses
+  adminUserServerMockResponses
 } from './mocks/loggedInUserResponses';
 import AuthProvider from './utils/authentication/authProvider';
 import ErrorBoundary from './shared-components/ErrorBoundary';
@@ -50,7 +49,7 @@ export function mountWithContext(
   mocks?: ReadonlyArray<MockedResponse>,
   history = createHistory({ initialEntries: routes })
 ) {
-  const client = createClient({ mocks, addTypename: false });
+  const client = createClient({ mocks, addTypename: true });
 
   // Using Router instead of MemoryRouter so we can override `history`
   // see note: https://github.com/ReactTraining/react-router/blob/0853628daff26a809e5384f352fada57753fc1c3/packages/react-router/modules/MemoryRouter.js#L31-L32
@@ -75,8 +74,7 @@ export function mountWithAuth(
   return mountWithContext(cmp, { routes }, [
     ...additionalMocks,
     ...regularUserMockResponses,
-    ...adminUserServerMockResponses,
-    ...roleMockResponses
+    ...adminUserServerMockResponses
   ]);
 }
 

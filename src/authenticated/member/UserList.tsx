@@ -1,11 +1,11 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import { Link } from 'react-router-dom';
-import { UsersListAllUsers } from '../../generated-models';
+import { User } from '../../generated-models';
 import './UsersList.css';
 
 interface UsersListProps {
-  users: UsersListAllUsers[];
+  users: Pick<User, 'id' | 'picture' | 'name'>[];
 }
 
 const UsersList: React.FC<UsersListProps> = ({ users = [] }) => {
