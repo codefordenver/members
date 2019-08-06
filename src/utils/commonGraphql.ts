@@ -188,8 +188,6 @@ export function useUpdateProjectCommon() {
   const updateProject = useMutation<UpdateProjectCommonMutation>(
     UPDATE_PROJECT_COMMON,
     {
-      // TODO: Verify these refetch queries are correct
-      // or possibly look into some way that we don't have to worry about refetching
       refetchQueries: ['editableUsersList']
     }
   );
@@ -246,11 +244,7 @@ function formatNewProjectForCreate(newProject: ProjectCommonFragment) {
 
 export function useCreateProjectCommon() {
   const createProject = useMutation<CreateProjectCommonMutation>(
-    CREATE_PROJECT_COMMON,
-    {
-      // TODO: These didn't exist before, check if they are actually needed
-      refetchQueries: ['projectCards', 'projectsDrawer', 'editableUsersList']
-    }
+    CREATE_PROJECT_COMMON
   );
 
   return (newProject: ProjectCommonFragment) =>
