@@ -86,7 +86,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
           </Button>
           <Button onClick={() => handleSubmit()} disabled={isSubmitting}>
             {creating && 'Create'}
-            {editing && 'Edit'}
+            {editing && 'Save'}
           </Button>
         </Form>
       )}
