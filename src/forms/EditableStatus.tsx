@@ -1,5 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
+import options from '../constants/projectStatusOptions';
 
 interface Props {
   value: any;
@@ -12,14 +13,6 @@ type SelectOption = {
   value: string;
   label: string;
 };
-const options = [
-  { value: 'Idea', label: 'Idea' },
-  { value: 'Pitch', label: 'Pitch' },
-  { value: 'Exploration', label: 'Exploration' },
-  { value: 'ActiveDevelopment', label: 'Active Development' },
-  { value: 'Support', label: 'Support' },
-  { value: 'Inactive', label: 'Inactive' }
-];
 const EditableStatus: React.FC<Props> = ({
   value,
   name,
@@ -29,12 +22,9 @@ const EditableStatus: React.FC<Props> = ({
   const _handleSelectionChange = (
     selectedOption?: SelectOption | SelectOption[] | null
   ) => {
-    if (!selectedOption) {
-      return;
-    }
-    if (selectedOption instanceof Array) {
-      selectedOption = selectedOption[0];
-    }
+    if (!selectedOption) return;
+    if (selectedOption instanceof Array) selectedOption = selectedOption[0];
+
     onChange({
       target: { value: selectedOption.value, name }
     });
@@ -51,9 +41,8 @@ const EditableStatus: React.FC<Props> = ({
     isSearchable: true,
     menuPortalTarget: document.body
   };
-  if (!editing) {
-    return <h3>{(selectValue && selectValue.label) || ''}</h3>;
-  }
+
+  if (!editing) return <h3>{(selectValue && selectValue.label) || ''}</h3>;
 
   return (
     <div>
