@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { Box } from '@material-ui/core';
 
 // The presentation of the indicator is delayed to improve perceived performance
 // See: https://material-ui-next.com/demos/progress/#delaying-appearance
@@ -19,7 +20,11 @@ const LoadingIndicator: React.FC<Props> = ({ color }) => {
   }, []);
 
   if (isShown) {
-    return <CircularProgress color={color} />;
+    return (
+      <div style={{ width: '100%', textAlign: 'center' }}>
+        <CircularProgress color={color} />
+      </div>
+    );
   }
   return null;
 };

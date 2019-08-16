@@ -30,7 +30,6 @@ const FadeMenu: React.FC<FadeMenuProps> = props => {
         aria-owns={anchorEl ? 'fade-menu' : undefined}
         aria-haspopup="true"
         onClick={handleClick}
-        color="secondary"
       >
         {props.avatar && (
           <Avatar src={props.avatar} alt={props.username || ''} />

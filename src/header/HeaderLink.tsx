@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
       marginLeft: theme.spacing(1),
       fontWeight: 'bold',
       textDecoration: 'none',
+      textTransform: 'uppercase',
       '&:hover': {
         textShadow: '0 0 8px white'
       }

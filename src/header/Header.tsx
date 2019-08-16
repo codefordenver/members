@@ -5,7 +5,6 @@ import {
   Toolbar,
   Button,
   Grid,
-  IconButton,
   createStyles,
   Theme,
   Typography
@@ -35,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 'bold'
     },
     appBar: {
-      minHeight: '75px'
+      padding: theme.spacing(1)
     }
   })
 );
@@ -100,7 +99,7 @@ const Header: React.FC = () => {
   return (
     <AppBar className={classes.appBar} position="sticky">
       <Toolbar>
-        <IconButton>
+        <Button>
           <Link to="/">
             <img
               className={classes.headerLogo}
@@ -108,7 +107,7 @@ const Header: React.FC = () => {
               alt="code for denver logo"
             />
           </Link>
-        </IconButton>
+        </Button>
 
         <Grid container justify="space-between" alignItems="center">
           <Suspense fallback={<LoadingIndicator />}>
