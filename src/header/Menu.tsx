@@ -44,11 +44,8 @@ const FadeMenu: React.FC<FadeMenuProps> = props => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem
-          onClick={handleClose}
-          component={({ innerRef, ...props }) => <Link to="/me" {...props} />}
-        >
-          PROFILE
+        <MenuItem onClick={handleClose}>
+          <Link to="/me">PROFILE</Link>
         </MenuItem>
         <MenuItem onClick={props.logout}>LOG OUT</MenuItem>
       </Menu>

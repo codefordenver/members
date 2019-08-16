@@ -1,10 +1,17 @@
 import React, { Suspense, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import logo from '../images/cfd-circle-icon-white.png';
+import {
+  AppBar,
+  Toolbar,
+  Button,
+  Grid,
+  IconButton,
+  createStyles,
+  Theme,
+  Typography
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
+import logo from '../images/logo.png';
 import userIsAdmin from '../utils/userIsAdmin';
 import MenuList from './Menu';
 import AuthenticationContext from '../utils/authentication/authContext';
@@ -12,16 +19,46 @@ import AuthService from '../utils/authentication/authService';
 import { User } from '../sharedTypes';
 import LoadingIndicator from '../shared-components/LoadingIndicator';
 import { useUserCommon } from '../utils/commonGraphql';
-import './Header.css';
+import HeaderLink from './HeaderLink';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    headerLogo: {
+      height: '46px'
+    },
+    authButton: {
+      color: 'white',
+      fontSize: '18px',
+      letterSpacing: '0.05em',
+      marginRight: theme.spacing(1),
+      marginLeft: theme.spacing(1),
+      fontWeight: 'bold'
+    },
+    appBar: {
+      minHeight: '75px'
+    }
+  })
+);
 
 const AuthButtons = ({ isLoggingIn = false }) => {
   if (isLoggingIn) return <LoadingIndicator />;
+
+  const classes = useStyles();
+
   return (
-    <Grid item>
-      <Button color="secondary" onClick={AuthService.login}>
+    <Grid>
+      <Button
+        className={classes.authButton}
+        color="secondary"
+        onClick={AuthService.login}
+      >
         Log In
       </Button>
-      <Button color="secondary" onClick={AuthService.signUp}>
+      <Button
+        className={classes.authButton}
+        color="secondary"
+        onClick={AuthService.signUp}
+      >
         Sign Up
       </Button>
     </Grid>
@@ -30,17 +67,13 @@ const AuthButtons = ({ isLoggingIn = false }) => {
 
 const UserLinks = ({ user }: { user: User | null }) => (
   <Grid item>
-    <Link className="Header-link" to="/volunteers">
-      All Users
-    </Link>
-    <Link className="Header-link" to="/projects">
-      All Projects
-    </Link>
-    {userIsAdmin(user || undefined) && (
-      <Link className="Header-link" to="/admin">
-        Admin Resources
-      </Link>
-    )}
+    <Typography>
+      <HeaderLink to="/volunteers">USERS</HeaderLink>
+      <HeaderLink to="/projects">PROJECTS</HeaderLink>
+      {userIsAdmin(user || undefined) && (
+        <HeaderLink to="/admin">Admin Resources</HeaderLink>
+      )}
+    </Typography>
   </Grid>
 );
 
@@ -62,12 +95,20 @@ const LoggedInHeaderContent: React.FC<{ userId: string }> = ({ userId }) => {
 
 const Header: React.FC = () => {
   const authContext = useContext(AuthenticationContext);
+  const classes = useStyles();
+
   return (
-    <AppBar position="fixed">
+    <AppBar className={classes.appBar} position="sticky">
       <Toolbar>
-        <Link to="/">
-          <img className="Header-logo" src={logo} alt="code for denver logo" />
-        </Link>
+        <IconButton>
+          <Link to="/">
+            <img
+              className={classes.headerLogo}
+              src={logo}
+              alt="code for denver logo"
+            />
+          </Link>
+        </IconButton>
 
         <Grid container justify="space-between" alignItems="center">
           <Suspense fallback={<LoadingIndicator />}>

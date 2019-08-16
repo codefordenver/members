@@ -49,18 +49,13 @@ const ProjectCard: React.FC<ProjectCardFieldsFragment> = ({
         </Link>
       )}
       <CardContent>
-        <Typography
-          gutterBottom
-          variant="h5"
-          component={({ innerRef, ...props }) => (
-            <Link to={`/projects/${id}`} {...props} />
-          )}
-        >
+        <Typography gutterBottom variant="h5">
+          <Link to={`/projects/${id}`} />
           {name}
         </Typography>
       </CardContent>
       <CardActions>
-        <Grid container spacing={16} alignItems="center">
+        <Grid container spacing={8} alignItems="center">
           <EditableSkills
             value={skills}
             name="skills"

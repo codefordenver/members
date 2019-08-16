@@ -18,21 +18,13 @@ import './App.css';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      light: '#ea8589',
-      main: '#E24E54',
-      dark: '#c5262c',
-      contrastText: '#fff'
+      main: '#E24E54'
     },
     secondary: {
-      light: '#eee',
-      main: '#fff',
-      dark: '#ccc',
-      contrastText: '#fff'
+      main: '#4ECAE2'
     }
   },
-  typography: {
-    useNextVariants: true
-  }
+  spacing: 8
 });
 
 const styles = (theme: Theme) => ({
@@ -54,7 +46,7 @@ const App: React.FC<AppProps> = ({ classes }) => {
                 <Header />
               </ErrorBoundary>
               <ErrorBoundary>
-                <div className={classes.toolbar} />
+                {/* <div className={classes.toolbar} /> */}
                 <Suspense fallback={<LoadingIndicator />}>
                   <AppBody />
                 </Suspense>

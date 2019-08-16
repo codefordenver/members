@@ -52,12 +52,8 @@ const MemberForm: React.FC<MemberFormProps> = ({
           onFormDataChange={() => {}}
         />
         {canEdit && (
-          <Button
-            component={({ innerRef, ...props }) => (
-              <Link to={`${match.url}/edit`} {...props} />
-            )}
-          >
-            Edit
+          <Button>
+            <Link to={`${match.url}/edit`}>Edit</Link>
           </Button>
         )}
       </React.Fragment>
@@ -81,11 +77,8 @@ const MemberForm: React.FC<MemberFormProps> = ({
             message="Warning, you have unsaved changes. Are you sure you want to leave?"
           />
 
-          <Button
-            component={({ innerRef, ...props }) => (
-              <Link to={getBaseUrl(history, creating, editing)} {...props} />
-            )}
-          >
+          <Button>
+            <Link to={getBaseUrl(history, creating, editing)} />
             Cancel
           </Button>
           <Button onClick={() => handleSubmit()} disabled={isSubmitting}>

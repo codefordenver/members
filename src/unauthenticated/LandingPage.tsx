@@ -1,17 +1,40 @@
 import React from 'react';
 import membersPic from '../images/members-pic.jpg';
-import './LandingPage.css';
+import { Typography, Theme, createStyles, Box } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 
-const LandingPage = () => (
-  <div>
-    <h1 className="leftPad">Welcome to the Code for Denver Members Site</h1>
-    <img
-      className="LandingPage-members-pic"
-      src={membersPic}
-      alt="Some of the members of Code for Denver"
-    />
-    <p className="leftPad">Please sign up or log in</p>
-  </div>
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    heading: {
+      fontSize: '36px',
+      textAlign: 'center',
+      margin: theme.spacing(4),
+      fontWeight: 'bold'
+    },
+    body: {
+      textAlign: 'center',
+      margin: theme.spacing(2)
+    }
+  })
 );
+
+const LandingPage = () => {
+  const classes = useStyles();
+  return (
+    <Box>
+      <Typography variant="h1" className={classes.heading}>
+        Welcome to the Code for Denver Members Site
+      </Typography>
+      <img
+        style={{ maxWidth: '100%' }}
+        src={membersPic}
+        alt="Some of the members of Code for Denver"
+      />
+      <Typography className={classes.body} variant="body1">
+        Please log in or sign up
+      </Typography>
+    </Box>
+  );
+};
 
 export default LandingPage;

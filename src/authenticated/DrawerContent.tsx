@@ -47,7 +47,6 @@ const DrawerContent: React.FC<DrawerContentProps> = ({ classes }) => {
   return (
     <div>
       <List
-        component="nav"
         subheader={
           <ListSubheader component="div" className={classes.navTitle}>
             ACTIVE PROJECTS
@@ -58,12 +57,8 @@ const DrawerContent: React.FC<DrawerContentProps> = ({ classes }) => {
         {projects &&
           projects.map(project => (
             <React.Fragment key={project.id}>
-              <ListItem
-                button
-                component={({ innerRef, ...props }) => (
-                  <Link to={`/projects/${project.id}`} {...props} />
-                )}
-              >
+              <ListItem button>
+                <Link to={`/projects/${project.id}`} />
                 <ListItemText primary={project.name} />
               </ListItem>
               <Divider />

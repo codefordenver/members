@@ -49,11 +49,8 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
           editing={false}
           onFormDataChange={() => {}}
         />
-        <Button
-          component={({ innerRef, ...props }) => (
-            <Link to={`${match.url}/edit`} {...props} />
-          )}
-        >
+        <Button>
+          <Link to={`${match.url}/edit`} />
           Edit
         </Button>
       </React.Fragment>
@@ -77,11 +74,8 @@ const ProjectForm: React.FC<ProjectFormProps> = ({
             message="Warning, you have unsaved changes. Are you sure you want to leave?"
           />
 
-          <Button
-            component={({ innerRef, ...props }) => (
-              <Link to={getBaseUrl(history, creating, editing)} {...props} />
-            )}
-          >
+          <Button>
+            <Link to={getBaseUrl(history, creating, editing)} />
             Cancel
           </Button>
           <Button onClick={() => handleSubmit()} disabled={isSubmitting}>

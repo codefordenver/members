@@ -20,6 +20,7 @@ import AuthenticationContext from '../utils/authentication/authContext';
 import OnboardingPage from './onboarding/OnboardingPage';
 import LoadingIndicator from '../shared-components/LoadingIndicator';
 import { useUserCommon } from '../utils/commonGraphql';
+import { Box } from '@material-ui/core';
 
 export const PAGE_URLS = {
   newUser: '/new'
@@ -30,7 +31,7 @@ const LoggedInRoutes = () => {
   const { data } = useUserCommon(authContext.authData.userId);
 
   return (
-    <DrawerLayout drawer={<DrawerContent />}>
+    <Box>
       {!data || !data.user ? null : (
         <Suspense fallback={<LoadingIndicator />}>
           <Switch>
@@ -53,7 +54,7 @@ const LoggedInRoutes = () => {
           </Switch>
         </Suspense>
       )}
-    </DrawerLayout>
+    </Box>
   );
 };
 
