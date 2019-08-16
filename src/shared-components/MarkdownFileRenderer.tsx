@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import marked from 'marked';
 import LoadingIndicator from './LoadingIndicator';
-import './MarkdownFileRenderer.css';
 
 marked.setOptions({
   gfm: true,
