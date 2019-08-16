@@ -24,7 +24,10 @@ const theme = createMuiTheme({
       main: '#4ECAE2'
     }
   },
-  spacing: 8
+  spacing: 8,
+  typography: {
+    fontFamily: ['Roboto Condensed'].join(', ')
+  }
 });
 
 const styles = (theme: Theme) => ({

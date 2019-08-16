@@ -7,17 +7,3 @@ html {
 *:after {
   box-sizing: inherit;
 }
-
-h2 {
-  font-size: 40px;
-}
-
-p {
-  font-size: 14px;
-  line-height: 16px;
-  margin-bottom: 40px;
-}
-
-a {
-  color: #e24e54;
-}

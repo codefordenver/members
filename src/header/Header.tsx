@@ -4,16 +4,18 @@ import {
   AppBar,
   Toolbar,
   Button,
-  Grid,
   createStyles,
-  Theme
+  Theme,
+  Box,
+  IconButton
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import logo from '../images/logo.png';
 import AuthenticationContext from '../utils/authentication/authContext';
 import AuthService from '../utils/authentication/authService';
 import LoadingIndicator from '../shared-components/LoadingIndicator';
-import LoggedInHeaderContent from './LoggedInHeaderContent';
+import UserLinks from './UserLinks';
+import MenuDrawer from './MenuDrawer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,11 +27,10 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: '18px',
       letterSpacing: '0.05em',
       marginRight: theme.spacing(1),
-      marginLeft: theme.spacing(1),
-      fontWeight: 'bold'
-    },
-    appBar: {
-      padding: theme.spacing(1)
+      fontWeight: 'bold',
+      '&:last-of-type': {
+        marginRight: 0
+      }
     }
   })
 );
@@ -40,7 +41,7 @@ const AuthButtons = ({ isLoggingIn = false }) => {
   const classes = useStyles();
 
   return (
-    <Grid>
+    <Box display="flex" alignItems="center" justifyContent="flex-end">
       <Button
         className={classes.authButton}
         color="secondary"
@@ -55,18 +56,22 @@ const AuthButtons = ({ isLoggingIn = false }) => {
       >
         Sign Up
       </Button>
-    </Grid>
+    </Box>
   );
 };
 
 const Header: React.FC = () => {
   const authContext = useContext(AuthenticationContext);
   const classes = useStyles();
+  const authenticated = authContext.isAuthenticated();
+  const { authData, isLoggingIn } = authContext;
+  const { userId } = authData;
 
   return (
-    <AppBar className={classes.appBar} position="sticky">
+    <AppBar position="sticky">
       <Toolbar>
-        <Button>
+        {authenticated && <MenuDrawer userId={userId} />}
+        <IconButton>
           <Link to="/">
             <img
               className={classes.headerLogo}
@@ -74,17 +79,17 @@ const Header: React.FC = () => {
               alt="code for denver logo"
             />
           </Link>
-        </Button>
+        </IconButton>
 
-        <Grid container justify="space-between" alignItems="center">
+        <Box width="100%" justifyContent="flex-end" alignItems="center">
           <Suspense fallback={<LoadingIndicator />}>
-            {authContext.isAuthenticated() ? (
-              <LoggedInHeaderContent userId={authContext.authData.userId} />
+            {authenticated ? (
+              <UserLinks userId={userId} />
             ) : (
-              <AuthButtons isLoggingIn={authContext.isLoggingIn} />
+              <AuthButtons isLoggingIn={isLoggingIn} />
             )}
           </Suspense>
-        </Grid>
+        </Box>
       </Toolbar>
     </AppBar>
   );
