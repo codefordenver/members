@@ -6,19 +6,14 @@ import {
   Button,
   Grid,
   createStyles,
-  Theme,
-  Typography
+  Theme
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import logo from '../images/logo.png';
-import userIsAdmin from '../utils/userIsAdmin';
-import MenuList from './Menu';
 import AuthenticationContext from '../utils/authentication/authContext';
 import AuthService from '../utils/authentication/authService';
-import { User } from '../sharedTypes';
 import LoadingIndicator from '../shared-components/LoadingIndicator';
-import { useUserCommon } from '../utils/commonGraphql';
-import HeaderLink from './HeaderLink';
+import LoggedInHeaderContent from './LoggedInHeaderContent';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -61,34 +56,6 @@ const AuthButtons = ({ isLoggingIn = false }) => {
         Sign Up
       </Button>
     </Grid>
-  );
-};
-
-const UserLinks = ({ user }: { user: User | null }) => (
-  <Grid item>
-    <Typography>
-      <HeaderLink to="/volunteers">USERS</HeaderLink>
-      <HeaderLink to="/projects">PROJECTS</HeaderLink>
-      {userIsAdmin(user || undefined) && (
-        <HeaderLink to="/admin">Admin Resources</HeaderLink>
-      )}
-    </Typography>
-  </Grid>
-);
-
-const LoggedInHeaderContent: React.FC<{ userId: string }> = ({ userId }) => {
-  const { data } = useUserCommon(userId);
-  if (!data || !data.user) return null;
-
-  return (
-    <React.Fragment>
-      <UserLinks user={data.user} />
-      <MenuList
-        avatar={data.user.picture || ''}
-        username={data.user.name || ''}
-        logout={AuthService.logout}
-      />
-    </React.Fragment>
   );
 };
 
