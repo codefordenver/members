@@ -90,7 +90,7 @@ const MemberForm: React.FC<MemberFormProps> = ({
           </Button>
           <Button onClick={() => handleSubmit()} disabled={isSubmitting}>
             {creating && 'Create'}
-            {editing && 'Edit'}
+            {editing && 'Save'}
           </Button>
         </Form>
       )}
