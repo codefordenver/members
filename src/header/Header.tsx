@@ -7,7 +7,8 @@ import {
   createStyles,
   Theme,
   Box,
-  IconButton
+  IconButton,
+  Container
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import logo from '../images/logo.png';
@@ -30,6 +31,15 @@ const useStyles = makeStyles((theme: Theme) =>
       fontWeight: 'bold',
       '&:last-of-type': {
         marginRight: 0
+      }
+    },
+    toolbar: {
+      padding: theme.spacing(2, 0)
+    },
+    link: {
+      fontSize: 0,
+      [theme.breakpoints.up('sm')]: {
+        marginRight: theme.spacing(3)
       }
     }
   })
@@ -69,28 +79,28 @@ const Header: React.FC = () => {
 
   return (
     <AppBar position="sticky">
-      <Toolbar>
-        {authenticated && <MenuDrawer userId={userId} />}
-        <IconButton>
-          <Link to="/">
+      <Container maxWidth="md">
+        <Toolbar className={classes.toolbar}>
+          {authenticated && <MenuDrawer userId={userId} />}
+          <Link className={classes.link} to="/">
             <img
               className={classes.headerLogo}
               src={logo}
               alt="code for denver logo"
             />
           </Link>
-        </IconButton>
 
-        <Box width="100%" justifyContent="flex-end" alignItems="center">
-          <Suspense fallback={<LoadingIndicator />}>
-            {authenticated ? (
-              <UserLinks userId={userId} />
-            ) : (
-              <AuthButtons isLoggingIn={isLoggingIn} />
-            )}
-          </Suspense>
-        </Box>
-      </Toolbar>
+          <Box width="100%" justifyContent="flex-end" alignItems="center">
+            <Suspense fallback={<LoadingIndicator />}>
+              {authenticated ? (
+                <UserLinks userId={userId} />
+              ) : (
+                <AuthButtons isLoggingIn={isLoggingIn} />
+              )}
+            </Suspense>
+          </Box>
+        </Toolbar>
+      </Container>
     </AppBar>
   );
 };

@@ -51,6 +51,10 @@ const useStyles = makeStyles((theme: Theme) =>
       '&:visited': {
         color: 'initial'
       }
+    },
+    menuIcon: {
+      padding: theme.spacing(1),
+      marginRight: theme.spacing(2)
     }
   })
 );
@@ -97,7 +101,11 @@ const MenuDrawer: React.FC<{ userId: string }> = ({ userId }) => {
 
   return (
     <Box className={classes.root}>
-      <IconButton onClick={toggleDrawer('left', true)} color="inherit">
+      <IconButton
+        className={classes.menuIcon}
+        onClick={toggleDrawer('left', true)}
+        color="inherit"
+      >
         <MenuIcon />
       </IconButton>
       <Drawer open={state.left} onClose={toggleDrawer('left', false)}>

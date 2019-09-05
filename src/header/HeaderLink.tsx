@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme: Theme) =>
       color: 'white',
       fontSize: '18px',
       letterSpacing: '0.05em',
-      marginRight: theme.spacing(1),
+      marginRight: theme.spacing(3),
       marginLeft: theme.spacing(1),
       fontWeight: 'bold',
       textDecoration: 'none',
