@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import marked from 'marked';
 import LoadingIndicator from './LoadingIndicator';
+import './MarkdownFileRenderer.css';
 
 marked.setOptions({
   gfm: true,
@@ -36,7 +37,7 @@ const MarkdownFileRenderer: React.FC<MarkdownFileRendererProps> = ({
             className="MarkdownFileRenderer-edit"
             href={`https://github.com/codefordenver/members/edit/master/public/markdown/${fileName}.md`}
           >
-            suggest edit
+            SUGGEST EDIT
           </a>,
 
           <div

@@ -1,0 +1,18 @@
+.MarkdownFileRenderer {
+  position: relative;
+}
+
+.MarkdownFileRenderer-edit {
+  display: none;
+  position: absolute;
+  top: 0px;
+  right: 20px;
+  background-color: white;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 3px;
+  border-radius: 3px;
+}
+
+.MarkdownFileRenderer:hover > .MarkdownFileRenderer-edit {
+  display: block;
+}
