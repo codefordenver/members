@@ -16,7 +16,7 @@ Here is some information we hope you'll find useful.
 
 - [Who we are](https://www.codefordenver.org/)
 - [What we do](https://www.codefordenver.org/work-with-us/)
-- [How to get involved in a project or pitch a new one](https://www.codefordenver.org/work-with-us/)
+- [How to get involved in a project or pitch a new one](https://docs.google.com/document/d/1g49ygKr_BWV_4incl5ENB1vH83QEPyd4ISVypaMBlXM/edit?usp=sharing)
 - [Current Projects](https://www.codefordenver.org/current-projects/)
 - [2015 Report](http://archive.codefordenver.org/2015/)
 - [2016 Report](http://www.codefordenver.org/2016-end-year-report/)
