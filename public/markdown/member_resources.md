@@ -15,9 +15,6 @@ Here is some information we hope you'll find useful.
 ## Organizational Information
 
 - [Who we are](https://www.codefordenver.org/)
-- [What we do](https://www.codefordenver.org/work-with-us/)
-- [How to get involved in a project or pitch a new one](https://www.codefordenver.org/work-with-us/)
-- [Current Projects](https://www.codefordenver.org/current-projects/)
 - [2015 Report](http://archive.codefordenver.org/2015/)
 - [2016 Report](http://www.codefordenver.org/2016-end-year-report/)
 - [2017 Report](http://2017.codefordenver.org)
@@ -38,6 +35,4 @@ These are the main tools we use (with links for our specific organization). You'
 ## Other Links
 
 - [Code of Conduct](https://github.com/codefordenver/codeofconduct)
-- [Resources for learning](https://www.codefordenver.org/category/learn/)
-- [Project Pitch Guidelines](https://www.codefordenver.org/work-with-us/)
 - [Donate to help us pay for food](https://secure.codeforamerica.org/page/contribute/default?brigade=Code%20for%20Denver)
