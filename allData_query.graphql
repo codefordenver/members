@@ -1,0 +1,55 @@
+# This is a query to get all the server data (to be run as an Admin in the graphcool console)
+query allData {
+  allUsers {
+    id
+    createdAt
+    updatedAt
+    email
+    name
+    auth0UserId
+    picture
+    githubName
+    flowdockName
+    description
+    hasCompletedWizard
+    role
+    projectsChampioned {
+      id
+    }
+    skills {
+      id
+    }
+  }
+
+  allProjects {
+    id
+    createdAt
+    updatedAt
+    name
+    headerImage
+    status
+    description
+    boardUrl
+    cfapiProjectId
+    repoName
+    champions {
+      id
+    }
+    skills {
+      id
+    }
+  }
+
+  allSkills {
+    id
+    createdAt
+    updatedAt
+    name
+    usersWithSkill {
+      id
+    }
+    projectsWithSkill {
+      id
+    }
+  }
+}
