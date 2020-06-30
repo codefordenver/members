@@ -1,3 +1,9 @@
+> # Deprecation Notice
+>
+> The [underlying technology](https://www.graph.cool/) that we previously used for the backend of this project has shut down. After considering the amount of effort to migrate the project to another technology and the availability of volunteers to do this work, we decided to deprecate this project for now. Some of the original features for this project have been adopted by the [Code for Denver Scout project](https://github.com/codefordenver/codefordenver-scout)
+>
+> If you are interested either reviving this project or integrating some of the features of this project into either the [Code for Denver website](http://codefordenver.org/) or Scout project, [talk to the Code for Denver Leadership](http://codefordenver.org/#/about#contact).
+
 [![Build Status](https://travis-ci.org/codefordenver/members.svg?branch=master)](https://travis-ci.org/codefordenver/members)
 
 # members.codefordenver.com

@@ -11,12 +11,14 @@ script:
   - npm test -- --coverage
   - npm run typecheck
 
-deploy:
-  - provider: script
-    skip_cleanup: true
-    script: bin/deploy_prod_backend.sh
-    on:
-      branch: master
+# Graph.cool has shut down
+# If we want to deploy the backend somewhere else we'd need to redo this
+# deploy:
+#   - provider: script
+#     skip_cleanup: true
+#     script: bin/deploy_prod_backend.sh
+#     on:
+#       branch: master
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -e TRAVIS_NODE_VERSION
