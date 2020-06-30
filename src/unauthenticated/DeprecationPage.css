@@ -1,0 +1,23 @@
+.DeprecationPage-warning {
+  margin: 20px 30px 10px;
+  padding: 0 2rem;
+  border: 1px solid red;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+.DeprecationPage-warning-title {
+  color: red;
+}
+
+.DeprecationPage-warning-background {
+  color: grey;
+}
+
+.DeprecationPage-members-pic {
+  max-width: 100%;
+}
+
+.leftPad {
+  margin-left: 30px;
+}
