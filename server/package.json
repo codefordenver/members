@@ -4,7 +4,7 @@
   "description": "My Graphcool Service",
   "dependencies": {
     "graphcool-lib": "^0.1.0",
-    "jsonwebtoken": "^8.1.0",
+    "jsonwebtoken": "^9.0.0",
     "jwks-rsa": "^1.2.1"
   }
 }
